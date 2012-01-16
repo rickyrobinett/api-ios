@@ -1,0 +1,232 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BECC2C314C4910400763395 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BECC2C214C4910400763395 /* Foundation.framework */; };
+		0BECC2C914C4910400763395 /* Ordrin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BECC2C814C4910400763395 /* Ordrin.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0BECC2BF14C4910400763395 /* libOrdrin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOrdrin.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BECC2C214C4910400763395 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0BECC2C614C4910400763395 /* Ordrin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ordrin-Prefix.pch"; sourceTree = "<group>"; };
+		0BECC2C714C4910400763395 /* Ordrin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ordrin.h; sourceTree = "<group>"; };
+		0BECC2C814C4910400763395 /* Ordrin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ordrin.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0BECC2BC14C4910400763395 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BECC2C314C4910400763395 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0BECC2B414C4910400763395 = {
+			isa = PBXGroup;
+			children = (
+				0BECC2C414C4910400763395 /* Ordrin */,
+				0BECC2C114C4910400763395 /* Frameworks */,
+				0BECC2C014C4910400763395 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0BECC2C014C4910400763395 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0BECC2BF14C4910400763395 /* libOrdrin.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0BECC2C114C4910400763395 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0BECC2C214C4910400763395 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0BECC2C414C4910400763395 /* Ordrin */ = {
+			isa = PBXGroup;
+			children = (
+				0BECC2C714C4910400763395 /* Ordrin.h */,
+				0BECC2C814C4910400763395 /* Ordrin.m */,
+				0BECC2C514C4910400763395 /* Supporting Files */,
+			);
+			path = Ordrin;
+			sourceTree = "<group>";
+		};
+		0BECC2C514C4910400763395 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0BECC2C614C4910400763395 /* Ordrin-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0BECC2BD14C4910400763395 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0BECC2BE14C4910400763395 /* Ordrin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BECC2CC14C4910400763395 /* Build configuration list for PBXNativeTarget "Ordrin" */;
+			buildPhases = (
+				0BECC2BB14C4910400763395 /* Sources */,
+				0BECC2BC14C4910400763395 /* Frameworks */,
+				0BECC2BD14C4910400763395 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ordrin;
+			productName = Ordrin;
+			productReference = 0BECC2BF14C4910400763395 /* libOrdrin.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0BECC2B614C4910400763395 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = tapmates;
+			};
+			buildConfigurationList = 0BECC2B914C4910400763395 /* Build configuration list for PBXProject "Ordrin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0BECC2B414C4910400763395;
+			productRefGroup = 0BECC2C014C4910400763395 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0BECC2BE14C4910400763395 /* Ordrin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0BECC2BB14C4910400763395 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BECC2C914C4910400763395 /* Ordrin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0BECC2CA14C4910400763395 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0BECC2CB14C4910400763395 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0BECC2CD14C4910400763395 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Ordrin.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ordrin/Ordrin-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		0BECC2CE14C4910400763395 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Ordrin.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ordrin/Ordrin-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0BECC2B914C4910400763395 /* Build configuration list for PBXProject "Ordrin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BECC2CA14C4910400763395 /* Debug */,
+				0BECC2CB14C4910400763395 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0BECC2CC14C4910400763395 /* Build configuration list for PBXNativeTarget "Ordrin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BECC2CD14C4910400763395 /* Debug */,
+				0BECC2CE14C4910400763395 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0BECC2B614C4910400763395 /* Project object */;
+}
