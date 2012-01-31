@@ -1,3 +1,6 @@
 [submodule "Source/libOrdrin/Ordrin/Third Party/JSONKit"]
 	path = Source/libOrdrin/Ordrin/Third Party/JSONKit
 	url = https://github.com/johnezang/JSONKit.git
+[submodule "Source/libOrdrin/Ordrin/Third Party/ASIHttpRequest"]
+	path = Source/libOrdrin/Ordrin/Third Party/ASIHttpRequest
+	url = https://github.com/pokeb/asi-http-request.git
