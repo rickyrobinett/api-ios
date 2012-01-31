@@ -11,25 +11,18 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OIMainViewController.h"
+#import "OIRequestFactory.h"
+#import "ASIHTTPRequest.h"
 
-@implementation OIMainViewController {
+@implementation OIRequestFactory {
 
 }
 
-#pragma mark -
-#pragma mark Lifecycle
++ (ASIHTTPRequest *)authenticatedRequestWithURL:(NSURL *)url {
+  ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
+  [request addRequestHeader:@"X-NAAMA-CLIENT-AUTHENTICATION" value:[NSString stringWithFormat:@"id=\"Av0TbfZB4RGTHeFXu8bTaA\", version=\"1\""]];
 
-- (void)loadView {
-  [super loadView];
-
-  self.view.backgroundColor = [UIColor whiteColor];
-
-  // List of restaurants
-
-  [OIRestaurant restaurantsNearAddress:nil availableAt:nil usingBlock:^void(NSArray *restaurants) {
-
-  }];
+  return [request autorelease];
 }
 
 @end

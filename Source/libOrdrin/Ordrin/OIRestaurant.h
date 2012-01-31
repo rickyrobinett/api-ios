@@ -11,25 +11,16 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OIMainViewController.h"
+#import <Foundation/Foundation.h>
 
-@implementation OIMainViewController {
+@class OIDateTime;
+@class OIRestaurantAddress;
 
-}
+@interface OIRestaurant : NSObject
 
 #pragma mark -
-#pragma mark Lifecycle
+#pragma mark Class methods
 
-- (void)loadView {
-  [super loadView];
-
-  self.view.backgroundColor = [UIColor whiteColor];
-
-  // List of restaurants
-
-  [OIRestaurant restaurantsNearAddress:nil availableAt:nil usingBlock:^void(NSArray *restaurants) {
-
-  }];
-}
++ (void)restaurantsNearAddress:(OIRestaurantAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block;
 
 @end

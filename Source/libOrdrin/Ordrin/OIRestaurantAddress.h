@@ -11,31 +11,17 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OIAPIClient.h"
+#import <Foundation/Foundation.h>
 
-@implementation OIAPIClient {
+@interface OIRestaurantAddress : NSObject
 
-}
-
-#pragma mark -
-#pragma mark Lifecycle
-
-- (id)init {
-  if (( self = [super init] )) {
-
-  }
-  return self;
-}
+@property (nonatomic, readwrite, copy) NSString *street;
+@property (nonatomic, readwrite, copy) NSString *city;
+@property (nonatomic, readwrite, retain) NSNumber *postalCode;
 
 #pragma mark -
-#pragma mark Singleton
+#pragma mark Class methods
 
-+ (OIAPIClient *)sharedInstance {
-	static dispatch_once_t pred;
-	static OIAPIClient *instance = nil;
-
-	dispatch_once(&pred, ^{ instance = [[self alloc] init]; });
-	return instance;
-}
++ (OIRestaurantAddress *)restaurantAddressWithStreet:(NSString *)street city:(NSString *)city postalCode:(NSNumber *)postalCode;
 
 @end

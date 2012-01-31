@@ -11,13 +11,23 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import <Foundation/Foundation.h>
+#import "OIRestaurant.h"
+#import "OIRestaurantAddress.h"
+#import "OICommon.h"
+#import "OICore.h"
 
-@interface OIAPIClient : NSObject
+#import "ASIHTTPRequest.h"
+
+@implementation OIRestaurant {
+
+}
 
 #pragma mark -
-#pragma mark Singleton
+#pragma mark Class methods
 
-+ (OIAPIClient *)sharedInstance;
++ (void)restaurantsNearAddress:(OIRestaurantAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block {
+  __block ASIHTTPRequest *request = [OIRequestFactory authenticatedRequestWithURL:[NSURL URLWithString:@"https://r-test.ordr.in/dl/"]];
+  [request startAsynchronous];
+}
 
 @end

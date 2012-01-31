@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B4522EA14D80288004A063C /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B4522E914D80288004A063C /* libOrdrin.a */; };
+		0B5E065714D809700050DFE0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5E065614D809700050DFE0 /* SystemConfiguration.framework */; };
+		0BA96D7C14D811F500EFB4D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA96D7B14D811F500EFB4D9 /* CFNetwork.framework */; };
+		0BA96D7F14D8120100EFB4D9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA96D7E14D8120100EFB4D9 /* libz.dylib */; };
+		0BA96D8114D8121200EFB4D9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA96D8014D8121200EFB4D9 /* MobileCoreServices.framework */; };
 		0BD4922114C492F3000CD9F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD4922014C492F3000CD9F4 /* UIKit.framework */; };
 		0BD4922314C492F3000CD9F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD4922214C492F3000CD9F4 /* Foundation.framework */; };
 		0BD4922514C492F3000CD9F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD4922414C492F3000CD9F4 /* CoreGraphics.framework */; };
@@ -17,6 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B4522E914D80288004A063C /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../Source/libOrdrin/build/Release-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
+		0B5E065614D809700050DFE0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0BA96D7B14D811F500EFB4D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		0BA96D7E14D8120100EFB4D9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0BA96D8014D8121200EFB4D9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		0BD4921C14C492F3000CD9F4 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BD4922014C492F3000CD9F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0BD4922214C492F3000CD9F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,15 +47,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BA96D8114D8121200EFB4D9 /* MobileCoreServices.framework in Frameworks */,
+				0BA96D7F14D8120100EFB4D9 /* libz.dylib in Frameworks */,
+				0BA96D7C14D811F500EFB4D9 /* CFNetwork.framework in Frameworks */,
+				0B5E065714D809700050DFE0 /* SystemConfiguration.framework in Frameworks */,
 				0BD4922114C492F3000CD9F4 /* UIKit.framework in Frameworks */,
 				0BD4922314C492F3000CD9F4 /* Foundation.framework in Frameworks */,
 				0BD4922514C492F3000CD9F4 /* CoreGraphics.framework in Frameworks */,
+				0B4522EA14D80288004A063C /* libOrdrin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B4522EC14D80293004A063C /* Apple */ = {
+			isa = PBXGroup;
+			children = (
+				0BA96D7E14D8120100EFB4D9 /* libz.dylib */,
+				0BA96D8014D8121200EFB4D9 /* MobileCoreServices.framework */,
+				0BA96D7B14D811F500EFB4D9 /* CFNetwork.framework */,
+				0B5E065614D809700050DFE0 /* SystemConfiguration.framework */,
+				0BD4922014C492F3000CD9F4 /* UIKit.framework */,
+				0BD4922214C492F3000CD9F4 /* Foundation.framework */,
+				0BD4922414C492F3000CD9F4 /* CoreGraphics.framework */,
+			);
+			name = Apple;
+			sourceTree = "<group>";
+		};
 		0BD4921114C492F3000CD9F4 = {
 			isa = PBXGroup;
 			children = (
@@ -66,9 +95,8 @@
 		0BD4921F14C492F3000CD9F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0BD4922014C492F3000CD9F4 /* UIKit.framework */,
-				0BD4922214C492F3000CD9F4 /* Foundation.framework */,
-				0BD4922414C492F3000CD9F4 /* CoreGraphics.framework */,
+				0B4522E914D80288004A063C /* libOrdrin.a */,
+				0B4522EC14D80293004A063C /* Apple */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -198,8 +226,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin/;
+				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -216,9 +245,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin/;
+				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -227,10 +257,15 @@
 		0BD4923B14C492F3000CD9F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemoApp/DemoApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin;
 				INFOPLIST_FILE = "DemoApp/DemoApp-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -238,10 +273,15 @@
 		0BD4923C14C492F3000CD9F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemoApp/DemoApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin;
 				INFOPLIST_FILE = "DemoApp/DemoApp-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

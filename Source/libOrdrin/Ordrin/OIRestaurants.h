@@ -11,7 +11,5 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import <Foundation/Foundation.h>
-#import "Ordrin.h"
-
-#define OI_DEVELOPER_KEY @"Av0TbfZB4RGTHeFXu8bTaA"
+#import "OIRestaurant.h"
+#import "OIRestaurantAddress.h"
