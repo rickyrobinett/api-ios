@@ -31,7 +31,6 @@
 		0BE7AF1C14D7DB4F00286B24 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE7AF1A14D7DB4F00286B24 /* JSONKit.h */; };
 		0BE7AF1D14D7DB4F00286B24 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7AF1B14D7DB4F00286B24 /* JSONKit.m */; };
 		0BECC2C314C4910400763395 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BECC2C214C4910400763395 /* Foundation.framework */; };
-		0BECC2C914C4910400763395 /* Ordrin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BECC2C814C4910400763395 /* Ordrin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +61,6 @@
 		0BECC2C214C4910400763395 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0BECC2C614C4910400763395 /* Ordrin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ordrin-Prefix.pch"; sourceTree = "<group>"; };
 		0BECC2C714C4910400763395 /* Ordrin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ordrin.h; sourceTree = "<group>"; };
-		0BECC2C814C4910400763395 /* Ordrin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ordrin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				0BECC2C714C4910400763395 /* Ordrin.h */,
-				0BECC2C814C4910400763395 /* Ordrin.m */,
 				0BE7AEEC14D7D9DF00286B24 /* Third Party */,
 				0BECC2C514C4910400763395 /* Supporting Files */,
 			);
@@ -240,7 +237,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BECC2C914C4910400763395 /* Ordrin.m in Sources */,
 				0BE7AF0514D7DA0C00286B24 /* AFHTTPClient.m in Sources */,
 				0BE7AF0714D7DA0C00286B24 /* AFHTTPRequestOperation.m in Sources */,
 				0BE7AF0914D7DA0C00286B24 /* AFImageRequestOperation.m in Sources */,

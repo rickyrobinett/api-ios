@@ -12,9 +12,8 @@
 		0BD4922514C492F3000CD9F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD4922414C492F3000CD9F4 /* CoreGraphics.framework */; };
 		0BD4922B14C492F3000CD9F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BD4922914C492F3000CD9F4 /* InfoPlist.strings */; };
 		0BD4922D14C492F3000CD9F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD4922C14C492F3000CD9F4 /* main.m */; };
-		0BD4923114C492F3000CD9F4 /* OIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD4923014C492F3000CD9F4 /* OIAppDelegate.m */; };
-		0BD4923414C492F3000CD9F4 /* OIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD4923314C492F3000CD9F4 /* OIViewController.m */; };
-		0BD4923714C492F3000CD9F4 /* OIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD4923514C492F3000CD9F4 /* OIViewController.xib */; };
+		0BD4923114C492F3000CD9F4 /* OIDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD4923014C492F3000CD9F4 /* OIDemoAppDelegate.m */; };
+		BD4923C14C492F3000CD9F6 /* OIMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4923C14C492F3000CD9F5 /* OIMainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,11 +25,10 @@
 		0BD4922A14C492F3000CD9F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0BD4922C14C492F3000CD9F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0BD4922E14C492F3000CD9F4 /* DemoApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DemoApp-Prefix.pch"; sourceTree = "<group>"; };
-		0BD4922F14C492F3000CD9F4 /* OIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OIAppDelegate.h; sourceTree = "<group>"; };
-		0BD4923014C492F3000CD9F4 /* OIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIAppDelegate.m; sourceTree = "<group>"; };
-		0BD4923214C492F3000CD9F4 /* OIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OIViewController.h; sourceTree = "<group>"; };
-		0BD4923314C492F3000CD9F4 /* OIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIViewController.m; sourceTree = "<group>"; };
-		0BD4923614C492F3000CD9F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OIViewController.xib; sourceTree = "<group>"; };
+		0BD4922F14C492F3000CD9F4 /* OIDemoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OIDemoAppDelegate.h; sourceTree = "<group>"; };
+		0BD4923014C492F3000CD9F4 /* OIDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIDemoAppDelegate.m; sourceTree = "<group>"; };
+		BD4923C14C492F3000CD9F5 /* OIMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIMainViewController.m; path = Classes/OIMainViewController.m; sourceTree = "<group>"; };
+		BD4923C14C492F3000CD9F7 /* OIMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIMainViewController.h; path = Classes/OIMainViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +75,10 @@
 		0BD4922614C492F3000CD9F4 /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
-				0BD4922F14C492F3000CD9F4 /* OIAppDelegate.h */,
-				0BD4923014C492F3000CD9F4 /* OIAppDelegate.m */,
-				0BD4923214C492F3000CD9F4 /* OIViewController.h */,
-				0BD4923314C492F3000CD9F4 /* OIViewController.m */,
-				0BD4923514C492F3000CD9F4 /* OIViewController.xib */,
+				BD4923C14C492F3000CD9F7 /* OIMainViewController.h */,
+				BD4923C14C492F3000CD9F5 /* OIMainViewController.m */,
+				0BD4922F14C492F3000CD9F4 /* OIDemoAppDelegate.h */,
+				0BD4923014C492F3000CD9F4 /* OIDemoAppDelegate.m */,
 				0BD4922714C492F3000CD9F4 /* Supporting Files */,
 			);
 			path = DemoApp;
@@ -150,7 +147,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BD4922B14C492F3000CD9F4 /* InfoPlist.strings in Resources */,
-				0BD4923714C492F3000CD9F4 /* OIViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,8 +158,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BD4922D14C492F3000CD9F4 /* main.m in Sources */,
-				0BD4923114C492F3000CD9F4 /* OIAppDelegate.m in Sources */,
-				0BD4923414C492F3000CD9F4 /* OIViewController.m in Sources */,
+				0BD4923114C492F3000CD9F4 /* OIDemoAppDelegate.m in Sources */,
+				BD4923C14C492F3000CD9F6 /* OIMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,14 +172,6 @@
 				0BD4922A14C492F3000CD9F4 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		0BD4923514C492F3000CD9F4 /* OIViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0BD4923614C492F3000CD9F4 /* en */,
-			);
-			name = OIViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

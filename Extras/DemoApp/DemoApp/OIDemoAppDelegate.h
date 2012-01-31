@@ -11,11 +11,8 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OIDemoAppDelegate.h"
+#import <UIKit/UIKit.h>
 
-int main(int argc, char *argv[])
-{
-  @autoreleasepool {
-      return UIApplicationMain(argc, argv, nil, NSStringFromClass([OIDemoAppDelegate class]));
-  }
-}
+@interface OIDemoAppDelegate : UIResponder <UIApplicationDelegate>
+
+@end
