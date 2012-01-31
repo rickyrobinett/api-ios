@@ -1,6 +1,3 @@
-[submodule "Source/libOrdrin/Ordrin/Third Party/AFNetworking"]
-	path = Source/libOrdrin/Ordrin/Third Party/AFNetworking
-	url = https://github.com/AFNetworking/AFNetworking.git
 [submodule "Source/libOrdrin/Ordrin/Third Party/JSONKit"]
 	path = Source/libOrdrin/Ordrin/Third Party/JSONKit
 	url = https://github.com/johnezang/JSONKit.git

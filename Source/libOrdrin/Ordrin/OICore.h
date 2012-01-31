@@ -11,8 +11,7 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OIDemo.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface OIDemoAppDelegate : UIResponder <UIApplicationDelegate>
-
-@end
+#import "OIAPIClient.h"

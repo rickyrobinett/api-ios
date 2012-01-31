@@ -11,7 +11,31 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OIDemo.h"
+#import "OIAPIClient.h"
 
-@interface OIMainViewController : UIViewController
+@implementation OIAPIClient {
+
+}
+
+#pragma mark -
+#pragma mark Lifecycle
+
+- (id)init {
+  if (( self = [super init] )) {
+
+  }
+  return self;
+}
+
+#pragma mark -
+#pragma mark Singleton
+
++ (OIAPIClient *)sharedInstance {
+	static dispatch_once_t pred;
+	static OIAPIClient *instance = nil;
+
+	dispatch_once(&pred, ^{ instance = [[self alloc] init]; });
+	return instance;
+}
+
 @end

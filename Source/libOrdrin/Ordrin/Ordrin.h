@@ -11,8 +11,4 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import <Foundation/Foundation.h>
-
-@interface Ordrin : NSObject
-
-@end
+#import "OICore.h"

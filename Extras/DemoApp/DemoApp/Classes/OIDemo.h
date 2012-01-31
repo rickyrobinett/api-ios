@@ -11,8 +11,7 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OIDemo.h"
+#import <Foundation/Foundation.h>
+#import "Ordrin.h"
 
-@interface OIDemoAppDelegate : UIResponder <UIApplicationDelegate>
-
-@end
+#define DEVELOPER_KEY @"Av0TbfZB4RGTHeFXu8bTaA"

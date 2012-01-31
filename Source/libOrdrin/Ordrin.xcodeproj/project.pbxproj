@@ -31,6 +31,11 @@
 		0BE7AF1C14D7DB4F00286B24 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE7AF1A14D7DB4F00286B24 /* JSONKit.h */; };
 		0BE7AF1D14D7DB4F00286B24 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7AF1B14D7DB4F00286B24 /* JSONKit.m */; };
 		0BECC2C314C4910400763395 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BECC2C214C4910400763395 /* Foundation.framework */; };
+		BECC2CE14C4910400763398 /* OICore.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C4910400763397 /* OICore.h */; };
+		BECC2CE14C491040076339A /* OIAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC2CE14C4910400763399 /* OIAPIClient.m */; };
+		BECC2CE14C491040076339C /* OIAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C491040076339B /* OIAPIClient.h */; };
+		BECC2CE14C491040076339E /* OIDebuggingTools.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C491040076339D /* OIDebuggingTools.h */; };
+		BECC2CE14C49104007633A0 /* OIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC2CE14C491040076339F /* OIDebuggingTools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +66,11 @@
 		0BECC2C214C4910400763395 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0BECC2C614C4910400763395 /* Ordrin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ordrin-Prefix.pch"; sourceTree = "<group>"; };
 		0BECC2C714C4910400763395 /* Ordrin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ordrin.h; sourceTree = "<group>"; };
+		BECC2CE14C4910400763397 /* OICore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OICore.h; sourceTree = "<group>"; };
+		BECC2CE14C4910400763399 /* OIAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIAPIClient.m; sourceTree = "<group>"; };
+		BECC2CE14C491040076339B /* OIAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIAPIClient.h; sourceTree = "<group>"; };
+		BECC2CE14C491040076339D /* OIDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDebuggingTools.h; sourceTree = "<group>"; };
+		BECC2CE14C491040076339F /* OIDebuggingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIDebuggingTools.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +134,7 @@
 		0BECC2B414C4910400763395 = {
 			isa = PBXGroup;
 			children = (
+				0BECC2C614C4910400763395 /* Ordrin-Prefix.pch */,
 				0BECC2C414C4910400763395 /* Ordrin */,
 				0BECC2C114C4910400763395 /* Frameworks */,
 				0BECC2C014C4910400763395 /* Products */,
@@ -151,17 +162,21 @@
 			children = (
 				0BECC2C714C4910400763395 /* Ordrin.h */,
 				0BE7AEEC14D7D9DF00286B24 /* Third Party */,
-				0BECC2C514C4910400763395 /* Supporting Files */,
+				BECC2CE14C4910400763396 /* OICore */,
 			);
 			path = Ordrin;
 			sourceTree = "<group>";
 		};
-		0BECC2C514C4910400763395 /* Supporting Files */ = {
+		BECC2CE14C4910400763396 /* OICore */ = {
 			isa = PBXGroup;
 			children = (
-				0BECC2C614C4910400763395 /* Ordrin-Prefix.pch */,
+				BECC2CE14C491040076339F /* OIDebuggingTools.m */,
+				BECC2CE14C491040076339D /* OIDebuggingTools.h */,
+				BECC2CE14C491040076339B /* OIAPIClient.h */,
+				BECC2CE14C4910400763399 /* OIAPIClient.m */,
+				BECC2CE14C4910400763397 /* OICore.h */,
 			);
-			name = "Supporting Files";
+			name = OICore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +198,9 @@
 				0BE7AF1514D7DA0C00286B24 /* AFXMLRequestOperation.h in Headers */,
 				0BE7AF1714D7DA0C00286B24 /* UIImageView+AFNetworking.h in Headers */,
 				0BE7AF1C14D7DB4F00286B24 /* JSONKit.h in Headers */,
+				BECC2CE14C4910400763398 /* OICore.h in Headers */,
+				BECC2CE14C491040076339C /* OIAPIClient.h in Headers */,
+				BECC2CE14C491040076339E /* OIDebuggingTools.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +266,8 @@
 				0BE7AF1614D7DA0C00286B24 /* AFXMLRequestOperation.m in Sources */,
 				0BE7AF1814D7DA0C00286B24 /* UIImageView+AFNetworking.m in Sources */,
 				0BE7AF1D14D7DB4F00286B24 /* JSONKit.m in Sources */,
+				BECC2CE14C491040076339A /* OIAPIClient.m in Sources */,
+				BECC2CE14C49104007633A0 /* OIDebuggingTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

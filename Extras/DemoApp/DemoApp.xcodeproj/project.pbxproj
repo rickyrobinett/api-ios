@@ -29,6 +29,7 @@
 		0BD4923014C492F3000CD9F4 /* OIDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIDemoAppDelegate.m; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9F5 /* OIMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIMainViewController.m; path = Classes/OIMainViewController.m; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9F7 /* OIMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIMainViewController.h; path = Classes/OIMainViewController.h; sourceTree = "<group>"; };
+		BD4923C14C492F3000CD9F8 /* OIDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIDemo.h; path = Classes/OIDemo.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +76,7 @@
 		0BD4922614C492F3000CD9F4 /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				BD4923C14C492F3000CD9F8 /* OIDemo.h */,
 				BD4923C14C492F3000CD9F7 /* OIMainViewController.h */,
 				BD4923C14C492F3000CD9F5 /* OIMainViewController.m */,
 				0BD4922F14C492F3000CD9F4 /* OIDemoAppDelegate.h */,
@@ -196,6 +198,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin/;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
@@ -213,6 +216,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin/;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
@@ -261,6 +265,7 @@
 				0BD4923C14C492F3000CD9F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
