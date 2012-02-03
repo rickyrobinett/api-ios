@@ -13,9 +13,26 @@
  */
 #import "OIMainViewController.h"
 
-@implementation OIMainViewController {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Interface
 
+@interface OIMainViewController()< UITableViewDataSource, UITableViewDelegate >
+
+@property (nonatomic, readwrite, retain) NSArray *dataSet;
+
+-(void)releaseWithDealloc:(BOOL)dealloc;
+@end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Implementation
+
+@implementation OIMainViewController {
+@private
+  UITableView *__tableView;
+  NSArray *__dataSet;
 }
+
+@synthesize dataSet = __dataSet;
 
 #pragma mark -
 #pragma mark Lifecycle
@@ -25,6 +42,11 @@
 
   self.view.backgroundColor = [UIColor whiteColor];
 
+  __tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+  __tableView.delegate = self;
+  __tableView.dataSource = self;
+  [self.view addSubview:__tableView];
+
   // List of restaurants
 
   OIRestaurantAddress *address = [OIRestaurantAddress restaurantAddressWithStreet:@"1 Main St"
@@ -32,8 +54,53 @@
                                                                        postalCode:[NSNumber numberWithInt:77840]];
 
   [OIRestaurant restaurantsNearAddress:address availableAt:nil usingBlock:^void(NSArray *restaurants) {
-    NSLog(@"%@", restaurants);
+    self.dataSet = restaurants;
+    [__tableView reloadData];
   }];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return [__dataSet count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+  if ( ! cell ) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  }
+  
+  cell.textLabel.text = [(OIRestaurant *)[__dataSet objectAtIndex:indexPath.row] name];
+
+  return cell;
+}
+
+#pragma mark -
+#pragma mark Memory Management
+
+-(void)releaseWithDealloc:(BOOL)dealloc {
+  [__tableView release], __tableView = nil;
+  
+  if ( dealloc ) {
+    [__dataSet release], __dataSet = nil;
+  }
+}
+
+- (void)viewDidUnload {
+  [self releaseWithDealloc:NO];
+  [super viewDidUnload];
+}
+
+- (void)dealloc {
+  [self releaseWithDealloc:YES];
+  [super dealloc];
 }
 
 @end
