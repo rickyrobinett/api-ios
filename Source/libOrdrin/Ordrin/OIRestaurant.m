@@ -15,8 +15,9 @@
 #import "OIRestaurantAddress.h"
 #import "OICommon.h"
 #import "OICore.h"
-
 #import "ASIHTTPRequest.h"
+
+NSString *const OIRestaurantBaseURL = @"http://r-test.ordr.in";
 
 @implementation OIRestaurant {
 
@@ -26,8 +27,12 @@
 #pragma mark Class methods
 
 + (void)restaurantsNearAddress:(OIRestaurantAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block {
-  __block ASIHTTPRequest *request = [OIRequestFactory authenticatedRequestWithURL:[NSURL URLWithString:@"https://r-test.ordr.in/dl/"]];
-  [request startAsynchronous];
+  NSString *URL = [NSString stringWithFormat:@"%@/dl/10001", OIRestaurantBaseURL];
+
+  ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES];
 }
 
 @end

@@ -14,6 +14,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "OIAPIClient.h"
 #import "OIDebuggingTools.h"
 #import "OIPreprocessor.h"
-#import "OIRequestFactory.h"

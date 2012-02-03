@@ -16,6 +16,8 @@
 @class OIDateTime;
 @class OIRestaurantAddress;
 
+extern NSString *const OIRestaurantBaseURL;
+
 @interface OIRestaurant : NSObject
 
 #pragma mark -

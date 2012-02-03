@@ -50,8 +50,8 @@
 		BECC2CE14C49104007633B0 /* OICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C49104007633AF /* OICommon.h */; };
 		BECC2CE14C49104007633B2 /* OIDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC2CE14C49104007633B1 /* OIDateTime.m */; };
 		BECC2CE14C49104007633B4 /* OIDateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C49104007633B3 /* OIDateTime.h */; };
-		BECC2CE14C49104007633B6 /* OIRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC2CE14C49104007633B5 /* OIRequestFactory.m */; };
-		BECC2CE14C49104007633B8 /* OIRequestFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C49104007633B7 /* OIRequestFactory.h */; };
+		BECC2CE14C49104007633BA /* OIAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC2CE14C49104007633B9 /* OIAPIClient.m */; };
+		BECC2CE14C49104007633BC /* OIAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C49104007633BB /* OIAPIClient.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,8 +100,8 @@
 		BECC2CE14C49104007633AF /* OICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OICommon.h; sourceTree = "<group>"; };
 		BECC2CE14C49104007633B1 /* OIDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIDateTime.m; sourceTree = "<group>"; };
 		BECC2CE14C49104007633B3 /* OIDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDateTime.h; sourceTree = "<group>"; };
-		BECC2CE14C49104007633B5 /* OIRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIRequestFactory.m; sourceTree = "<group>"; };
-		BECC2CE14C49104007633B7 /* OIRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIRequestFactory.h; sourceTree = "<group>"; };
+		BECC2CE14C49104007633B9 /* OIAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIAPIClient.m; sourceTree = "<group>"; };
+		BECC2CE14C49104007633BB /* OIAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIAPIClient.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,8 +230,8 @@
 		BECC2CE14C4910400763396 /* OICore */ = {
 			isa = PBXGroup;
 			children = (
-				BECC2CE14C49104007633B7 /* OIRequestFactory.h */,
-				BECC2CE14C49104007633B5 /* OIRequestFactory.m */,
+				BECC2CE14C49104007633BB /* OIAPIClient.h */,
+				BECC2CE14C49104007633B9 /* OIAPIClient.m */,
 				BECC2CE14C49104007633AC /* OIPreprocessor.h */,
 				BECC2CE14C491040076339F /* OIDebuggingTools.m */,
 				BECC2CE14C491040076339D /* OIDebuggingTools.h */,
@@ -291,8 +291,8 @@
 				BECC2CE14C49104007633AD /* OIPreprocessor.h in Headers */,
 				BECC2CE14C49104007633B0 /* OICommon.h in Headers */,
 				BECC2CE14C49104007633B4 /* OIDateTime.h in Headers */,
-				BECC2CE14C49104007633B8 /* OIRequestFactory.h in Headers */,
 				0BA96D5A14D80D5800EFB4D9 /* Ordrin.h in Headers */,
+				BECC2CE14C49104007633BC /* OIAPIClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +361,7 @@
 				BECC2CE14C49104007633A5 /* OIRestaurant.m in Sources */,
 				BECC2CE14C49104007633A9 /* OIRestaurantAddress.m in Sources */,
 				BECC2CE14C49104007633B2 /* OIDateTime.m in Sources */,
-				BECC2CE14C49104007633B6 /* OIRequestFactory.m in Sources */,
+				BECC2CE14C49104007633BA /* OIAPIClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

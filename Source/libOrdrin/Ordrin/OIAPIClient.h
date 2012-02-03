@@ -11,18 +11,18 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OIRequestFactory.h"
-#import "ASIHTTPRequest.h"
+#import <Foundation/Foundation.h>
 
-@implementation OIRequestFactory {
+extern NSString *const OIAPIClientVersion;
 
-}
+@class ASIHTTPRequest;
 
-+ (ASIHTTPRequest *)authenticatedRequestWithURL:(NSURL *)url {
-  ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
-  [request addRequestHeader:@"X-NAAMA-CLIENT-AUTHENTICATION" value:[NSString stringWithFormat:@"id=\"Av0TbfZB4RGTHeFXu8bTaA\", version=\"1\""]];
+@interface OIAPIClient : NSObject
 
-  return [request autorelease];
-}
+@property (nonatomic, readwrite, copy) NSString *apiKey;
+
+- (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized;
+
++ (OIAPIClient *)sharedInstance;
 
 @end

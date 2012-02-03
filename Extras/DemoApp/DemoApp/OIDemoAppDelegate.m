@@ -28,6 +28,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+  // API Initialization
+  [[OIAPIClient sharedInstance] setApiKey:@"Av0TbfZB4RGTHeFXu8bTaA"];
+
   OIMainViewController *mainViewController = [[[OIMainViewController alloc] init] autorelease];
 
   __navigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
