@@ -106,6 +106,7 @@
 		BECC2CE14C49104007633B3 /* OIDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDateTime.h; sourceTree = "<group>"; };
 		BECC2CE14C49104007633B9 /* OIAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIAPIClient.m; sourceTree = "<group>"; };
 		BECC2CE14C49104007633BB /* OIAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIAPIClient.h; sourceTree = "<group>"; };
+		BECC2CE14C49104007633BD /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = ../../README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +148,7 @@
 		0BECC2B414C4910400763395 = {
 			isa = PBXGroup;
 			children = (
+				BECC2CE14C49104007633BD /* README */,
 				0BECC2C414C4910400763395 /* Ordrin */,
 				0BECC2C114C4910400763395 /* Frameworks */,
 				0BECC2C014C4910400763395 /* Products */,
