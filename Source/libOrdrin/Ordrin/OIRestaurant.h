@@ -14,7 +14,8 @@
 #import <Foundation/Foundation.h>
 
 @class OIDateTime;
-@class OIRestaurantAddress;
+@class OIAddress;
+@class OIDelivery;
 
 extern NSString *const OIRestaurantBaseURL;
 
@@ -24,9 +25,11 @@ extern NSString *const OIRestaurantBaseURL;
 @property (nonatomic, readwrite, copy) NSString *name;
 @property (nonatomic, readwrite, copy) NSString *address;
 
+- (void)deliveryCheckToAddress:(OIAddress *)address atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block;
+
 #pragma mark -
 #pragma mark Class methods
 
-+ (void)restaurantsNearAddress:(OIRestaurantAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block;
++ (void)restaurantsNearAddress:(OIAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block;
 
 @end

@@ -12,13 +12,24 @@
  *      Petr Reichl (petr@tapmates.com)
  */
 #import "OIRestaurant.h"
-#import "OIRestaurantAddress.h"
+#import "OIAddress.h"
 #import "OICommon.h"
 #import "OICore.h"
 #import "ASIHTTPRequest.h"
 #import "JSONKit.h"
+#import "OIDelivery.h"
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Variables
 
 NSString *const OIRestaurantBaseURL = @"https://r-test.ordr.in";
+
+static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
+  return [NSDate dateWithTimeInterval:minutes*60 sinceDate:[NSDate date]];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Implementation
 
 @implementation OIRestaurant {
 @private
@@ -39,6 +50,34 @@ NSString *const OIRestaurantBaseURL = @"https://r-test.ordr.in";
 }
 
 #pragma mark -
+#pragma mark Network
+
+- (void)deliveryCheckToAddress:(OIAddress *)address atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block {
+  NSString *URL = [NSString stringWithFormat:@"%@/dc/%@/%@%@", OIRestaurantBaseURL, __id, dateTime, address];
+  
+  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  [request setCompletionBlock:^void() {
+    NSDictionary *json = [[request responseString] objectFromJSONString];
+
+    OIDelivery *delivery = [[[OIDelivery alloc] init] autorelease];
+    delivery.available = [[json objectForKey:@"delivery"] boolValue];
+    if ( ! [delivery isAvailable] ) {
+      delivery.message = [json objectForKey:@"msg"];
+    }
+
+    delivery.minimumAmount = [json objectForKey:@"mino"];
+    delivery.expectedTime = OIDateTimeSinceNowWithMinutes([[json objectForKey:@"del"] integerValue]);
+
+    if ( block ) {
+      block(delivery);
+    }
+  }];
+
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES];
+}
+
+#pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
@@ -52,7 +91,7 @@ NSString *const OIRestaurantBaseURL = @"https://r-test.ordr.in";
 #pragma mark -
 #pragma mark Class methods
 
-+ (void)restaurantsNearAddress:(OIRestaurantAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block {
++ (void)restaurantsNearAddress:(OIAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block {
   NSString *URL = [NSString stringWithFormat:@"%@/dl/%@%@", OIRestaurantBaseURL, dateTime, address];
 
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];

@@ -19,6 +19,7 @@
 		0BD4922D14C492F3000CD9F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD4922C14C492F3000CD9F4 /* main.m */; };
 		0BD4923114C492F3000CD9F4 /* OIDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD4923014C492F3000CD9F4 /* OIDemoAppDelegate.m */; };
 		BD4923C14C492F3000CD9F6 /* OIMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4923C14C492F3000CD9F5 /* OIMainViewController.m */; };
+		BD4923C14C492F3000CD9FA /* OIDeliveryCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4923C14C492F3000CD9F9 /* OIDeliveryCheckViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		BD4923C14C492F3000CD9F5 /* OIMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIMainViewController.m; path = Classes/OIMainViewController.m; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9F7 /* OIMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIMainViewController.h; path = Classes/OIMainViewController.h; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9F8 /* OIDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIDemo.h; path = Classes/OIDemo.h; sourceTree = "<group>"; };
+		BD4923C14C492F3000CD9F9 /* OIDeliveryCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIDeliveryCheckViewController.m; path = Classes/OIDeliveryCheckViewController.m; sourceTree = "<group>"; };
+		BD4923C14C492F3000CD9FB /* OIDeliveryCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIDeliveryCheckViewController.h; path = Classes/OIDeliveryCheckViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 		0BD4922614C492F3000CD9F4 /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				BD4923C14C492F3000CD9FB /* OIDeliveryCheckViewController.h */,
+				BD4923C14C492F3000CD9F9 /* OIDeliveryCheckViewController.m */,
 				BD4923C14C492F3000CD9F8 /* OIDemo.h */,
 				BD4923C14C492F3000CD9F7 /* OIMainViewController.h */,
 				BD4923C14C492F3000CD9F5 /* OIMainViewController.m */,
@@ -190,6 +195,7 @@
 				0BD4922D14C492F3000CD9F4 /* main.m in Sources */,
 				0BD4923114C492F3000CD9F4 /* OIDemoAppDelegate.m in Sources */,
 				BD4923C14C492F3000CD9F6 /* OIMainViewController.m in Sources */,
+				BD4923C14C492F3000CD9FA /* OIDeliveryCheckViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

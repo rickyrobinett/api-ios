@@ -12,4 +12,4 @@
  *      Petr Reichl (petr@tapmates.com)
  */
 #import "OIRestaurant.h"
-#import "OIRestaurantAddress.h"
+#import "OIDelivery.h"

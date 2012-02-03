@@ -12,3 +12,4 @@
  *      Petr Reichl (petr@tapmates.com)
  */
 #import "OIDateTime.h"
+#import "OIAddress.h"

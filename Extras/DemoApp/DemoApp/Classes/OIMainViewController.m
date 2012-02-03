@@ -12,6 +12,7 @@
  *      Petr Reichl (petr@tapmates.com)
  */
 #import "OIMainViewController.h"
+#import "OIDeliveryCheckViewController.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interface
@@ -40,7 +41,7 @@
 - (void)loadView {
   [super loadView];
 
-  self.view.backgroundColor = [UIColor whiteColor];
+  self.title = NSLocalizedString( @"Nearby", "" );
 
   __tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
   __tableView.delegate = self;
@@ -48,10 +49,9 @@
   [self.view addSubview:__tableView];
 
   // List of restaurants
-
-  OIRestaurantAddress *address = [OIRestaurantAddress restaurantAddressWithStreet:@"1 Main St"
-                                                                             city:@"College Station"
-                                                                       postalCode:[NSNumber numberWithInt:77840]];
+  OIAddress *address = [OIAddress addressWithStreet:@"1 Main St"
+                                               city:@"College Station"
+                                         postalCode:[NSNumber numberWithInt:77840]];
 
   // You can use [OIDateTime dateTime:[NSDate date] or [OIDateTime dateTimeASAP]
 
@@ -76,12 +76,24 @@
   UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
   if ( ! cell ) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
   }
   
   cell.textLabel.text = [(OIRestaurant *)[__dataSet objectAtIndex:indexPath.row] name];
 
   return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+  OIDeliveryCheckViewController *controller = [[OIDeliveryCheckViewController alloc] init];
+  controller.restaurant = [__dataSet objectAtIndex:indexPath.row];
+  [self.navigationController pushViewController:controller animated:YES];
+  [controller release];
 }
 
 #pragma mark -

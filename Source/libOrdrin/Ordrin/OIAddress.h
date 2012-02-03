@@ -13,7 +13,7 @@
  */
 #import <Foundation/Foundation.h>
 
-@interface OIRestaurantAddress : NSObject
+@interface OIAddress : NSObject
 
 @property (nonatomic, readwrite, copy) NSString *street;
 @property (nonatomic, readwrite, copy) NSString *city;
@@ -22,6 +22,6 @@
 #pragma mark -
 #pragma mark Class methods
 
-+ (OIRestaurantAddress *)restaurantAddressWithStreet:(NSString *)street city:(NSString *)city postalCode:(NSNumber *)postalCode;
++ (OIAddress *)addressWithStreet:(NSString *)street city:(NSString *)city postalCode:(NSNumber *)postalCode;
 
 @end

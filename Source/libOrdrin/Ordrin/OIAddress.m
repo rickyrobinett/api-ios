@@ -11,10 +11,10 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OIRestaurantAddress.h"
+#import "OIAddress.h"
 #import "OICore.h"
 
-@implementation OIRestaurantAddress {
+@implementation OIAddress {
 @private
   NSString *__street;
   NSString *__city;
@@ -45,8 +45,8 @@
 #pragma mark -
 #pragma mark Class methods
 
-+ (OIRestaurantAddress *)restaurantAddressWithStreet:(NSString *)street city:(NSString *)city postalCode:(NSNumber *)postalCode {
-  OIRestaurantAddress *address = [[OIRestaurantAddress alloc] init];
++ (OIAddress *)addressWithStreet:(NSString *)street city:(NSString *)city postalCode:(NSNumber *)postalCode {
+  OIAddress *address = [[OIAddress alloc] init];
   address.street = street;
   address.city = city;
   address.postalCode = postalCode;
