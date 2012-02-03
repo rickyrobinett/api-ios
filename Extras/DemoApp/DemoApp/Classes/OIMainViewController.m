@@ -77,6 +77,7 @@
   if ( ! cell ) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
   }
   
   cell.textLabel.text = [(OIRestaurant *)[__dataSet objectAtIndex:indexPath.row] name];

@@ -21,11 +21,14 @@ extern NSString *const OIRestaurantBaseURL;
 
 @interface OIRestaurant : NSObject
 
+@property (nonatomic, readonly, getter=isComplete) BOOL complete;
 @property (nonatomic, readwrite, copy) NSString *id;
 @property (nonatomic, readwrite, copy) NSString *name;
-@property (nonatomic, readwrite, copy) NSString *address;
+@property (nonatomic, readwrite, copy) NSString *phone;
+@property (nonatomic, readwrite, retain) OIAddress *address;
 
 - (void)deliveryCheckToAddress:(OIAddress *)address atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block;
+- (void)downloadDetailUsingBlock:(void (^)(void))block;
 
 #pragma mark -
 #pragma mark Class methods

@@ -33,14 +33,18 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 
 @implementation OIRestaurant {
 @private
-  NSString *__id;
-  NSString *__name;
-  NSString *__address;
+  BOOL __complete;
+  NSString  *__id;
+  NSString  *__name;
+  NSString  *__phone;
+  OIAddress *__address;
 }
 
-@synthesize id      = __id;
-@synthesize name    = __name;
-@synthesize address = __address;
+@synthesize complete  = __complete;
+@synthesize id        = __id;
+@synthesize name      = __name;
+@synthesize phone     = __phone;
+@synthesize address   = __address;
 
 #pragma mark -
 #pragma mark Properties
@@ -77,14 +81,38 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
   [client appendRequest:request authorized:YES];
 }
 
+- (void)downloadDetailUsingBlock:(void (^)(void))block {
+  NSString *URL = [NSString stringWithFormat:@"%@/rd/%@", OIRestaurantBaseURL, __id];
+
+  __block OIRestaurant *safe = self;
+  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  [request setCompletionBlock:^void() {
+    NSDictionary *json = [[request responseString] objectFromJSONString];
+
+    __complete = YES;
+    safe.phone = [json objectForKey:@"cs_contact_phone"];
+    safe.address = [OIAddress addressWithStreet:[json objectForKey:@"addr"]
+                                           city:[json objectForKey:@"city"]
+                                     postalCode:[json objectForKey:@"postal_code"]];
+
+    if ( block ) {
+      block();
+    }
+  }];
+
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES];
+}
+
 #pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
   OI_RELEASE_SAFELY( __id );
   OI_RELEASE_SAFELY( __name );
+  OI_RELEASE_SAFELY( __phone );
   OI_RELEASE_SAFELY( __address );
-  
+
   [super dealloc];
 } 
 
@@ -103,7 +131,6 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
       OIRestaurant *restaurant = [[OIRestaurant alloc] init];
       restaurant.id = [item objectForKey:@"id"];
       restaurant.name = [item objectForKey:@"na"];
-      restaurant.address = [item objectForKey:@"ad"];
 
       [results addObject:restaurant];
       [restaurant release];

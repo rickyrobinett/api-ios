@@ -8,9 +8,7 @@ The library is currently tested only in the mode where it's part of the workspac
 * Submodules
 
     ```cd ./Ordrin
-
     git submodule init
-
     git submodule update
     ```
 

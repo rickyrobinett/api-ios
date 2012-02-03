@@ -20,6 +20,7 @@
 
 @property (nonatomic, readwrite, retain) OIDelivery *delivery;
 
+- (void)reload;
 - (void)releaseWithDealloc:(BOOL)dealloc;
 @end
 
@@ -65,24 +66,54 @@
   
   [__restaurant deliveryCheckToAddress:address atTime:dateTime usingBlock:^void(OIDelivery *delivery) {
     self.delivery = delivery;
-    [__tableView reloadData];
+    [self reload];
   }];
+
+  [__restaurant downloadDetailUsingBlock:^void() {
+    [self reload];
+  }];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)reload {
+  if ( [NSThread isMainThread] ) {
+    [__tableView reloadData];    
+  }
+  else {
+    dispatch_sync(dispatch_get_main_queue(), ^void() {
+      [__tableView reloadData];
+    });
+  }
 }
 
 #pragma mark -
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+  NSUInteger sections = 0;
+  if ( __delivery ) {
+    sections++;
+    
+    if ( [__restaurant isComplete] ) {
+      sections++;
+    }
+  }
+
+  return sections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if ( __delivery ) {
+  if ( section == 0 ) {
     if ( [__delivery isAvailable] ) {
       return 2;
     }
 
     return 1;
+  }
+  else if ( section == 1 ) {
+    return 3;
   }
 
   return 0;
@@ -93,23 +124,40 @@
   if ( ! cell ) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont systemFontOfSize:11.0f];
+    cell.textLabel.font = [UIFont systemFontOfSize:13.0f];
   }
 
-  switch (indexPath.row) {
-    case 0: {
-      if ( ! [__delivery isAvailable] ) {
-        cell.textLabel.text = __delivery.message;
-        cell.textLabel.numberOfLines = 3;
+  if ( indexPath.section == 0 ) {
+    switch (indexPath.row) {
+      case 0: {
+        if ( ! [__delivery isAvailable] ) {
+          cell.textLabel.text = __delivery.message;
+          cell.textLabel.numberOfLines = 3;
+        }
+        else {
+          cell.textLabel.text = [NSString stringWithFormat:@"Expected time: %@", __delivery.expectedTime];
+        }
+        break;
       }
-      else {
-        cell.textLabel.text = [NSString stringWithFormat:@"Expected time: %@", __delivery.expectedTime];
-      }
-      break;
+      case 1:
+        cell.textLabel.text = [NSString stringWithFormat:@"Minimum: %@", __delivery.minimumAmount];
+        break;
     }
-    case 1:
-      cell.textLabel.text = [NSString stringWithFormat:@"Minimum: %@", __delivery.minimumAmount];
-      break;
+  }
+  else if ( indexPath.section == 1 ) {
+    switch (indexPath.row) {
+      case 0:
+        cell.textLabel.text = [NSString stringWithFormat:@"phone: %@", __restaurant.phone];
+        break;
+
+      case 1:
+        cell.textLabel.text = [NSString stringWithFormat:@"address: %@", __restaurant.address.street];
+        break;
+
+      case 2:
+        cell.textLabel.text = [NSString stringWithFormat:@"city: %@ %@", __restaurant.address.postalCode, __restaurant.address.city];
+        break;
+    }
   }
   
   return cell;
@@ -120,7 +168,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   if ( [__delivery isAvailable] == NO ) {
-    return 54.0f;
+    return 58.0f;
   }
 
   return 44.0f;
