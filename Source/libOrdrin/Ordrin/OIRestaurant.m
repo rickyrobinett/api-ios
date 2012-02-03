@@ -53,7 +53,7 @@ NSString *const OIRestaurantBaseURL = @"https://r-test.ordr.in";
 #pragma mark Class methods
 
 + (void)restaurantsNearAddress:(OIRestaurantAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block {
-  NSString *URL = [NSString stringWithFormat:@"%@/dl/ASAP%@", OIRestaurantBaseURL, address];
+  NSString *URL = [NSString stringWithFormat:@"%@/dl/%@%@", OIRestaurantBaseURL, dateTime, address];
 
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
   [request setCompletionBlock:^void() {

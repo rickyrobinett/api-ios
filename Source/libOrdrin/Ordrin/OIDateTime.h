@@ -14,4 +14,10 @@
 #import <Foundation/Foundation.h>
 
 @interface OIDateTime : NSObject
+
+- (id)initWithDate:(NSDate *)date;
+
++ (OIDateTime *)dateTime:(NSDate *)date;
++ (OIDateTime *)dateTimeASAP;
+
 @end

@@ -53,7 +53,9 @@
                                                                              city:@"College Station"
                                                                        postalCode:[NSNumber numberWithInt:77840]];
 
-  [OIRestaurant restaurantsNearAddress:address availableAt:nil usingBlock:^void(NSArray *restaurants) {
+  // You can use [OIDateTime dateTime:[NSDate date] or [OIDateTime dateTimeASAP]
+
+  [OIRestaurant restaurantsNearAddress:address availableAt:[OIDateTime dateTime:[NSDate date]] usingBlock:^void(NSArray *restaurants) {
     self.dataSet = restaurants;
     [__tableView reloadData];
   }];
