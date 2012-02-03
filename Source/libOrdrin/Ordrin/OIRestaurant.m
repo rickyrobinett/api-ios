@@ -16,20 +16,64 @@
 #import "OICommon.h"
 #import "OICore.h"
 #import "ASIHTTPRequest.h"
+#import "JSONKit.h"
 
-NSString *const OIRestaurantBaseURL = @"http://r-test.ordr.in";
+NSString *const OIRestaurantBaseURL = @"https://r-test.ordr.in";
 
 @implementation OIRestaurant {
-
+@private
+  NSString *__id;
+  NSString *__name;
+  NSString *__address;
 }
+
+@synthesize id      = __id;
+@synthesize name    = __name;
+@synthesize address = __address;
+
+#pragma mark -
+#pragma mark Properties
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"name: %@", __name];
+}
+
+#pragma mark -
+#pragma mark Memory Management
+
+- (void)dealloc {
+  OI_RELEASE_SAFELY( __id );
+  OI_RELEASE_SAFELY( __name );
+  OI_RELEASE_SAFELY( __address );
+  
+  [super dealloc];
+} 
 
 #pragma mark -
 #pragma mark Class methods
 
 + (void)restaurantsNearAddress:(OIRestaurantAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block {
-  NSString *URL = [NSString stringWithFormat:@"%@/dl/10001", OIRestaurantBaseURL];
+  NSString *URL = [NSString stringWithFormat:@"%@/dl/ASAP%@", OIRestaurantBaseURL, address];
 
-  ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  [request setCompletionBlock:^void() {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    NSArray *json = [[request responseString] objectFromJSONString];
+    for (NSDictionary *item in json) {
+      OIRestaurant *restaurant = [[OIRestaurant alloc] init];
+      restaurant.id = [item objectForKey:@"id"];
+      restaurant.name = [item objectForKey:@"na"];
+      restaurant.address = [item objectForKey:@"ad"];
+
+      [results addObject:restaurant];
+      [restaurant release];
+    }
+    
+    if ( block ) {
+      block(results);
+    }
+  }];
 
   OIAPIClient *client = [OIAPIClient sharedInstance];
   [client appendRequest:request authorized:YES];

@@ -12,9 +12,9 @@
  *      Petr Reichl (petr@tapmates.com)
  */
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
-#import "OIAPIClient.h"
-#import "OIDebuggingTools.h"
-#import "OIPreprocessor.h"
-#import "NSString+OIURL.h"
+@interface NSString (OIURL)
+
+- (NSString *)urlEncode;
+
+@end

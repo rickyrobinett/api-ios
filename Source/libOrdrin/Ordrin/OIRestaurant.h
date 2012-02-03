@@ -20,6 +20,10 @@ extern NSString *const OIRestaurantBaseURL;
 
 @interface OIRestaurant : NSObject
 
+@property (nonatomic, readwrite, copy) NSString *id;
+@property (nonatomic, readwrite, copy) NSString *name;
+@property (nonatomic, readwrite, copy) NSString *address;
+
 #pragma mark -
 #pragma mark Class methods
 

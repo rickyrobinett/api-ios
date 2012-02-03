@@ -26,6 +26,13 @@
 @synthesize postalCode  = __postalCode;
 
 #pragma mark -
+#pragma mark Properties
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"/%@/%@/%@", __postalCode, [__street urlEncode], [__city urlEncode]];
+}
+
+#pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {

@@ -27,8 +27,12 @@
 
   // List of restaurants
 
-  [OIRestaurant restaurantsNearAddress:nil availableAt:nil usingBlock:^void(NSArray *restaurants) {
+  OIRestaurantAddress *address = [OIRestaurantAddress restaurantAddressWithStreet:@"1 Main St"
+                                                                             city:@"College Station"
+                                                                       postalCode:[NSNumber numberWithInt:77840]];
 
+  [OIRestaurant restaurantsNearAddress:address availableAt:nil usingBlock:^void(NSArray *restaurants) {
+    NSLog(@"%@", restaurants);
   }];
 }
 

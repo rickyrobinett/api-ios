@@ -11,10 +11,16 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-#import "OIAPIClient.h"
-#import "OIDebuggingTools.h"
-#import "OIPreprocessor.h"
 #import "NSString+OIURL.h"
+
+@implementation NSString (OIURL)
+
+- (NSString *)urlEncode {
+  NSString *result = (NSString *) CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef) self,
+      NULL,
+      CFSTR( "!*'();:@&=+$,/?%#[] " ),
+      kCFStringEncodingUTF8);
+  return [result autorelease];
+}
+
+@end
