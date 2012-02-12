@@ -11,13 +11,13 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OIMainViewController.h"
+#import "OIListViewController.h"
 #import "OIDeliveryCheckViewController.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interface
 
-@interface OIMainViewController()< UITableViewDataSource, UITableViewDelegate >
+@interface OIListViewController()< UITableViewDataSource, UITableViewDelegate >
 
 @property (nonatomic, readwrite, retain) NSArray *dataSet;
 
@@ -27,7 +27,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Implementation
 
-@implementation OIMainViewController {
+@implementation OIListViewController {
 @private
   UITableView *__tableView;
   NSArray *__dataSet;

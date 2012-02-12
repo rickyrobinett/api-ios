@@ -12,7 +12,7 @@
  *      Petr Reichl (petr@tapmates.com)
  */
 #import "OIDemoAppDelegate.h"
-#import "OIMainViewController.h"
+#import "OIMenuViewController.h"
 
 @implementation OIDemoAppDelegate  {
 @private
@@ -31,7 +31,7 @@
   // API Initialization
   [[OIAPIClient sharedInstance] setApiKey:@"Av0TbfZB4RGTHeFXu8bTaA"];
 
-  OIMainViewController *mainViewController = [[[OIMainViewController alloc] init] autorelease];
+  OIMenuViewController *mainViewController = [[[OIMenuViewController alloc] init] autorelease];
 
   __navigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
 
