@@ -78,4 +78,20 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   return [user autorelease];
 }
 
++ (void)userWithEmail:(NSString *)email password:(NSString *)password usingBlock:(void (^)(OIUser *user))block {
+  NSString *urlString = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [email urlEncode]];
+  NSURL *URL = [NSURL URLWithString:urlString];
+  
+  
+  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:URL];
+  [request setCompletionBlock:^ {
+    OIDLOG(@"response: %@", [request responseString]);
+  }];
+  
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request 
+             authorized:YES 
+          authenticator:[OIAPIUserAuthenticator authenticatorWithEmail:email password:password uri:URL]];
+}
+
 @end

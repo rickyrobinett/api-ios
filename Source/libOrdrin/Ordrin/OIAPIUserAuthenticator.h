@@ -17,4 +17,10 @@
 
 - (id)initWithEmail:(NSString *)email password:(NSString *)password uri:(NSURL *)uri;
 
+#pragma mark -
+#pragma mark Class methods
+
++ (OIAPIUserAuthenticator *)authenticatorWithEmail:(NSString *)email password:(NSString *)password uri:(NSURL *)uri;
+
+
 @end

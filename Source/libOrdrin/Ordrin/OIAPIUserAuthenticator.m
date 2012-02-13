@@ -52,4 +52,11 @@
   [super dealloc];
 }
 
+#pragma mark -
+#pragma mark Class methods
+
++ (OIAPIUserAuthenticator *)authenticatorWithEmail:(NSString *)email password:(NSString *)password uri:(NSURL *)uri {
+  return [[[OIAPIUserAuthenticator alloc] initWithEmail:email password:password uri:uri] autorelease];
+}
+
 @end
