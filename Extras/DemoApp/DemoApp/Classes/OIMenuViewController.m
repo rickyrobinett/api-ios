@@ -14,6 +14,7 @@
 #import "OIMenuViewController.h"
 #import "OIListViewController.h"
 #import "OIOrderViewController.h"
+#import "OIUserViewController.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interface
@@ -49,7 +50,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 2;
+  return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,6 +67,10 @@
       
     case 1:
       cell.textLabel.text = NSLocalizedString( @"Order", "" );
+      break;
+      
+    case 2:
+      cell.textLabel.text = NSLocalizedString( @"User", "" );
       break;
   }
   
@@ -87,6 +92,11 @@
     OIOrderViewController *order = [[OIOrderViewController alloc] init];
     [self.navigationController pushViewController:order animated:YES];
     [order release];
+  }
+  else if ( indexPath.row == 2 ) {
+    OIUserViewController *user = [[OIUserViewController alloc] init];
+    [self.navigationController pushViewController:user animated:YES];
+    [user release];
   }
 }
 

@@ -16,6 +16,8 @@
 		0BE14E7C14E8D6A3008422EE /* OIOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE14E7914E8D6A3008422EE /* OIOrder.h */; };
 		0BE14E7D14E8D6A3008422EE /* OIOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE14E7A14E8D6A3008422EE /* OIOrder.m */; };
 		0BE14E7E14E8D6A3008422EE /* OIOrders.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE14E7B14E8D6A3008422EE /* OIOrders.h */; };
+		0BE14E8414E8EF51008422EE /* OICardInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE14E8214E8EF51008422EE /* OICardInfo.h */; };
+		0BE14E8514E8EF51008422EE /* OICardInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE14E8314E8EF51008422EE /* OICardInfo.m */; };
 		0BE7AF1C14D7DB4F00286B24 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE7AF1A14D7DB4F00286B24 /* JSONKit.h */; };
 		0BE7AF1D14D7DB4F00286B24 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7AF1B14D7DB4F00286B24 /* JSONKit.m */; };
 		0BECC2C314C4910400763395 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BECC2C214C4910400763395 /* Foundation.framework */; };
@@ -73,6 +75,8 @@
 		0BE14E7914E8D6A3008422EE /* OIOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIOrder.h; sourceTree = "<group>"; };
 		0BE14E7A14E8D6A3008422EE /* OIOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIOrder.m; sourceTree = "<group>"; };
 		0BE14E7B14E8D6A3008422EE /* OIOrders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIOrders.h; sourceTree = "<group>"; };
+		0BE14E8214E8EF51008422EE /* OICardInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OICardInfo.h; sourceTree = "<group>"; };
+		0BE14E8314E8EF51008422EE /* OICardInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OICardInfo.m; sourceTree = "<group>"; };
 		0BE7AF1A14D7DB4F00286B24 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = "Third Party/JSONKit/JSONKit.h"; sourceTree = "<group>"; };
 		0BE7AF1B14D7DB4F00286B24 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = "Third Party/JSONKit/JSONKit.m"; sourceTree = "<group>"; };
 		0BECC2BF14C4910400763395 /* libOrdrin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOrdrin.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +162,8 @@
 				0BE14E7B14E8D6A3008422EE /* OIOrders.h */,
 				0BE14E7914E8D6A3008422EE /* OIOrder.h */,
 				0BE14E7A14E8D6A3008422EE /* OIOrder.m */,
+				0BE14E8214E8EF51008422EE /* OICardInfo.h */,
+				0BE14E8314E8EF51008422EE /* OICardInfo.m */,
 			);
 			name = OIOrders;
 			sourceTree = "<group>";
@@ -347,6 +353,7 @@
 				0BE14E7714E8D66D008422EE /* OIUsers.h in Headers */,
 				0BE14E7C14E8D6A3008422EE /* OIOrder.h in Headers */,
 				0BE14E7E14E8D6A3008422EE /* OIOrders.h in Headers */,
+				0BE14E8414E8EF51008422EE /* OICardInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +427,7 @@
 				BECC2CE14C49104007633BF /* OIDelivery.m in Sources */,
 				0BE14E7614E8D66D008422EE /* OIUser.m in Sources */,
 				0BE14E7D14E8D6A3008422EE /* OIOrder.m in Sources */,
+				0BE14E8514E8EF51008422EE /* OICardInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

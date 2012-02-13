@@ -11,6 +11,8 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
+#import "OIDemo.h"
 
-#import "OIOrder.h"
-#import "OICardInfo.h"
+@interface OIUserViewController : UIViewController
+
+@end

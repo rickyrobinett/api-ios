@@ -12,6 +12,10 @@
  *      Petr Reichl (petr@tapmates.com)
  */
 #import "OIOrder.h"
+#import "OICore.h"
+#import "OIAddress.h"
+#import "OICardInfo.h"
+#import "OIUser.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -23,7 +27,27 @@ NSString *const OIOrderBaseURL = @" https://o.ordr.in";
 
 @implementation OIOrder {
 @private
+  NSString    *__restaurantID;
+  OIUser      *__user;
+  OIAddress   *__address;
+  OICardInfo  *__cardInfo;
+}
+
+@synthesize restaurantID = __restaurantID;
+@synthesize address      = __address;
+@synthesize cardInfo     = __cardInfo;
+@synthesize user         = __user;
+
+#pragma mark -
+#pragma mark Memory Management
+
+- (void)dealloc {
+  OI_RELEASE_SAFELY( __restaurantID );
+  OI_RELEASE_SAFELY( __address );
+  OI_RELEASE_SAFELY( __cardInfo );
+  OI_RELEASE_SAFELY( __user );
   
+  [super dealloc];
 }
 
 @end

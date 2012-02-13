@@ -19,7 +19,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
 
-NSString const* OIUserBaseURL = @"http://u-test.ordr.in";
+NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Implementation
@@ -62,8 +62,21 @@ NSString const* OIUserBaseURL = @"http://u-test.ordr.in";
     OIDLOG(@"response: %@", [request responseString]);
   }];
   
+  [request setFailedBlock:^{
+    block([request error]);
+  }];
+  
   OIAPIClient *client = [OIAPIClient sharedInstance];
   [client appendRequest:request authorized:YES];
+}
+
++ (OIUser *)userWithEmail:(NSString *)email firstname:(NSString *)firstname lastname:(NSString *)lastname {
+  OIUser *user = [[OIUser alloc] init];
+  user.email = email;
+  user.firstname = firstname;
+  user.lastname = lastname;
+  
+  return [user autorelease];
 }
 
 @end

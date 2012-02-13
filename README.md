@@ -7,9 +7,10 @@ The library is currently tested only in the mode where it's part of the workspac
 * Clone repository git clone git@github.com:ordrin/api-ios.git Ordrin
 * Submodules
 
-    ```cd ./Ordrin
-    git submodule init
-    git submodule update
-    ```
+```
+cd ./Ordrin
+git submodule init
+git submodule update
+```
 
 * Run DemoApp ;-)

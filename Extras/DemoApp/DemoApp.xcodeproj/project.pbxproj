@@ -21,6 +21,7 @@
 		0BE14E6D14E8D648008422EE /* OIListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE14E6814E8D648008422EE /* OIListViewController.m */; };
 		0BE14E6E14E8D648008422EE /* OIMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE14E6A14E8D648008422EE /* OIMenuViewController.m */; };
 		0BE14E6F14E8D648008422EE /* OIOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE14E6C14E8D648008422EE /* OIOrderViewController.m */; };
+		0BE14E8114E8D851008422EE /* OIUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE14E8014E8D851008422EE /* OIUserViewController.m */; };
 		BD4923C14C492F3000CD9FA /* OIDeliveryCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4923C14C492F3000CD9F9 /* OIDeliveryCheckViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,8 @@
 		0BE14E6A14E8D648008422EE /* OIMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIMenuViewController.m; path = Classes/OIMenuViewController.m; sourceTree = "<group>"; };
 		0BE14E6B14E8D648008422EE /* OIOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIOrderViewController.h; path = Classes/OIOrderViewController.h; sourceTree = "<group>"; };
 		0BE14E6C14E8D648008422EE /* OIOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIOrderViewController.m; path = Classes/OIOrderViewController.m; sourceTree = "<group>"; };
+		0BE14E7F14E8D851008422EE /* OIUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIUserViewController.h; path = Classes/OIUserViewController.h; sourceTree = "<group>"; };
+		0BE14E8014E8D851008422EE /* OIUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIUserViewController.m; path = Classes/OIUserViewController.m; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9F8 /* OIDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIDemo.h; path = Classes/OIDemo.h; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9F9 /* OIDeliveryCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIDeliveryCheckViewController.m; path = Classes/OIDeliveryCheckViewController.m; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9FB /* OIDeliveryCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIDeliveryCheckViewController.h; path = Classes/OIDeliveryCheckViewController.h; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 				BD4923C14C492F3000CD9F8 /* OIDemo.h */,
 				0BD4922F14C492F3000CD9F4 /* OIDemoAppDelegate.h */,
 				0BD4923014C492F3000CD9F4 /* OIDemoAppDelegate.m */,
+				0BE14E7F14E8D851008422EE /* OIUserViewController.h */,
+				0BE14E8014E8D851008422EE /* OIUserViewController.m */,
 				0BD4922714C492F3000CD9F4 /* Supporting Files */,
 			);
 			path = DemoApp;
@@ -208,6 +213,7 @@
 				0BE14E6D14E8D648008422EE /* OIListViewController.m in Sources */,
 				0BE14E6E14E8D648008422EE /* OIMenuViewController.m in Sources */,
 				0BE14E6F14E8D648008422EE /* OIOrderViewController.m in Sources */,
+				0BE14E8114E8D851008422EE /* OIUserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

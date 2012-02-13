@@ -15,6 +15,15 @@
 
 extern NSString *const OIOrderBaseURL;
 
+@class OIUser;
+@class OIAddress;
+@class OICardInfo;
+
 @interface OIOrder : NSObject
+
+@property (nonatomic, readwrite, copy) NSString *restaurantID;
+@property (nonatomic, readwrite, retain) OIUser *user;
+@property (nonatomic, readwrite, retain) OIAddress *address;
+@property (nonatomic, readwrite, retain) OICardInfo *cardInfo;
 
 @end

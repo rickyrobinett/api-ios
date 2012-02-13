@@ -11,6 +11,21 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
+#import "OIUserViewController.h"
 
-#import "OIOrder.h"
-#import "OICardInfo.h"
+@implementation OIUserViewController
+
+#pragma mark -
+#pragma mark Lifecycle
+
+- (void)loadView {
+  [super loadView];
+  
+  [OIUser createNewAccount:[OIUser userWithEmail:@"reichl@meap.cz" firstname:@"Petr" lastname:@"Reichl"] password:@"tajne" usingBlock:^(NSError *error) {
+    if ( error ) {
+      OIDLOG(@"Error: %@", error);
+    }
+  }];
+}
+
+@end
