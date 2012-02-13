@@ -10,6 +10,12 @@
 		0B6A05C814DBB97B00AC4699 /* NSString+OIURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B6A05C614DBB97B00AC4699 /* NSString+OIURL.h */; };
 		0B6A05C914DBB97B00AC4699 /* NSString+OIURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A05C714DBB97B00AC4699 /* NSString+OIURL.m */; };
 		0BA96D5A14D80D5800EFB4D9 /* Ordrin.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BECC2C714C4910400763395 /* Ordrin.h */; settings = {ATTRIBUTES = (); }; };
+		0BE14E7514E8D66D008422EE /* OIUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE14E7214E8D66D008422EE /* OIUser.h */; };
+		0BE14E7614E8D66D008422EE /* OIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE14E7314E8D66D008422EE /* OIUser.m */; };
+		0BE14E7714E8D66D008422EE /* OIUsers.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE14E7414E8D66D008422EE /* OIUsers.h */; };
+		0BE14E7C14E8D6A3008422EE /* OIOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE14E7914E8D6A3008422EE /* OIOrder.h */; };
+		0BE14E7D14E8D6A3008422EE /* OIOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE14E7A14E8D6A3008422EE /* OIOrder.m */; };
+		0BE14E7E14E8D6A3008422EE /* OIOrders.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE14E7B14E8D6A3008422EE /* OIOrders.h */; };
 		0BE7AF1C14D7DB4F00286B24 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE7AF1A14D7DB4F00286B24 /* JSONKit.h */; };
 		0BE7AF1D14D7DB4F00286B24 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7AF1B14D7DB4F00286B24 /* JSONKit.m */; };
 		0BECC2C314C4910400763395 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BECC2C214C4910400763395 /* Foundation.framework */; };
@@ -61,6 +67,12 @@
 /* Begin PBXFileReference section */
 		0B6A05C614DBB97B00AC4699 /* NSString+OIURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OIURL.h"; sourceTree = "<group>"; };
 		0B6A05C714DBB97B00AC4699 /* NSString+OIURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OIURL.m"; sourceTree = "<group>"; };
+		0BE14E7214E8D66D008422EE /* OIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIUser.h; sourceTree = "<group>"; };
+		0BE14E7314E8D66D008422EE /* OIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIUser.m; sourceTree = "<group>"; };
+		0BE14E7414E8D66D008422EE /* OIUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIUsers.h; sourceTree = "<group>"; };
+		0BE14E7914E8D6A3008422EE /* OIOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIOrder.h; sourceTree = "<group>"; };
+		0BE14E7A14E8D6A3008422EE /* OIOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIOrder.m; sourceTree = "<group>"; };
+		0BE14E7B14E8D6A3008422EE /* OIOrders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIOrders.h; sourceTree = "<group>"; };
 		0BE7AF1A14D7DB4F00286B24 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = "Third Party/JSONKit/JSONKit.h"; sourceTree = "<group>"; };
 		0BE7AF1B14D7DB4F00286B24 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = "Third Party/JSONKit/JSONKit.m"; sourceTree = "<group>"; };
 		0BECC2BF14C4910400763395 /* libOrdrin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOrdrin.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +142,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BE14E7114E8D65B008422EE /* OIUsers */ = {
+			isa = PBXGroup;
+			children = (
+				0BE14E7414E8D66D008422EE /* OIUsers.h */,
+				0BE14E7214E8D66D008422EE /* OIUser.h */,
+				0BE14E7314E8D66D008422EE /* OIUser.m */,
+			);
+			name = OIUsers;
+			sourceTree = "<group>";
+		};
+		0BE14E7814E8D698008422EE /* OIOrders */ = {
+			isa = PBXGroup;
+			children = (
+				0BE14E7B14E8D6A3008422EE /* OIOrders.h */,
+				0BE14E7914E8D6A3008422EE /* OIOrder.h */,
+				0BE14E7A14E8D6A3008422EE /* OIOrder.m */,
+			);
+			name = OIOrders;
+			sourceTree = "<group>";
+		};
 		0BE7AEEC14D7D9DF00286B24 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,10 +212,12 @@
 			children = (
 				0BECC2C614C4910400763395 /* Ordrin-Prefix.pch */,
 				0BECC2C714C4910400763395 /* Ordrin.h */,
-				0BE7AEEC14D7D9DF00286B24 /* Third Party */,
 				BECC2CE14C4910400763396 /* OICore */,
-				BECC2CE14C49104007633A1 /* OIRestaurants */,
 				BECC2CE14C49104007633AE /* OICommon */,
+				BECC2CE14C49104007633A1 /* OIRestaurants */,
+				0BE14E7814E8D698008422EE /* OIOrders */,
+				0BE14E7114E8D65B008422EE /* OIUsers */,
+				0BE7AEEC14D7D9DF00286B24 /* Third Party */,
 			);
 			path = Ordrin;
 			sourceTree = "<group>";
@@ -240,12 +274,12 @@
 		BECC2CE14C4910400763396 /* OICore */ = {
 			isa = PBXGroup;
 			children = (
+				BECC2CE14C4910400763397 /* OICore.h */,
 				BECC2CE14C49104007633BB /* OIAPIClient.h */,
 				BECC2CE14C49104007633B9 /* OIAPIClient.m */,
 				BECC2CE14C49104007633AC /* OIPreprocessor.h */,
 				BECC2CE14C491040076339F /* OIDebuggingTools.m */,
 				BECC2CE14C491040076339D /* OIDebuggingTools.h */,
-				BECC2CE14C4910400763397 /* OICore.h */,
 				0B6A05C614DBB97B00AC4699 /* NSString+OIURL.h */,
 				0B6A05C714DBB97B00AC4699 /* NSString+OIURL.m */,
 			);
@@ -255,11 +289,11 @@
 		BECC2CE14C49104007633A1 /* OIRestaurants */ = {
 			isa = PBXGroup;
 			children = (
+				BECC2CE14C49104007633A2 /* OIRestaurants.h */,
 				BECC2CE14C49104007633C0 /* OIDelivery.h */,
 				BECC2CE14C49104007633BE /* OIDelivery.m */,
 				BECC2CE14C49104007633A6 /* OIRestaurant.h */,
 				BECC2CE14C49104007633A4 /* OIRestaurant.m */,
-				BECC2CE14C49104007633A2 /* OIRestaurants.h */,
 			);
 			name = OIRestaurants;
 			sourceTree = "<group>";
@@ -267,11 +301,11 @@
 		BECC2CE14C49104007633AE /* OICommon */ = {
 			isa = PBXGroup;
 			children = (
+				BECC2CE14C49104007633AF /* OICommon.h */,
 				BECC2CE14C49104007633A8 /* OIAddress.m */,
 				BECC2CE14C49104007633AA /* OIAddress.h */,
 				BECC2CE14C49104007633B3 /* OIDateTime.h */,
 				BECC2CE14C49104007633B1 /* OIDateTime.m */,
-				BECC2CE14C49104007633AF /* OICommon.h */,
 			);
 			name = OICommon;
 			sourceTree = "<group>";
@@ -309,6 +343,10 @@
 				BECC2CE14C49104007633BC /* OIAPIClient.h in Headers */,
 				0B6A05C814DBB97B00AC4699 /* NSString+OIURL.h in Headers */,
 				BECC2CE14C49104007633C1 /* OIDelivery.h in Headers */,
+				0BE14E7514E8D66D008422EE /* OIUser.h in Headers */,
+				0BE14E7714E8D66D008422EE /* OIUsers.h in Headers */,
+				0BE14E7C14E8D6A3008422EE /* OIOrder.h in Headers */,
+				0BE14E7E14E8D6A3008422EE /* OIOrders.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +418,8 @@
 				BECC2CE14C49104007633BA /* OIAPIClient.m in Sources */,
 				0B6A05C914DBB97B00AC4699 /* NSString+OIURL.m in Sources */,
 				BECC2CE14C49104007633BF /* OIDelivery.m in Sources */,
+				0BE14E7614E8D66D008422EE /* OIUser.m in Sources */,
+				0BE14E7D14E8D6A3008422EE /* OIOrder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
