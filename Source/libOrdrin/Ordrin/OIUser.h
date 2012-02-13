@@ -11,7 +11,19 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OICore.h"
-#import "OICommon.h"
-#import "OIRestaurants.h"
-#import "OIUsers.h"
+#import <Foundation/Foundation.h>
+
+extern NSString const* OIUserBaseURL;
+
+@interface OIUser : NSObject
+
+@property (nonatomic, readwrite, copy) NSString *firstname;
+@property (nonatomic, readwrite, copy) NSString *lastname;
+@property (nonatomic, readwrite, copy) NSString *email;
+
+#pragma mark -
+#pragma mark Class methods
+
++ (void)createNewAccount:(OIUser *)account password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
+
+@end

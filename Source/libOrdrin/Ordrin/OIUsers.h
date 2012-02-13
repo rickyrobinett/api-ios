@@ -11,7 +11,4 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import "OICore.h"
-#import "OICommon.h"
-#import "OIRestaurants.h"
-#import "OIUsers.h"
+#import "OIUser.h"
