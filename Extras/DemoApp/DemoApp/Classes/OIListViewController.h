@@ -13,5 +13,5 @@
  */
 #import "OIDemo.h"
 
-@interface OIMainViewController : UIViewController
+@interface OIListViewController : UIViewController
 @end
