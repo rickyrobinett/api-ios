@@ -56,7 +56,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   [request setPostValue:account.email forKey:@"email"];
   [request setPostValue:account.firstname forKey:@"first_name"];
   [request setPostValue:account.lastname forKey:@"last_name"];
-  [request setPostValue:password forKey:@"password"];
+  [request setPostValue:[password sha1] forKey:@"password"];
   
   [request setCompletionBlock:^{
     OIDLOG(@"response: %@", [request responseString]);

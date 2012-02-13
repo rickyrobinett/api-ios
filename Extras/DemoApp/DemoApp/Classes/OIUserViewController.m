@@ -21,7 +21,11 @@
 - (void)loadView {
   [super loadView];
   
-  [OIUser createNewAccount:[OIUser userWithEmail:@"reichl@meap.cz" firstname:@"Petr" lastname:@"Reichl"] password:@"tajne" usingBlock:^(NSError *error) {
+  OIUser *newUser = [OIUser userWithEmail:@"reichl@meap.cz" 
+                                firstname:@"Petr" 
+                                 lastname:@"Reichl"];
+  
+  [OIUser createNewAccount:newUser password:@"tajne" usingBlock:^(NSError *error) {
     if ( error ) {
       OIDLOG(@"Error: %@", error);
     }

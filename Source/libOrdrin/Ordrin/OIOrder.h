@@ -26,4 +26,6 @@ extern NSString *const OIOrderBaseURL;
 @property (nonatomic, readwrite, retain) OIAddress *address;
 @property (nonatomic, readwrite, retain) OICardInfo *cardInfo;
 
+- (void)orderWithPassword:(NSString *)password usingBlock:(void (^)(NSError *error))block;
+
 @end

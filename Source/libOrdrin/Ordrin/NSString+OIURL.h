@@ -16,5 +16,6 @@
 @interface NSString (OIURL)
 
 - (NSString *)urlEncode;
+- (NSString *)sha1;
 
 @end

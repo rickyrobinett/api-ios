@@ -39,6 +39,13 @@ NSString *const OIOrderBaseURL = @" https://o.ordr.in";
 @synthesize user         = __user;
 
 #pragma mark -
+#pragma mark Network
+
+- (void)orderWithPassword:(NSString *)password usingBlock:(void (^)(NSError *error))block {
+  
+}
+
+#pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
