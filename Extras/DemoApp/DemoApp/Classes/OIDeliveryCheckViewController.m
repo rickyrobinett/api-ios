@@ -69,7 +69,7 @@
     [self reload];
   }];
 
-  [__restaurant downloadDetailUsingBlock:^void() {
+  [__restaurant downloadAllUsingBlock:^void() {
     [self reload];
   }];
 }

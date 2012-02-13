@@ -15,6 +15,7 @@
 #import "OICore.h"
 #import "ASINetworkQueue.h"
 #import "ASIHTTPRequest.h"
+#import "OIAPIGenericAuthenticator.h"
 
 NSString *const OIAPIClientVersion = @"1";
 
@@ -37,8 +38,9 @@ NSString *const OIAPIClientVersion = @"1";
 
 @implementation OIAPIClient {
 @private
-  NSString        *__apiKey;
-  ASINetworkQueue *__requestQueue;
+  NSString                  *__apiKey;
+  ASINetworkQueue           *__requestQueue;
+  OIAPIGenericAuthenticator *__authenticator;
 }
 
 @synthesize apiKey        = __apiKey;
@@ -62,6 +64,19 @@ NSString *const OIAPIClientVersion = @"1";
 }
 
 #pragma mark -
+#pragma mark Properties
+
+- (void)setApiKey:(NSString *)apiKey {
+  if ( __apiKey != apiKey ) {
+    OI_RELEASE_SAFELY( __apiKey );
+    __apiKey = [apiKey copy];
+    
+    OI_RELEASE_SAFELY( __authenticator );
+    __authenticator = [[OIAPIGenericAuthenticator alloc] initWithKey:__apiKey];
+  }
+}
+
+#pragma mark -
 #pragma mark Selectors
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
@@ -80,8 +95,12 @@ NSString *const OIAPIClientVersion = @"1";
 #pragma mark Public
 
 - (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized {
+  [self appendRequest:request authorized:authorized authenticator:__authenticator];
+}
+
+- (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized authenticator:(OIAPIGenericAuthenticator *)authenticator {
   if ( authorized ) {
-    [request addRequestHeader:@"X-NAAMA-CLIENT-AUTHENTICATION" value:[NSString stringWithFormat:@"id=\"%@\", version=\"%@\"", __apiKey, OIAPIClientVersion]];
+    [request addRequestHeader:@"X-NAAMA-CLIENT-AUTHENTICATION" value:[authenticator authenticationValue]];
   }
 
   OIDLOG(@"URL: %@", request.url);
@@ -94,6 +113,7 @@ NSString *const OIAPIClientVersion = @"1";
 #pragma mark Memory Management
 
 - (void)dealloc {
+  OI_RELEASE_SAFELY( __authenticator );
   OI_RELEASE_SAFELY( __apiKey );
   OI_RELEASE_SAFELY( __requestQueue );
   [super dealloc];

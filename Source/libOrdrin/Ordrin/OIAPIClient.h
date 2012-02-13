@@ -16,12 +16,14 @@
 extern NSString *const OIAPIClientVersion;
 
 @class ASIHTTPRequest;
+@class OIAPIGenericAuthenticator;
 
 @interface OIAPIClient : NSObject
 
 @property (nonatomic, readwrite, copy) NSString *apiKey;
 
 - (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized;
+- (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized authenticator:(OIAPIGenericAuthenticator *)authenticator;
 
 + (OIAPIClient *)sharedInstance;
 

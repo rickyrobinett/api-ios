@@ -16,11 +16,12 @@
 #import "OIAddress.h"
 #import "OICardInfo.h"
 #import "OIUser.h"
+#import "ASIFormDataRequest.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
 
-NSString *const OIOrderBaseURL = @" https://o.ordr.in";
+NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Implementation
@@ -42,7 +43,18 @@ NSString *const OIOrderBaseURL = @" https://o.ordr.in";
 #pragma mark Network
 
 - (void)orderWithPassword:(NSString *)password usingBlock:(void (^)(NSError *error))block {
+  NSString *URL = [NSString stringWithFormat:@"%@/o/%@", OIOrderBaseURL, __restaurantID];
   
+  __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
+  
+  [request setCompletionBlock:^{
+    if ( block ) {
+      block( nil );
+    }
+  }];
+  
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES];
 }
 
 #pragma mark -

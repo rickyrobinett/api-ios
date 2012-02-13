@@ -11,12 +11,10 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-#import "OIAPIClient.h"
-#import "OIDebuggingTools.h"
-#import "OIPreprocessor.h"
-#import "NSString+OIURL.h"
 #import "OIAPIGenericAuthenticator.h"
-#import "OIAPIUserAuthenticator.h"
+
+@interface OIAPIUserAuthenticator : OIAPIGenericAuthenticator
+
+- (id)initWithEmail:(NSString *)email password:(NSString *)password uri:(NSURL *)uri;
+
+@end

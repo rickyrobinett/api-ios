@@ -24,7 +24,7 @@
   NSString *__address2;
   NSString *__city;
   NSString *__state;
-  NSString *__postcode;
+  NSString *__postalCode;
 }
 
 @synthesize name        = __name;
@@ -35,7 +35,7 @@
 @synthesize address2    = __address2;
 @synthesize city        = __city;
 @synthesize state       = __state;
-@synthesize postcode    = __postcode;
+@synthesize postalCode  = __postalCode;
 
 #pragma mark -
 #pragma mark Memory Management
@@ -49,7 +49,7 @@
   OI_RELEASE_SAFELY( __address2 );
   OI_RELEASE_SAFELY( __city );
   OI_RELEASE_SAFELY( __state );
-  OI_RELEASE_SAFELY( __postcode );
+  OI_RELEASE_SAFELY( __postalCode );
   
   [super dealloc];
 }

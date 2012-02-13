@@ -41,7 +41,7 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 }
 
 @synthesize complete  = __complete;
-@synthesize id        = __id;
+@synthesize ID        = __id;
 @synthesize name      = __name;
 @synthesize phone     = __phone;
 @synthesize address   = __address;
@@ -81,7 +81,7 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
   [client appendRequest:request authorized:YES];
 }
 
-- (void)downloadDetailUsingBlock:(void (^)(void))block {
+- (void)downloadAllUsingBlock:(void (^)(void))block {
   NSString *URL = [NSString stringWithFormat:@"%@/rd/%@", OIRestaurantBaseURL, __id];
 
   __block OIRestaurant *safe = self;
@@ -129,7 +129,7 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
     NSArray *json = [[request responseString] objectFromJSONString];
     for (NSDictionary *item in json) {
       OIRestaurant *restaurant = [[OIRestaurant alloc] init];
-      restaurant.id = [item objectForKey:@"id"];
+      restaurant.ID = [item objectForKey:@"id"];
       restaurant.name = [item objectForKey:@"na"];
 
       [results addObject:restaurant];

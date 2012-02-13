@@ -53,7 +53,6 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   NSString *URL = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [account.email urlEncode]];
   
   __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
-  [request setPostValue:account.email forKey:@"email"];
   [request setPostValue:account.firstname forKey:@"first_name"];
   [request setPostValue:account.lastname forKey:@"last_name"];
   [request setPostValue:[password sha1] forKey:@"password"];

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0B6A05C814DBB97B00AC4699 /* NSString+OIURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B6A05C614DBB97B00AC4699 /* NSString+OIURL.h */; };
 		0B6A05C914DBB97B00AC4699 /* NSString+OIURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A05C714DBB97B00AC4699 /* NSString+OIURL.m */; };
+		0B7EE49C14E93B28002BCECC /* OIAPIGenericAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B7EE49A14E93B28002BCECC /* OIAPIGenericAuthenticator.h */; };
+		0B7EE49D14E93B28002BCECC /* OIAPIGenericAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EE49B14E93B28002BCECC /* OIAPIGenericAuthenticator.m */; };
+		0B7EE4A014E93EC5002BCECC /* OIAPIUserAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B7EE49E14E93EC5002BCECC /* OIAPIUserAuthenticator.h */; };
+		0B7EE4A114E93EC5002BCECC /* OIAPIUserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EE49F14E93EC5002BCECC /* OIAPIUserAuthenticator.m */; };
 		0BA96D5A14D80D5800EFB4D9 /* Ordrin.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BECC2C714C4910400763395 /* Ordrin.h */; settings = {ATTRIBUTES = (); }; };
 		0BE14E7514E8D66D008422EE /* OIUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BE14E7214E8D66D008422EE /* OIUser.h */; };
 		0BE14E7614E8D66D008422EE /* OIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE14E7314E8D66D008422EE /* OIUser.m */; };
@@ -69,6 +73,10 @@
 /* Begin PBXFileReference section */
 		0B6A05C614DBB97B00AC4699 /* NSString+OIURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OIURL.h"; sourceTree = "<group>"; };
 		0B6A05C714DBB97B00AC4699 /* NSString+OIURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OIURL.m"; sourceTree = "<group>"; };
+		0B7EE49A14E93B28002BCECC /* OIAPIGenericAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIAPIGenericAuthenticator.h; sourceTree = "<group>"; };
+		0B7EE49B14E93B28002BCECC /* OIAPIGenericAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIAPIGenericAuthenticator.m; sourceTree = "<group>"; };
+		0B7EE49E14E93EC5002BCECC /* OIAPIUserAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIAPIUserAuthenticator.h; sourceTree = "<group>"; };
+		0B7EE49F14E93EC5002BCECC /* OIAPIUserAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIAPIUserAuthenticator.m; sourceTree = "<group>"; };
 		0BE14E7214E8D66D008422EE /* OIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIUser.h; sourceTree = "<group>"; };
 		0BE14E7314E8D66D008422EE /* OIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIUser.m; sourceTree = "<group>"; };
 		0BE14E7414E8D66D008422EE /* OIUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIUsers.h; sourceTree = "<group>"; };
@@ -288,6 +296,10 @@
 				BECC2CE14C491040076339D /* OIDebuggingTools.h */,
 				0B6A05C614DBB97B00AC4699 /* NSString+OIURL.h */,
 				0B6A05C714DBB97B00AC4699 /* NSString+OIURL.m */,
+				0B7EE49A14E93B28002BCECC /* OIAPIGenericAuthenticator.h */,
+				0B7EE49B14E93B28002BCECC /* OIAPIGenericAuthenticator.m */,
+				0B7EE49E14E93EC5002BCECC /* OIAPIUserAuthenticator.h */,
+				0B7EE49F14E93EC5002BCECC /* OIAPIUserAuthenticator.m */,
 			);
 			name = OICore;
 			sourceTree = "<group>";
@@ -354,6 +366,8 @@
 				0BE14E7C14E8D6A3008422EE /* OIOrder.h in Headers */,
 				0BE14E7E14E8D6A3008422EE /* OIOrders.h in Headers */,
 				0BE14E8414E8EF51008422EE /* OICardInfo.h in Headers */,
+				0B7EE49C14E93B28002BCECC /* OIAPIGenericAuthenticator.h in Headers */,
+				0B7EE4A014E93EC5002BCECC /* OIAPIUserAuthenticator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +442,8 @@
 				0BE14E7614E8D66D008422EE /* OIUser.m in Sources */,
 				0BE14E7D14E8D6A3008422EE /* OIOrder.m in Sources */,
 				0BE14E8514E8EF51008422EE /* OICardInfo.m in Sources */,
+				0B7EE49D14E93B28002BCECC /* OIAPIGenericAuthenticator.m in Sources */,
+				0B7EE4A114E93EC5002BCECC /* OIAPIUserAuthenticator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

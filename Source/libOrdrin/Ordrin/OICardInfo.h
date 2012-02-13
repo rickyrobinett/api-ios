@@ -23,6 +23,6 @@
 @property (nonatomic, readwrite, copy) NSString *address2;
 @property (nonatomic, readwrite, copy) NSString *city;
 @property (nonatomic, readwrite, copy) NSString *state;
-@property (nonatomic, readwrite, copy) NSString *postcode;
+@property (nonatomic, readwrite, copy) NSString *postalCode;
 
 @end
