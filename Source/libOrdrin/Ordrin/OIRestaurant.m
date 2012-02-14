@@ -79,7 +79,9 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 
     delivery.minimumAmount = [json objectForKey:@"mino"];
     delivery.expectedTime = OIDateTimeSinceNowWithMinutes([[json objectForKey:@"del"] integerValue]);
-
+    //delivery.meals = [[json objectForKey:@"meals"] allValues];
+    delivery.ID = [json objectForKey:@"rid"];
+      
     if ( block ) {
       block(delivery);
     }
@@ -116,8 +118,41 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
   [client appendRequest:request authorized:YES];
 }
 
-- (void)calculateFeesForSubtotal:(OIOrder *)order atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block {
+- (void)calculateFeesForSubtotal:(OIOrder *)order usingBlock:(void (^)(OIDelivery *delivery))block {
+  
+  // TODO Initialize all data to retrieve valid request string
+  OIAddress *address = (OIAddress*)[order address];
+  NSNumber *subtotal = nil;
+  NSNumber *tip = nil;
     
+  NSString *URL = [NSString stringWithFormat:@"%@/fee/%@/%@/%@", OIRestaurantBaseURL, __id, subtotal, tip, address]; 
+  
+  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  [request setCompletionBlock:^void() {
+  NSDictionary *json = [[request responseString] objectFromJSONString];
+        
+  OIDelivery *delivery = [[[OIDelivery alloc] init] autorelease];
+        
+  delivery.available = [[json objectForKey:@"delivery"] boolValue];
+  
+  if ( ! [delivery isAvailable] ) {
+          delivery.message = [json objectForKey:@"msg"];
+  }
+        
+  delivery.minimumAmount = [json objectForKey:@"mino"];
+  delivery.expectedTime = OIDateTimeSinceNowWithMinutes([[json objectForKey:@"del"] integerValue]);
+  delivery.meals = [[json objectForKey:@"meals"] allValues];
+  delivery.ID = [json objectForKey:@"rid"];
+  delivery.fee = [json objectForKey:@"fee"];
+  delivery.tax = [json objectForKey:@"tax"];
+      
+  if ( block ) {
+      block(delivery);
+        }
+  }];
+    
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES];
 }
 
 - (NSArray *)getMenuItemsForChildrens:(NSArray *) childrenIDs {

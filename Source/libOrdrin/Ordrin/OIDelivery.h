@@ -19,5 +19,9 @@
 @property (nonatomic, readwrite, retain) NSNumber *minimumAmount;
 @property (nonatomic, readwrite, retain) NSDate *expectedTime;
 @property (nonatomic, readwrite, copy) NSString *message;
+@property (nonatomic, readwrite, retain) NSArray *meals;
+@property (nonatomic, readwrite, copy) NSString *ID;
+@property (nonatomic, readwrite, retain) NSNumber *fee;
+@property (nonatomic, readwrite, retain) NSNumber *tax;
 
 @end

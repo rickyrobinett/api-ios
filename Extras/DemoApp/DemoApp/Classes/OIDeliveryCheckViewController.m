@@ -113,7 +113,7 @@
     return 1;
   }
   else if ( section == 1 ) {
-    return 3;
+    return 4;
   }
 
   return 0;
@@ -157,6 +157,10 @@
       case 2:
         cell.textLabel.text = [NSString stringWithFormat:@"city: %@ %@", __restaurant.address.postalCode, __restaurant.address.city];
         break;
+            
+      case 3:
+        cell.textLabel.text = [NSString stringWithFormat:@"state: %@", __restaurant.state];
+        break;         
     }
   }
   

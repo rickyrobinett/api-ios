@@ -58,6 +58,14 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 }
 
 #pragma mark -
+#pragma mark Order Operations
+- (NSNumber *) calculateSubtotal {
+    
+    //TODO: Define body
+    return nil;
+}
+
+#pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {

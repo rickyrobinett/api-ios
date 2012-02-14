@@ -46,7 +46,7 @@ extern NSString *const OIRestaurantBaseURL;
 /**
  * Calculates all fees for a given subtotal and delivery address 
  */
-- (void)calculateFeesForSubtotal:(OIOrder *)order atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block;
+- (void)calculateFeesForSubtotal:(OIOrder *)order usingBlock:(void (^)(OIDelivery *delivery))block;
 
 /**
  * Return array of menu items for given children IDs 
