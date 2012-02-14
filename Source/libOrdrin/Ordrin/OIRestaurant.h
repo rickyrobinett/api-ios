@@ -16,6 +16,7 @@
 @class OIDateTime;
 @class OIAddress;
 @class OIDelivery;
+@class OIOrder;
 
 extern NSString *const OIRestaurantBaseURL;
 
@@ -26,6 +27,10 @@ extern NSString *const OIRestaurantBaseURL;
 @property (nonatomic, readwrite, copy) NSString *name;
 @property (nonatomic, readwrite, copy) NSString *phone;
 @property (nonatomic, readwrite, retain) OIAddress *address;
+@property (nonatomic, readwrite, copy) NSString *state;
+@property (nonatomic, readwrite, retain) NSDictionary *meals;
+@property (nonatomic, readwrite, retain) NSDictionary *menu;
+@property (nonatomic, readwrite, retain) NSDictionary *rdsInfo;
 
 /**
  * Check to see if a particular restaurant delivers to an address at the specified time 
@@ -37,6 +42,16 @@ extern NSString *const OIRestaurantBaseURL;
  * for complete download of all information.
  */
 - (void)downloadAllUsingBlock:(void (^)(void))block;
+
+/**
+ * Calculates all fees for a given subtotal and delivery address 
+ */
+- (void)calculateFeesForSubtotal:(OIOrder *)order atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block;
+
+/**
+ * Return array of menu items for given children IDs 
+ */
+- (NSArray *)getMenuItemsForChildrens:(NSArray *) childrenIDs;
 
 #pragma mark -
 #pragma mark Class methods

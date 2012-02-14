@@ -38,6 +38,10 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
   NSString  *__name;
   NSString  *__phone;
   OIAddress *__address;
+  NSString  *__state;
+  NSDictionary    *__meals;
+  NSDictionary *__menu;
+  NSDictionary *__rdsInfo;
 }
 
 @synthesize complete  = __complete;
@@ -45,6 +49,10 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 @synthesize name      = __name;
 @synthesize phone     = __phone;
 @synthesize address   = __address;
+@synthesize state     = __state;
+@synthesize meals     = __meals;
+@synthesize menu      = __menu;
+@synthesize rdsInfo   = __rdsInfo;
 
 #pragma mark -
 #pragma mark Properties
@@ -94,7 +102,11 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
     safe.address = [OIAddress addressWithStreet:[json objectForKey:@"addr"]
                                            city:[json objectForKey:@"city"]
                                      postalCode:[json objectForKey:@"postal_code"]];
-
+      
+    safe.state = [json objectForKey:@"state"];
+    safe.meals = [json objectForKey:@"meal_name"];
+    safe.menu = [json objectForKey:@"menu"]; 
+      
     if ( block ) {
       block();
     }
@@ -102,6 +114,15 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 
   OIAPIClient *client = [OIAPIClient sharedInstance];
   [client appendRequest:request authorized:YES];
+}
+
+- (void)calculateFeesForSubtotal:(OIOrder *)order atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block {
+    
+}
+
+- (NSArray *)getMenuItemsForChildrens:(NSArray *) childrenIDs {
+    
+    return [NSArray arrayWithObjects:nil];
 }
 
 #pragma mark -
@@ -112,7 +133,11 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
   OI_RELEASE_SAFELY( __name );
   OI_RELEASE_SAFELY( __phone );
   OI_RELEASE_SAFELY( __address );
-
+  OI_RELEASE_SAFELY( __state );
+  OI_RELEASE_SAFELY( __meals );
+  OI_RELEASE_SAFELY( __menu );
+  OI_RELEASE_SAFELY( __rdsInfo );
+  
   [super dealloc];
 } 
 
