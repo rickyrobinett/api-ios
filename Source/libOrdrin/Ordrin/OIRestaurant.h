@@ -17,6 +17,7 @@
 @class OIAddress;
 @class OIDelivery;
 @class OIOrder;
+@class OIRDSInfo;
 
 extern NSString *const OIRestaurantBaseURL;
 
@@ -30,7 +31,7 @@ extern NSString *const OIRestaurantBaseURL;
 @property (nonatomic, readwrite, copy) NSString *state;
 @property (nonatomic, readwrite, retain) NSDictionary *meals;
 @property (nonatomic, readwrite, retain) NSDictionary *menu;
-@property (nonatomic, readwrite, retain) NSDictionary *rdsInfo;
+@property (nonatomic, readwrite, retain) OIRDSInfo *rdsInfo;
 
 /**
  * Check to see if a particular restaurant delivers to an address at the specified time 

@@ -1,0 +1,106 @@
+/**
+ * Copyright (c) 2012, Tapmates s.r.o. (www.tapmates.com).
+ *
+ * All rights reserved. This source code can be used only for purposes specified 
+ * by the given license contract signed by the rightful deputy of Tapmates s.r.o. 
+ * This source code can be used only by the owner of the license.
+ * 
+ * Any disputes arising in respect of this agreement (license) shall be brought
+ * before the Municipal Court of Prague.
+ *
+ *  @author(s):
+ *      Vitezslav Kot (vita@tapmates.com)
+ */
+
+#import "OINewUserView.h"
+
+@implementation OINewUserView
+
+#pragma mark -
+#pragma mark Initialization
+
+- (id)initWithFrame:(CGRect)frame {
+    if ((self = [super initWithFrame:frame])) {
+        
+        UILabel *__labelUserEmail = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 80, 30)];
+        __labelUserEmail.text = @"User Email:";
+        __labelUserEmail.font = [UIFont systemFontOfSize:14.0];
+        
+        UITextField *__textFieldUserEmail = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, 165, 30)];
+        __textFieldUserEmail.borderStyle = UITextBorderStyleRoundedRect;
+        __textFieldUserEmail.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        
+        
+        UILabel *__labelFirstName = [[UILabel alloc] initWithFrame:CGRectMake(35, 50, 80, 30)];
+        __labelFirstName.text = @"First Name:";
+        __labelFirstName.font = [UIFont systemFontOfSize:14.0];
+        
+        UITextField *__textFieldFirstName = [[UITextField alloc] initWithFrame:CGRectMake(120, 50, 165, 30)];
+        __textFieldFirstName.borderStyle = UITextBorderStyleRoundedRect;
+        __textFieldFirstName.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        
+        UILabel *__labelLastName = [[UILabel alloc] initWithFrame:CGRectMake(35, 90, 80, 30)];
+        __labelLastName.text = @"Last Name:";
+        __labelLastName.font = [UIFont systemFontOfSize:14.0];
+        
+        UITextField *__textFieldLastName = [[UITextField alloc] initWithFrame:CGRectMake(120, 90, 165, 30)];
+        __textFieldLastName.borderStyle = UITextBorderStyleRoundedRect;
+        __textFieldLastName.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;     
+        
+        UILabel *__labePassword = [[UILabel alloc] initWithFrame:CGRectMake(35, 130, 80, 30)];
+        __labePassword.text = @"Password:";
+        __labePassword.font = [UIFont systemFontOfSize:14.0];
+        
+        UITextField *__textFieldPassword = [[UITextField alloc] initWithFrame:CGRectMake(120, 130, 165, 30)];
+        __textFieldPassword.borderStyle = UITextBorderStyleRoundedRect;
+        __textFieldPassword.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;     
+        
+        UIButton *__buttonLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        __buttonLogIn.frame = CGRectMake(35, 170, 250, 30);
+        [__buttonLogIn setTitle:@"Create Account" forState:UIControlStateNormal];
+        
+        [__buttonLogIn addTarget:self action:@selector(buttonCreateAccountPressed) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self addSubview:__labelUserEmail];
+        [self addSubview:__textFieldUserEmail];
+        [self addSubview:__labelFirstName];
+        [self addSubview:__textFieldFirstName];
+        [self addSubview:__labelLastName];
+        [self addSubview:__textFieldLastName];
+        [self addSubview:__labePassword];
+        [self addSubview:__textFieldPassword];
+        [self addSubview:__buttonLogIn]; 
+        
+        [__labelUserEmail release];
+        [__textFieldUserEmail release];
+        [__labelFirstName release];
+        [__textFieldFirstName release];
+        [__labelLastName release];    
+        [__textFieldLastName release];
+        [__labePassword release];
+        [__textFieldPassword release]; 
+        
+    }
+    return self;
+}
+
+-(void)buttonCreateAccountPressed {
+    
+    //OIUser *newUser = [OIUser userWithEmail:@"reichl@meap.cz" 
+    //                             firstname:@"Petr" 
+    //                              lastname:@"Reichl"];
+    
+    //[OIUser createNewAccount:newUser password:@"tajne" usingBlock:^(NSError *error) {
+    // if ( error ) {
+    ////  OIDLOG(@"Error: %@", error);
+    //}
+    //}];  
+}
+
+#pragma mark -
+#pragma mark Memory Management
+
+- (void)dealloc {
+    [super dealloc];
+}
+@end

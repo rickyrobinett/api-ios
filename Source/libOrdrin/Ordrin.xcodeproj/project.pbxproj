@@ -52,6 +52,8 @@
 		0BFF67F314D801EB008E3160 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFF67F214D801EB008E3160 /* MobileCoreServices.framework */; };
 		0BFF67F514D801F5008E3160 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFF67F414D801F5008E3160 /* CoreGraphics.framework */; };
 		0BFF67F714D801FE008E3160 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFF67F614D801FE008E3160 /* libz.dylib */; };
+		20411CDC14EB5D09002165A2 /* OIRDSInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 20411CDA14EB5D09002165A2 /* OIRDSInfo.h */; };
+		20411CDD14EB5D09002165A2 /* OIRDSInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 20411CDB14EB5D09002165A2 /* OIRDSInfo.m */; };
 		20EC88C714E9A91E00E7B991 /* OIMenuItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 20EC88C514E9A91E00E7B991 /* OIMenuItem.h */; };
 		20EC88C814E9A91E00E7B991 /* OIMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EC88C614E9A91E00E7B991 /* OIMenuItem.m */; };
 		BECC2CE14C4910400763398 /* OICore.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C4910400763397 /* OICore.h */; };
@@ -120,6 +122,8 @@
 		0BFF67F214D801EB008E3160 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		0BFF67F414D801F5008E3160 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0BFF67F614D801FE008E3160 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		20411CDA14EB5D09002165A2 /* OIRDSInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIRDSInfo.h; sourceTree = "<group>"; };
+		20411CDB14EB5D09002165A2 /* OIRDSInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIRDSInfo.m; sourceTree = "<group>"; };
 		20EC88C514E9A91E00E7B991 /* OIMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIMenuItem.h; sourceTree = "<group>"; };
 		20EC88C614E9A91E00E7B991 /* OIMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIMenuItem.m; sourceTree = "<group>"; };
 		BECC2CE14C4910400763397 /* OICore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OICore.h; sourceTree = "<group>"; };
@@ -318,6 +322,8 @@
 				BECC2CE14C49104007633BE /* OIDelivery.m */,
 				BECC2CE14C49104007633A6 /* OIRestaurant.h */,
 				BECC2CE14C49104007633A4 /* OIRestaurant.m */,
+				20411CDA14EB5D09002165A2 /* OIRDSInfo.h */,
+				20411CDB14EB5D09002165A2 /* OIRDSInfo.m */,
 			);
 			name = OIRestaurants;
 			sourceTree = "<group>";
@@ -375,6 +381,7 @@
 				0B7EE49C14E93B28002BCECC /* OIAPIGenericAuthenticator.h in Headers */,
 				0B7EE4A014E93EC5002BCECC /* OIAPIUserAuthenticator.h in Headers */,
 				20EC88C714E9A91E00E7B991 /* OIMenuItem.h in Headers */,
+				20411CDC14EB5D09002165A2 /* OIRDSInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +459,7 @@
 				0B7EE49D14E93B28002BCECC /* OIAPIGenericAuthenticator.m in Sources */,
 				0B7EE4A114E93EC5002BCECC /* OIAPIUserAuthenticator.m in Sources */,
 				20EC88C814E9A91E00E7B991 /* OIMenuItem.m in Sources */,
+				20411CDD14EB5D09002165A2 /* OIRDSInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

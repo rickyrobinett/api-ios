@@ -18,6 +18,7 @@
 #import "ASIHTTPRequest.h"
 #import "JSONKit.h"
 #import "OIDelivery.h"
+#import "OIRDSInfo.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -41,7 +42,7 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
   NSString  *__state;
   NSDictionary    *__meals;
   NSDictionary *__menu;
-  NSDictionary *__rdsInfo;
+  OIRDSInfo *__rdsInfo;
 }
 
 @synthesize complete  = __complete;
