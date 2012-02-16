@@ -12,7 +12,7 @@
  *      Vitezslav Kot (vita@tapmates.com)
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface OIUserLogInView : UIView
 

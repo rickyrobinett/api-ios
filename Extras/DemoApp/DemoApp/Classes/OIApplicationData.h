@@ -12,8 +12,12 @@
  *      Vitezslav Kot (vita@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface OINewUserView : UIView
+@interface OIApplicationData : NSObject
+
+@property (nonatomic, readonly, getter=isUserLogged) BOOL userLogged;
+
++ (id)appDataManager;
 
 @end

@@ -12,8 +12,36 @@
  *      Vitezslav Kot (vita@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import "OIApplicationData.h"
 
-@interface OINewUserView : UIView
+static OIApplicationData *sharedAppData = nil;
+
+@implementation OIApplicationData {
+@private
+  BOOL __userLogged;
+}
+
+@synthesize userLogged  = __userLogged;
+
+#pragma mark Singleton Methods
+
++ (id)appDataManager {
+  @synchronized(self) {
+    if (sharedAppData == nil)
+      sharedAppData = [[self alloc] init];
+  }
+  return sharedAppData;
+}
+
+- (id)init {
+  if (self = [super init]) {
+    __userLogged = NO;
+  }
+  return self;
+}
+
+- (void)dealloc {
+
+}
 
 @end

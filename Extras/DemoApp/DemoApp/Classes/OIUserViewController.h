@@ -11,8 +11,11 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
+
 #import "OIDemo.h"
 
 @interface OIUserViewController : UIViewController
+
+- (void)hideButtons:(BOOL) hide;
 
 @end
