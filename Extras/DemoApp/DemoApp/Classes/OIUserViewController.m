@@ -16,6 +16,7 @@
 #import "OIUserLogInView.h"
 #import "OINewUserView.h"
 #import "OIApplicationData.h"
+#import "OIAccountNavigatorView.h"
 
 @implementation OIUserViewController
 {
@@ -35,17 +36,6 @@
   self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
   self.view.backgroundColor = [UIColor whiteColor];
   
-  OIApplicationData *appDataManager = [OIApplicationData appDataManager];
-  
-  if([appDataManager isUserLogged] == NO)
-  {
-    self.title = NSLocalizedString( @"User: Not Logged In", "" );
-  }
-  else
-  {
-    self.title = NSLocalizedString( @"User:", "" );
-  }
-  
   __buttonLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   __buttonLogIn.frame = CGRectMake(35, 30, 250, 30);
   [__buttonLogIn setTitle:@"Log In to the Existing Account" forState:UIControlStateNormal];
@@ -59,6 +49,23 @@
   [__buttonLogIn addTarget:self action:@selector(buttonLogInPressed) forControlEvents:UIControlEventTouchUpInside]; 
   [__buttonNewAccount addTarget:self action:@selector(buttonNewAccountPressed) forControlEvents:UIControlEventTouchUpInside];
   
+  OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
+  
+  if([appDataManager isUserLogged] == YES)
+  {
+    self.title = NSLocalizedString( @"User: Not Logged In", "" );
+    [self hideButtons:NO];
+  }
+  else
+  {
+    self.title = NSLocalizedString( @"User:", "" );
+    [self hideButtons:YES];
+    
+    CGRect  viewRect = CGRectMake(0, 0, 320, 480);
+    OIAccountNavigatorView *__accountNavigatorView = [[OIAccountNavigatorView alloc] initWithFrame:viewRect];  
+    [self.view addSubview:__accountNavigatorView]; 
+    [__accountNavigatorView release];
+  }
   
 }
 

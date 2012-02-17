@@ -49,6 +49,11 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
 #pragma mark -
 #pragma mark Class methods
 
+//+ (OIUser *)getAccountInfo:(NSString *)email password:(NSString *)password usingBlock:(void (^)(NSError *error))block {
+//  NSString *URL = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [account.email urlEncode]];
+//  
+//}
+
 + (void)createNewAccount:(OIUser *)account password:(NSString *)password usingBlock:(void (^)(NSError *error))block {
   NSString *URL = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [account.email urlEncode]];
   
@@ -56,7 +61,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   [request setPostValue:account.firstname forKey:@"first_name"];
   [request setPostValue:account.lastname forKey:@"last_name"];
   [request setPostValue:[password sha1] forKey:@"password"];
-  
+
   [request setCompletionBlock:^{
     OIDLOG(@"response: %@", [request responseString]);
   }];

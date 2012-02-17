@@ -24,6 +24,8 @@
 		0BE14E8114E8D851008422EE /* OIUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE14E8014E8D851008422EE /* OIUserViewController.m */; };
 		20411CD914EB587E002165A2 /* OIUserLogInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20411CD814EB587E002165A2 /* OIUserLogInView.m */; };
 		20411CE114EB5E1B002165A2 /* OINewUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20411CE014EB5E1B002165A2 /* OINewUserView.m */; };
+		20934B7B14EDDD180071F0A1 /* OIAccountNavigatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20934B7A14EDDD170071F0A1 /* OIAccountNavigatorView.m */; };
+		20934B7F14EDE88C0071F0A1 /* OIUserAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20934B7E14EDE88C0071F0A1 /* OIUserAccountViewController.m */; };
 		20D9E12914EC669600623E77 /* OIApplicationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E12814EC669600623E77 /* OIApplicationData.m */; };
 		BD4923C14C492F3000CD9FA /* OIDeliveryCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4923C14C492F3000CD9F9 /* OIDeliveryCheckViewController.m */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,10 @@
 		20411CD814EB587E002165A2 /* OIUserLogInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIUserLogInView.m; path = Classes/OIUserLogInView.m; sourceTree = "<group>"; };
 		20411CDF14EB5E1B002165A2 /* OINewUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OINewUserView.h; path = Classes/OINewUserView.h; sourceTree = "<group>"; };
 		20411CE014EB5E1B002165A2 /* OINewUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OINewUserView.m; path = Classes/OINewUserView.m; sourceTree = "<group>"; };
+		20934B7914EDDD170071F0A1 /* OIAccountNavigatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIAccountNavigatorView.h; sourceTree = "<group>"; };
+		20934B7A14EDDD170071F0A1 /* OIAccountNavigatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIAccountNavigatorView.m; sourceTree = "<group>"; };
+		20934B7D14EDE88B0071F0A1 /* OIUserAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIUserAccountViewController.h; path = Classes/OIUserAccountViewController.h; sourceTree = "<group>"; };
+		20934B7E14EDE88C0071F0A1 /* OIUserAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIUserAccountViewController.m; path = Classes/OIUserAccountViewController.m; sourceTree = "<group>"; };
 		20D9E12714EC669600623E77 /* OIApplicationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIApplicationData.h; path = Classes/OIApplicationData.h; sourceTree = "<group>"; };
 		20D9E12814EC669600623E77 /* OIApplicationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIApplicationData.m; path = Classes/OIApplicationData.m; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9F8 /* OIDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIDemo.h; path = Classes/OIDemo.h; sourceTree = "<group>"; };
@@ -163,6 +169,10 @@
 				20411CDF14EB5E1B002165A2 /* OINewUserView.h */,
 				20411CD814EB587E002165A2 /* OIUserLogInView.m */,
 				20411CD714EB587E002165A2 /* OIUserLogInView.h */,
+				20934B7914EDDD170071F0A1 /* OIAccountNavigatorView.h */,
+				20934B7A14EDDD170071F0A1 /* OIAccountNavigatorView.m */,
+				20934B7D14EDE88B0071F0A1 /* OIUserAccountViewController.h */,
+				20934B7E14EDE88C0071F0A1 /* OIUserAccountViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -248,6 +258,8 @@
 				20411CD914EB587E002165A2 /* OIUserLogInView.m in Sources */,
 				20411CE114EB5E1B002165A2 /* OINewUserView.m in Sources */,
 				20D9E12914EC669600623E77 /* OIApplicationData.m in Sources */,
+				20934B7B14EDDD180071F0A1 /* OIAccountNavigatorView.m in Sources */,
+				20934B7F14EDE88C0071F0A1 /* OIUserAccountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

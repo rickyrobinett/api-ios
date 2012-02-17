@@ -12,14 +12,8 @@
  *      Vitezslav Kot (vita@tapmates.com)
  */
 
-#import <Foundation/Foundation.h>
-@class OIUser;
+#import <UIKit/UIKit.h>
 
-@interface OIApplicationData : NSObject
-
-@property (nonatomic, readwrite, getter=isUserLogged) BOOL userLogged;
-@property (nonatomic, readwrite, retain) OIUser *currentUser;
-
-+ (id)sharedInstance;
+@interface OIAccountNavigatorView : UIView
 
 @end

@@ -13,25 +13,18 @@
  */
 
 #import "OIApplicationData.h"
+#import "OICore.h"
 
 static OIApplicationData *sharedAppData = nil;
 
 @implementation OIApplicationData {
 @private
   BOOL __userLogged;
+  OIUser *__currentUser;
 }
 
 @synthesize userLogged  = __userLogged;
-
-#pragma mark Singleton Methods
-
-+ (id)appDataManager {
-  @synchronized(self) {
-    if (sharedAppData == nil)
-      sharedAppData = [[self alloc] init];
-  }
-  return sharedAppData;
-}
+@synthesize currentUser  = __currentUser;
 
 - (id)init {
   if (self = [super init]) {
@@ -41,7 +34,18 @@ static OIApplicationData *sharedAppData = nil;
 }
 
 - (void)dealloc {
+  OI_RELEASE_SAFELY( __currentUser );
+  [super dealloc];
+}
 
+#pragma mark Singleton
+
++ (id)sharedInstance {
+  @synchronized(self) {
+    if (sharedAppData == nil)
+      sharedAppData = [[self alloc] init];
+  }
+  return sharedAppData;
 }
 
 @end

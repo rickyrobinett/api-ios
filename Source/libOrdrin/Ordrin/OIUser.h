@@ -24,6 +24,7 @@ extern NSString const* OIUserBaseURL;
 #pragma mark -
 #pragma mark Class methods
 
+//+ (OIUser *)getAccountInfo:(NSString *)email password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
 + (void)createNewAccount:(OIUser *)account password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
 + (OIUser *)userWithEmail:(NSString *)email firstname:(NSString *)firstname lastname:(NSString *)lastname;
 

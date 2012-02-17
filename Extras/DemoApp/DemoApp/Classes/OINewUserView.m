@@ -15,6 +15,7 @@
 #import "OINewUserView.h"
 #import "OIUser.h"
 #import "OIUserViewController.h"
+#import "OIApplicationData.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interface
@@ -107,35 +108,35 @@
 
 -(void)buttonCreateAccountPressed {
   
-  NSString *mail = [__textFieldUserEmail text];
-  NSString *firstName = [__textFieldFirstName text];
-  NSString *lastName = [__textFieldLastName text];
-  NSString *password = [__textFieldPassword text];
+//  NSString *mail = [__textFieldUserEmail text];
+//  NSString *firstName = [__textFieldFirstName text];
+//  NSString *lastName = [__textFieldLastName text];
+//  NSString *password = [__textFieldPassword text];
   
-  BOOL validInput = [mail length]>0 && [firstName length]>0 && [lastName length]>0 && [password length];
+// BOOL validInput = [mail length]>0 && [firstName length]>0 && [lastName length]>0 && [password length];
+//  
+//  if (!validInput)
+//  {
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input" message:@"Please enter all items to proceed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];  
+//    [alert show];
+//    [alert release];
+//    return;
+//  }
   
-  if (!validInput)
-  {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input" message:@"Please enter all items to proceed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];  
-    [alert show];
-    [alert release];
-    return;
-  }
-  
-  OIUser *newUser = [OIUser userWithEmail:mail firstname:firstName lastname:lastName];
-  
-  [OIUser createNewAccount:newUser password:password usingBlock:^(NSError *error) {
+  OIUser *newUser = [OIUser userWithEmail:@"reichl@meap.cz" firstname:@"Petr" lastname:@"Reichl"];
+  [OIUser createNewAccount:newUser password:@"tajne" usingBlock:^(NSError *error) {
     if ( error ) {
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"User account could not be created!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
       [alert show];
-      [alert release];
-      return;
+      [alert release];  
+      OIDLOG(@"Error: %@", error);
     }
     else {
-      
+      OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
+      appDataManager.currentUser = newUser;
+      appDataManager.userLogged = YES;
     }
-    
-  }];  
+  }];
 }
 
 - (void) animateView: (UITextField*) textField up: (BOOL) up
