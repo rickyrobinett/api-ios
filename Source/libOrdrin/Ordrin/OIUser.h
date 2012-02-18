@@ -17,15 +17,15 @@ extern NSString const* OIUserBaseURL;
 
 @interface OIUser : NSObject
 
-@property (nonatomic, readwrite, copy) NSString *firstname;
-@property (nonatomic, readwrite, copy) NSString *lastname;
+@property (nonatomic, readwrite, copy) NSString *firstName;
+@property (nonatomic, readwrite, copy) NSString *lastName;
 @property (nonatomic, readwrite, copy) NSString *email;
 
 #pragma mark -
 #pragma mark Class methods
 
-//+ (OIUser *)getAccountInfo:(NSString *)email password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
++ (void)getAccountInfo:(NSString *)email password:(NSString *)password usingBlockUser:(void (^)(OIUser *user))blockUser usingBlockError:(void (^)(NSError *error))blockError;
 + (void)createNewAccount:(OIUser *)account password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
-+ (OIUser *)userWithEmail:(NSString *)email firstname:(NSString *)firstname lastname:(NSString *)lastname;
++ (OIUser *)userWithEmail:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName;
 
 @end

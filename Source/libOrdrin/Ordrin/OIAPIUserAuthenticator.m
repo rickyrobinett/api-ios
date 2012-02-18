@@ -39,7 +39,7 @@
 }
 
 - (NSString *)authenticationValue {
-  return [NSString stringWithFormat:@"username=\"%@\", response=\"\", version=\"%@\"", __email, __hash, OIAPIClientVersion];
+  return [NSString stringWithFormat:@"username=%@, response=%@, version=%@", __email, __hash, OIAPIClientVersion];
 }
 
 #pragma mark -

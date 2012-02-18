@@ -15,6 +15,7 @@
 #import "OICore.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
+#import "JSONKit.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -26,21 +27,21 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
 
 @implementation OIUser {
 @private
-  NSString *__firstname;
-  NSString *__lastname;
+  NSString *__firstName;
+  NSString *__lastName;
   NSString *__email;
 }
 
-@synthesize firstname = __firstname;
-@synthesize lastname  = __lastname;
+@synthesize firstName = __firstName;
+@synthesize lastName  = __lastName;
 @synthesize email     = __email;
 
 #pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
-  OI_RELEASE_SAFELY( __firstname );
-  OI_RELEASE_SAFELY( __lastname );
+  OI_RELEASE_SAFELY( __firstName );
+  OI_RELEASE_SAFELY( __lastName );
   OI_RELEASE_SAFELY( __email );
   
   [super dealloc];
@@ -49,19 +50,44 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
 #pragma mark -
 #pragma mark Class methods
 
-//+ (OIUser *)getAccountInfo:(NSString *)email password:(NSString *)password usingBlock:(void (^)(NSError *error))block {
-//  NSString *URL = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [account.email urlEncode]];
-//  
-//}
++ (void)getAccountInfo:(NSString *)email password:(NSString *)password usingBlockUser:(void (^)(OIUser *user))blockUser usingBlockError:(void (^)(NSError *error))blockError; {
+  NSString *URL = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [email urlEncode]];
+  
+  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  
+  
+  [request setCompletionBlock:^{
+    
+    NSDictionary *json = [[request responseString] objectFromJSONString];
+    OIUser *user = [[[OIUser alloc] init] autorelease];
+    
+    user.firstName = [json objectForKey:@"first_name"];
+    user.lastName = [json objectForKey:@"last_name"];
+    user.email = [json objectForKey:@"em"];
+    
+    if ( blockUser ) {
+      blockUser(user);
+    }
+    
+  }]; 
+  
+  [request setFailedBlock:^{
+    blockError([request error]);
+  }];
+  
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES withUserAuthenticator:[OIAPIUserAuthenticator authenticatorWithEmail:email password:password uri:[NSURL URLWithString:URL]]];
+}
 
 + (void)createNewAccount:(OIUser *)account password:(NSString *)password usingBlock:(void (^)(NSError *error))block {
   NSString *URL = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [account.email urlEncode]];
   
   __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
-  [request setPostValue:account.firstname forKey:@"first_name"];
-  [request setPostValue:account.lastname forKey:@"last_name"];
+  
+  [request setPostValue:account.firstName forKey:@"first_name"];
+  [request setPostValue:account.lastName forKey:@"last_name"];
   [request setPostValue:[password sha1] forKey:@"password"];
-
+  
   [request setCompletionBlock:^{
     OIDLOG(@"response: %@", [request responseString]);
   }];
@@ -74,29 +100,13 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   [client appendRequest:request authorized:YES];
 }
 
-+ (OIUser *)userWithEmail:(NSString *)email firstname:(NSString *)firstname lastname:(NSString *)lastname {
++ (OIUser *)userWithEmail:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName {
   OIUser *user = [[OIUser alloc] init];
   user.email = email;
-  user.firstname = firstname;
-  user.lastname = lastname;
+  user.firstName = firstName;
+  user.lastName = lastName;
   
   return [user autorelease];
-}
-
-+ (void)userWithEmail:(NSString *)email password:(NSString *)password usingBlock:(void (^)(OIUser *user))block {
-  NSString *urlString = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [email urlEncode]];
-  NSURL *URL = [NSURL URLWithString:urlString];
-  
-  
-  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:URL];
-  [request setCompletionBlock:^ {
-    OIDLOG(@"response: %@", [request responseString]);
-  }];
-  
-  OIAPIClient *client = [OIAPIClient sharedInstance];
-  [client appendRequest:request 
-             authorized:YES 
-          authenticator:[OIAPIUserAuthenticator authenticatorWithEmail:email password:password uri:URL]];
 }
 
 @end

@@ -109,6 +109,17 @@ NSString *const OIAPIClientVersion = @"1";
   [self.requestQueue go];
 }
 
+- (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized withUserAuthenticator:(OIAPIGenericAuthenticator *)authenticator {
+  if ( authorized ) {
+    [request addRequestHeader:@"X-NAAMA-AUTHENTICATION" value:[authenticator authenticationValue]];
+  }
+  
+  OIDLOG(@"URL: %@", request.url);
+  
+  [self.requestQueue addOperation:request];
+  [self.requestQueue go];
+}
+
 #pragma mark -
 #pragma mark Memory Management
 

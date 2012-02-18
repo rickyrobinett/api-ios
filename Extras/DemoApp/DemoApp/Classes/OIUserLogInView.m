@@ -14,6 +14,7 @@
 
 #import "OIUserLogInView.h"
 #import "OIUserViewController.h"
+#import "OIApplicationData.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interface
@@ -76,6 +77,41 @@
 
 -(void)buttonLogInPressed {
   
+  NSString *mail = [__textFieldUserEmail text];
+  NSString *password = [__textFieldPassword text];
+  
+  BOOL validInput = ([mail length] > 0 && [password length] > 0);
+  
+  if (!validInput)
+  {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input" message:@"Please enter all items to proceed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];  
+    [alert show];
+    [alert release];
+    return;
+  }
+  
+  OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
+  
+  [OIUser getAccountInfo:mail password:password usingBlockUser:^(OIUser *user) {
+    
+    appDataManager.currentUser = user;
+    appDataManager.userLogged = YES;
+    
+    UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
+    [(OIUserViewController*)viewController refresh];
+
+  }
+         usingBlockError:^(NSError *error) {
+           appDataManager.userLogged = NO;
+           
+           if ( error ) {
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't log in with entered email and password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
+             [alert show];
+             [alert release];  
+             OIDLOG(@"Error: %@", error);
+           }
+           
+         }];
   
 }
 

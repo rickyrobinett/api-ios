@@ -24,6 +24,7 @@ extern NSString *const OIAPIClientVersion;
 
 - (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized;
 - (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized authenticator:(OIAPIGenericAuthenticator *)authenticator;
+- (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized withUserAuthenticator:(OIAPIGenericAuthenticator *)authenticator;
 
 + (OIAPIClient *)sharedInstance;
 

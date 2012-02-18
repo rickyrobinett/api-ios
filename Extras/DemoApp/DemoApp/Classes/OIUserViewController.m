@@ -27,6 +27,38 @@
   OINewUserView     *__newUserView;
 }
 
+- (void)showViews:(BOOL) userLogged {
+  
+  if(!userLogged) {
+    
+    self.title = NSLocalizedString( @"User: Not Logged In", "" );
+    [self hideButtons:NO];
+    
+    __buttonLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    __buttonLogIn.frame = CGRectMake(35, 30, 250, 30);
+    [__buttonLogIn setTitle:@"Log In to the Existing Account" forState:UIControlStateNormal];
+    [self.view addSubview:__buttonLogIn]; 
+    
+    __buttonNewAccount = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    __buttonNewAccount.frame = CGRectMake(35, 80, 250, 30);
+    [__buttonNewAccount setTitle:@"Create New Account" forState:UIControlStateNormal];
+    [self.view addSubview:__buttonNewAccount]; 
+    
+    [__buttonLogIn addTarget:self action:@selector(buttonLogInPressed) forControlEvents:UIControlEventTouchUpInside]; 
+    [__buttonNewAccount addTarget:self action:@selector(buttonNewAccountPressed) forControlEvents:UIControlEventTouchUpInside];   
+    
+  }
+  else {
+    self.title = NSLocalizedString( @"User:", "" );
+    [self hideButtons:YES];
+    
+    CGRect  viewRect = CGRectMake(0, 0, 320, 480);
+    OIAccountNavigatorView *__accountNavigatorView = [[OIAccountNavigatorView alloc] initWithFrame:viewRect];  
+    [self.view addSubview:__accountNavigatorView]; 
+    [__accountNavigatorView release]; 
+  }
+}
+
 #pragma mark -
 #pragma mark Lifecycle
 
@@ -36,40 +68,16 @@
   self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
   self.view.backgroundColor = [UIColor whiteColor];
   
-  __buttonLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  __buttonLogIn.frame = CGRectMake(35, 30, 250, 30);
-  [__buttonLogIn setTitle:@"Log In to the Existing Account" forState:UIControlStateNormal];
-  [self.view addSubview:__buttonLogIn]; 
-  
-  __buttonNewAccount = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  __buttonNewAccount.frame = CGRectMake(35, 80, 250, 30);
-  [__buttonNewAccount setTitle:@"Create New Account" forState:UIControlStateNormal];
-  [self.view addSubview:__buttonNewAccount]; 
-  
-  [__buttonLogIn addTarget:self action:@selector(buttonLogInPressed) forControlEvents:UIControlEventTouchUpInside]; 
-  [__buttonNewAccount addTarget:self action:@selector(buttonNewAccountPressed) forControlEvents:UIControlEventTouchUpInside];
-  
   OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
-  
-  if([appDataManager isUserLogged] == YES)
-  {
-    self.title = NSLocalizedString( @"User: Not Logged In", "" );
-    [self hideButtons:NO];
-  }
-  else
-  {
-    self.title = NSLocalizedString( @"User:", "" );
-    [self hideButtons:YES];
-    
-    CGRect  viewRect = CGRectMake(0, 0, 320, 480);
-    OIAccountNavigatorView *__accountNavigatorView = [[OIAccountNavigatorView alloc] initWithFrame:viewRect];  
-    [self.view addSubview:__accountNavigatorView]; 
-    [__accountNavigatorView release];
-  }
-  
+  [self showViews:[appDataManager isUserLogged]];
 }
 
-- (void)hideButtons:(BOOL) hide{
+- (void)refresh {
+  OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
+  [self showViews:[appDataManager isUserLogged]];
+}
+
+- (void)hideButtons:(BOOL) hide {
   __buttonLogIn.hidden = hide;
   __buttonNewAccount.hidden = hide;
 }

@@ -17,5 +17,6 @@
 @interface OIUserViewController : UIViewController
 
 - (void)hideButtons:(BOOL) hide;
-
+- (void)refresh;
+  
 @end
