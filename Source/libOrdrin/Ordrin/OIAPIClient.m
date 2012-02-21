@@ -80,15 +80,15 @@ NSString *const OIAPIClientVersion = @"1";
 #pragma mark Selectors
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-
+  
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-
+  
 }
 
 - (void)queueFinished:(ASINetworkQueue *)queue {
-
+  
 }
 
 #pragma mark -
@@ -101,20 +101,19 @@ NSString *const OIAPIClientVersion = @"1";
 - (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized authenticator:(OIAPIGenericAuthenticator *)authenticator {
   if ( authorized ) {
     [request addRequestHeader:@"X-NAAMA-CLIENT-AUTHENTICATION" value:[authenticator authenticationValue]];
+    [request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
   }
-
-  OIDLOG(@"URL: %@", request.url);
-
+  
   [self.requestQueue addOperation:request];
   [self.requestQueue go];
 }
 
-- (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized withUserAuthenticator:(OIAPIGenericAuthenticator *)authenticator {
+- (void)appendRequest:(ASIHTTPRequest *)request authorized:(BOOL)authorized userAuthenticator:(OIAPIGenericAuthenticator *)userAuthenticator {
   if ( authorized ) {
-    [request addRequestHeader:@"X-NAAMA-AUTHENTICATION" value:[authenticator authenticationValue]];
+    [request addRequestHeader:@"X-NAAMA-CLIENT-AUTHENTICATION" value:[__authenticator authenticationValue]];
+    [request addRequestHeader:@"X-NAAMA-AUTHENTICATION" value:[userAuthenticator authenticationValue]];
+    [request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
   }
-  
-  OIDLOG(@"URL: %@", request.url);
   
   [self.requestQueue addOperation:request];
   [self.requestQueue go];
@@ -136,7 +135,7 @@ NSString *const OIAPIClientVersion = @"1";
 + (OIAPIClient *)sharedInstance {
 	static dispatch_once_t pred;
 	static OIAPIClient *instance = nil;
-
+  
 	dispatch_once(&pred, ^{ instance = [[self alloc] init]; });
 	return instance;
 }

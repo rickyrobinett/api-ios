@@ -20,6 +20,12 @@
 @property (nonatomic, readwrite, getter=isUserLogged) BOOL userLogged;
 @property (nonatomic, readwrite, retain) OIUser *currentUser;
 
+#pragma mark -
+#pragma mark Instance methods
+- (void)logout;
+
+#pragma mark -
+#pragma mark Class methods
 + (id)sharedInstance;
 
 @end

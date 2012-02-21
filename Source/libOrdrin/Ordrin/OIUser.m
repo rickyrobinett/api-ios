@@ -50,11 +50,10 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
 #pragma mark -
 #pragma mark Class methods
 
-+ (void)getAccountInfo:(NSString *)email password:(NSString *)password usingBlockUser:(void (^)(OIUser *user))blockUser usingBlockError:(void (^)(NSError *error))blockError; {
++ (void)accountInfo:(NSString *)email password:(NSString *)password usingBlockUser:(void (^)(OIUser *user))blockUser usingBlockError:(void (^)(NSError *error))blockError; {
   NSString *URL = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [email urlEncode]];
   
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
-  
   
   [request setCompletionBlock:^{
     
@@ -64,7 +63,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
     user.firstName = [json objectForKey:@"first_name"];
     user.lastName = [json objectForKey:@"last_name"];
     user.email = [json objectForKey:@"em"];
-    
+
     if ( blockUser ) {
       blockUser(user);
     }
@@ -76,24 +75,24 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   }];
   
   OIAPIClient *client = [OIAPIClient sharedInstance];
-  [client appendRequest:request authorized:YES withUserAuthenticator:[OIAPIUserAuthenticator authenticatorWithEmail:email password:password uri:[NSURL URLWithString:URL]]];
+  [client appendRequest:request authorized:YES userAuthenticator:[OIAPIUserAuthenticator authenticatorWithEmail:email password:password uri:[NSURL URLWithString:@""]]];
 }
 
-+ (void)createNewAccount:(OIUser *)account password:(NSString *)password usingBlock:(void (^)(NSError *error))block {
++ (void)createNewAccount:(OIUser *)account password:(NSString *)password usingBlock:(void (^)(NSError *error))blockDone {
   NSString *URL = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [account.email urlEncode]];
   
   __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
   
   [request setPostValue:account.firstName forKey:@"first_name"];
   [request setPostValue:account.lastName forKey:@"last_name"];
-  [request setPostValue:[password sha1] forKey:@"password"];
+  [request setPostValue:[password sha256] forKey:@"password"];
   
   [request setCompletionBlock:^{
-    OIDLOG(@"response: %@", [request responseString]);
+    blockDone(nil);
   }];
   
   [request setFailedBlock:^{
-    block([request error]);
+    blockDone([request error]);
   }];
   
   OIAPIClient *client = [OIAPIClient sharedInstance];

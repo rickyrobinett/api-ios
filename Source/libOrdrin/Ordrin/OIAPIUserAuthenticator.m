@@ -11,6 +11,7 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
+
 #import "OIAPIUserAuthenticator.h"
 #import "OICore.h"
 
@@ -31,15 +32,14 @@
     [hash appendString:password];
     [hash appendString:email];
     [hash appendString:[uri relativeString]];
-    
-    __hash = [[hash sha1] copy];
+    __hash = [[hash sha256] copy];
     [hash release];
   }
   return self;
 }
 
 - (NSString *)authenticationValue {
-  return [NSString stringWithFormat:@"username=%@, response=%@, version=%@", __email, __hash, OIAPIClientVersion];
+  return [NSString stringWithFormat:@"username=\"%@\", response=\"%@\", version=\"%@\"", __email, __hash, OIAPIClientVersion];
 }
 
 #pragma mark -
@@ -48,7 +48,6 @@
 - (void)dealloc {
   OI_RELEASE_SAFELY( __email );
   OI_RELEASE_SAFELY( __hash );
-  
   [super dealloc];
 }
 

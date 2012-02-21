@@ -77,42 +77,44 @@
 
 -(void)buttonLogInPressed {
   
-  NSString *mail = [__textFieldUserEmail text];
-  NSString *password = [__textFieldPassword text];
-  
-  BOOL validInput = ([mail length] > 0 && [password length] > 0);
-  
-  if (!validInput)
-  {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input" message:@"Please enter all items to proceed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];  
-    [alert show];
-    [alert release];
-    return;
-  }
+  //  NSString *mail = [__textFieldUserEmail text];
+  //  NSString *password = [__textFieldPassword text];
+  //  
+  //  BOOL validInput = ([mail length] > 0 && [password length] > 0);
+  //  
+  //  if (!validInput)
+  //  {
+  //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input" message:@"Please enter all items to proceed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];  
+  //    [alert show];
+  //    [alert release];
+  //    return;
+  //  }
   
   OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
   
-  [OIUser getAccountInfo:mail password:password usingBlockUser:^(OIUser *user) {
+  [OIUser accountInfo:@"testuser@gmail.cz" password:@"tajneheslo" usingBlockUser:^(OIUser *user) {
     
     appDataManager.currentUser = user;
     appDataManager.userLogged = YES;
     
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User succesfully logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
+    [alert show];
+    [alert release];  
+    
     UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
     [(OIUserViewController*)viewController refresh];
-
+     self.hidden = YES;
+    
   }
-         usingBlockError:^(NSError *error) {
-           appDataManager.userLogged = NO;
-           
-           if ( error ) {
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't log in with entered email and password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
-             [alert show];
-             [alert release];  
-             OIDLOG(@"Error: %@", error);
-           }
-           
-         }];
-  
+      usingBlockError:^(NSError *error) {
+        appDataManager.userLogged = NO;
+        
+        if ( error ) {
+          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't log in with entered email and password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
+          [alert show];
+          [alert release];  
+        }
+      }];
 }
 
 - (void) animateView: (UITextField*) textField up: (BOOL) up

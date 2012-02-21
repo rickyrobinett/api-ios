@@ -108,36 +108,61 @@
 
 -(void)buttonCreateAccountPressed {
   
-  NSString *mail = [__textFieldUserEmail text];
-  NSString *firstName = [__textFieldFirstName text];
-  NSString *lastName = [__textFieldLastName text];
-  NSString *password = [__textFieldPassword text];
+  OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
   
-  BOOL validInput = ([mail length] > 0 && [firstName length] > 0 && [lastName length] > 0 && [password length] > 0);
+  //  NSString *mail = [__textFieldUserEmail text];
+  //  NSString *firstName = [__textFieldFirstName text];
+  //  NSString *lastName = [__textFieldLastName text];
+  //  NSString *password = [__textFieldPassword text];
+  //  
+  //  BOOL validInput = ([mail length] > 0 && [firstName length] > 0 && [lastName length] > 0 && [password length] > 0);
+  //  
+  //  if (!validInput)
+  //  {
+  //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input" message:@"Please enter all items to proceed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];  
+  //    [alert show];
+  //    [alert release];
+  //    return;
+  //  }
   
-  if (!validInput)
-  {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input" message:@"Please enter all items to proceed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];  
-    [alert show];
-    [alert release];
-    return;
-  }
+  OIUser *newUser = [OIUser userWithEmail:@"testuser@gmail.cz" firstName:@"Vita" lastName:@"Kot"];
   
-  OIUser *newUser = [OIUser userWithEmail:mail firstName:firstName lastName:lastName];
-  
-  [OIUser createNewAccount:newUser password:password usingBlock:^(NSError *error) {
+  [OIUser createNewAccount:newUser password:@"tajneheslo" usingBlock:^(NSError *error) {
+    
     if ( error ) {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"User account could not be created!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
-      [alert show];
-      [alert release];  
-      OIDLOG(@"Error: %@", error);
+      
+      [OIUser accountInfo:@"testuser@gmail.cz" password:@"tajneheslo" usingBlockUser:^(OIUser *user) {
+        appDataManager.currentUser = user;
+        appDataManager.userLogged = YES; 
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User already exists: logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
+        [alert show];
+        [alert release];   
+        UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
+        [(OIUserViewController*)viewController refresh];
+        self.hidden = YES;
+      }
+          usingBlockError:^(NSError *error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"User account could not be created!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
+            [alert show];
+            [alert release];          
+          }];
     }
     else {
-      OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
+      
       appDataManager.currentUser = newUser;
       appDataManager.userLogged = YES;
+      
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User account created." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
+      [alert show];
+      [alert release];
+      UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
+      [(OIUserViewController*)viewController refresh];
+      self.hidden = YES;  
+      return;
     }
   }];
+  
 }
 
 - (void) animateView: (UITextField*) textField up: (BOOL) up

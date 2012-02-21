@@ -26,6 +26,9 @@ static OIApplicationData *sharedAppData = nil;
 @synthesize userLogged  = __userLogged;
 @synthesize currentUser  = __currentUser;
 
+#pragma mark -
+#pragma mark Instance methods
+
 - (id)init {
   if (self = [super init]) {
     __userLogged = NO;
@@ -33,11 +36,18 @@ static OIApplicationData *sharedAppData = nil;
   return self;
 }
 
+- (void)logout {
+  __userLogged = NO;
+  OI_RELEASE_SAFELY(__currentUser );
+}
+
 - (void)dealloc {
   OI_RELEASE_SAFELY( __currentUser );
   [super dealloc];
 }
 
+
+#pragma mark -
 #pragma mark Singleton
 
 + (id)sharedInstance {

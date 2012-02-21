@@ -13,6 +13,8 @@
  */
 
 #import "OIAccountNavigatorView.h"
+#import "OIApplicationData.h"
+#import "OIUserViewController.h"
 
 @implementation OIAccountNavigatorView
 
@@ -43,7 +45,7 @@
     [__buttonPassword setTitle:@"Password" forState:UIControlStateNormal]; 
     
     UIButton *__buttonLogOut = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    __buttonLogOut.frame = CGRectMake(35, 190, 250, 30);
+    __buttonLogOut.frame = CGRectMake(35, 230, 250, 30);
     [__buttonLogOut setTitle:@"Log Out" forState:UIControlStateNormal];
     
     [__buttonAccountSettings addTarget:self action:@selector(buttonAccountSettingsPressed) forControlEvents:UIControlEventTouchUpInside]; 
@@ -85,6 +87,11 @@
 }
 
 -(void)buttonLogOutPressed {
+  OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
+  [appDataManager logout];
+  self.hidden = YES;
+  UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
+  [(OIUserViewController*)viewController refresh];
   
 }
 

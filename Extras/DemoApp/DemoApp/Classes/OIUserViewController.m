@@ -34,22 +34,11 @@
     self.title = NSLocalizedString( @"User: Not Logged In", "" );
     [self hideButtons:NO];
     
-    __buttonLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    __buttonLogIn.frame = CGRectMake(35, 30, 250, 30);
-    [__buttonLogIn setTitle:@"Log In to the Existing Account" forState:UIControlStateNormal];
-    [self.view addSubview:__buttonLogIn]; 
-    
-    __buttonNewAccount = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    __buttonNewAccount.frame = CGRectMake(35, 80, 250, 30);
-    [__buttonNewAccount setTitle:@"Create New Account" forState:UIControlStateNormal];
-    [self.view addSubview:__buttonNewAccount]; 
-    
-    [__buttonLogIn addTarget:self action:@selector(buttonLogInPressed) forControlEvents:UIControlEventTouchUpInside]; 
-    [__buttonNewAccount addTarget:self action:@selector(buttonNewAccountPressed) forControlEvents:UIControlEventTouchUpInside];   
-    
   }
   else {
-    self.title = NSLocalizedString( @"User:", "" );
+    
+    OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
+    self.title =[NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString( @"User:", "" ), [[appDataManager currentUser] firstName], [[appDataManager currentUser] lastName]];
     [self hideButtons:YES];
     
     CGRect  viewRect = CGRectMake(0, 0, 320, 480);
@@ -67,6 +56,19 @@
   
   self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
   self.view.backgroundColor = [UIColor whiteColor];
+  
+  __buttonLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  __buttonLogIn.frame = CGRectMake(35, 30, 250, 30);
+  [__buttonLogIn setTitle:@"Log In to the Existing Account" forState:UIControlStateNormal];
+  [self.view addSubview:__buttonLogIn]; 
+  
+  __buttonNewAccount = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  __buttonNewAccount.frame = CGRectMake(35, 80, 250, 30);
+  [__buttonNewAccount setTitle:@"Create New Account" forState:UIControlStateNormal];
+  [self.view addSubview:__buttonNewAccount]; 
+  
+  [__buttonLogIn addTarget:self action:@selector(buttonLogInPressed) forControlEvents:UIControlEventTouchUpInside]; 
+  [__buttonNewAccount addTarget:self action:@selector(buttonNewAccountPressed) forControlEvents:UIControlEventTouchUpInside];  
   
   OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
   [self showViews:[appDataManager isUserLogged]];
