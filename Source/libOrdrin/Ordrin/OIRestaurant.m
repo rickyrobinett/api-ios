@@ -156,7 +156,7 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
   [client appendRequest:request authorized:YES];
 }
 
-- (NSArray *)getMenuItemsForChildrens:(NSArray *) childrenIDs {
+- (NSArray *)menuItemsForChildrens:(NSArray *) childrenIDs {
     
     return [NSArray arrayWithObjects:nil];
 }

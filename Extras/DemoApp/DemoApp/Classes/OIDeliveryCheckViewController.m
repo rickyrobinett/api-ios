@@ -151,7 +151,7 @@
         break;
 
       case 1:
-        cell.textLabel.text = [NSString stringWithFormat:@"address: %@", __restaurant.address.street];
+        cell.textLabel.text = [NSString stringWithFormat:@"address: %@", __restaurant.address.address1];
         break;
 
       case 2:

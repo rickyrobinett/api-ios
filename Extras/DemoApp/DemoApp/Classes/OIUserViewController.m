@@ -89,22 +89,27 @@
   if(__newUserView != nil)
     [__newUserView removeFromSuperview];
   
-  CGRect  viewRect = CGRectMake(0, 200, 480, 200);
-  __logInView = [[OIUserLogInView alloc] initWithFrame:viewRect];  
   
-  [self.view addSubview:__logInView]; 
+  if ([__logInView isHidden] || __logInView == nil) {
+    
+    CGRect  viewRect = CGRectMake(0, 200, 480, 200);
+    __logInView = [[OIUserLogInView alloc] initWithFrame:viewRect];  
+    [self.view addSubview:__logInView]; 
+    
+  }
 }
-
 
 -(void)buttonNewAccountPressed {
   
   if(__logInView != nil)
     [__logInView removeFromSuperview];
   
-  CGRect  viewRect = CGRectMake(0, 160, 480, 200);
-  __newUserView = [[OINewUserView alloc] initWithFrame:viewRect];  
-  
-  [self.view addSubview:__newUserView];   
+  if ([__newUserView isHidden] || __newUserView == nil) {
+    
+    CGRect  viewRect = CGRectMake(0, 160, 480, 200);
+    __newUserView = [[OINewUserView alloc] initWithFrame:viewRect];  
+    [self.view addSubview:__newUserView];   
+  }
 }
 
 

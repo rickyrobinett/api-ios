@@ -15,9 +15,14 @@
 
 @interface OIAddress : NSObject
 
-@property (nonatomic, readwrite, copy) NSString *street;
+@property (nonatomic, readwrite, copy) NSString *nickname;
+@property (nonatomic, readwrite, copy) NSString *address1;
+@property (nonatomic, readwrite, copy) NSString *address2;
 @property (nonatomic, readwrite, copy) NSString *city;
+@property (nonatomic, readwrite, copy) NSString *state;
 @property (nonatomic, readwrite, retain) NSNumber *postalCode;
+@property (nonatomic, readwrite, copy) NSString *phoneNumber;
+
 
 #pragma mark -
 #pragma mark Class methods

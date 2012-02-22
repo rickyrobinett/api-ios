@@ -15,6 +15,8 @@
 #import "OIAccountNavigatorView.h"
 #import "OIApplicationData.h"
 #import "OIUserViewController.h"
+#import "OIUserAccountSettingsViewController.h"
+#import "OIUserAddressesViewController.h"
 
 @implementation OIAccountNavigatorView
 
@@ -67,19 +69,25 @@
 }
 
 -(void)buttonAccountSettingsPressed {
-  
+  OIUserAccountSettingsViewController *controller = [[OIUserAccountSettingsViewController alloc] init];
+  UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
+  [viewController.navigationController pushViewController:controller animated:YES];
+  [controller release]; 
 }
 
 -(void)buttonAddressesPressed {
-  
+  OIUserAddressesViewController *controller = [[OIUserAddressesViewController alloc] init];
+  UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
+  [viewController.navigationController pushViewController:controller animated:YES];
+  [controller release]; 
 }
 
 -(void)buttonCreditCardsPressed {
-  
+ 
 }
 
 -(void)buttonOrdersPressed {
-  
+
 }
 
 -(void)buttonPasswordPressed {

@@ -12,8 +12,8 @@
  *      Vitezslav Kot (vita@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import "OIDemo.h"
 
-@interface OIUserAccountViewController : UIViewController
+@interface OIUserAccountSettingsViewController : UIViewController
 
 @end

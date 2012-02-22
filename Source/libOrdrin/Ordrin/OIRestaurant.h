@@ -52,7 +52,7 @@ extern NSString *const OIRestaurantBaseURL;
 /**
  * Return array of menu items for given children IDs 
  */
-- (NSArray *)getMenuItemsForChildrens:(NSArray *) childrenIDs;
+- (NSArray *)menuItemsForChildrens:(NSArray *) childrenIDs;
 
 #pragma mark -
 #pragma mark Class methods

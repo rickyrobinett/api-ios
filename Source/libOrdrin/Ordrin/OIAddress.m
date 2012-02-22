@@ -16,27 +16,35 @@
 
 @implementation OIAddress {
 @private
-  NSString *__street;
+  NSString *__nickname;
+  NSString *__address1;
+  NSString *__address2;
   NSString *__city;
+  NSString *__state;
   NSNumber *__postalCode;
+  NSString *__phoneNumber;
 }
 
-@synthesize street      = __street;
-@synthesize city        = __city;
-@synthesize postalCode  = __postalCode;
+@synthesize nickname      = __nickname;
+@synthesize address1      = __address1;
+@synthesize address2      = __address2;
+@synthesize city          = __city;
+@synthesize state         = __state;
+@synthesize postalCode    = __postalCode;
+@synthesize phoneNumber   = __phoneNumber;
 
 #pragma mark -
 #pragma mark Properties
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"/%@/%@/%@", __postalCode, [__street urlEncode], [__city urlEncode]];
+  return [NSString stringWithFormat:@"/%@/%@/%@", __postalCode, [__address1 urlEncode], [__city urlEncode]];
 }
 
 #pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
-  OI_RELEASE_SAFELY( __street );
+  OI_RELEASE_SAFELY( __address1 );
   OI_RELEASE_SAFELY( __city );
   OI_RELEASE_SAFELY( __postalCode );
   [super dealloc];
@@ -47,10 +55,10 @@
 
 + (OIAddress *)addressWithStreet:(NSString *)street city:(NSString *)city postalCode:(NSNumber *)postalCode {
   OIAddress *address = [[OIAddress alloc] init];
-  address.street = street;
+  address.address1 = street;
   address.city = city;
   address.postalCode = postalCode;
-
+  
   return [address autorelease];
 }
 
