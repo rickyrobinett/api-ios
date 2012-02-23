@@ -13,11 +13,16 @@
  */
 
 #import "OIUserAddressesViewController.h"
+#import "OIApplicationData.h"
+#import "OIUserNewAddressViewController.h"
+#import "OIUserAccountSettingsViewController.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interface
 
 @interface OIUserAddressesViewController()< UITableViewDataSource, UITableViewDelegate >
+
+- (void)reload;
 
 @end
 
@@ -40,16 +45,30 @@
   __tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
   __tableView.delegate = self;
   __tableView.dataSource = self;
+  
+  UIButton *buttonNewAddress = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  buttonNewAddress.frame = CGRectMake(35, 5, 250, 30);
+  [buttonNewAddress setTitle:@"Add New Address" forState:UIControlStateNormal];
+  [buttonNewAddress addTarget:self action:@selector(buttonNewAddressPressed) forControlEvents:UIControlEventTouchUpInside]; 
+  
+  UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+  [footerView addSubview:buttonNewAddress];
+  
+  __tableView.tableFooterView = footerView; 
+  [footerView release];
+  
   [self.view addSubview:__tableView];
   
-//  [__restaurant deliveryCheckToAddress:address atTime:dateTime usingBlock:^void(OIDelivery *delivery) {
-//    self.delivery = delivery;
-//    [self reload];
-//  }];
-//  
-//  [__restaurant downloadAllUsingBlock:^void() {
-//    [self reload];
-//  }];
+  [[[OIApplicationData sharedInstance] currentUser] loadAddressesUsingBlock:^void (NSError *error) {
+    
+    if(error) {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Cannot load user addresses." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
+      [alert show];
+      [alert release];      
+    }
+    else
+      [self reload];
+  }];
 }
 
 
@@ -71,79 +90,32 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  NSUInteger sections = 0;
-//  if ( __delivery ) {
-//    sections++;
-//    
-//    if ( [__restaurant isComplete] ) {
-//      sections++;
-//    }
-//  }
   
-  return sections;
+  return [[[[OIApplicationData sharedInstance] currentUser] addresses] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//  if ( section == 0 ) {
-//    if ( [__delivery isAvailable] ) {
-//      return 2;
-//    }
-//    
-//    return 1;
-//  }
-//  else if ( section == 1 ) {
-//    return 4;
-//  }
   
-  return 0;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-//  if ( ! cell ) {
-//    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.textLabel.font = [UIFont systemFontOfSize:13.0f];
-//  }
-//  
-//  if ( indexPath.section == 0 ) {
-//    switch (indexPath.row) {
-//      case 0: {
-//        if ( ! [__delivery isAvailable] ) {
-//          cell.textLabel.text = __delivery.message;
-//          cell.textLabel.numberOfLines = 3;
-//        }
-//        else {
-//          cell.textLabel.text = [NSString stringWithFormat:@"Expected time: %@", __delivery.expectedTime];
-//        }
-//        break;
-//      }
-//      case 1:
-//        cell.textLabel.text = [NSString stringWithFormat:@"Minimum: %@", __delivery.minimumAmount];
-//        break;
-//    }
-//  }
-//  else if ( indexPath.section == 1 ) {
-//    switch (indexPath.row) {
-//      case 0:
-//        cell.textLabel.text = [NSString stringWithFormat:@"phone: %@", __restaurant.phone];
-//        break;
-//        
-//      case 1:
-//        cell.textLabel.text = [NSString stringWithFormat:@"address: %@", __restaurant.address.street];
-//        break;
-//        
-//      case 2:
-//        cell.textLabel.text = [NSString stringWithFormat:@"city: %@ %@", __restaurant.address.postalCode, __restaurant.address.city];
-//        break;
-//        
-//      case 3:
-//        cell.textLabel.text = [NSString stringWithFormat:@"state: %@", __restaurant.state];
-//        break;         
-//    }
-//  }
+  
+  if ( ! cell ) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.font = [UIFont systemFontOfSize:13.0f];
+  }
   
   return cell;
+}
+
+
+-(void)buttonNewAddressPressed {
+  OIUserNewAddressViewController *controller = [[OIUserNewAddressViewController alloc] init];
+  [self.navigationController pushViewController:controller animated:YES];
+  [controller release];  
 }
 
 #pragma mark -

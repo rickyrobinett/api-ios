@@ -28,6 +28,7 @@
 		20D51AED14F4898E00F4E653 /* OIUserAccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D51AEC14F4898E00F4E653 /* OIUserAccountSettingsViewController.m */; };
 		20D51AF014F48C8A00F4E653 /* OIUserAddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D51AEF14F48C8A00F4E653 /* OIUserAddressesViewController.m */; };
 		20D9E12914EC669600623E77 /* OIApplicationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E12814EC669600623E77 /* OIApplicationData.m */; };
+		20DDCDB114F5C6C50084C142 /* OIUserNewAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DDCDB014F5C6C50084C142 /* OIUserNewAddressViewController.m */; };
 		BD4923C14C492F3000CD9FA /* OIDeliveryCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4923C14C492F3000CD9F9 /* OIDeliveryCheckViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		20D51AEF14F48C8A00F4E653 /* OIUserAddressesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIUserAddressesViewController.m; sourceTree = "<group>"; };
 		20D9E12714EC669600623E77 /* OIApplicationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIApplicationData.h; path = Classes/OIApplicationData.h; sourceTree = "<group>"; };
 		20D9E12814EC669600623E77 /* OIApplicationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIApplicationData.m; path = Classes/OIApplicationData.m; sourceTree = "<group>"; };
+		20DDCDAF14F5C6C50084C142 /* OIUserNewAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIUserNewAddressViewController.h; sourceTree = "<group>"; };
+		20DDCDB014F5C6C50084C142 /* OIUserNewAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIUserNewAddressViewController.m; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9F8 /* OIDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIDemo.h; path = Classes/OIDemo.h; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9F9 /* OIDeliveryCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIDeliveryCheckViewController.m; path = Classes/OIDeliveryCheckViewController.m; sourceTree = "<group>"; };
 		BD4923C14C492F3000CD9FB /* OIDeliveryCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIDeliveryCheckViewController.h; path = Classes/OIDeliveryCheckViewController.h; sourceTree = "<group>"; };
@@ -178,6 +181,8 @@
 				20934B7A14EDDD170071F0A1 /* OIAccountNavigatorView.m */,
 				20D51AEE14F48C8A00F4E653 /* OIUserAddressesViewController.h */,
 				20D51AEF14F48C8A00F4E653 /* OIUserAddressesViewController.m */,
+				20DDCDAF14F5C6C50084C142 /* OIUserNewAddressViewController.h */,
+				20DDCDB014F5C6C50084C142 /* OIUserNewAddressViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				20934B7B14EDDD180071F0A1 /* OIAccountNavigatorView.m in Sources */,
 				20D51AED14F4898E00F4E653 /* OIUserAccountSettingsViewController.m in Sources */,
 				20D51AF014F48C8A00F4E653 /* OIUserAddressesViewController.m in Sources */,
+				20DDCDB114F5C6C50084C142 /* OIUserNewAddressViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

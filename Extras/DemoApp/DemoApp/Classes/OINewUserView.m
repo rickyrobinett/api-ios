@@ -41,65 +41,65 @@
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     
-    UILabel *__labelUserEmail = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 80, 30)];
-    __labelUserEmail.text = @"User Email:";
-    __labelUserEmail.font = [UIFont systemFontOfSize:14.0];
+    UILabel *labelUserEmail = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 80, 30)];
+    labelUserEmail.text = @"User Email:";
+    labelUserEmail.font = [UIFont systemFontOfSize:14.0];
     
     __textFieldUserEmail = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, 165, 30)];
     __textFieldUserEmail.borderStyle = UITextBorderStyleRoundedRect;
     __textFieldUserEmail.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     __textFieldUserEmail.delegate = self;
     
-    UILabel *__labelFirstName = [[UILabel alloc] initWithFrame:CGRectMake(35, 50, 80, 30)];
-    __labelFirstName.text = @"First Name:";
-    __labelFirstName.font = [UIFont systemFontOfSize:14.0];
+    UILabel *labelFirstName = [[UILabel alloc] initWithFrame:CGRectMake(35, 50, 80, 30)];
+    labelFirstName.text = @"First Name:";
+    labelFirstName.font = [UIFont systemFontOfSize:14.0];
     
     __textFieldFirstName = [[UITextField alloc] initWithFrame:CGRectMake(120, 50, 165, 30)];
     __textFieldFirstName.borderStyle = UITextBorderStyleRoundedRect;
     __textFieldFirstName.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     __textFieldFirstName.delegate = self;
     
-    UILabel *__labelLastName = [[UILabel alloc] initWithFrame:CGRectMake(35, 90, 80, 30)];
-    __labelLastName.text = @"Last Name:";
-    __labelLastName.font = [UIFont systemFontOfSize:14.0];
+    UILabel *labelLastName = [[UILabel alloc] initWithFrame:CGRectMake(35, 90, 80, 30)];
+    labelLastName.text = @"Last Name:";
+    labelLastName.font = [UIFont systemFontOfSize:14.0];
     
     __textFieldLastName = [[UITextField alloc] initWithFrame:CGRectMake(120, 90, 165, 30)];
     __textFieldLastName.borderStyle = UITextBorderStyleRoundedRect;
     __textFieldLastName.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;   
     __textFieldLastName.delegate = self;
     
-    UILabel *__labePassword = [[UILabel alloc] initWithFrame:CGRectMake(35, 130, 80, 30)];
-    __labePassword.text = @"Password:";
-    __labePassword.font = [UIFont systemFontOfSize:14.0];
+    UILabel *labePassword = [[UILabel alloc] initWithFrame:CGRectMake(35, 130, 80, 30)];
+    labePassword.text = @"Password:";
+    labePassword.font = [UIFont systemFontOfSize:14.0];
     
     __textFieldPassword = [[UITextField alloc] initWithFrame:CGRectMake(120, 130, 165, 30)];
     __textFieldPassword.borderStyle = UITextBorderStyleRoundedRect;
     __textFieldPassword.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;  
     __textFieldPassword.delegate = self;
     
-    UIButton *__buttonLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    __buttonLogIn.frame = CGRectMake(35, 170, 250, 30);
-    [__buttonLogIn setTitle:@"Create Account" forState:UIControlStateNormal];
+    UIButton *buttonLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonLogIn.frame = CGRectMake(35, 170, 250, 30);
+    [buttonLogIn setTitle:@"Create Account" forState:UIControlStateNormal];
     
-    [__buttonLogIn addTarget:self action:@selector(buttonCreateAccountPressed) forControlEvents:UIControlEventTouchUpInside];
+    [buttonLogIn addTarget:self action:@selector(buttonCreateAccountPressed) forControlEvents:UIControlEventTouchUpInside];
     
-    [self addSubview:__labelUserEmail];
+    [self addSubview:labelUserEmail];
     [self addSubview:__textFieldUserEmail];
-    [self addSubview:__labelFirstName];
+    [self addSubview:labelFirstName];
     [self addSubview:__textFieldFirstName];
-    [self addSubview:__labelLastName];
+    [self addSubview:labelLastName];
     [self addSubview:__textFieldLastName];
-    [self addSubview:__labePassword];
+    [self addSubview:labePassword];
     [self addSubview:__textFieldPassword];
-    [self addSubview:__buttonLogIn]; 
+    [self addSubview:buttonLogIn]; 
     
-    [__labelUserEmail release];
+    [labelUserEmail release];
     [__textFieldUserEmail release];
-    [__labelFirstName release];
+    [labelFirstName release];
     [__textFieldFirstName release];
-    [__labelLastName release];    
+    [labelLastName release];    
     [__textFieldLastName release];
-    [__labePassword release];
+    [labePassword release];
     [__textFieldPassword release]; 
     
   }
@@ -110,11 +110,6 @@
   
   OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
   
-  //  NSString *mail = [__textFieldUserEmail text];
-  //  NSString *firstName = [__textFieldFirstName text];
-  //  NSString *lastName = [__textFieldLastName text];
-  //  NSString *password = [__textFieldPassword text];
-  //  
   //  BOOL validInput = ([mail length] > 0 && [firstName length] > 0 && [lastName length] > 0 && [password length] > 0);
   //  
   //  if (!validInput)

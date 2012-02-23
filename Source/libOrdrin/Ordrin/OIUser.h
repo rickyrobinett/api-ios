@@ -38,7 +38,7 @@ extern NSString const* OIUserBaseURL;
  * Load all user addresses into the OIUser instance. Call block with nil parameter 
  * if succeeded or with a request error if failed
  */
-- (void)loadAddresses:usingBlock:(void (^)(NSError *error))block;
+- (void)loadAddressesUsingBlock:(void (^)(NSError *error))block;
 
 /**
  * Load user address by its nickname. Call block with created OIAddress instance if succeeded 
@@ -62,7 +62,7 @@ extern NSString const* OIUserBaseURL;
  * Load all user credit cards into the OIUser instance. Call block with nil parameter 
  * if succeeded or with a request error if failed
  */
-- (void)loadCreditCards:usingBlock:(void (^)(NSError *error))block;
+- (void)loadCreditCardsUsingBlock:(void (^)(NSError *error))block;
 
 /**
  * Load user credit card by its nickname. Call block with created OICreditCard instance if succeeded 
@@ -86,7 +86,7 @@ extern NSString const* OIUserBaseURL;
  * Load all user orders into the OIUser instance. Call block with nil parameter 
  * if succeeded or with a request error if failed
  */
-- (void)loadOrderHistory:usingBlock:(void (^)(NSError *error))block;
+- (void)loadOrderHistoryUsingBlock:(void (^)(NSError *error))block;
 
 /**
  * Load user order by its ID. Call block with created OIOrder instance if succeeded 
