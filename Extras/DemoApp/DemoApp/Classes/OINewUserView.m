@@ -160,21 +160,20 @@
   
 }
 
-- (void) animateView: (UITextField*) textField up: (BOOL) up
-{
-  const int movementDistance = 165; 
+- (void)animateView:(UITextField *)textField up:(BOOL)up {
+  const int   movementDistance = 165;
   const float movementDuration = 0.3f;
-  
+
   int movement = (up ? -movementDistance : movementDistance);
-  
-  [UIView beginAnimations: @"anim" context: nil];
-  [UIView setAnimationBeginsFromCurrentState: YES];
-  [UIView setAnimationDuration: movementDuration];
+
+  [UIView beginAnimations:@"anim" context:nil];
+  [UIView setAnimationBeginsFromCurrentState:YES];
+  [UIView setAnimationDuration:movementDuration];
   self.frame = CGRectOffset(self.frame, 0, movement);
   [UIView commitAnimations];
-  
-  UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
-  [(OIUserViewController*)viewController hideButtons:up];
+
+  UIViewController *viewController = (UIViewController *) [[self superview] nextResponder];
+  [(OIUserViewController *) viewController hideButtons:up];
 }
 
 #pragma mark -
@@ -185,14 +184,12 @@
   return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-  [self animateView: textField up: YES];
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+  [self animateView:textField up:YES];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-  [self animateView: textField up: NO];
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+  [self animateView:textField up:NO];
 }
 
 #pragma mark -

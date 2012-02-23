@@ -28,8 +28,8 @@
 
 @implementation OIOrderViewController {
 @private
-    UITableView *__tableView;
-    NSArray *__dataSet;
+  UITableView *__tableView;
+  NSArray     *__dataSet;
 }
 
 @synthesize dataSet = __dataSet;
@@ -38,64 +38,64 @@
 #pragma mark Lifecycle
 
 - (void)loadView {
-    [super loadView];
-    
-    self.title = NSLocalizedString( @"Order", "" );
-    
-    __tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    __tableView.delegate = self;
-    __tableView.dataSource = self;
-    [self.view addSubview:__tableView];
+  [super loadView];
+
+  self.title = NSLocalizedString( @"Order", "" );
+
+  __tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+  __tableView.delegate   = self;
+  __tableView.dataSource = self;
+  [self.view addSubview:__tableView];
 }
 
 #pragma mark -
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [__dataSet count];
+  return [__dataSet count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if ( ! cell ) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    }
-    
-    return cell;
+  UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+  if ( !cell ) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    cell.accessoryType  = UITableViewCellAccessoryDetailDisclosureButton;
+  }
+
+  return cell;
 }
 
 #pragma mark -
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark -
 #pragma mark Memory Management
 
--(void)releaseWithDealloc:(BOOL)dealloc {
-    [__tableView release], __tableView = nil;
-    
-    if ( dealloc ) {
-        [__dataSet release], __dataSet = nil;
-    }
+- (void)releaseWithDealloc:(BOOL)dealloc {
+  OI_RELEASE_SAFELY( __tableView );
+
+  if ( dealloc ) {
+    OI_RELEASE_SAFELY( __dataSet );
+  }
 }
 
 - (void)viewDidUnload {
-    [self releaseWithDealloc:NO];
-    [super viewDidUnload];
+  [self releaseWithDealloc:NO];
+  [super viewDidUnload];
 }
 
 - (void)dealloc {
-    [self releaseWithDealloc:YES];
-    [super dealloc];
+  [self releaseWithDealloc:YES];
+  [super dealloc];
 }
+
 @end

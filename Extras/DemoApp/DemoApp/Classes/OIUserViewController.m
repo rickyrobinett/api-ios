@@ -18,33 +18,28 @@
 #import "OIApplicationData.h"
 #import "OIAccountNavigatorView.h"
 
-@implementation OIUserViewController
-{
-@private  
-  UIButton *__buttonLogIn;
-  UIButton *__buttonNewAccount;
-  OIUserLogInView   *__logInView;
-  OINewUserView     *__newUserView;
+@implementation OIUserViewController {
+@private
+  UIButton        *__buttonLogIn;
+  UIButton        *__buttonNewAccount;
+  OIUserLogInView *__logInView;
+  OINewUserView   *__newUserView;
 }
 
 - (void)showViews:(BOOL) userLogged {
-  
-  if(!userLogged) {
-    
+  if ( !userLogged ) {
     self.title = NSLocalizedString( @"User: Not Logged In", "" );
     [self hideButtons:NO];
-    
   }
   else {
-    
     OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
-    self.title =[NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString( @"User:", "" ), [[appDataManager currentUser] firstName], [[appDataManager currentUser] lastName]];
+    self.title = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString( @"User:", "" ), [[appDataManager currentUser] firstName], [[appDataManager currentUser] lastName]];
     [self hideButtons:YES];
-    
-    CGRect  viewRect = CGRectMake(0, 0, 320, 480);
-    OIAccountNavigatorView *__accountNavigatorView = [[OIAccountNavigatorView alloc] initWithFrame:viewRect];  
-    [self.view addSubview:__accountNavigatorView]; 
-    [__accountNavigatorView release]; 
+
+    CGRect viewRect = CGRectMake(0, 0, 320, 480);
+    OIAccountNavigatorView *__accountNavigatorView = [[OIAccountNavigatorView alloc] initWithFrame:viewRect];
+    [self.view addSubview:__accountNavigatorView];
+    [__accountNavigatorView release];
   }
 }
 
@@ -54,7 +49,6 @@
 - (void)loadView {
   [super loadView];
   
-  self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
   self.view.backgroundColor = [UIColor whiteColor];
   
   __buttonLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -84,34 +78,28 @@
   __buttonNewAccount.hidden = hide;
 }
 
--(void)buttonLogInPressed {
-  
-  if(__newUserView != nil)
+- (void)buttonLogInPressed {
+  if ( __newUserView != nil )
     [__newUserView removeFromSuperview];
-  
-  
-  if ([__logInView isHidden] || __logInView == nil) {
-    
-    CGRect  viewRect = CGRectMake(0, 200, 480, 200);
-    __logInView = [[OIUserLogInView alloc] initWithFrame:viewRect];  
-    [self.view addSubview:__logInView]; 
-    
+
+
+  if ( [__logInView isHidden] || __logInView == nil ) {
+    CGRect viewRect = CGRectMake(0, 200, 480, 200);
+    __logInView = [[OIUserLogInView alloc] initWithFrame:viewRect];
+    [self.view addSubview:__logInView];
   }
 }
 
--(void)buttonNewAccountPressed {
-  
-  if(__logInView != nil)
+- (void)buttonNewAccountPressed {
+  if ( __logInView != nil )
     [__logInView removeFromSuperview];
-  
-  if ([__newUserView isHidden] || __newUserView == nil) {
-    
-    CGRect  viewRect = CGRectMake(0, 160, 480, 200);
-    __newUserView = [[OINewUserView alloc] initWithFrame:viewRect];  
-    [self.view addSubview:__newUserView];   
+
+  if ( [__newUserView isHidden] || __newUserView == nil ) {
+    CGRect viewRect = CGRectMake(0, 160, 480, 200);
+    __newUserView = [[OINewUserView alloc] initWithFrame:viewRect];
+    [self.view addSubview:__newUserView];
   }
 }
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [textField resignFirstResponder];

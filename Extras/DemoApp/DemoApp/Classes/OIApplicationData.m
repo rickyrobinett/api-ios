@@ -10,12 +10,12 @@
  *
  *  @author(s):
  *      Vitezslav Kot (vita@tapmates.com)
+ *      Petr Reichl (petr@tapmates.com)
  */
 
 #import "OIApplicationData.h"
 #import "OICore.h"
-
-static OIApplicationData *sharedAppData = nil;
+#import "OIUser.h"
 
 @implementation OIApplicationData {
 @private
@@ -30,7 +30,7 @@ static OIApplicationData *sharedAppData = nil;
 #pragma mark Instance methods
 
 - (id)init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     __userLogged = NO;
   }
   return self;
@@ -46,16 +46,15 @@ static OIApplicationData *sharedAppData = nil;
   [super dealloc];
 }
 
-
 #pragma mark -
 #pragma mark Singleton
 
-+ (id)sharedInstance {
-  @synchronized(self) {
-    if (sharedAppData == nil)
-      sharedAppData = [[self alloc] init];
-  }
-  return sharedAppData;
++ (OIApplicationData *)sharedInstance {
+	static dispatch_once_t pred;
+	static OIApplicationData *instance = nil;
+
+	dispatch_once(&pred, ^{ instance = [[self alloc] init]; });
+	return instance;
 }
 
 @end

@@ -75,8 +75,8 @@
   return self;
 }
 
--(void)buttonLogInPressed {
-  
+- (void)buttonLogInPressed {
+
   //  BOOL validInput = ([mail length] > 0 && [password length] > 0);
   //  
   //  if (!validInput)
@@ -86,67 +86,64 @@
   //    [alert release];
   //    return;
   //  }
-  
+
   OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
-  
+
   [OIUser accountInfo:@"testuser@gmail.cz" password:@"tajneheslo" usingBlockUser:^(OIUser *user) {
-    
+
     appDataManager.currentUser = user;
-    appDataManager.userLogged = YES;
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User succesfully logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
+    appDataManager.userLogged  = YES;
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User succesfully logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
-    [alert release];  
-    
-    UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
-    [(OIUserViewController*)viewController refresh];
-     self.hidden = YES;
-    
+    [alert release];
+
+    UIViewController *viewController = (UIViewController *) [[self superview] nextResponder];
+    [(OIUserViewController *) viewController refresh];
+    self.hidden = YES;
+
   }
-      usingBlockError:^(NSError *error) {
-        appDataManager.userLogged = NO;
-        
-        if ( error ) {
-          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't log in with entered email and password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
-          [alert show];
-          [alert release];  
-        }
-      }];
+  usingBlockError:^(NSError *error) {
+    appDataManager.userLogged = NO;
+
+    if ( error ) {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't log in with entered email and password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+      [alert release];
+    }
+  }];
 }
 
-- (void) animateView: (UITextField*) textField up: (BOOL) up
-{
-  const int movementDistance = 165; 
+- (void)animateView:(UITextField *)textField up:(BOOL)up {
+  const int   movementDistance = 165;
   const float movementDuration = 0.3f;
-  
+
   int movement = (up ? -movementDistance : movementDistance);
-  
-  [UIView beginAnimations: @"anim" context: nil];
-  [UIView setAnimationBeginsFromCurrentState: YES];
-  [UIView setAnimationDuration: movementDuration];
+
+  [UIView beginAnimations:@"anim" context:nil];
+  [UIView setAnimationBeginsFromCurrentState:YES];
+  [UIView setAnimationDuration:movementDuration];
   self.frame = CGRectOffset(self.frame, 0, movement);
   [UIView commitAnimations];
-  
-  UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
-  [(OIUserViewController*)viewController hideButtons:up];
+
+  UIViewController *viewController = (UIViewController *) [[self superview] nextResponder];
+  [(OIUserViewController *) viewController hideButtons:up];
 }
 
 #pragma mark -
 #pragma mark UITextFieldDelegate Protocol
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [textField resignFirstResponder];
   return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-  [self animateView: textField up: YES];
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+  [self animateView:textField up:YES];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-  [self animateView: textField up: NO];
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+  [self animateView:textField up:NO];
 }
 
 #pragma mark -

@@ -43,7 +43,6 @@
 
   self.title = NSLocalizedString( @"Add New Address", "" );
   
-  self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
   self.view.backgroundColor = [UIColor whiteColor];
   
   UILabel *labelNickname = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 100, 30)];
@@ -195,16 +194,15 @@
   
 }
 
-- (void) animateView: (UITextField*) textField up: (BOOL) up
-{
-  const int movementDistance = 165; 
+- (void)animateView:(UITextField *)textField up:(BOOL)up {
+  const int   movementDistance = 165;
   const float movementDuration = 0.3f;
-  
+
   int movement = (up ? -movementDistance : movementDistance);
-  
-  [UIView beginAnimations: @"anim" context: nil];
-  [UIView setAnimationBeginsFromCurrentState: YES];
-  [UIView setAnimationDuration: movementDuration];
+
+  [UIView beginAnimations:@"anim" context:nil];
+  [UIView setAnimationBeginsFromCurrentState:YES];
+  [UIView setAnimationDuration:movementDuration];
   self.view.frame = CGRectOffset(self.view.frame, 0, movement);
   [UIView commitAnimations];
 }
@@ -217,28 +215,26 @@
   return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
   CGRect rect = [textField frame];
-  
-  if(rect.origin.y > 150)
-    [self animateView: textField up: YES];
+
+  if ( rect.origin.y > 150 )
+    [self animateView:textField up:YES];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+- (void)textFieldDidEndEditing:(UITextField *)textField {
   CGRect rect = [textField frame];
-  
-  if(rect.origin.y > 150)
-    [self animateView: textField up: NO];
+
+  if ( rect.origin.y > 150 )
+    [self animateView:textField up:NO];
 }
 
 #pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
-  OI_RELEASE_SAFELY(__textFieldNickname );
-  OI_RELEASE_SAFELY(__textFieldAddress1 );
+  OI_RELEASE_SAFELY( __textFieldNickname );
+  OI_RELEASE_SAFELY( __textFieldAddress1 );
   OI_RELEASE_SAFELY( __textFieldAddress2 );
   OI_RELEASE_SAFELY( __textFieldCity );
   OI_RELEASE_SAFELY( __textFieldState );

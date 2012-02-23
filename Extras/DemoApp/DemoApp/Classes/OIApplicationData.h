@@ -10,9 +10,10 @@
  *
  *  @author(s):
  *      Vitezslav Kot (vita@tapmates.com)
+ *      Petr Reichl (petr@tapmates.com)
  */
-
 #import <Foundation/Foundation.h>
+
 @class OIUser;
 
 @interface OIApplicationData : NSObject
@@ -22,10 +23,12 @@
 
 #pragma mark -
 #pragma mark Instance methods
+
 - (void)logout;
 
 #pragma mark -
 #pragma mark Class methods
+
 + (id)sharedInstance;
 
 @end
