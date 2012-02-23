@@ -53,12 +53,10 @@
 #pragma mark -
 #pragma mark NSCopying Protocol
 
-- (id)copyWithZone:(NSZone *)zone
-{
+- (id)copyWithZone:(NSZone *)zone {
   id copy = [[[self class] allocWithZone:zone] init];
 
   if (copy) {
-    
     [copy setNickname:[[self.nickname copyWithZone:zone] autorelease]];
     [copy setAddress1:[[self.address1 copyWithZone:zone] autorelease]];
     [copy setAddress2:[[self.address2 copyWithZone:zone] autorelease]];
@@ -74,9 +72,13 @@
 #pragma mark Memory Management
 
 - (void)dealloc {
+  OI_RELEASE_SAFELY( __nickname );
   OI_RELEASE_SAFELY( __address1 );
+  OI_RELEASE_SAFELY( __address2 );
   OI_RELEASE_SAFELY( __city );
+  OI_RELEASE_SAFELY( __state );
   OI_RELEASE_SAFELY( __postalCode );
+  OI_RELEASE_SAFELY( __phoneNumber );
   [super dealloc];
 }
 

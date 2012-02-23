@@ -15,7 +15,6 @@
 
 #import "OIUser.h"
 #import "OICore.h"
-#import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "OIAddress.h"
@@ -173,6 +172,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   OI_RELEASE_SAFELY( __password );
   OI_RELEASE_SAFELY( __addresses );
   OI_RELEASE_SAFELY( __creditCards );
+  OI_RELEASE_SAFELY( __orders );
   [super dealloc];
 }
 

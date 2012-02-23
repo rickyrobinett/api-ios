@@ -15,7 +15,6 @@
 #import "OICore.h"
 #import "ASINetworkQueue.h"
 #import "ASIHTTPRequest.h"
-#import "OIAPIGenericAuthenticator.h"
 
 NSString *const OIAPIClientVersion = @"1";
 
