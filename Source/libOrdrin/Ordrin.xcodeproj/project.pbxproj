@@ -315,9 +315,9 @@
 		BECC2CE14C49104007633A1 /* OIRestaurants */ = {
 			isa = PBXGroup;
 			children = (
+				BECC2CE14C49104007633A2 /* OIRestaurants.h */,
 				20EC88C514E9A91E00E7B991 /* OIMenuItem.h */,
 				20EC88C614E9A91E00E7B991 /* OIMenuItem.m */,
-				BECC2CE14C49104007633A2 /* OIRestaurants.h */,
 				BECC2CE14C49104007633C0 /* OIDelivery.h */,
 				BECC2CE14C49104007633BE /* OIDelivery.m */,
 				BECC2CE14C49104007633A6 /* OIRestaurant.h */,

@@ -19,39 +19,39 @@
 
 @implementation OIMenuItem {
 @private
-    NSString  *__id;
-    NSNumber  *__availableForMealId;
-    BOOL __orderable;
-    NSString  *__name;
-    NSString  *__description;
-    NSNumber  *__price;
-    BOOL __children;
+  NSString  *__id;
+  NSNumber  *__availableForMealId;
+  NSString  *__name;
+  NSString  *__description;
+  NSNumber  *__price;
+  BOOL __orderable;  
+  BOOL __children;
 }
 
-@synthesize ID              = __id;
-@synthesize availableForMealId      = __availableForMealId;
-@synthesize orderable       = __orderable;
-@synthesize name            = __name;
-@synthesize description     = __description;
-@synthesize price           = __price;
-@synthesize children        = __children;
+@synthesize ID                  = __id;
+@synthesize availableForMealId  = __availableForMealId;
+@synthesize orderable           = __orderable;
+@synthesize name                = __name;
+@synthesize description         = __description;
+@synthesize price               = __price;
+@synthesize children            = __children;
 
 #pragma mark -
 #pragma mark Properties
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"name: %@", __name];
+  return [NSString stringWithFormat:@"name: %@", __name];
 }
 
 #pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
-    OI_RELEASE_SAFELY( __id );
-    OI_RELEASE_SAFELY( __availableForMealId);
-    OI_RELEASE_SAFELY( __name );
-    OI_RELEASE_SAFELY( __description );
-    OI_RELEASE_SAFELY( __price );
-    [super dealloc];
+  OI_RELEASE_SAFELY( __id );
+  OI_RELEASE_SAFELY( __availableForMealId);
+  OI_RELEASE_SAFELY( __name );
+  OI_RELEASE_SAFELY( __description );
+  OI_RELEASE_SAFELY( __price );
+  [super dealloc];
 }
 @end

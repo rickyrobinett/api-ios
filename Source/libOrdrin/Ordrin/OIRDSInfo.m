@@ -20,8 +20,8 @@
 
 @implementation OIRDSInfo {
 @private
-    NSURL *__logoUrl;
-    NSString  *__name;
+  NSURL     *__logoUrl;
+  NSString  *__name;
 }
 
 @synthesize logoUrl   = __logoUrl;
@@ -32,15 +32,15 @@
 #pragma mark Properties
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"name: %@/logoUrl: %@", __name, __logoUrl];
+  return [NSString stringWithFormat:@"name: %@/logoUrl: %@", __name, __logoUrl];
 }
 
 #pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
-    OI_RELEASE_SAFELY( __logoUrl );
-    OI_RELEASE_SAFELY( __name );
-    [super dealloc];
+  OI_RELEASE_SAFELY( __logoUrl );
+  OI_RELEASE_SAFELY( __name );
+  [super dealloc];
 } 
 @end

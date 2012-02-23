@@ -50,6 +50,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
 
 #pragma mark -
 #pragma mark Instance methods
+
 - (void)loadAddressesUsingBlock:(void (^)(NSError *error))block {
   NSString *URL = [NSString stringWithFormat:@"%@/u/%@/addrs", OIUserBaseURL, [__email urlEncode]];
   
