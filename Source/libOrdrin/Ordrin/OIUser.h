@@ -44,7 +44,7 @@ extern NSString const* OIUserBaseURL;
  * Load user address by its nickname. Call block with created OIAddress instance if succeeded 
  * or with nil if failed
  */
-- (void)loadAddressesByNickname:(NSString *)nickname usingBlock:(void (^)(OIAddress *address))block;
+- (void)loadAddressByNickname:(NSString *)nickname usingBlock:(void (^)(OIAddress *address))block;
 
 /**
  * Change user address (overwrite) or add if it doesn't exist. Call block with nil parameter 
@@ -56,7 +56,7 @@ extern NSString const* OIUserBaseURL;
  * Delete user address by its nickname. Call block with nil parameter 
  * if succeeded or with a request error if failed
  */
-- (void)deleteAddress:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
+- (void)deleteAddressByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
 
 /**
  * Load all user credit cards into the OIUser instance. Call block with nil parameter 
@@ -68,7 +68,7 @@ extern NSString const* OIUserBaseURL;
  * Load user credit card by its nickname. Call block with created OICreditCard instance if succeeded 
  * or with nil if failed
  */
-- (void)loadCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(OICardInfo *creditCard))block;
+- (void)loadCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(OICardInfo *cardInfo))block;
 
 /**
  * Change user credit card (overwrite) or add if it doesn't exist. Call block with nil parameter 
@@ -80,7 +80,7 @@ extern NSString const* OIUserBaseURL;
  * Delete user credit card by its nickname. Call block with nil parameter 
  * if succeeded or with a request error if failed
  */
-- (void)deleteCreditCard:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
+- (void)deleteCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
 
 /**
  * Load all user orders into the OIUser instance. Call block with nil parameter 

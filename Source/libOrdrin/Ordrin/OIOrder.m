@@ -10,6 +10,7 @@
  *
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
+ *      Vitezslav Kot (vita@tapmates.com)
  */
 #import "OIOrder.h"
 #import "OICore.h"
@@ -28,25 +29,33 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 
 @implementation OIOrder {
 @private
+  NSString    *__orderID;
   NSString    *__restaurantID;
-  OIUser      *__user;
-  OIAddress   *__address;
-  OICardInfo  *__cardInfo;
+  NSString    *__restaurantName;
+  NSNumber    *__total;
+  NSNumber    *__tip;
+  NSDate      *__date;
+  NSArray     *__items;
 }
 
-@synthesize restaurantID = __restaurantID;
-@synthesize address      = __address;
-@synthesize cardInfo     = __cardInfo;
-@synthesize user         = __user;
+@synthesize orderID        = __orderID;
+@synthesize restaurantID   = __restaurantID;
+@synthesize restaurantName = __restaurantName;
+@synthesize total          = __total;
+@synthesize tip            = __tip;
+@synthesize date           = __date;
+@synthesize items          = __items;
 
 #pragma mark -
-#pragma mark Network
+#pragma mark Instance methods
 
-- (void)orderWithPassword:(NSString *)password usingBlock:(void (^)(NSError *error))block {
+- (void)orderForUser:(OIUser *)user atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block {
+  
   NSString *URL = [NSString stringWithFormat:@"%@/o/%@", OIOrderBaseURL, __restaurantID];
   
   __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
   
+  // TODO Complete POST request
   [request setCompletionBlock:^{
     if ( block ) {
       block( nil );
@@ -57,9 +66,6 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
   [client appendRequest:request authorized:YES];
 }
 
-#pragma mark -
-#pragma mark Order Operations
-
 - (NSNumber *)calculateSubtotal {
   //TODO: Define body
   return nil;
@@ -69,10 +75,13 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 #pragma mark Memory Management
 
 - (void)dealloc {
+  OI_RELEASE_SAFELY( __orderID );
   OI_RELEASE_SAFELY( __restaurantID );
-  OI_RELEASE_SAFELY( __address );
-  OI_RELEASE_SAFELY( __cardInfo );
-  OI_RELEASE_SAFELY( __user );
+  OI_RELEASE_SAFELY( __restaurantName );
+  OI_RELEASE_SAFELY( __total );
+  OI_RELEASE_SAFELY( __tip );
+  OI_RELEASE_SAFELY( __date );
+  OI_RELEASE_SAFELY( __items );
   
   [super dealloc];
 }

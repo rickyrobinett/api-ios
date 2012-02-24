@@ -10,6 +10,7 @@
  *
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
+ *      Vitezslav Kot (vita@tapmates.com)
  */
 #import <Foundation/Foundation.h>
 
@@ -21,12 +22,18 @@ extern NSString *const OIOrderBaseURL;
 
 @interface OIOrder : NSObject
 
+@property (nonatomic, readwrite, copy) NSString *orderID;
 @property (nonatomic, readwrite, copy) NSString *restaurantID;
-@property (nonatomic, readwrite, retain) OIUser *user;
-@property (nonatomic, readwrite, retain) OIAddress *address;
-@property (nonatomic, readwrite, retain) OICardInfo *cardInfo;
+@property (nonatomic, readwrite, copy) NSString *restaurantName;
+@property (nonatomic, readwrite, retain) NSNumber *total;
+@property (nonatomic, readwrite, retain) NSNumber *tip;
+@property (nonatomic, readwrite, retain) NSDate *date;
+@property (nonatomic, readwrite, retain) NSArray *items;
 
-- (void)orderWithPassword:(NSString *)password usingBlock:(void (^)(NSError *error))block;
+#pragma mark -
+#pragma mark Instance methods
+
+- (void)orderForUser:(OIUser *)user atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block;
 - (NSNumber *) calculateSubtotal;
 
 @end

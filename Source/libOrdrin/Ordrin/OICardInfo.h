@@ -10,19 +10,22 @@
  *
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
+ *      Vitezslav Kot (vita@tapmates.com)
  */
 #import <Foundation/Foundation.h>
 
-@interface OICardInfo : NSObject
+@class OIAddress;
 
+@interface OICardInfo : NSObject<NSCopying>
+
+@property (nonatomic, readwrite, copy) NSString *nickname;
 @property (nonatomic, readwrite, copy) NSString *name;
 @property (nonatomic, readwrite, retain) NSNumber *number;
 @property (nonatomic, readwrite, retain) NSNumber *cvc;
-@property (nonatomic, readwrite, copy) NSString *expiration;
-@property (nonatomic, readwrite, copy) NSString *address;
-@property (nonatomic, readwrite, copy) NSString *address2;
-@property (nonatomic, readwrite, copy) NSString *city;
-@property (nonatomic, readwrite, copy) NSString *state;
-@property (nonatomic, readwrite, copy) NSString *postalCode;
+@property (nonatomic, readwrite, retain) NSNumber *lastFiveDigits;
+@property (nonatomic, readwrite, copy) NSString *type;
+@property (nonatomic, readwrite, copy) NSString *expirationMonth;
+@property (nonatomic, readwrite, copy) NSString *expirationYear;
+@property (nonatomic, readwrite, retain) OIAddress *address;
 
 @end

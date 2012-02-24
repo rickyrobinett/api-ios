@@ -32,6 +32,7 @@
 @implementation OIUserAddressesViewController {
 @private
   UITableView *__tableView;
+  NSArray *__addresses;
 }
 
 #pragma mark -
@@ -51,11 +52,11 @@
   [buttonNewAddress setTitle:@"Add New Address" forState:UIControlStateNormal];
   [buttonNewAddress addTarget:self action:@selector(buttonNewAddressPressed) forControlEvents:UIControlEventTouchUpInside]; 
   
-  UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-  [footerView addSubview:buttonNewAddress];
+  //UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+  //[footerView addSubview:buttonNewAddress];
   
-  __tableView.tableFooterView = footerView; 
-  [footerView release];
+  //__tableView.tableFooterView = footerView; 
+  //[footerView release];
   
   [self.view addSubview:__tableView];
   
@@ -67,7 +68,10 @@
       [alert release];      
     }
     else
+    {
+      __addresses = [[[OIApplicationData sharedInstance] currentUser] addresses];
       [self reload];
+    }
   }];
 }
 
@@ -77,7 +81,7 @@
 
 - (void)reload {
   if ( [NSThread isMainThread] ) {
-    [__tableView reloadData];    
+    [__tableView reloadData]; 
   }
   else {
     dispatch_sync(dispatch_get_main_queue(), ^void() {
@@ -96,7 +100,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
-    return 7;
+  return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -108,9 +112,58 @@
     cell.textLabel.font = [UIFont systemFontOfSize:13.0f];
   }
   
+  OIAddress *address = [__addresses objectAtIndex:indexPath.section];
+  
+  if(address) {
+    
+    switch (indexPath.row) {
+      case 0: 
+        cell.textLabel.text = [NSString stringWithFormat:@"Nickname: %@", address.nickname];
+        break;
+      case 1:
+        cell.textLabel.text = [NSString stringWithFormat:@"Street 1: %@", address.address1];
+        break;
+      case 2:
+        cell.textLabel.text = [NSString stringWithFormat:@"Street 2: %@", address.address2];
+        break;   
+      case 3:
+        cell.textLabel.text = [NSString stringWithFormat:@"City: %@", address.city];
+        break;  
+      case 4:
+        cell.textLabel.text = [NSString stringWithFormat:@"State: %@", address.state];
+        break;       
+      case 5:
+        cell.textLabel.text = [NSString stringWithFormat:@"Zip Code: %@", address.postalCode];
+        break;   
+      case 6:
+        cell.textLabel.text = [NSString stringWithFormat:@"Phone Number: %@", address.phoneNumber];
+        break; 
+      case 7: {
+        UIButton *buttonEdit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        buttonEdit.frame = CGRectMake(15, 7, 70, 30);
+        [buttonEdit setTitle:@"Edit" forState:UIControlStateNormal];
+        
+        UIButton *buttonDelete = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        buttonDelete.frame = CGRectMake(235, 7, 70, 30);
+        [buttonDelete setTitle:@"Delete" forState:UIControlStateNormal];
+        
+        [cell addSubview:buttonEdit];
+        [cell addSubview:buttonDelete];
+      }
+        break;     
+    }
+  }
   return cell;
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//
+//    return 100.0f;
+//}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+//  
+//}
 
 -(void)buttonNewAddressPressed {
   OIUserNewAddressViewController *controller = [[OIUserNewAddressViewController alloc] init];
@@ -121,9 +174,21 @@
 #pragma mark -
 #pragma mark Memory Management
 
-- (void)dealloc {
-  OI_RELEASE_SAFELY( __tableView );
+- (void)releaseWithDealloc:(BOOL)dealloc {
+  [__tableView release], __tableView = nil;
   
+  if ( dealloc ) {
+    [__addresses release], __addresses = nil;
+  }
+}
+
+- (void)viewDidUnload {
+  [self releaseWithDealloc:NO];
+  [super viewDidUnload];
+}
+
+- (void)dealloc {
+  [self releaseWithDealloc:YES];
   [super dealloc];
 }
 @end

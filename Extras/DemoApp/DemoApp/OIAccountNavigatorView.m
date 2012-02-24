@@ -28,7 +28,7 @@
     
     UIButton *__buttonAccountSettings = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     __buttonAccountSettings.frame = CGRectMake(35, 30, 250, 30);
-    [__buttonAccountSettings setTitle:@"Account Settings" forState:UIControlStateNormal];
+    [__buttonAccountSettings setTitle:@"Account Info" forState:UIControlStateNormal];
     
     UIButton *__buttonAddresses = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     __buttonAddresses.frame = CGRectMake(35, 70, 250, 30);

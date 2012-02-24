@@ -33,6 +33,9 @@ extern NSString *const OIRestaurantBaseURL;
 @property (nonatomic, readwrite, retain) NSDictionary *menu;
 @property (nonatomic, readwrite, retain) OIRDSInfo *rdsInfo;
 
+#pragma mark -
+#pragma mark Instance methods
+
 /**
  * Check to see if a particular restaurant delivers to an address at the specified time 
  */
