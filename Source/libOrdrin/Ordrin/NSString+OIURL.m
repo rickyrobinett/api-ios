@@ -46,7 +46,6 @@
   // hash is now a string with just the 40char hash value in it
   
   return hash;
-  
 }
 
 @end

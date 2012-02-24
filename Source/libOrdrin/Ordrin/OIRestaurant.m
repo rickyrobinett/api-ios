@@ -35,14 +35,14 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 @implementation OIRestaurant {
 @private
   BOOL __complete;
-  NSString  *__id;
-  NSString  *__name;
-  NSString  *__phone;
-  OIAddress *__address;
-  NSString  *__state;
-  NSDictionary    *__meals;
+  NSString     *__id;
+  NSString     *__name;
+  NSString     *__phone;
+  OIAddress    *__address;
+  NSString     *__state;
+  NSDictionary *__meals;
   NSDictionary *__menu;
-  OIRDSInfo *__rdsInfo;
+  OIRDSInfo    *__rdsInfo;
 }
 
 @synthesize complete  = __complete;

@@ -53,23 +53,21 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
 #pragma mark Instance methods
 
 - (void)loadAddressesUsingBlock:(void (^)(NSError *error))block {
-  
+  OI_RELEASE_SAFELY( __addresses );
+
   NSString *URL = [NSString stringWithFormat:@"%@/u/%@/addrs", OIUserBaseURL, [__email urlEncode]];
   NSString *URLParams = [NSString stringWithFormat:@"u/%@/addrs",[__email urlEncode]];
   
-  __block OIUser *safe = self;
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
-  
+
   [request setCompletionBlock:^{
-    
-    [safe.addresses release];
     
     NSDictionary *json = [[request responseString] objectFromJSONString];
     NSArray *allKeys = [json allKeys];
     
     NSString *item;
     
-    NSMutableArray *newAddresses = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *newAddresses = [[NSMutableArray alloc] init];
     
     for (item in allKeys) {
       
@@ -88,7 +86,8 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
       }
     }
     
-    safe.addresses = [NSArray arrayWithArray:newAddresses];
+    self.addresses = [NSArray arrayWithArray:newAddresses];
+    [newAddresses release];
     
     if ( block ) {
       block(nil);
