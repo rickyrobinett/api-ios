@@ -16,7 +16,7 @@
 
 @class OIAddress;
 
-@interface OICardInfo : NSObject<NSCopying>
+@interface OICardInfo : NSObject
 
 @property (nonatomic, readwrite, copy) NSString *nickname;
 @property (nonatomic, readwrite, copy) NSString *name;

@@ -13,7 +13,7 @@
  */
 #import <Foundation/Foundation.h>
 
-@interface OIAddress : NSObject<NSCopying>
+@interface OIAddress : NSObject
 
 @property (nonatomic, readwrite, copy) NSString *nickname;
 @property (nonatomic, readwrite, copy) NSString *address1;

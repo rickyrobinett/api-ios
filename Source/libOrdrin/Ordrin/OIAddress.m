@@ -44,25 +44,6 @@
 }
 
 #pragma mark -
-#pragma mark NSCopying Protocol
-
-- (id)copyWithZone:(NSZone *)zone {
-  id copy = [[[self class] allocWithZone:zone] init];
-
-  if (copy) {
-    [copy setNickname:[[self.nickname copyWithZone:zone] autorelease]];
-    [copy setAddress1:[[self.address1 copyWithZone:zone] autorelease]];
-    [copy setAddress2:[[self.address2 copyWithZone:zone] autorelease]];
-    [copy setCity:[[self.city copyWithZone:zone] autorelease]];
-    [copy setState:[[self.state copyWithZone:zone] autorelease]];
-    [copy setPostalCode:[[self.postalCode copyWithZone:zone] autorelease]];
-    [copy setPhoneNumber:[[self.phoneNumber copyWithZone:zone] autorelease]];
-  }
-  
-  return copy;
-}
-
-#pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
