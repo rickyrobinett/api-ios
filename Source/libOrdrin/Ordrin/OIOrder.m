@@ -55,7 +55,7 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
   
   __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
   
-  // TODO Complete POST request
+#warning Complete POST request
   [request setCompletionBlock:^{
     if ( block ) {
       block( nil );
@@ -67,7 +67,7 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 }
 
 - (NSNumber *)calculateSubtotal {
-  //TODO: Define body
+#warning Define body
   return nil;
 }
 

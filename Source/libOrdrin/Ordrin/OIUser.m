@@ -162,7 +162,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   
   [request setCompletionBlock:^{
     
-    // TODO: Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
+#warning Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
     
     OIAddress *item;
     for (item in safe.addresses) {
@@ -193,8 +193,8 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   
   [request setCompletionBlock:^{
     
-    // TODO: Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
-    // TODO: Remove Address from OIUser instance
+#warning Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
+#warning Remove Address from OIUser instance
     block(nil);
   }];
   
@@ -332,7 +332,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   
   [request setCompletionBlock:^{
     
-    // TODO: Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
+#warning Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
     
     OICardInfo *item;
     for (item in safe.creditCards) {
@@ -364,8 +364,8 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   
   [request setCompletionBlock:^{
     
-    // TODO: Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
-    // TODO: Remove CardInfo from OIUser instance
+#warning Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
+#warning Remove CardInfo from OIUser instance
     block(nil);
   }];
   
@@ -403,7 +403,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
       if(orderDict) {
         OIOrder *order = [[[OIOrder alloc] init] autorelease];
         
-        //TODO: Fill order instance
+#warning Fill order instance
         
         [newOrders addObject:order];
       }
@@ -440,7 +440,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
     {
       OIOrder *order = [[[OIOrder alloc] init] autorelease];
       
-      // TODO: Fill order instance
+#warning Fill order instance
       
       if ( block ) {
         block(order);
@@ -474,7 +474,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
     
     safe.password = password;
     
-    // TODO: Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
+#warning Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
     
     block(nil);
   }];

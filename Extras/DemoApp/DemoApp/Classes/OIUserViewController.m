@@ -79,14 +79,12 @@
 }
 
 - (void)buttonLogInPressed {
-  if ( __newUserView != nil ) {
+  if ( __newUserView ) {
     [__newUserView removeFromSuperview];    
     OI_RELEASE_SAFELY( __newUserView );        
   }
 
-  if ( __logInView.hidden ) {
-    __logInView.hidden = NO;
-  } else if ( !__logInView ) {
+  if ( !__logInView ) {
     CGRect viewRect = CGRectMake(0, 200, 480, 200);
     __logInView = [[OIUserLogInView alloc] initWithFrame:viewRect];
     [self.view addSubview:__logInView];
@@ -99,9 +97,7 @@
     OI_RELEASE_SAFELY( __logInView );    
   }
     
-  if ( __newUserView.hidden ) {
-    __newUserView.hidden = NO;
-  } else if ( !__newUserView ) {
+  if ( !__newUserView ) {
     CGRect viewRect = CGRectMake(0, 160, 480, 200);
     __newUserView = [[OINewUserView alloc] initWithFrame:viewRect];
     [self.view addSubview:__newUserView];
@@ -117,7 +113,6 @@
 #pragma mark Memory Management
 
 - (void)dealloc {
-
   OI_RELEASE_SAFELY( __logInView );
   OI_RELEASE_SAFELY( __newUserView );
   

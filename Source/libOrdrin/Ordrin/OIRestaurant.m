@@ -121,7 +121,7 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 
 - (void)calculateFeesForSubtotal:(OIOrder *)order usingBlock:(void (^)(OIDelivery *delivery))block {
   
-  // TODO Initialize all data to retrieve valid request string
+#warning Initialize all data to retrieve valid request string
   OIAddress *address = (OIAddress*)[order address];
   NSNumber *subtotal = nil;
   NSNumber *tip = nil;

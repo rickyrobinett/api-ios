@@ -52,6 +52,7 @@
   OI_RELEASE_SAFELY( __name );
   OI_RELEASE_SAFELY( __description );
   OI_RELEASE_SAFELY( __price );
+  
   [super dealloc];
 }
 @end
