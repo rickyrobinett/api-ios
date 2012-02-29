@@ -32,7 +32,7 @@
 #pragma mark Properties
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"name: %@/logoUrl: %@", __name, __logoUrl];
+  return [NSString stringWithFormat:@"name: %@\nlogoUrl: %@", __name, __logoUrl];
 }
 
 #pragma mark -

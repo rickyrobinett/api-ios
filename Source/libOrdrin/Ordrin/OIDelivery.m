@@ -36,6 +36,13 @@
 @synthesize tax           = __tax;
 
 #pragma mark -
+#pragma mark Properties
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"id: %@\navailable: %d\nexpectedTime: %@\nminimumAmount: %@\nmeals: %@\nmessage: %@\nfee: %@\ntax: %@", __ID, __available, __expectedTime, __minimumAmount, __meals, __message, __fee, __tax];
+}
+
+#pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
