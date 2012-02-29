@@ -10,7 +10,9 @@
  *
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
+
 #import "OIDelivery.h"
 #import "OICore.h"
 

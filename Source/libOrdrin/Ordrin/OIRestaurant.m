@@ -9,6 +9,7 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
+ *      Petr Reichl (petr@tapmates.com)
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 

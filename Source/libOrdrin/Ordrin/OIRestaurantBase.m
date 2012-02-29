@@ -9,6 +9,7 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
+ *      Petr Reichl (petr@tapmates.com)
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
@@ -24,7 +25,6 @@
 
 @implementation OIRestaurantBase {
 @private
-  BOOL __complete;
   NSString     *__id;
   NSString     *__name;
 }
@@ -66,7 +66,6 @@
 #pragma mark -
 #pragma mark Class methods
 
-#warning Upravit dle potreb
 + (void)restaurantsNearAddress:(OIAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block {
   NSString *URL = [NSString stringWithFormat:@"%@/dl/%@%@", OIRestaurantBaseURL, dateTime, address];
   

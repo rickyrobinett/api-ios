@@ -9,18 +9,29 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
- *      Vitezslav Kot (vita@tapmates.com)
+ *      Petr Reichl (petr@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
+
 #import <Foundation/Foundation.h>
 
 @interface OIMenuItem : NSObject
 
+/// The menu item's id - this is what is used to create the tray.
 @property (nonatomic, readwrite, copy) NSString *ID;
+///
+@property (nonatomic, readwrite, copy) NSString *orderID;
+///
 @property (nonatomic, readwrite, copy) NSNumber *availableForMealId;
+///
 @property (nonatomic, readonly, getter=isOrderable) BOOL orderable;
+/// The name of the item.
 @property (nonatomic, readwrite, copy) NSString *name;
+/// An optional description of the item.
 @property (nonatomic, readwrite, copy) NSString *description;
+/// The optional price in dollars and cents.
 @property (nonatomic, readwrite, copy) NSNumber *price;
+///
 @property (nonatomic, readonly, getter=isChildren) BOOL children;
 
 @end

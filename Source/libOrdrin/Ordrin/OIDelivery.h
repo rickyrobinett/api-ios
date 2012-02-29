@@ -10,18 +10,28 @@
  *
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
+
 #import <Foundation/Foundation.h>
 
 @interface OIDelivery : NSObject
 
+/// Says if delivery is avalible or not.
 @property (nonatomic, readwrite, assign, getter=isAvailable) BOOL available;
+/// The minimum order for the requested delivery time and address.
 @property (nonatomic, readwrite, retain) NSNumber *minimumAmount;
+/// The expected delivery time in minutes for the requested delivery time and address.
 @property (nonatomic, readwrite, retain) NSDate *expectedTime;
+/// If it is not delivering, msg contains the reason why.
 @property (nonatomic, readwrite, copy) NSString *message;
+/// Meals that are being delivered at the requested time.
 @property (nonatomic, readwrite, retain) NSArray *meals;
+/// Delivery identifier.
 @property (nonatomic, readwrite, copy) NSString *ID;
+/// The fee to charge in dollars and cents.
 @property (nonatomic, readwrite, retain) NSNumber *fee;
+/// The tax to charge in dollars and cents.
 @property (nonatomic, readwrite, retain) NSNumber *tax;
 
 @end

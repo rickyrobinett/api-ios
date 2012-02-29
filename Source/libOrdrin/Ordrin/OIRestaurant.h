@@ -9,6 +9,7 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
+ *      Petr Reichl (petr@tapmates.com)
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
@@ -25,22 +26,31 @@ extern NSString *const OIRestaurantBaseURL;
 
 @interface OIRestaurant : OIRestaurantBase
 
-/// Restaurant address (OIAddress).
+/// The full address of the restaurant (OIAddress).
 @property (nonatomic, readwrite, retain) OIAddress *address;
-/// Restaurant state.
+/// The state of the restaurant.
 @property (nonatomic, readwrite, copy) NSString *state;
-/// Restaurant meals.
+/// Meals that are being delivered at the requested time.
 @property (nonatomic, readwrite, retain) NSDictionary *meals;
-/// Restaurant menu.
+/// Set of menu items.
 @property (nonatomic, readwrite, retain) NSDictionary *menu;
-/// Restaurant info (OIRDSInfo).
+/// RDS is our Restaurant Delivery Service partner (OIRDSInfo).
 @property (nonatomic, readwrite, retain) OIRDSInfo *rdsInfo;
-/// Restaurant phone number.
+/// The customer service number for the restaurant (typically this is the RDS's phone number).
 @property (nonatomic, copy) NSString *phone;
 
 #pragma mark -
 #pragma mark Initializations
 
+/**
+ * Initalization method, which creat restaurant (OIRestaurant) instance.
+ *
+ * @param restaurantBase (OIRestaurantBase)
+ * Base information about restaurant.
+ *
+ * @return
+ * Return instance of OIRestaurant.
+ */
 - (id)initWithRestaurantBase:(OIRestaurantBase *)restaurantBase;
 
 #pragma mark -

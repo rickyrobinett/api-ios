@@ -9,6 +9,7 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
+ *      Petr Reichl (petr@tapmates.com)
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
@@ -19,9 +20,9 @@
 
 @interface OIRestaurantBase : NSObject
 
-/// Unigue restaurant ID
+/// Restaurant identifier.
 @property (nonatomic, copy) NSString *ID;
-/// Restaurant name
+/// The name of the restaurant.
 @property (nonatomic, copy) NSString *name;
 
 #pragma mark -
@@ -33,7 +34,14 @@
 #pragma mark Class methods
 
 /**
- * Get list of restaurants that deliver to a particular address
+ * Get list of restaurants that deliver to a particular address.
+ *
+ * @param address (OIAddress)
+ * Address is used for search the nearest restaurants.
+ *
+ * @param block
+ * Block return array of the nearest restaurants (OIRestaurantBase) for address 
+ * (OIAddress).
  */
 + (void)restaurantsNearAddress:(OIAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block;
 @end

@@ -9,8 +9,10 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
- *      Vitezslav Kot (vita@tapmates.com)
+ *      Petr Reichl (petr@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
+
 #import "OIMenuItem.h"
 #import "OICore.h"
 
@@ -20,6 +22,7 @@
 @implementation OIMenuItem {
 @private
   NSString  *__id;
+  NSString  *__orderId;
   NSNumber  *__availableForMealId;
   NSString  *__name;
   NSString  *__description;
@@ -29,6 +32,7 @@
 }
 
 @synthesize ID                  = __id;
+@synthesize orderID             = __orderId;
 @synthesize availableForMealId  = __availableForMealId;
 @synthesize orderable           = __orderable;
 @synthesize name                = __name;
@@ -40,7 +44,7 @@
 #pragma mark Properties
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"name: %@", __name];
+  return [NSString stringWithFormat:@"id: %@\norderId: %@\nname: %@\navailableForMealId: %d\ndescription: %@\nprice: %@\norderable: %d\nchildren: %d", __id, __orderId, __name, __availableForMealId.intValue, __description, __price, __orderable, __children];
 }
 
 #pragma mark -
@@ -48,6 +52,7 @@
 
 - (void)dealloc {
   OI_RELEASE_SAFELY( __id );
+  OI_RELEASE_SAFELY( __orderId );  
   OI_RELEASE_SAFELY( __availableForMealId);
   OI_RELEASE_SAFELY( __name );
   OI_RELEASE_SAFELY( __description );
