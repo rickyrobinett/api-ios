@@ -9,14 +9,17 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
- *      Vitezslav Kot (vita@tapmates.com)
+ *      Petr Reichl (petr@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
 #import <Foundation/Foundation.h>
 
 @interface OIRDSInfo : NSObject
 
+/// A url for an image file (optional).
 @property (nonatomic, readwrite, copy) NSURL *logoUrl;
+/// The name of the RDS.
 @property (nonatomic, readwrite, copy) NSString *name;
 
 @end

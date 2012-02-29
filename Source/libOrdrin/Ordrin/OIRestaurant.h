@@ -79,7 +79,7 @@ extern NSString *const OIRestaurantBaseURL;
  * Order, which is used for calculates all fees.
  * 
  * @param block
- * Block return delivery (OIDelivery)
+ * Block return delivery (OIDelivery).
  */
 - (void)calculateFeesForSubtotal:(OIOrder *)order usingBlock:(void (^)(OIDelivery *delivery))block;
 

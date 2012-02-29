@@ -10,8 +10,9 @@
  *
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
- *      Vitezslav Kot (vita@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
+
 #import <Foundation/Foundation.h>
 
 extern NSString *const OIOrderBaseURL;
@@ -19,21 +20,34 @@ extern NSString *const OIOrderBaseURL;
 @class OIUser;
 @class OIAddress;
 @class OICardInfo;
+@class OIRestaurantBase;
 
 @interface OIOrder : NSObject
-
+#warning Dopsat komenty
+/// Ordr.in's reference number for that order.
 @property (nonatomic, readwrite, copy) NSString *orderID;
-@property (nonatomic, readwrite, copy) NSString *restaurantID;
-@property (nonatomic, readwrite, copy) NSString *restaurantName;
+/// Ordr.in's restaurant identifier.
 @property (nonatomic, readwrite, retain) NSNumber *total;
+/// Base informtion about restaurant.
+@property (nonatomic, readwrite, retain) OIRestaurantBase *restaurantBase;
+/// Amount of tip in dollars and cents.
 @property (nonatomic, readwrite, retain) NSNumber *tip;
+/// Either ASAP or in the date format 2 digit month - 2 digit date (i.e. January 21 would be 01-21)
 @property (nonatomic, readwrite, retain) NSDate *date;
+///
 @property (nonatomic, readwrite, retain) NSArray *items;
 
 #pragma mark -
 #pragma mark Instance methods
 
+/**
+ *
+ */
 - (void)orderForUser:(OIUser *)user atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block;
+
+/**
+ *
+ */
 - (NSNumber *) calculateSubtotal;
 
 @end

@@ -16,7 +16,7 @@
 #import <Foundation/Foundation.h>
 
 @interface OIMenuItem : NSObject
-
+#warning Dopsat komenty
 /// The menu item's id - this is what is used to create the tray.
 @property (nonatomic, readwrite, copy) NSString *ID;
 ///

@@ -27,8 +27,8 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-  // API Initialization
+// API Initialization
+  
   [[OIAPIClient sharedInstance] setApiKey:@"Av0TbfZB4RGTHeFXu8bTaA"];
 
   OIMenuViewController *mainViewController = [[[OIMenuViewController alloc] init] autorelease];

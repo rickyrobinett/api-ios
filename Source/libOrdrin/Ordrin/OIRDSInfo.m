@@ -9,7 +9,8 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
- *      Vitezslav Kot (vita@tapmates.com)
+ *      Petr Reichl (petr@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
 #import "OIRDSInfo.h"
@@ -41,6 +42,7 @@
 - (void)dealloc {
   OI_RELEASE_SAFELY( __logoUrl );
   OI_RELEASE_SAFELY( __name );
+  
   [super dealloc];
 } 
 @end

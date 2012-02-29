@@ -10,15 +10,16 @@
  *
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
- *      Vitezslav Kot (vita@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
+
 #import "OIOrder.h"
 #import "OICore.h"
 #import "OIAddress.h"
 #import "OICardInfo.h"
 #import "OIUser.h"
 #import "ASIFormDataRequest.h"
-
+#import "OIRestaurantBase.h"
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
 
@@ -29,29 +30,34 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 
 @implementation OIOrder {
 @private
-  NSString    *__orderID;
-  NSString    *__restaurantID;
-  NSString    *__restaurantName;
-  NSNumber    *__total;
-  NSNumber    *__tip;
-  NSDate      *__date;
-  NSArray     *__items;
+  NSString          *__orderID;
+  NSNumber          *__total;
+  NSNumber          *__tip;
+  NSDate            *__date;
+  NSArray           *__items;
+  OIRestaurantBase  *__restaurantBase;
 }
 
 @synthesize orderID        = __orderID;
-@synthesize restaurantID   = __restaurantID;
-@synthesize restaurantName = __restaurantName;
 @synthesize total          = __total;
 @synthesize tip            = __tip;
 @synthesize date           = __date;
 @synthesize items          = __items;
+@synthesize restaurantBase = __restaurantBase;
+
+#pragma mark -
+#pragma mark Properties
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"orderId: %@\ntotal: %d\ntip: %d\ndate: %@\nitems: %@\nrestaurant: %@", __orderID, __total.intValue, __tip.intValue, __date, __items, __restaurantBase.description];
+}
 
 #pragma mark -
 #pragma mark Instance methods
 
 - (void)orderForUser:(OIUser *)user atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block {
   
-  NSString *URL = [NSString stringWithFormat:@"%@/o/%@", OIOrderBaseURL, __restaurantID];
+  NSString *URL = [NSString stringWithFormat:@"%@/o/%@", OIOrderBaseURL, __restaurantBase.ID];
   
   __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
   
@@ -76,8 +82,6 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 
 - (void)dealloc {
   OI_RELEASE_SAFELY( __orderID );
-  OI_RELEASE_SAFELY( __restaurantID );
-  OI_RELEASE_SAFELY( __restaurantName );
   OI_RELEASE_SAFELY( __total );
   OI_RELEASE_SAFELY( __tip );
   OI_RELEASE_SAFELY( __date );
