@@ -9,9 +9,11 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
- *      Petr Reichl (petr@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
+
 #import <Foundation/Foundation.h>
+#import "OIRestaurantBase.h"
 
 @class OIDateTime;
 @class OIAddress;
@@ -21,39 +23,64 @@
 
 extern NSString *const OIRestaurantBaseURL;
 
-@interface OIRestaurant : NSObject
+@interface OIRestaurant : OIRestaurantBase
 
-@property (nonatomic, readonly, getter=isComplete) BOOL complete;
-@property (nonatomic, readwrite, copy) NSString *ID;
-@property (nonatomic, readwrite, copy) NSString *name;
-@property (nonatomic, readwrite, copy) NSString *phone;
+/// Restaurant address (OIAddress).
 @property (nonatomic, readwrite, retain) OIAddress *address;
+/// Restaurant state.
 @property (nonatomic, readwrite, copy) NSString *state;
+/// Restaurant meals.
 @property (nonatomic, readwrite, retain) NSDictionary *meals;
+/// Restaurant menu.
 @property (nonatomic, readwrite, retain) NSDictionary *menu;
+/// Restaurant info (OIRDSInfo).
 @property (nonatomic, readwrite, retain) OIRDSInfo *rdsInfo;
+/// Restaurant phone number.
+@property (nonatomic, copy) NSString *phone;
+
+#pragma mark -
+#pragma mark Initializations
+
+- (id)initWithRestaurantBase:(OIRestaurantBase *)restaurantBase;
 
 #pragma mark -
 #pragma mark Instance methods
 
 /**
- * Check to see if a particular restaurant delivers to an address at the specified time 
+ * Check to see if a particular restaurant delivers to an address at the specified 
+ * time.
+ *
+ * @param address (OIAddress)
+ * Is a delivery address.
+ * 
+ * @param dateTime (OIDateTime)
+ * Is delivery time.
+ *
+ * @param block
+ * Block return delivery (OIDelivery) to an OIAddress at the specified 
+ * OIDateTime.
  */
 - (void)deliveryCheckToAddress:(OIAddress *)address atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block;
 
 /**
- * Download complete information about the restaurant. The object should contain restaurant id 
- * for complete download of all information.
- */
-- (void)downloadAllUsingBlock:(void (^)(void))block;
-
-/**
- * Calculates all fees for a given subtotal and delivery address 
+ * Calculates all fees for a given subtotal and delivery address.
+ * 
+ * @param order (OIOrder)
+ * Order, which is used for calculates all fees.
+ * 
+ * @param block
+ * Block return delivery (OIDelivery)
  */
 - (void)calculateFeesForSubtotal:(OIOrder *)order usingBlock:(void (^)(OIDelivery *delivery))block;
 
 /**
- * Return array of menu items for given children IDs 
+ * Return array of menu items for given children IDs
+ *
+ * @param childrenIDs
+ * All id's, which you need.
+ *
+ * @return
+ * Return all menu items for each child id.
  */
 - (NSArray *)menuItemsForChildrens:(NSArray *) childrenIDs;
 
@@ -61,8 +88,14 @@ extern NSString *const OIRestaurantBaseURL;
 #pragma mark Class methods
 
 /**
- * Get list of restaurants that deliver to a particular address
+ * Create restaurant (OIRestaurant) instance from base restaurant (OIRestaurantBase).
+ *
+ * @param restaurantBase (OIRestaurantBase)
+ * Base informations, which are used for creat complete restaurant (OIRestaurant) 
+ * instance.
+ *
+ * @param block
+ * Block return complete restaurant (OIRestaurant) instance.
  */
-+ (void)restaurantsNearAddress:(OIAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block;
-
++ (void)createRestaurantByRestaurantBase:(OIRestaurantBase *)restaurantBase usingBlock:(void (^)(OIRestaurant *restaurant))block;
 @end

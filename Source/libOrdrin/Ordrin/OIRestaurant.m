@@ -9,8 +9,9 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
- *      Petr Reichl (petr@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
+
 #import "OIRestaurant.h"
 #import "OIAddress.h"
 #import "OICommon.h"
@@ -34,39 +35,44 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 
 @implementation OIRestaurant {
 @private
-  BOOL __complete;
-  NSString     *__id;
-  NSString     *__name;
-  NSString     *__phone;
   OIAddress    *__address;
+  NSString     *__phone;
   NSString     *__state;
   NSDictionary *__meals;
   NSDictionary *__menu;
   OIRDSInfo    *__rdsInfo;
 }
 
-@synthesize complete  = __complete;
-@synthesize ID        = __id;
-@synthesize name      = __name;
-@synthesize phone     = __phone;
 @synthesize address   = __address;
+@synthesize phone     = __phone;
 @synthesize state     = __state;
 @synthesize meals     = __meals;
 @synthesize menu      = __menu;
 @synthesize rdsInfo   = __rdsInfo;
 
 #pragma mark -
-#pragma mark Properties
+#pragma mark Initializations
 
-- (NSString *)description {
-  return [NSString stringWithFormat:@"name: %@", __name];
+- (id)initWithRestaurantBase:(OIRestaurantBase *)restaurantBase {
+  self = [super initWithRestaurantBase:restaurantBase];  
+  if ( self ) {    
+  }
+  
+  return self;
 }
 
 #pragma mark -
-#pragma mark Network
+#pragma mark Properties
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"address: %@\nphone: %@\nstate: %@\nmeals: %@\nrdsInfo: %@", __address, __phone, __state, __meals, __menu, __rdsInfo];
+}
+
+#pragma mark -
+#pragma mark Instance methods
 
 - (void)deliveryCheckToAddress:(OIAddress *)address atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block {
-  NSString *URL = [NSString stringWithFormat:@"%@/dc/%@/%@%@", OIRestaurantBaseURL, __id, dateTime, address];
+  NSString *URL = [NSString stringWithFormat:@"%@/dc/%@/%@%@", OIRestaurantBaseURL, self.ID, dateTime, address];
   
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
   [request setCompletionBlock:^void() {
@@ -80,38 +86,11 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 
     delivery.minimumAmount = [json objectForKey:@"mino"];
     delivery.expectedTime = OIDateTimeSinceNowWithMinutes([[json objectForKey:@"del"] integerValue]);
-    //delivery.meals = [[json objectForKey:@"meals"] allValues];
+    delivery.meals = [[json objectForKey:@"meals"] allValues];
     delivery.ID = [json objectForKey:@"rid"];
       
     if ( block ) {
       block(delivery);
-    }
-  }];
-
-  OIAPIClient *client = [OIAPIClient sharedInstance];
-  [client appendRequest:request authorized:YES];
-}
-
-- (void)downloadAllUsingBlock:(void (^)(void))block {
-  NSString *URL = [NSString stringWithFormat:@"%@/rd/%@", OIRestaurantBaseURL, __id];
-
-  __block OIRestaurant *safe = self;
-  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
-  [request setCompletionBlock:^void() {
-    NSDictionary *json = [[request responseString] objectFromJSONString];
-
-    __complete = YES;
-    safe.phone = [json objectForKey:@"cs_contact_phone"];
-    safe.address = [OIAddress addressWithStreet:[json objectForKey:@"addr"]
-                                           city:[json objectForKey:@"city"]
-                                     postalCode:[json objectForKey:@"postal_code"]];
-      
-    safe.state = [json objectForKey:@"state"];
-    safe.meals = [json objectForKey:@"meal_name"];
-    safe.menu = [json objectForKey:@"menu"]; 
-      
-    if ( block ) {
-      block();
     }
   }];
 
@@ -126,30 +105,28 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
   NSNumber *subtotal = nil;
   NSNumber *tip = nil;
     
-  NSString *URL = [NSString stringWithFormat:@"%@/fee/%@/%@/%@", OIRestaurantBaseURL, __id, subtotal, tip, address]; 
+  NSString *URL = [NSString stringWithFormat:@"%@/fee/%@/%@/%@", OIRestaurantBaseURL, self.ID, subtotal, tip, address]; 
   
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
   [request setCompletionBlock:^void() {
-  NSDictionary *json = [[request responseString] objectFromJSONString];
-        
-  OIDelivery *delivery = [[[OIDelivery alloc] init] autorelease];
-        
-  delivery.available = [[json objectForKey:@"delivery"] boolValue];
+    NSDictionary *json = [[request responseString] objectFromJSONString];        
+    OIDelivery *delivery = [[[OIDelivery alloc] init] autorelease];        
+    delivery.available = [[json objectForKey:@"delivery"] boolValue];
   
-  if ( ! [delivery isAvailable] ) {
-          delivery.message = [json objectForKey:@"msg"];
-  }
+    if ( ! [delivery isAvailable] ) { 
+      delivery.message = [json objectForKey:@"msg"];
+    }
         
-  delivery.minimumAmount = [json objectForKey:@"mino"];
-  delivery.expectedTime = OIDateTimeSinceNowWithMinutes([[json objectForKey:@"del"] integerValue]);
-  delivery.meals = [[json objectForKey:@"meals"] allValues];
-  delivery.ID = [json objectForKey:@"rid"];
-  delivery.fee = [json objectForKey:@"fee"];
-  delivery.tax = [json objectForKey:@"tax"];
+    delivery.minimumAmount = [json objectForKey:@"mino"];
+    delivery.expectedTime = OIDateTimeSinceNowWithMinutes([[json objectForKey:@"del"] integerValue]);
+    delivery.meals = [[json objectForKey:@"meals"] allValues];
+    delivery.ID = [json objectForKey:@"rid"];
+    delivery.fee = [json objectForKey:@"fee"];
+    delivery.tax = [json objectForKey:@"tax"];
       
-  if ( block ) {
+    if ( block ) {
       block(delivery);
-        }
+    }
   }];
     
   OIAPIClient *client = [OIAPIClient sharedInstance];
@@ -165,10 +142,8 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 #pragma mark Memory Management
 
 - (void)dealloc {
-  OI_RELEASE_SAFELY( __id );
-  OI_RELEASE_SAFELY( __name );
-  OI_RELEASE_SAFELY( __phone );
   OI_RELEASE_SAFELY( __address );
+  OI_RELEASE_SAFELY( __phone );  
   OI_RELEASE_SAFELY( __state );
   OI_RELEASE_SAFELY( __meals );
   OI_RELEASE_SAFELY( __menu );
@@ -180,30 +155,31 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 #pragma mark -
 #pragma mark Class methods
 
-+ (void)restaurantsNearAddress:(OIAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block {
-  NSString *URL = [NSString stringWithFormat:@"%@/dl/%@%@", OIRestaurantBaseURL, dateTime, address];
-
-  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
++ (void)createRestaurantByRestaurantBase:(OIRestaurantBase *)restaurantBase usingBlock:(void (^)(OIRestaurant *restaurant))block {
+  NSString *URL = [NSString stringWithFormat:@"%@/rd/%@", OIRestaurantBaseURL, restaurantBase.ID];
+  
+  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];  
   [request setCompletionBlock:^void() {
-    NSMutableArray *results = [NSMutableArray array];
+    NSDictionary *json = [[request responseString] objectFromJSONString];
     
-    NSArray *json = [[request responseString] objectFromJSONString];
-    for (NSDictionary *item in json) {
-      OIRestaurant *restaurant = [[OIRestaurant alloc] init];
-      restaurant.ID = [item objectForKey:@"id"];
-      restaurant.name = [item objectForKey:@"na"];
-
-      [results addObject:restaurant];
-      [restaurant release];
-    }
+    OIRestaurant *restaurant = [[[OIRestaurant alloc] initWithRestaurantBase:restaurantBase] autorelease];
     
+    restaurant.phone = [json objectForKey:@"cs_contact_phone"];
+    restaurant.address = [OIAddress addressWithStreet:[json objectForKey:@"addr"]
+                                             city:[json objectForKey:@"city"]
+                                       postalCode:[json objectForKey:@"postal_code"]];
+        
+    restaurant.state = [json objectForKey:@"state"];
+    restaurant.meals = [json objectForKey:@"meal_name"];
+    restaurant.menu = [json objectForKey:@"menu"]; 
+        
     if ( block ) {
-      block(results);
+      block(restaurant);
     }
   }];
-
-  OIAPIClient *client = [OIAPIClient sharedInstance];
-  [client appendRequest:request authorized:YES];
+      
+  OIAPIClient *client = [OIAPIClient sharedInstance];  
+  [client appendRequest:request authorized:YES];    
 }
 
 @end
