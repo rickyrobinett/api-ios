@@ -60,6 +60,8 @@
 		34BBA1DD14FE256C0002E215 /* OIRestaurantBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BBA1DB14FE256C0002E215 /* OIRestaurantBase.m */; };
 		34F30C0614FF724200E4AE15 /* OIUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 34F30C0414FF724200E4AE15 /* OIUserInfo.h */; };
 		34F30C0714FF724200E4AE15 /* OIUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F30C0514FF724200E4AE15 /* OIUserInfo.m */; };
+		34F30C5314FFD2A700E4AE15 /* OIOrderItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 34F30C5114FFD2A700E4AE15 /* OIOrderItem.h */; };
+		34F30C5714FFD4B000E4AE15 /* OIOrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F30C5614FFD4B000E4AE15 /* OIOrderItem.m */; };
 		BECC2CE14C4910400763398 /* OICore.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C4910400763397 /* OICore.h */; };
 		BECC2CE14C491040076339E /* OIDebuggingTools.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C491040076339D /* OIDebuggingTools.h */; };
 		BECC2CE14C49104007633A0 /* OIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC2CE14C491040076339F /* OIDebuggingTools.m */; };
@@ -134,6 +136,8 @@
 		34BBA1DB14FE256C0002E215 /* OIRestaurantBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIRestaurantBase.m; sourceTree = "<group>"; };
 		34F30C0414FF724200E4AE15 /* OIUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIUserInfo.h; sourceTree = "<group>"; };
 		34F30C0514FF724200E4AE15 /* OIUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIUserInfo.m; sourceTree = "<group>"; };
+		34F30C5114FFD2A700E4AE15 /* OIOrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIOrderItem.h; sourceTree = "<group>"; };
+		34F30C5614FFD4B000E4AE15 /* OIOrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIOrderItem.m; sourceTree = "<group>"; };
 		BECC2CE14C4910400763397 /* OICore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OICore.h; sourceTree = "<group>"; };
 		BECC2CE14C491040076339D /* OIDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDebuggingTools.h; sourceTree = "<group>"; };
 		BECC2CE14C491040076339F /* OIDebuggingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIDebuggingTools.m; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 				0BE14E7A14E8D6A3008422EE /* OIOrder.m */,
 				0BE14E8214E8EF51008422EE /* OICardInfo.h */,
 				0BE14E8314E8EF51008422EE /* OICardInfo.m */,
+				34F30C5114FFD2A700E4AE15 /* OIOrderItem.h */,
+				34F30C5614FFD4B000E4AE15 /* OIOrderItem.m */,
 			);
 			name = OIOrders;
 			sourceTree = "<group>";
@@ -404,6 +410,7 @@
 				20411CDC14EB5D09002165A2 /* OIRDSInfo.h in Headers */,
 				34BBA1DC14FE256C0002E215 /* OIRestaurantBase.h in Headers */,
 				34F30C0614FF724200E4AE15 /* OIUserInfo.h in Headers */,
+				34F30C5314FFD2A700E4AE15 /* OIOrderItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +491,7 @@
 				20411CDD14EB5D09002165A2 /* OIRDSInfo.m in Sources */,
 				34BBA1DD14FE256C0002E215 /* OIRestaurantBase.m in Sources */,
 				34F30C0714FF724200E4AE15 /* OIUserInfo.m in Sources */,
+				34F30C5714FFD4B000E4AE15 /* OIOrderItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

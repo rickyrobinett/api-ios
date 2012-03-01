@@ -27,7 +27,7 @@ extern NSString const* OIUserBaseURL;
 @property (nonatomic, readwrite, copy) NSString *lastName;
 @property (nonatomic, readwrite, retain) NSMutableArray *addresses;
 @property (nonatomic, readwrite, retain) NSMutableArray *creditCards;
-@property (nonatomic, readwrite, retain) NSArray *orders;
+@property (nonatomic, readwrite, retain) NSMutableArray *orders;
 
 #pragma mark -
 #pragma mark Instance methods
@@ -100,16 +100,9 @@ extern NSString const* OIUserBaseURL;
 - (void)deleteCreditCardByNickname:(NSString *)nickname;
 
 /**
- * Load all user orders into the OIUser instance. Call block with nil parameter 
- * if succeeded or with a request error if failed
+ * Load all user orders into the OIUser instance.
  */
-- (void)loadOrderHistoryUsingBlock:(void (^)(NSError *error))block;
-
-/**
- * Load user order by its ID. Call block with created OIOrder instance if succeeded 
- * or with nil if failed
- */
-- (void)loadOrderByID:(NSString *)ID usingBlock:(void (^)(OIOrder *order))block;
+- (void)initOrderHistory;
 
 /**
  * Update user password. Call block with nil parameter if succeeded or with a request error 

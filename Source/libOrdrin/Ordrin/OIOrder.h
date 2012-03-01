@@ -50,4 +50,25 @@ extern NSString *const OIOrderBaseURL;
  */
 - (NSNumber *) calculateSubtotal;
 
+#pragma mark -
+#pragma mark Class methods
+
+/**
+ * Load all user orders.
+ *
+ * @param block
+ * Block return orders.
+ */
++ (void)loadOrderHistoryUsingBlock:(void (^)(NSMutableArray *orders))block;
+
+/**
+ * Load user order by its ID.
+ *
+ * @param ID
+ * Ordr.in's reference number for that order.
+ *
+ * @param block (OIOrder)
+ * Block return user order.
+ */
++ (void)loadOrderByID:(NSString *)ID usingBlock:(void (^)(OIOrder *order))block;
 @end

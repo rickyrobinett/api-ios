@@ -155,7 +155,7 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
         
       NSDictionary *addressDict = [json objectForKey:item];
       
-      if(addressDict) {
+      if( addressDict ) {
         OIAddress *address = [[[OIAddress alloc] init] autorelease];
         address.nickname = item;
         address.address1 =   [addressDict objectForKey:@"addr"];

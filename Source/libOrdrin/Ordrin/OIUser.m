@@ -36,7 +36,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   NSString *__lastName;
   NSMutableArray  *__addresses;
   NSMutableArray  *__creditCards;
-  NSArray  *__orders;
+  NSMutableArray  *__orders;
 }
 
 @synthesize firstName = __firstName;
@@ -136,86 +136,11 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   }];
 }
 
-- (void)loadOrderHistoryUsingBlock:(void (^)(NSError *error))block {
-  
-//  NSString *URL = [NSString stringWithFormat:@"%@/u/%@/orders", OIUserBaseURL, [__email urlEncode]];
-//  NSString *URLParams = [NSString stringWithFormat:@"u/%@/orders",[__email urlEncode]];
-//  
-//  __block OIUser *safe = self;
-//  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
-//  
-//  [request setCompletionBlock:^{
-//    
-//    [safe.creditCards release];
-//    
-//    NSDictionary *json = [[request responseString] objectFromJSONString];
-//    NSArray *allKeys = [json allKeys];
-//    
-//    NSString *item;
-//    
-//    NSMutableArray *newOrders = [[[NSMutableArray alloc] init] autorelease];
-//    
-//    for (item in allKeys) {
-//      
-//      NSDictionary *orderDict = [json objectForKey:item];
-//      
-//      if(orderDict) {
-//        OIOrder *order = [[[OIOrder alloc] init] autorelease];
-//        
-//#warning Fill order instance
-//        
-//        [newOrders addObject:order];
-//      }
-//    }
-//    
-//    safe.orders = [NSArray arrayWithArray:newOrders];
-//    
-//    if ( block ) {
-//      block(nil);
-//    }
-//    
-//  }];
-//  
-//  [request setFailedBlock:^{
-//    block([request error]);
-//  }];
-//  
-//  OIAPIClient *client = [OIAPIClient sharedInstance];
-//  [client appendRequest:request authorized:YES userAuthenticator:[OIAPIUserAuthenticator authenticatorWithEmail:__email password:__password uri:[NSURL URLWithString:URLParams]]]; 
-}
-
-- (void)loadOrderByID:(NSString *)ID usingBlock:(void (^)(OIOrder *order))block {
-//  
-//  NSString *URL = [NSString stringWithFormat:@"%@/u/%@/order/%@", OIUserBaseURL, [__email urlEncode], [ID urlEncode]];
-//  NSString *URLParams = [NSString stringWithFormat:@"u/%@/order/%@",[__email urlEncode], [ID urlEncode]];
-//  
-//  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
-//  
-//  [request setCompletionBlock:^{
-//    
-//    NSDictionary *json = [[request responseString] objectFromJSONString];
-//    
-//    if(json)
-//    {
-//      OIOrder *order = [[[OIOrder alloc] init] autorelease];
-//      
-//#warning Fill order instance
-//      
-//      if ( block ) {
-//        block(order);
-//      }
-//    }
-//    else
-//      block(nil);
-//  }];
-//  
-//  [request setFailedBlock:^{
-//    block(nil);
-//  }];
-//  
-//  OIAPIClient *client = [OIAPIClient sharedInstance];
-//  [client appendRequest:request authorized:YES userAuthenticator:[OIAPIUserAuthenticator authenticatorWithEmail:__email password:__password uri:[NSURL URLWithString:URLParams]]];
-//  
+- (void)initOrderHistory {
+  OI_RELEASE_SAFELY( __orders );
+  [OIOrder loadOrderHistoryUsingBlock:^( NSMutableArray *orders ) {
+    __orders = [orders retain];
+  }];
 }
 
 - (void)updatePassword:(NSString *) password usingBlock:(void (^)(NSError *error))block {
