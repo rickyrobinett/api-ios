@@ -58,6 +58,8 @@
 		20EC88C814E9A91E00E7B991 /* OIMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EC88C614E9A91E00E7B991 /* OIMenuItem.m */; };
 		34BBA1DC14FE256C0002E215 /* OIRestaurantBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 34BBA1DA14FE256C0002E215 /* OIRestaurantBase.h */; };
 		34BBA1DD14FE256C0002E215 /* OIRestaurantBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BBA1DB14FE256C0002E215 /* OIRestaurantBase.m */; };
+		34F30C0614FF724200E4AE15 /* OIUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 34F30C0414FF724200E4AE15 /* OIUserInfo.h */; };
+		34F30C0714FF724200E4AE15 /* OIUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F30C0514FF724200E4AE15 /* OIUserInfo.m */; };
 		BECC2CE14C4910400763398 /* OICore.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C4910400763397 /* OICore.h */; };
 		BECC2CE14C491040076339E /* OIDebuggingTools.h in Headers */ = {isa = PBXBuildFile; fileRef = BECC2CE14C491040076339D /* OIDebuggingTools.h */; };
 		BECC2CE14C49104007633A0 /* OIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC2CE14C491040076339F /* OIDebuggingTools.m */; };
@@ -130,6 +132,8 @@
 		20EC88C614E9A91E00E7B991 /* OIMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIMenuItem.m; sourceTree = "<group>"; };
 		34BBA1DA14FE256C0002E215 /* OIRestaurantBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIRestaurantBase.h; sourceTree = "<group>"; };
 		34BBA1DB14FE256C0002E215 /* OIRestaurantBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIRestaurantBase.m; sourceTree = "<group>"; };
+		34F30C0414FF724200E4AE15 /* OIUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIUserInfo.h; sourceTree = "<group>"; };
+		34F30C0514FF724200E4AE15 /* OIUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIUserInfo.m; sourceTree = "<group>"; };
 		BECC2CE14C4910400763397 /* OICore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OICore.h; sourceTree = "<group>"; };
 		BECC2CE14C491040076339D /* OIDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDebuggingTools.h; sourceTree = "<group>"; };
 		BECC2CE14C491040076339F /* OIDebuggingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIDebuggingTools.m; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 		0BE14E7114E8D65B008422EE /* OIUsers */ = {
 			isa = PBXGroup;
 			children = (
+				34F30C0214FF722A00E4AE15 /* OIUserInfo */,
 				0BE14E7414E8D66D008422EE /* OIUsers.h */,
 				0BE14E7214E8D66D008422EE /* OIUser.h */,
 				0BE14E7314E8D66D008422EE /* OIUser.m */,
@@ -297,6 +302,15 @@
 			name = Apple;
 			sourceTree = "<group>";
 		};
+		34F30C0214FF722A00E4AE15 /* OIUserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				34F30C0414FF724200E4AE15 /* OIUserInfo.h */,
+				34F30C0514FF724200E4AE15 /* OIUserInfo.m */,
+			);
+			name = OIUserInfo;
+			sourceTree = "<group>";
+		};
 		BECC2CE14C4910400763396 /* OICore */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,6 +403,7 @@
 				20EC88C714E9A91E00E7B991 /* OIMenuItem.h in Headers */,
 				20411CDC14EB5D09002165A2 /* OIRDSInfo.h in Headers */,
 				34BBA1DC14FE256C0002E215 /* OIRestaurantBase.h in Headers */,
+				34F30C0614FF724200E4AE15 /* OIUserInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +483,7 @@
 				20EC88C814E9A91E00E7B991 /* OIMenuItem.m in Sources */,
 				20411CDD14EB5D09002165A2 /* OIRDSInfo.m in Sources */,
 				34BBA1DD14FE256C0002E215 /* OIRestaurantBase.m in Sources */,
+				34F30C0714FF724200E4AE15 /* OIUserInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

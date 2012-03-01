@@ -74,14 +74,13 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 
 - (void)deliveryCheckToAddress:(OIAddress *)address atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block {
   NSString *URL = [NSString stringWithFormat:@"%@/dc/%@/%@%@", OIRestaurantBaseURL, self.ID, dateTime, address];
-  
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
   [request setCompletionBlock:^void() {
     NSDictionary *json = [[request responseString] objectFromJSONString];
 
     OIDelivery *delivery = [[[OIDelivery alloc] init] autorelease];
     delivery.available = [[json objectForKey:@"delivery"] boolValue];
-    if ( ! [delivery isAvailable] ) {
+    if ( !delivery.available ) {
       delivery.message = [json objectForKey:@"msg"];
     }
 

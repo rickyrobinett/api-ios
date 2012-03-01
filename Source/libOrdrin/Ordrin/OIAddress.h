@@ -15,8 +15,18 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark -
+#pragma mark IOAddressDelegate
+
+@protocol OIAddressDelegate <NSObject>
+@optional
+//- (void)
+@end
+
 @interface OIAddress : NSObject
 
+/// Delegate is needed for delete and update operations, when owner is user.
+@property (nonatomic, retain)id<OIAddressDelegate> delegate;
 /// The nickname of this address (i.e. Home, Work).
 @property (nonatomic, readwrite, copy) NSString *nickname;
 /// The street address.
@@ -37,8 +47,19 @@
 #pragma mark -
 #pragma mark Instance methods
 
-- (void)updateWithAddress:(OIAddress *)address;
+/**
+ * Update adrress, you must have set a delegate (if not your address will be changed 
+ * only on the server side).
+ *
+ * @param address (OIAddress)
+ * Edited address.
+ */
+- (void)updateAddressWithAddress:(OIAddress *)address;
 
+/**
+ * Delete address, you must have set a delegate (if not your address will be deleted 
+ * only on the server side).
+ */
 - (void)deleteAddress;
 
 #pragma mark -

@@ -15,14 +15,23 @@
 
 #import "OIAddress.h"
 #import "OICore.h"
-#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 #import "JSONKit.h"
+#import "OIRestaurant.h"
+#import "OIUser.h"
+#import "OIUserInfo.h"
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Variables
+
+NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Implementation
 
 @implementation OIAddress {
 @private
+  id<OIAddressDelegate> __delegate;
   NSString *__nickname;
   NSString *__address1;
   NSString *__address2;
@@ -33,6 +42,7 @@
   NSString *__userId;
 }
 
+@synthesize delegate      = __delegate;
 @synthesize nickname      = __nickname;
 @synthesize address1      = __address1;
 @synthesize address2      = __address2;
@@ -52,10 +62,23 @@
 #pragma mark -
 #pragma mark Instance methods
 
-- (void)updateWithAddress:(OIAddress *)address {
-  NSString *URL = [NSString stringWithFormat:@""];
+- (void)updateAddressWithAddress:(OIAddress *)address {
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  NSString *email = userInfo.email;  
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@", email, address.nickname.urlEncode];
+  NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
   
-  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
+  [request setRequestMethod:@"PUT"];
+  
+  [request setPostValue:address.nickname forKey:@"nick"];
+  [request setPostValue:address.address1 forKey:@"addr"];
+  [request setPostValue:address.address2 forKey:@"addr2"];
+  [request setPostValue:address.city forKey:@"city"];
+  [request setPostValue:address.state forKey:@"state"];
+  [request setPostValue:address.postalCode forKey:@"zip"];
+  [request setPostValue:address.phoneNumber forKey:@"phone"];
+  
   [request setCompletionBlock:^void() {
     NSDictionary *json = [[request responseString] objectFromJSONString];
     NSNumber *error = [json objectForKey:@"_error"];
@@ -78,19 +101,18 @@
   }];
   
   OIAPIClient *client = [OIAPIClient sharedInstance];
-  [client appendRequest:request authorized:YES];
-  
+  [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]];  
 }
 
 - (void)deleteAddress {
 
-//  [[NSNotificationCenter defaultCenter] postNotificationName:@"" object:nil userInfo:nil];
 }
 
 #pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
+  OI_RELEASE_SAFELY( __delegate );
   OI_RELEASE_SAFELY( __userId );  
   OI_RELEASE_SAFELY( __nickname );
   OI_RELEASE_SAFELY( __address1 );
