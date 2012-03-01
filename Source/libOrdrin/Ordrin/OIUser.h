@@ -26,7 +26,7 @@ extern NSString const* OIUserBaseURL;
 @property (nonatomic, readwrite, copy) NSString *firstName;
 @property (nonatomic, readwrite, copy) NSString *lastName;
 @property (nonatomic, readwrite, retain) NSMutableArray *addresses;
-@property (nonatomic, readwrite, retain) NSArray *creditCards;
+@property (nonatomic, readwrite, retain) NSMutableArray *creditCards;
 @property (nonatomic, readwrite, retain) NSArray *orders;
 
 #pragma mark -
@@ -61,32 +61,28 @@ extern NSString const* OIUserBaseURL;
  * Delete user address by its nickname.
  *
  * @param nickname
+ * Addresses nickname, which will be deleted.
  */
 - (void)deleteAddressByNickname:(NSString *)nickname;
 
 /**
- * Load all user credit cards into the OIUser instance. Call block with nil parameter 
- * if succeeded or with a request error if failed
+ * Load all user credit cards into the OIUser instance. 
  */
-- (void)loadCreditCardsUsingBlock:(void (^)(NSError *error))block;
-
-/**
- * Load user credit card by its nickname. Call block with created OICreditCard instance if succeeded 
- * or with nil if failed
- */
-- (void)loadCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(OICardInfo *cardInfo))block;
+- (void)initAllCreditCards;
 
 /**
  * Change user credit card (overwrite) or add if it doesn't exist. Call block with nil parameter 
  * if succeeded or with a request error if failed
  */
-- (void)addOrChangeCreditCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block;
+- (void)addCreditCard:(OICardInfo *)creditCard;
 
 /**
- * Delete user credit card by its nickname. Call block with nil parameter 
- * if succeeded or with a request error if failed
+ * Delete user credit card by its nickname.
+ *
+ * @param nickname
+ * Credit cards nickname, which will be deleted.
  */
-- (void)deleteCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
+- (void)deleteCreditCardByNickname:(NSString *)nickname;
 
 /**
  * Load all user orders into the OIUser instance. Call block with nil parameter 

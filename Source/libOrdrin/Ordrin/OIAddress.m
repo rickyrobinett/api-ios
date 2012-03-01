@@ -64,7 +64,7 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 #pragma mark -
 #pragma mark Instance methods
 
-- (void)updateAddressWithAddress:(OIAddress *)address {
+- (void)updateAddressWithAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
   NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@", userInfo.email, address.nickname.urlEncode];
   __block ASIFormDataRequest *request = [OIAddress createRequestForCreateOrUpdateActionWithAddress:address];
@@ -82,21 +82,20 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
       self.postalCode = address.postalCode;
       self.phoneNumber = address.phoneNumber;
       
+      if ( block ) {
+        block( nil );
+      }
     } else {
       NSString *msg = [json objectForKey:@"msg"];
-      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-      [alertView show];
-      
-      OI_RELEASE_SAFELY( alertView );
+      NSError *error = [NSError errorWithDomain:msg code:0 userInfo:nil];
+      if ( block ) {
+        block( error );
+      }      
     }
   }];
 
   OIAPIClient *client = [OIAPIClient sharedInstance];
   [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]];  
-}
-
-- (void)deleteAddress {
-
 }
 
 #pragma mark -
@@ -125,16 +124,7 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
   __block ASIFormDataRequest *request = [OIAddress createRequestForCreateOrUpdateActionWithAddress:address];
   
   [request setCompletionBlock:^{    
-//    
-//    OIAddress *item;
-//    for (item in safe.addresses) {
-//      
-//      if([address.nickname isEqualToString:[item nickname]]) {
-//        [item copy:address];
-//      }
-//    }
-//    
-//    block(nil);
+    block(nil);
   }];
   
   [request setFailedBlock:^{

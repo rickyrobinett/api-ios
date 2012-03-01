@@ -42,22 +42,19 @@
  * only on the server side).
  *
  * @param address (OIAddress)
- * Edited address.
+ * Changed address, which will replace previous address.
+ *
+ * @param block
+ * Return nil if request finished success else return error (NSError).
  */
-- (void)updateAddressWithAddress:(OIAddress *)address;
-
-/**
- * Delete address, you must have set a delegate (if not your address will be deleted 
- * only on the server side).
- */
-- (void)deleteAddress;
+- (void)updateAddressWithAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block;
 
 #pragma mark -
 #pragma mark Class methods
 
 /**
- * Change user address (overwrite) or add if it doesn't exist. Call block with nil parameter 
- * if succeeded or with a request error if failed
+ * Add user address. Call block with nil parameter.
+ * If succeeded or with a request error if failed.
  */
 + (void)addAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block;
 

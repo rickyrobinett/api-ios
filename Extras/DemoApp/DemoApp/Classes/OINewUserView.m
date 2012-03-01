@@ -120,9 +120,10 @@
   //    return;
   //  }
   
-  OIUser *newUser = [OIUser userWithEmail:@"testuser@gmail.cz" firstName:@"Vita" lastName:@"Kot"];
+// @"testuser@gmail.cz"
   
-  [OIUser createNewAccount:newUser password:@"tajneheslo" usingBlock:^(NSError *error) {
+  OIUser *newUser = [OIUser userWithFirstName:@"Vita" lastName:@"Kot"];  
+  [OIUser createNewAccount:newUser email:@"testuser@gmail.cz" password:@"tajneheslo" usingBlock:^(NSError *error) {
     
     if ( error ) {
       

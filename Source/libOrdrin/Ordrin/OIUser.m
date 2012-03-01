@@ -35,7 +35,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   NSString *__firstName;
   NSString *__lastName;
   NSMutableArray  *__addresses;
-  NSArray  *__creditCards;
+  NSMutableArray  *__creditCards;
   NSArray  *__orders;
 }
 
@@ -61,7 +61,13 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
 
 - (void)updateAddressAtIndex:(NSUInteger)index withAddress:(OIAddress *)newAddress {
   OIAddress *address = [__addresses objectAtIndex:index];
-  [address updateAddressWithAddress:newAddress];
+  [address updateAddressWithAddress:newAddress usingBlock:^(NSError *error) {
+    if ( error ) {
+      
+    } else {
+      
+    }
+  }];
 }
 
 - (void)addAddress:(OIAddress *)address {
@@ -78,108 +84,25 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   [OIAddress deleteAddressByNickname:nickname usingBlock:^(NSError *error) {
     if ( error ) {
       
+    } else {
+      for ( OIAddress *address in __addresses ) {
+        if ( [nickname isEqualToString:address.nickname] ) {
+          [__addresses removeObject:address];
+        }
+      }
     }
   }];
 }
 
-- (void)loadCreditCardsUsingBlock:(void (^)(NSError *error))block {
-  
-//  NSString *URL = [NSString stringWithFormat:@"%@/u/%@/ccs", OIUserBaseURL, [__email urlEncode]];
-//  NSString *URLParams = [NSString stringWithFormat:@"u/%@/ccs",[__email urlEncode]];
-//  
-//  __block OIUser *safe = self;
-//  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
-//  
-//  [request setCompletionBlock:^{
-//    
-//    [safe.creditCards release];
-//    
-//    NSDictionary *json = [[request responseString] objectFromJSONString];
-//    NSArray *allKeys = [json allKeys];
-//    
-//    NSString *item;
-//    
-//    NSMutableArray *newCardsInfo = [[[NSMutableArray alloc] init] autorelease];
-//    
-//    for (item in allKeys) {
-//      
-//      NSDictionary *cardInfoDict = [json objectForKey:item];
-//      
-//      if(cardInfoDict) {
-//        OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];
-//        
-//        cardInfo.nickname = item;
-//        cardInfo.name = [json objectForKey:@"name"];
-//        cardInfo.lastFiveDigits = [json objectForKey:@"cc_last5"];
-//        cardInfo.type = [json objectForKey:@"type"];
-//        cardInfo.expirationMonth = [json objectForKey:@"expiry_month"];
-//        cardInfo.expirationYear = [json objectForKey:@"expiry_year"];
-//        cardInfo.address.address1 =   [json objectForKey:@"addr"];
-//        cardInfo.address.address2 =   [json objectForKey:@"addr2"];
-//        cardInfo.address.city =   [json objectForKey:@"city"];
-//        cardInfo.address.state =   [json objectForKey:@"state"];
-//        cardInfo.address.postalCode =   [json objectForKey:@"zip"];
-//        
-//        [newCardsInfo addObject:cardInfo];
-//      }
-//    }
-//    
-//    safe.creditCards = [NSArray arrayWithArray:newCardsInfo];
-//    
-//    if ( block ) {
-//      block(nil);
-//    }
-//    
-//  }];
-//  
-//  [request setFailedBlock:^{
-//    block([request error]);
-//  }];
-//  
-//  OIAPIClient *client = [OIAPIClient sharedInstance];
-//  [client appendRequest:request authorized:YES userAuthenticator:[OIAPIUserAuthenticator authenticatorWithEmail:__email password:__password uri:[NSURL URLWithString:URLParams]]];
+- (void)initAllCreditCards {
+  OI_RELEASE_SAFELY( __creditCards );
+  [OICardInfo loadCreditCardsUsingBlock:^void( NSMutableArray *creditCards ) {
+    __creditCards = [creditCards retain];
+  }];
 }
 
-- (void)loadCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(OICardInfo *cardInfo))block {
+- (void)addCreditCard:(OICardInfo *)creditCard {
   
-//  NSString *URL = [NSString stringWithFormat:@"%@/u/%@/ccs/%@", OIUserBaseURL, [__email urlEncode], [nickname urlEncode]];
-//  NSString *URLParams = [NSString stringWithFormat:@"u/%@/ccs/%@",[__email urlEncode], [nickname urlEncode]];
-//  
-//  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
-//  
-//  [request setCompletionBlock:^{
-//    
-//    NSDictionary *json = [[request responseString] objectFromJSONString];
-//    
-//    if(json)
-//    {
-//      OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];
-//      cardInfo.nickname = nickname;
-//      cardInfo.name = [json objectForKey:@"name"];
-//      cardInfo.lastFiveDigits = [json objectForKey:@"cc_last5"];
-//      cardInfo.type = [json objectForKey:@"type"];
-//      cardInfo.expirationMonth = [json objectForKey:@"expiry_month"];
-//      cardInfo.expirationYear = [json objectForKey:@"expiry_year"];
-//      cardInfo.address.address1 =   [json objectForKey:@"addr"];
-//      cardInfo.address.address2 =   [json objectForKey:@"addr2"];
-//      cardInfo.address.city =   [json objectForKey:@"city"];
-//      cardInfo.address.state =   [json objectForKey:@"state"];
-//      cardInfo.address.postalCode =   [json objectForKey:@"zip"];
-//      
-//      if ( block ) {
-//        block(cardInfo);
-//      }
-//    }
-//    else
-//      block(nil);
-//  }];
-//  
-//  [request setFailedBlock:^{
-//    block(nil);
-//  }];
-//  
-//  OIAPIClient *client = [OIAPIClient sharedInstance];
-//  [client appendRequest:request authorized:YES userAuthenticator:[OIAPIUserAuthenticator authenticatorWithEmail:__email password:__password uri:[NSURL URLWithString:URLParams]]]; 
 }
 
 - (void)addOrChangeCreditCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block {
@@ -230,27 +153,18 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   
 }
 
-- (void)deleteCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block {
-  
-//  NSString *URL = [NSString stringWithFormat:@"%@/u/%@/ccs/%@", OIUserBaseURL, [__email urlEncode], [nickname urlEncode]];
-//  NSString *URLParams = [NSString stringWithFormat:@"u/%@/ccs/%@",[__email urlEncode], [nickname urlEncode]];
-//  
-//  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
-//  [request setRequestMethod:@"DELETE"];
-//  
-//  [request setCompletionBlock:^{
-//    
-//#warning Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
-//#warning Remove CardInfo from OIUser instance
-//    block(nil);
-//  }];
-//  
-//  [request setFailedBlock:^{
-//    block([request error]);
-//  }]; 
-//  
-//  OIAPIClient *client = [OIAPIClient sharedInstance];
-//  [client appendRequest:request authorized:YES userAuthenticator:[OIAPIUserAuthenticator authenticatorWithEmail:__email password:__password uri:[NSURL URLWithString:URLParams]]]; 
+- (void)deleteCreditCardByNickname:(NSString *)nickname {
+  [OICardInfo deleteCreditCardByNickname:nickname usingBlock:^( NSError *error ) {
+    if ( error ) {
+      
+    } else {
+      for ( OICardInfo *creditCard in __creditCards ) {
+        if ( [creditCard.nickname isEqualToString:creditCard.nickname] ) {
+          [__creditCards removeObject:creditCard];
+        }
+      }
+    }
+  }];
 }
 
 - (void)loadOrderHistoryUsingBlock:(void (^)(NSError *error))block {

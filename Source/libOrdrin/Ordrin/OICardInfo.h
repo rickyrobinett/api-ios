@@ -10,8 +10,9 @@
  *
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
- *      Vitezslav Kot (vita@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
+
 #import <Foundation/Foundation.h>
 
 @class OIAddress;
@@ -28,4 +29,27 @@
 @property (nonatomic, readwrite, copy) NSString *expirationYear;
 @property (nonatomic, readwrite, retain) OIAddress *address;
 
+#pragma mark -
+#pragma mark Class methods
+
+/**
+ * Load all user credit cards.
+ * 
+ * @param block
+ * Block return all user credit cards.
+ */
++ (void)loadCreditCardsUsingBlock:(void (^)(NSMutableArray *creditCards))block;
+
+/**
+ * Load user credit card (OICardInfo) by its nickname.
+ *
+ * @param nickname
+ * The nickname of the searching credit card.
+ *
+ * @param block
+ * Block return credit card (OICardInfo) with required nickname.
+ */
++ (void)loadCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(OICardInfo *cardInfo))block;
+
++ (void)deleteCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
 @end
