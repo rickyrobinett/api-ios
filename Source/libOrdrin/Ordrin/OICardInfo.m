@@ -20,9 +20,14 @@
 #import "OIUser.h"
 #import "JSONKit.h"
 #import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Implementation
+
+@interface OICardInfo (Private)
++ (ASIFormDataRequest *)createRequestForCreateOrUpdateActionWithCreditCard:(OICardInfo *)creditCard;
+@end
 
 @implementation OICardInfo {
 @private
@@ -57,6 +62,43 @@
   return self;
 }
 
+- (void)updateCreditCardWithCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block {
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/ccs/%@",userInfo.email.urlEncode, creditCard.nickname.urlEncode];    
+  __block ASIFormDataRequest *request = [OICardInfo createRequestForCreateOrUpdateActionWithCreditCard:creditCard];
+  
+  [request setCompletionBlock:^{
+    NSDictionary *json = [[request responseString] objectFromJSONString];    
+    if ( json ) {
+      NSNumber *error = [json objectForKey:@"_error"];
+      if ( error.intValue == 0 ) {
+        __nickname = creditCard.nickname;
+        __name = creditCard.name;
+        __number = creditCard.number;
+        __cvc = creditCard.cvc;
+        __lastFiveDigits = creditCard.lastFiveDigits;
+        __type = creditCard.type;
+        __expirationMonth = creditCard.expirationMonth;
+        __expirationYear = creditCard.expirationYear;
+        __address = creditCard.address;
+        block( nil );        
+      } else {
+        NSString *msg = [json objectForKey:@"msg"];
+        NSError *error = [NSError errorWithDomain:msg code:0 userInfo:nil];
+        block( error );
+      }
+    }
+  }];
+  
+  [request setFailedBlock:^{
+    block( [request error] );
+  }];
+  
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]];  
+  
+}
+
 #pragma mark -
 #pragma mark Memory Management
 
@@ -76,6 +118,33 @@
 
 #pragma mark -
 #pragma mark Class methods
+
++ (void)addCreditCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block {
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/ccs/%@",userInfo.email.urlEncode, creditCard.nickname.urlEncode];    
+  __block ASIFormDataRequest *request = [OICardInfo createRequestForCreateOrUpdateActionWithCreditCard:creditCard];
+  
+  [request setCompletionBlock:^{
+    NSDictionary *json = [[request responseString] objectFromJSONString];    
+    if ( json ) {
+      NSNumber *error = [json objectForKey:@"_error"];
+      if ( error.intValue == 0 ) {
+        block( nil );
+      } else {
+        NSString *msg = [json objectForKey:@"msg"];
+        NSError *error = [NSError errorWithDomain:msg code:0 userInfo:nil];
+        block( error );
+      }
+    }
+  }];
+  
+  [request setFailedBlock:^{
+    block( [request error] );
+  }];
+  
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]];  
+}
 
 + (void)loadCreditCardsUsingBlock:(void (^)(NSMutableArray *creditCards))block {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
@@ -197,3 +266,34 @@
 }
 
 @end
+
+#pragma mark -
+#pragma mark Private methods
+
+@implementation OICardInfo (Private)
++ (ASIFormDataRequest *)createRequestForCreateOrUpdateActionWithCreditCard:(OICardInfo *)creditCard {
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/ccs/%@",userInfo.email.urlEncode, creditCard.nickname.urlEncode];  
+  NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
+  
+  ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
+  [request setRequestMethod:@"PUT"];
+  
+  [request setPostValue:creditCard.nickname forKey:@"nick"];
+  [request setPostValue:creditCard.name forKey:@"name"];
+  [request setPostValue:creditCard.number forKey:@"number"];
+  [request setPostValue:creditCard.cvc forKey:@"cvc"];
+  [request setPostValue:creditCard.expirationMonth forKey:@"expiry_month"];
+  [request setPostValue:creditCard.expirationYear forKey:@"expiry_year"];
+  [request setPostValue:creditCard.address.address1 forKey:@"bill_addr"];
+  [request setPostValue:creditCard.address.address2 forKey:@"bill_addr2"];
+  [request setPostValue:creditCard.address.city forKey:@"bill_city"];
+  [request setPostValue:creditCard.address.state forKey:@"bill_state"];
+  [request setPostValue:creditCard.address.postalCode forKey:@"bill_zip"];
+  [request setPostValue:creditCard.address.phoneNumber forKey:@"phone"];
+  
+  return request;
+}
+
+@end
+

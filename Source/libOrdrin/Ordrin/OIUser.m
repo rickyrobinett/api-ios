@@ -101,56 +101,25 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
   }];
 }
 
-- (void)addCreditCard:(OICardInfo *)creditCard {
-  
+- (void)updateCreditCardAtIndex:(NSUInteger)index withCreditCard:(OICardInfo *)newCreditCard {
+  OICardInfo *creditCard = [__creditCards objectAtIndex:index];
+  [creditCard updateCreditCardWithCard:creditCard usingBlock:^(NSError *error) {
+    if ( error ) {
+      
+    } else {
+      
+    }
+  }];
 }
 
-- (void)addOrChangeCreditCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block {
-  
-//  NSString *URL = [NSString stringWithFormat:@"%@/u/%@/ccs/%@", OIUserBaseURL, [__email urlEncode], [[creditCard nickname] urlEncode]];
-//  NSString *URLParams = [NSString stringWithFormat:@"u/%@/ccs/%@",[__email urlEncode], [[creditCard nickname] urlEncode]];
-//  
-//  __block OIUser *safe = self;
-//  __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
-//  [request setRequestMethod:@"PUT"];
-//  
-//  [request setPostValue:__email forKey:@"email"];
-//  [request setPostValue:[__password sha256] forKey:@"password"];
-//  [request setPostValue:creditCard.nickname forKey:@"nick"];
-//  [request setPostValue:creditCard.name forKey:@"name"];
-//  [request setPostValue:creditCard.number forKey:@"number"];
-//  [request setPostValue:creditCard.cvc forKey:@"cvc"];
-//  [request setPostValue:creditCard.expirationMonth forKey:@"expiry_month"];
-//  [request setPostValue:creditCard.expirationYear forKey:@"expiry_year"];
-//  [request setPostValue:creditCard.address.address1 forKey:@"bill_addr"];
-//  [request setPostValue:creditCard.address.address2 forKey:@"bill_addr2"];
-//  [request setPostValue:creditCard.address.city forKey:@"bill_city"];
-//  [request setPostValue:creditCard.address.state forKey:@"bill_state"];
-//  [request setPostValue:creditCard.address.postalCode forKey:@"bill_zip"];
-//  [request setPostValue:creditCard.address.phoneNumber forKey:@"phone"];
-//  
-//  [request setCompletionBlock:^{
-//    
-//#warning Handle error returned by server: _error	a boolean (0|1), 1 means there was an error, 0 means it was successful
-//    
-//    OICardInfo *item;
-//    for (item in safe.creditCards) {
-//      
-//      if([creditCard.nickname isEqualToString:[item nickname]]) {
-//        [item copy:creditCard];
-//      }
-//    }
-//    
-//    block(nil);
-//  }];
-//  
-//  [request setFailedBlock:^{
-//    block([request error]);
-//  }];
-//  
-//  OIAPIClient *client = [OIAPIClient sharedInstance];
-//  [client appendRequest:request authorized:YES userAuthenticator:[OIAPIUserAuthenticator authenticatorWithEmail:__email password:__password uri:[NSURL URLWithString:URLParams]]];  
-  
+- (void)addCreditCard:(OICardInfo *)creditCard {
+  [OICardInfo addCreditCard:creditCard usingBlock:^( NSError *error ) {
+    if ( error ) {
+      
+    } else {
+      [__creditCards addObject:creditCard];
+    }
+  }];
 }
 
 - (void)deleteCreditCardByNickname:(NSString *)nickname {

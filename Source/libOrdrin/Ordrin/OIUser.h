@@ -71,11 +71,26 @@ extern NSString const* OIUserBaseURL;
 - (void)initAllCreditCards;
 
 /**
- * Change user credit card (overwrite) or add if it doesn't exist. Call block with nil parameter 
- * if succeeded or with a request error if failed
+ * Add credit card (OICardInfo) to the server and to the credit cards of the user
+ * (OIUser).
+ * 
+ * @param address (OICardInfo)
+ * New credit card which will be added to the user credit cards (server, 
+ * application).
  */
 - (void)addCreditCard:(OICardInfo *)creditCard;
 
+/**
+ * Change user credit card (overwrite). 
+ * 
+ * @param index
+ * Index of the credit card (OICardInfo) in user credit cards, which will be
+ * updated.
+ *
+ * @param newCreditCard (OICardInfo)
+ * Changed credit card, which will replace previous credit card.
+ */
+- (void)updateCreditCardAtIndex:(NSUInteger)index withCreditCard:(OICardInfo *)newCreditCard;
 /**
  * Delete user credit card by its nickname.
  *

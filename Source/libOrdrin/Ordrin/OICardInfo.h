@@ -33,6 +33,30 @@
 #pragma mark Class methods
 
 /**
+ * Add credit card (OICardInfo) to the server and to the credit cards of the 
+ * user (OIUser).
+ * 
+ * @param address (OICardInfo)
+ * New credit card which will be added to the user credit cards (server, 
+ * application).
+ *
+ * @param block (NSError)
+ * Return nil if request finished success else return error (NSError).
+ */
++ (void)addCreditCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block;
+
+/**
+ * Update credit card info.
+ *
+ * @param creditCard (OICardInfo)
+ * Changed credit card, which will replace previous credit card.
+ *
+ * @param block
+ * Return nil if request finished success else return error (NSError).
+ */
+- (void)updateCreditCardWithCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block;
+
+/**
  * Load all user credit cards.
  * 
  * @param block
@@ -51,5 +75,13 @@
  */
 + (void)loadCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(OICardInfo *cardInfo))block;
 
+/**
+ * Delete user address by its nickname.
+ *
+ * @param nickname
+ *
+ * @param block
+ *
+ */
 + (void)deleteCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
 @end

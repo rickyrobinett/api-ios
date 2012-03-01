@@ -53,8 +53,13 @@
 #pragma mark Class methods
 
 /**
- * Add user address. Call block with nil parameter.
- * If succeeded or with a request error if failed.
+ * Add user address.
+ *
+ * @param address (OIAddress)
+ * New address, which will be saved.
+ *
+ * @param block (NSError)
+ * Block return nil if request finished successfully.
  */
 + (void)addAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block;
 
