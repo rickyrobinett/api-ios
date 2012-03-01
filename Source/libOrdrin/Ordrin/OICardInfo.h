@@ -41,7 +41,7 @@
  * application).
  *
  * @param block (NSError)
- * Return nil if request finished success else return error (NSError).
+ * Block return nil if request finished successfully.
  */
 + (void)addCreditCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block;
 
@@ -52,7 +52,7 @@
  * Changed credit card, which will replace previous credit card.
  *
  * @param block
- * Return nil if request finished success else return error (NSError).
+ * Block return nil if request finished successfully.
  */
 - (void)updateCreditCardWithCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block;
 
@@ -81,7 +81,7 @@
  * @param nickname
  *
  * @param block
- *
+ * Block return nil if request finished successfully.
  */
 + (void)deleteCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
 @end

@@ -30,14 +30,47 @@ extern NSString const* OIUserBaseURL;
 @property (nonatomic, readwrite, retain) NSMutableArray *orders;
 
 #pragma mark -
-#pragma mark Instance methods
+#pragma mark Class methods
 
+/**
+ * Load account information by user email and password.
+ * 
+ */
++ (void)accountInfo:(NSString *)email password:(NSString *)password usingBlockUser:(void (^)(OIUser *user))blockUser usingBlockError:(void (^)(NSError *error))blockError;
+
+/**
+ * Create new account for OIUser instance. Call block with nil parameter if succeeded or with a 
+ * request error if failed
+ */
++ (void)createNewAccount:(OIUser *)account email:(NSString *)email password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
+
+/**
+ * Create new OIUser instance by email, first name and last name.  
+ */
++ (OIUser *)userWithFirstName:(NSString *)firstName lastName:(NSString *)lastName;
+
+/**
+ * Update user password.
+ * 
+ * @param password
+ * New password.
+ *
+ * @param block (NSError)
+ * Block return nil if request finished successfully.
+ */
++ (void)updatePassword:(NSString *)password usingBlock:(void (^)(NSError *error))block;
+
+@end
+
+#pragma mark -
+#pragma mark Address
+
+@interface OIUser (Address)
 /**
  * Load all user addresses into the OIUser instance. Call block with nil 
  * parameter.
  */
 - (void)initAllAddresses;
-
 /**
  * Add address (OIAddress) to the server and to the addresses of the user (OIUser).
  * 
@@ -45,7 +78,6 @@ extern NSString const* OIUserBaseURL;
  * New address which will be added to the user addresses (server, application).
  */
 - (void)addAddress:(OIAddress *)address;
-
 /**
  * Change user address (overwrite). 
  * 
@@ -56,7 +88,6 @@ extern NSString const* OIUserBaseURL;
  * Changed address, which will replace previous address.
  */
 - (void)updateAddressAtIndex:(NSUInteger)index withAddress:(OIAddress *)newAddress;
-
 /**
  * Delete user address by its nickname.
  *
@@ -64,22 +95,25 @@ extern NSString const* OIUserBaseURL;
  * Addresses nickname, which will be deleted.
  */
 - (void)deleteAddressByNickname:(NSString *)nickname;
+@end
 
+#pragma mark -
+#pragma mark CreditCard
+
+@interface OIUser (CreditCard)
 /**
  * Load all user credit cards into the OIUser instance. 
  */
 - (void)initAllCreditCards;
-
 /**
- * Add credit card (OICardInfo) to the server and to the credit cards of the user
- * (OIUser).
+ * Add credit card (OICardInfo) to the server and to the credit cards of the
+ * user (OIUser).
  * 
  * @param address (OICardInfo)
  * New credit card which will be added to the user credit cards (server, 
  * application).
  */
 - (void)addCreditCard:(OICardInfo *)creditCard;
-
 /**
  * Change user credit card (overwrite). 
  * 
@@ -98,36 +132,15 @@ extern NSString const* OIUserBaseURL;
  * Credit cards nickname, which will be deleted.
  */
 - (void)deleteCreditCardByNickname:(NSString *)nickname;
+@end
 
+#pragma mark -
+#pragma mark Order
+
+@interface OIUser (Order)
 /**
  * Load all user orders into the OIUser instance.
  */
 - (void)initOrderHistory;
-
-/**
- * Update user password. Call block with nil parameter if succeeded or with a request error 
- * if failed
- */
-- (void)updatePassword:(NSString *) password usingBlock:(void (^)(NSError *error))block;
-
-#pragma mark -
-#pragma mark Class methods
-
-/**
- * Load account information by user email and password. Call block with created OIUser instance 
- * if succeeded or with nil if failed
- */
-+ (void)accountInfo:(NSString *)email password:(NSString *)password usingBlockUser:(void (^)(OIUser *user))blockUser usingBlockError:(void (^)(NSError *error))blockError;
-
-/**
- * Create new account for OIUser instance. Call block with nil parameter if succeeded or with a 
- * request error if failed
- */
-+ (void)createNewAccount:(OIUser *)account email:(NSString *)email password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
-
-/**
- * Create new OIUser instance by email, first name and last name.  
- */
-+ (OIUser *)userWithFirstName:(NSString *)firstName lastName:(NSString *)lastName;
-
 @end
+

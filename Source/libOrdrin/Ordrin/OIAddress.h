@@ -45,7 +45,7 @@
  * Changed address, which will replace previous address.
  *
  * @param block
- * Return nil if request finished success else return error (NSError).
+ * Block return nil if request finished successfully.
  */
 - (void)updateAddressWithAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block;
 
