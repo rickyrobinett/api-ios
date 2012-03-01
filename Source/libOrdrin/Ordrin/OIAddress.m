@@ -29,9 +29,12 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Implementation
 
+@interface OIAddress (Private)
++ (ASIFormDataRequest *)createRequestForCreateOrUpdateActionWithAddress:(OIAddress *)address;
+@end
+
 @implementation OIAddress {
 @private
-  id<OIAddressDelegate> __delegate;
   NSString *__nickname;
   NSString *__address1;
   NSString *__address2;
@@ -42,7 +45,6 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
   NSString *__userId;
 }
 
-@synthesize delegate      = __delegate;
 @synthesize nickname      = __nickname;
 @synthesize address1      = __address1;
 @synthesize address2      = __address2;
@@ -63,25 +65,14 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 #pragma mark Instance methods
 
 - (void)updateAddressWithAddress:(OIAddress *)address {
-  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
-  NSString *email = userInfo.email;  
-  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@", email, address.nickname.urlEncode];
-  NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
-  
-  __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
-  [request setRequestMethod:@"PUT"];
-  
-  [request setPostValue:address.nickname forKey:@"nick"];
-  [request setPostValue:address.address1 forKey:@"addr"];
-  [request setPostValue:address.address2 forKey:@"addr2"];
-  [request setPostValue:address.city forKey:@"city"];
-  [request setPostValue:address.state forKey:@"state"];
-  [request setPostValue:address.postalCode forKey:@"zip"];
-  [request setPostValue:address.phoneNumber forKey:@"phone"];
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@", userInfo.email, address.nickname.urlEncode];
+  __block ASIFormDataRequest *request = [OIAddress createRequestForCreateOrUpdateActionWithAddress:address];
   
   [request setCompletionBlock:^void() {
     NSDictionary *json = [[request responseString] objectFromJSONString];
     NSNumber *error = [json objectForKey:@"_error"];
+    
     if ( error.intValue == 0 ) {
       self.nickname = address.nickname;
       self.address1 = address.address1;
@@ -99,7 +90,7 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
       OI_RELEASE_SAFELY( alertView );
     }
   }];
-  
+
   OIAPIClient *client = [OIAPIClient sharedInstance];
   [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]];  
 }
@@ -112,7 +103,6 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 #pragma mark Memory Management
 
 - (void)dealloc {
-  OI_RELEASE_SAFELY( __delegate );
   OI_RELEASE_SAFELY( __userId );  
   OI_RELEASE_SAFELY( __nickname );
   OI_RELEASE_SAFELY( __address1 );
@@ -128,6 +118,148 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 #pragma mark -
 #pragma mark Class methods
 
++ (void)addAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block {
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@",userInfo.email, address.nickname.urlEncode];
+  
+  __block ASIFormDataRequest *request = [OIAddress createRequestForCreateOrUpdateActionWithAddress:address];
+  
+  [request setCompletionBlock:^{    
+//    
+//    OIAddress *item;
+//    for (item in safe.addresses) {
+//      
+//      if([address.nickname isEqualToString:[item nickname]]) {
+//        [item copy:address];
+//      }
+//    }
+//    
+//    block(nil);
+  }];
+  
+  [request setFailedBlock:^{
+    block([request error]);
+  }];
+  
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]];  
+}
+
++ (void)loadAddressesUsingBlock:(void (^)(NSMutableArray *addresses))block {
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs",userInfo.email.urlEncode];
+  NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
+  
+  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  
+  [request setCompletionBlock:^{
+      
+    NSDictionary *json = [[request responseString] objectFromJSONString];
+    NSArray *allKeys = [json allKeys];
+   
+    NSString *item;
+      
+    NSMutableArray *newAddresses = [NSMutableArray array];
+      
+    for (item in allKeys) {
+        
+      NSDictionary *addressDict = [json objectForKey:item];
+      
+      if(addressDict) {
+        OIAddress *address = [[[OIAddress alloc] init] autorelease];
+        address.nickname = item;
+        address.address1 =   [addressDict objectForKey:@"addr"];
+        address.address2 =   [addressDict objectForKey:@"addr2"];
+        address.city =   [addressDict objectForKey:@"city"];
+        address.state =   [addressDict objectForKey:@"state"];
+        address.postalCode =   [addressDict objectForKey:@"zip"];
+        address.phoneNumber =   [addressDict objectForKey:@"phone"];
+        [newAddresses addObject:address];
+      }
+    }
+    
+    if ( block ) {  
+      block( newAddresses );
+    }    
+  }];
+   
+  [request setFailedBlock:^{  
+    block( [NSArray array] );
+  }];
+
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]];  
+}
+
++ (void)loadAddressByNickname:(NSString *)nickname usingBlock:(void (^)(OIAddress *address))block {
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@",userInfo.email.urlEncode, nickname.urlEncode];
+  NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
+  
+  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  
+  [request setCompletionBlock:^{
+    
+    NSDictionary *json = [[request responseString] objectFromJSONString];
+    
+    if( json ) {
+      OIAddress *address = [[[OIAddress alloc] init] autorelease];
+      address.nickname = nickname;
+      address.address1 =   [json objectForKey:@"addr"];
+      address.address2 =   [json objectForKey:@"addr2"];
+      address.city =   [json objectForKey:@"city"];
+      address.state =   [json objectForKey:@"state"];
+      address.postalCode =   [json objectForKey:@"zip"];
+      address.phoneNumber =   [json objectForKey:@"phone"];   
+      
+      if ( block ) {
+        block( address );
+      }
+    }
+    else
+      block(nil);
+  }];
+  
+  [request setFailedBlock:^{
+    block(nil);
+  }];
+  
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]];
+}
+
++ (void)deleteAddressByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block {
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@",userInfo.email.urlEncode, nickname.urlEncode];  
+  NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
+  
+  __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  
+  [request setRequestMethod:@"DELETE"];  
+  [request setCompletionBlock:^{
+    
+    NSDictionary *json = [[request responseString] objectFromJSONString];
+    
+    if ( json ) {
+      NSNumber *error = [json objectForKey:@"_error"];
+      if ( error.intValue == 0 ) {
+        block( nil );        
+      } else {
+        NSString *msg = [json objectForKey:@"msg"];
+        NSError *error = [NSError errorWithDomain:msg code:0 userInfo:nil];
+        block( error );
+      }
+    }
+  }];
+  
+  [request setFailedBlock:^{
+    block( [request error] );
+  }]; 
+  
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]];
+}
+
 + (OIAddress *)addressWithStreet:(NSString *)street city:(NSString *)city postalCode:(NSNumber *)postalCode {
   OIAddress *address = [[OIAddress alloc] init];
   address.address1 = street;
@@ -135,6 +267,33 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
   address.postalCode = postalCode;
   
   return [address autorelease];
+}
+
+@end
+
+#pragma mark -
+#pragma mark Private methods
+
+@implementation OIAddress (Private)
+
++ (ASIFormDataRequest *)createRequestForCreateOrUpdateActionWithAddress:(OIAddress *)address {
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  NSString *email = userInfo.email;  
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@", email, address.nickname.urlEncode];
+  NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
+  
+  __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
+  [request setRequestMethod:@"PUT"];
+  
+  [request setPostValue:address.nickname forKey:@"nick"];
+  [request setPostValue:address.address1 forKey:@"addr"];
+  [request setPostValue:address.address2 forKey:@"addr2"];
+  [request setPostValue:address.city forKey:@"city"];
+  [request setPostValue:address.state forKey:@"state"];
+  [request setPostValue:address.postalCode forKey:@"zip"];
+  [request setPostValue:address.phoneNumber forKey:@"phone"];
+  
+  return request;
 }
 
 @end

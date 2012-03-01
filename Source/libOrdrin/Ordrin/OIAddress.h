@@ -15,18 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark -
-#pragma mark IOAddressDelegate
-
-@protocol OIAddressDelegate <NSObject>
-@optional
-//- (void)
-@end
-
 @interface OIAddress : NSObject
 
-/// Delegate is needed for delete and update operations, when owner is user.
-@property (nonatomic, retain)id<OIAddressDelegate> delegate;
 /// The nickname of this address (i.e. Home, Work).
 @property (nonatomic, readwrite, copy) NSString *nickname;
 /// The street address.
@@ -64,6 +54,43 @@
 
 #pragma mark -
 #pragma mark Class methods
+
+/**
+ * Change user address (overwrite) or add if it doesn't exist. Call block with nil parameter 
+ * if succeeded or with a request error if failed
+ */
++ (void)addAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block;
+
+/**
+ * Load all user addresses into the OIUser instance.
+ *
+ * @param block
+ * Block return array of addresses.
+ */
++ (void)loadAddressesUsingBlock:(void (^)(NSMutableArray *addresses))block;
+
+/**
+ * Load user address by its nickname. Call block with created OIAddress instance if 
+ * succeeded.
+ *
+ * @param nickname
+ * The nickname of the searching address(i.e. Home, Work).
+ * 
+ * @param block
+ * Return address (OIAddress) specified by nickname.
+ * 
+ */
++ (void)loadAddressByNickname:(NSString *)nickname usingBlock:(void (^)(OIAddress *address))block;
+
+/**
+ * Delete user address by its nickname.
+ *
+ * @param nickname
+ *
+ * @param block
+ *
+ */
++ (void)deleteAddressByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
 
 /**
  * Created simple address (OIAddress).

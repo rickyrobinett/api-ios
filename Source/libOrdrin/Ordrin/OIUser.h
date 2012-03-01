@@ -25,7 +25,7 @@ extern NSString const* OIUserBaseURL;
 
 @property (nonatomic, readwrite, copy) NSString *firstName;
 @property (nonatomic, readwrite, copy) NSString *lastName;
-@property (nonatomic, readwrite, retain) NSArray *addresses;
+@property (nonatomic, readwrite, retain) NSMutableArray *addresses;
 @property (nonatomic, readwrite, retain) NSArray *creditCards;
 @property (nonatomic, readwrite, retain) NSArray *orders;
 
@@ -33,28 +33,36 @@ extern NSString const* OIUserBaseURL;
 #pragma mark Instance methods
 
 /**
- * Load all user addresses into the OIUser instance. Call block with nil parameter 
- * if succeeded or with a request error if failed
+ * Load all user addresses into the OIUser instance. Call block with nil 
+ * parameter.
  */
-- (void)loadAddressesUsingBlock:(void (^)(NSError *error))block;
+- (void)initAllAddresses;
 
 /**
- * Load user address by its nickname. Call block with created OIAddress instance if succeeded 
- * or with nil if failed
+ * Add address (OIAddress) to the server and to the addresses of the user (OIUser).
+ * 
+ * @param address (OIAddress)
+ * New address which will be added to the user addresses (server, application).
  */
-- (void)loadAddressByNickname:(NSString *)nickname usingBlock:(void (^)(OIAddress *address))block;
+- (void)addAddress:(OIAddress *)address;
 
 /**
- * Change user address (overwrite) or add if it doesn't exist. Call block with nil parameter 
- * if succeeded or with a request error if failed
+ * Change user address (overwrite). 
+ * 
+ * @param index
+ * Index of the address (OIAddress) in user addresses, which will be updated.
+ *
+ * @param newAddress (OIAddress)
+ * Changed address, which will replace previous address.
  */
-- (void)addOrChangeAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block;
+- (void)updateAddressAtIndex:(NSUInteger)index withAddress:(OIAddress *)newAddress;
 
 /**
- * Delete user address by its nickname. Call block with nil parameter 
- * if succeeded or with a request error if failed
+ * Delete user address by its nickname.
+ *
+ * @param nickname
  */
-- (void)deleteAddressByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
+- (void)deleteAddressByNickname:(NSString *)nickname;
 
 /**
  * Load all user credit cards into the OIUser instance. Call block with nil parameter 
@@ -111,11 +119,11 @@ extern NSString const* OIUserBaseURL;
  * Create new account for OIUser instance. Call block with nil parameter if succeeded or with a 
  * request error if failed
  */
-+ (void)createNewAccount:(OIUser *)account password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
++ (void)createNewAccount:(OIUser *)account email:(NSString *)email password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
 
 /**
  * Create new OIUser instance by email, first name and last name.  
  */
-+ (OIUser *)userWithEmail:(NSString *)email firstName:(NSString *)firstName lastName:(NSString *)lastName;
++ (OIUser *)userWithFirstName:(NSString *)firstName lastName:(NSString *)lastName;
 
 @end
