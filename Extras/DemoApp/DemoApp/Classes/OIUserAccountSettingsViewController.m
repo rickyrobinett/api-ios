@@ -15,6 +15,7 @@
 #import "OIUserAccountSettingsViewController.h"
 #import "OIApplicationData.h"
 
+#import "OIUserInfo.h"
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interface
 
@@ -64,19 +65,19 @@
     cell.textLabel.font = [UIFont systemFontOfSize:13.0f];
   }
   
-  OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
   
   switch (indexPath.row) {
     case 0:
-      cell.textLabel.text = [NSString stringWithFormat:@"First Name: %@", [[appDataManager currentUser] firstName]];
+      cell.textLabel.text = [NSString stringWithFormat:@"First Name: %@", userInfo.firstName];
       break;
       
     case 1:
-      cell.textLabel.text = [NSString stringWithFormat:@"Last Name: %@", [[appDataManager currentUser] lastName]];
+      cell.textLabel.text = [NSString stringWithFormat:@"Last Name: %@", userInfo.lastName];
       break;
       
     case 2:
-      cell.textLabel.text = [NSString stringWithFormat:@"Email: %@", [[appDataManager currentUser] email]];
+      cell.textLabel.text = [NSString stringWithFormat:@"Email: %@", userInfo.email];
       break;
   }
   

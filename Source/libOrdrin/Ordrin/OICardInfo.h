@@ -76,9 +76,10 @@
 + (void)loadCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(OICardInfo *cardInfo))block;
 
 /**
- * Delete user address by its nickname.
+ * Delete user credit card by its nickname.
  *
  * @param nickname
+ * The nick name of the credit card, which will be deleted.
  *
  * @param block
  * Block return nil if request finished successfully.

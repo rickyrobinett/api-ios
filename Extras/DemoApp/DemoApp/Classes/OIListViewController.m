@@ -92,9 +92,14 @@
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
   OIDeliveryCheckViewController *controller = [[OIDeliveryCheckViewController alloc] init];
-  controller.restaurant = [__dataSet objectAtIndex:indexPath.row];
-  [self.navigationController pushViewController:controller animated:YES];
-  [controller release];
+  OIRestaurantBase *restaurantBase = [__dataSet objectAtIndex:indexPath.row];
+
+  [OIRestaurant createRestaurantByRestaurantBase:restaurantBase usingBlock:^void( OIRestaurant *restaurant) {
+    controller.restaurant = restaurant;
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];    
+  }];
+
 }
 
 #pragma mark -

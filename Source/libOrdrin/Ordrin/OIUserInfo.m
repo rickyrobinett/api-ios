@@ -19,12 +19,18 @@
 
 @implementation OIUserInfo {
 @private
+  NSString *__firstName;
+  NSString *__lastName;
   NSString *__email;
   NSString *__password;
+  BOOL      __userLogged;
 }
 
 @synthesize email     = __email;
 @synthesize password  = __password;
+@synthesize firstName = __firstName;
+@synthesize lastName  = __lastName;
+@synthesize userLogged = __userLogged;
 
 #pragma mark -
 #pragma mark Instance methods
@@ -37,6 +43,8 @@
 #pragma Memory management
 
 - (void)dealloc {
+  OI_RELEASE_SAFELY( __firstName );
+  OI_RELEASE_SAFELY( __lastName );
   OI_RELEASE_SAFELY( __email );
   OI_RELEASE_SAFELY( __password );
   

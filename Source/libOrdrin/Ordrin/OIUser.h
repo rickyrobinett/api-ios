@@ -66,11 +66,13 @@ extern NSString const* OIUserBaseURL;
 #pragma mark Address
 
 @interface OIUser (Address)
+
 /**
  * Load all user addresses into the OIUser instance. Call block with nil 
  * parameter.
  */
 - (void)initAllAddresses;
+
 /**
  * Add address (OIAddress) to the server and to the addresses of the user (OIUser).
  * 
@@ -78,6 +80,7 @@ extern NSString const* OIUserBaseURL;
  * New address which will be added to the user addresses (server, application).
  */
 - (void)addAddress:(OIAddress *)address;
+
 /**
  * Change user address (overwrite). 
  * 
@@ -88,6 +91,7 @@ extern NSString const* OIUserBaseURL;
  * Changed address, which will replace previous address.
  */
 - (void)updateAddressAtIndex:(NSUInteger)index withAddress:(OIAddress *)newAddress;
+
 /**
  * Delete user address by its nickname.
  *
@@ -101,10 +105,12 @@ extern NSString const* OIUserBaseURL;
 #pragma mark CreditCard
 
 @interface OIUser (CreditCard)
+
 /**
  * Load all user credit cards into the OIUser instance. 
  */
 - (void)initAllCreditCards;
+
 /**
  * Add credit card (OICardInfo) to the server and to the credit cards of the
  * user (OIUser).
@@ -114,6 +120,7 @@ extern NSString const* OIUserBaseURL;
  * application).
  */
 - (void)addCreditCard:(OICardInfo *)creditCard;
+
 /**
  * Change user credit card (overwrite). 
  * 
@@ -125,6 +132,7 @@ extern NSString const* OIUserBaseURL;
  * Changed credit card, which will replace previous credit card.
  */
 - (void)updateCreditCardAtIndex:(NSUInteger)index withCreditCard:(OICardInfo *)newCreditCard;
+
 /**
  * Delete user credit card by its nickname.
  *
@@ -138,6 +146,7 @@ extern NSString const* OIUserBaseURL;
 #pragma mark Order
 
 @interface OIUser (Order)
+
 /**
  * Load all user orders into the OIUser instance.
  */

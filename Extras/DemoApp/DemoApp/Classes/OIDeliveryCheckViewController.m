@@ -63,13 +63,9 @@
 //
 //  OIDateTime *dateTime = [OIDateTime dateTime:[formatter dateFromString:@"02-03-2012 11:00"]];
 //  [formatter release];
-  
+    
   [__restaurant deliveryCheckToAddress:address atTime:dateTime usingBlock:^void(OIDelivery *delivery) {
     self.delivery = delivery;
-    [self reload];
-  }];
-
-  [__restaurant downloadAllUsingBlock:^void() {
     [self reload];
   }];
 }
@@ -96,9 +92,10 @@
   if ( __delivery ) {
     sections++;
     
-    if ( [__restaurant isComplete] ) {
-      sections++;
-    }
+//    if ( [__restaurant isComplete] ) {
+//      sections++;
+//    }
+    sections++;
   }
 
   return sections;

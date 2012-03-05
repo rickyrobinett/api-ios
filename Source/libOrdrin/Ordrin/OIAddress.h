@@ -38,6 +38,14 @@
 #pragma mark Instance methods
 
 /**
+ * This method return address as a string.
+ *
+ * @return
+ * Return string, which contain postal code, street and city name.
+ */
+- (NSString *)addressAsString;
+
+/**
  * Update adrress, you must have set a delegate (if not your address will be changed 
  * only on the server side).
  *
@@ -88,9 +96,10 @@
  * Delete user address by its nickname.
  *
  * @param nickname
+ * The nick name of the address, which will be deleted.
  *
  * @param block
- *
+ * If request finished successfully return nil else some error (NSError).
  */
 + (void)deleteAddressByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
 

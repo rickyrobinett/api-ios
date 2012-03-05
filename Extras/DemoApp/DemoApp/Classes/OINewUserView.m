@@ -16,6 +16,7 @@
 #import "OIUser.h"
 #import "OIUserViewController.h"
 #import "OIApplicationData.h"
+#import "OIUserInfo.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interface
@@ -107,8 +108,7 @@
 }
 
 -(void)buttonCreateAccountPressed {
-  
-  OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
   
   //  BOOL validInput = ([mail length] > 0 && [firstName length] > 0 && [lastName length] > 0 && [password length] > 0);
   //  
@@ -128,8 +128,9 @@
     if ( error ) {
       
       [OIUser accountInfo:@"testuser@gmail.cz" password:@"tajneheslo" usingBlockUser:^(OIUser *user) {
-        appDataManager.currentUser = user;
-        appDataManager.userLogged = YES; 
+        userInfo.firstName = user.firstName;
+        userInfo.lastName = user.lastName;
+        userInfo.userLogged = YES; 
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User already exists: logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
         [alert show];
@@ -146,8 +147,9 @@
     }
     else {
       
-      appDataManager.currentUser = newUser;
-      appDataManager.userLogged = YES;
+      userInfo.firstName = newUser.firstName;
+      userInfo.lastName = newUser.lastName;
+      userInfo.userLogged = YES;
       
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User account created." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
       [alert show];

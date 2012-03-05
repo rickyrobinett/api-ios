@@ -15,6 +15,7 @@
 #import "OIUserLogInView.h"
 #import "OIUserViewController.h"
 #import "OIApplicationData.h"
+#import "OIUserInfo.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interface
@@ -87,13 +88,18 @@
   //    return;
   //  }
 
-  OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
+  NSString *email = @"testuser@gmail.cz";
+  NSString *password = @"tajneheslo";
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
+  userInfo.email = email;
+  userInfo.password = password;
+  
+  [OIUser accountInfo:email password:password usingBlockUser:^(OIUser *user) {
 
-  [OIUser accountInfo:@"testuser@gmail.cz" password:@"tajneheslo" usingBlockUser:^(OIUser *user) {
-
-    appDataManager.currentUser = user;
-    appDataManager.userLogged  = YES;
-
+    userInfo.firstName = user.firstName;
+    userInfo.lastName = user.lastName;
+    userInfo.userLogged = YES;
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User succesfully logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
@@ -104,8 +110,7 @@
 
   }
   usingBlockError:^(NSError *error) {
-    appDataManager.userLogged = NO;
-
+    userInfo.userLogged = NO;
     if ( error ) {
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't log in with entered email and password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
       [alert show];

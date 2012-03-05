@@ -17,6 +17,7 @@
 #import "OINewUserView.h"
 #import "OIApplicationData.h"
 #import "OIAccountNavigatorView.h"
+#import "OIUserInfo.h"
 
 @implementation OIUserViewController {
 @private
@@ -32,8 +33,8 @@
     [self hideButtons:NO];
   }
   else {
-    OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
-    self.title = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString( @"User:", "" ), [[appDataManager currentUser] firstName], [[appDataManager currentUser] lastName]];
+    OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+    self.title = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString( @"User:", "" ), userInfo.firstName, userInfo.lastName];
     [self hideButtons:YES];
 
     CGRect viewRect = CGRectMake(0, 0, 320, 480);
@@ -63,14 +64,13 @@
   
   [__buttonLogIn addTarget:self action:@selector(buttonLogInPressed) forControlEvents:UIControlEventTouchUpInside]; 
   [__buttonNewAccount addTarget:self action:@selector(buttonNewAccountPressed) forControlEvents:UIControlEventTouchUpInside];  
-  
-  OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
-  [self showViews:[appDataManager isUserLogged]];
+
+  [self refresh];
 }
 
-- (void)refresh {
-  OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
-  [self showViews:[appDataManager isUserLogged]];
+- (void)refresh {  
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  [self showViews:userInfo.userLogged];
 }
 
 - (void)hideButtons:(BOOL) hide {

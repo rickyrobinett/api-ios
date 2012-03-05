@@ -180,18 +180,14 @@
   address.state = [__textFieldState text];
   address.phoneNumber = [__textFieldPhone text];
   
-  [[[OIApplicationData sharedInstance] currentUser] addOrChangeAddress:address usingBlock:^void (NSError *error) {
-    
+  [OIAddress addAddress:address usingBlock:^void ( NSError *error ) {
     if(error) {
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Cannot add user address." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
       [alert show];
       [alert release];      
-    }
-    
-    [[self navigationController] popViewControllerAnimated:YES];
-    
+    }    
+    [[self navigationController] popViewControllerAnimated:YES];    
   }];
-  
 }
 
 - (void)animateView:(UITextField *)textField up:(BOOL)up {

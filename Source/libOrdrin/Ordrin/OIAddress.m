@@ -64,6 +64,10 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 #pragma mark -
 #pragma mark Instance methods
 
+- (NSString *)addressAsString {
+  return [NSString stringWithFormat:@"/%@/%@/%@", __postalCode, [__address1 urlEncode], [__city urlEncode]];
+}
+
 - (void)updateAddressWithAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
   NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@", userInfo.email, address.nickname.urlEncode];

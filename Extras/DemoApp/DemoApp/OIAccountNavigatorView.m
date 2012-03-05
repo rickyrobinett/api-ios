@@ -17,6 +17,7 @@
 #import "OIUserViewController.h"
 #import "OIUserAccountSettingsViewController.h"
 #import "OIUserAddressesViewController.h"
+#import "OICardInfo.h"
 
 @implementation OIAccountNavigatorView
 
@@ -82,19 +83,21 @@
   [controller release]; 
 }
 
--(void)buttonCreditCardsPressed {
- 
+- (void)buttonCreditCardsPressed {
+  [OICardInfo loadCreditCardsUsingBlock:^void( NSMutableArray *creditCards ) {
+
+  }];
 }
 
--(void)buttonOrdersPressed {
+- (void)buttonOrdersPressed {
 
 }
 
--(void)buttonPasswordPressed {
+- (void)buttonPasswordPressed {
   
 }
 
--(void)buttonLogOutPressed {
+- (void)buttonLogOutPressed {
   OIApplicationData *appDataManager = [OIApplicationData sharedInstance];
   [appDataManager logout];
   self.hidden = YES;

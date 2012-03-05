@@ -60,19 +60,18 @@
   
   [self.view addSubview:__tableView];
   
-  [[[OIApplicationData sharedInstance] currentUser] loadAddressesUsingBlock:^void (NSError *error) {
+  [OIAddress loadAddressesUsingBlock:^void( NSMutableArray *addresses) {
     
-    if(error) {
+    if ( addresses && addresses.count > 0 ) {
+      OI_RELEASE_SAFELY( __addresses );
+      __addresses = [addresses retain];
+      [self reload];      
+    } else {
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Cannot load user addresses." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]; 
       [alert show];
-      [alert release];      
+      [alert release];            
     }
-    else
-    {
-      __addresses = [[[OIApplicationData sharedInstance] currentUser] addresses];
-      [self reload];
-    }
-  }];
+  }];  
 }
 
 
@@ -93,9 +92,8 @@
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  
-  return [[[[OIApplicationData sharedInstance] currentUser] addresses] count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {  
+  return __addresses.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

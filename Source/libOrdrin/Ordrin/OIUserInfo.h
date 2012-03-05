@@ -23,6 +23,9 @@
 
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) NSString *password;
+@property (nonatomic, retain) NSString *firstName;
+@property (nonatomic, retain) NSString *lastName;
+@property (nonatomic, assign) BOOL userLogged;
 
 #pragma mark -
 #pragma mark Instance methods

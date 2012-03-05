@@ -73,7 +73,7 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 #pragma mark Instance methods
 
 - (void)deliveryCheckToAddress:(OIAddress *)address atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block {
-  NSString *URL = [NSString stringWithFormat:@"%@/dc/%@/%@%@", OIRestaurantBaseURL, self.ID, dateTime, address];
+  NSString *URL = [NSString stringWithFormat:@"%@/dc/%@/%@%@", OIRestaurantBaseURL, self.ID, dateTime, address.addressAsString];
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
   [request setCompletionBlock:^void() {
     NSDictionary *json = [[request responseString] objectFromJSONString];
