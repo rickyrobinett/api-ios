@@ -18,6 +18,9 @@
 @interface LoginView : UIView {
   
 @private
+  UILabel *__emailLabel;
+  UILabel *__passwordLabel;
+  
   UITextField *__emailField;
   UITextField *__passwordField;
 

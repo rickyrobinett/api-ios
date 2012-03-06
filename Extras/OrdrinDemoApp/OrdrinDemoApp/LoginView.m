@@ -30,19 +30,41 @@
 
 #define BUTTON_FRAME              CGRectMake(35, 90, 250, 30)
 
+#define LABEL_FONT                [UIFont systemFontOfSize:14.0]
+#define LABEL_LEFT_PADDING        35
+#define LABEL_WIDTH               80
+#define LABEL_HEIGHT              30
+
+#define EMAIL_LABEL               CGRectMake(LABEL_LEFT_PADDING, 10, LABEL_WIDTH, LABEL_HEIGHT)
+#define PASSWORD_LABEL            CGRectMake(LABEL_LEFT_PADDING, 50, LABEL_WIDTH, LABEL_HEIGHT)
+
 #pragma mark -
 #pragma mark Initializations
 
 - (id)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if ( self ) {
+    __emailLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    __passwordLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    __emailLabel.text = @"Email:";
+    __passwordLabel.text = @"Password:";
+    
+    __emailLabel.textAlignment = __passwordLabel.textAlignment = UITextAlignmentCenter;
+    __emailLabel.font = __passwordLabel.font = LABEL_FONT;
+    
     __emailField = [[UITextField alloc] initWithFrame:CGRectZero];
     __passwordField = [[UITextField alloc] initWithFrame:CGRectZero];
+    __passwordField.secureTextEntry = YES;
+    
     __loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [__loginButton setTitle:@"Login" forState:UIControlStateNormal];
     
     __emailField.borderStyle = __passwordField.borderStyle = UITextBorderStyleRoundedRect;
     __emailField.contentVerticalAlignment = __passwordField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    
+    [self addSubview:__emailLabel];
+    [self addSubview:__passwordLabel];
     
     [self addSubview:__loginButton];
     [self addSubview:__emailField];
@@ -66,6 +88,14 @@
   if ( !CGRectEqualToRect(BUTTON_FRAME, __loginButton.frame)) {
     __loginButton.frame = BUTTON_FRAME;
   }
+  
+  if ( !CGRectEqualToRect(EMAIL_LABEL, __emailLabel.frame) ) {
+    __emailLabel.frame = EMAIL_LABEL;
+  }
+  
+  if ( !CGRectEqualToRect(PASSWORD_LABEL, __passwordLabel.frame) ) {
+    __passwordLabel.frame = PASSWORD_LABEL;
+  }  
 }
 
 #pragma mark -
@@ -73,6 +103,8 @@
 
 - (void)dealloc {
   __loginButton = nil;
+  OI_RELEASE_SAFELY( __emailLabel );  
+  OI_RELEASE_SAFELY( __passwordLabel );    
   OI_RELEASE_SAFELY( __emailField );
   OI_RELEASE_SAFELY( __passwordField );
   

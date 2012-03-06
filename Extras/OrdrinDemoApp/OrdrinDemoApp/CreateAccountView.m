@@ -34,6 +34,16 @@
 #define EMAIL_FIELD_FRAME         CGRectMake(FIELD_LEFT_PADDING, 90, FIELD_WIDTH, FIELD_HEIGHT)
 #define PASSWORD_FIELD_FRAME      CGRectMake(FIELD_LEFT_PADDING, 130, FIELD_WIDTH, FIELD_HEIGHT)
 
+#define LABEL_FONT                [UIFont systemFontOfSize:14.0]
+#define LABEL_LEFT_PADDING        35
+#define LABEL_WIDTH               80
+#define LABEL_HEIGHT              30
+
+#define EMAIL_LABEL_FRAME         CGRectMake(LABEL_LEFT_PADDING, 10, LABEL_WIDTH, LABEL_HEIGHT)
+#define FIRST_NAME_LABEL_FRAME    CGRectMake(LABEL_LEFT_PADDING, 50, LABEL_WIDTH, LABEL_HEIGHT)
+#define LAST_NAME_LABEL_FRAME     CGRectMake(LABEL_LEFT_PADDING, 90, LABEL_WIDTH, LABEL_HEIGHT)
+#define PASSWORD_LABEL_FRAME      CGRectMake(LABEL_LEFT_PADDING, 130, LABEL_WIDTH, LABEL_HEIGHT)
+
 #define CREATE_ACCOUNT_BUTTON     CGRectMake(35, 170, 250, FIELD_HEIGHT)
 
 #pragma mark -
@@ -42,6 +52,20 @@
 - (id)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];  
   if ( self ) {
+    
+    __emailLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    __firstNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    __lastNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    __passwordLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    __emailLabel.textAlignment = __firstNameLabel.textAlignment = __lastNameLabel.textAlignment = __passwordLabel.textAlignment = UITextAlignmentCenter;     
+    __emailLabel.font = __firstNameLabel.font = __lastNameLabel.font = __passwordLabel.font = LABEL_FONT;
+
+    __emailLabel.text = @"Email:";
+    __firstNameLabel.text = @"First name:";
+    __lastNameLabel.text = @"Last name:";
+    __passwordLabel.text = @"Password:";
+    
     __emailField = [[UITextField alloc] initWithFrame:CGRectZero];
     __firstNameField = [[UITextField alloc] initWithFrame:CGRectZero];
     __lastNameField = [[UITextField alloc] initWithFrame:CGRectZero];
@@ -54,6 +78,11 @@
     
     __createAccountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [__createAccountButton setTitle:@"Create Account" forState:UIControlStateNormal];
+    
+    [self addSubview:__emailLabel];
+    [self addSubview:__firstNameLabel];
+    [self addSubview:__lastNameLabel];
+    [self addSubview:__passwordLabel];
     
     [self addSubview:__createAccountButton];
     [self addSubview:__emailField];
@@ -90,6 +119,23 @@
   if ( !CGRectEqualToRect(CREATE_ACCOUNT_BUTTON, __createAccountButton.frame) ) {
     __createAccountButton.frame = CREATE_ACCOUNT_BUTTON;
   }
+  
+  if ( !CGRectEqualToRect(EMAIL_LABEL_FRAME, __emailLabel.frame)) {
+    __emailLabel.frame = EMAIL_LABEL_FRAME;
+  }
+  
+  if ( !CGRectEqualToRect(FIRST_NAME_LABEL_FRAME, __firstNameLabel.frame)) {
+    __firstNameLabel.frame = FIRST_NAME_LABEL_FRAME;
+  }
+  
+  if ( !CGRectEqualToRect(LAST_NAME_LABEL_FRAME, __lastNameLabel.frame)) {
+    __lastNameLabel.frame = LAST_NAME_LABEL_FRAME;
+  }
+
+  if ( !CGRectEqualToRect(PASSWORD_LABEL_FRAME, __passwordLabel.frame)) {
+    __passwordLabel.frame = PASSWORD_LABEL_FRAME;
+  }
+  
 }
 
 #pragma mark -
@@ -101,6 +147,11 @@
   OI_RELEASE_SAFELY( __firstNameField );
   OI_RELEASE_SAFELY( __lastNameField );
   OI_RELEASE_SAFELY( __passwordField );
+
+  OI_RELEASE_SAFELY( __emailLabel );
+  OI_RELEASE_SAFELY( __firstNameLabel );
+  OI_RELEASE_SAFELY( __lastNameLabel );
+  OI_RELEASE_SAFELY( __passwordLabel );
   
   [super dealloc];
 }

@@ -18,6 +18,11 @@
 @interface CreateAccountView : UIView {
 
 @private
+  UILabel *__emailLabel;
+  UILabel *__firstNameLabel;
+  UILabel *__lastNameLabel;
+  UILabel *__passwordLabel;
+  
   UITextField *__emailField;
   UITextField *__firstNameField;
   UITextField *__lastNameField;
