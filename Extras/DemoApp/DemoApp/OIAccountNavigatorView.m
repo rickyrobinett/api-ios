@@ -102,8 +102,7 @@
   [appDataManager logout];
   self.hidden = YES;
   UIViewController* viewController = (UIViewController*) [[self superview] nextResponder]; 
-  [(OIUserViewController*)viewController refresh];
-  
+  [(OIUserViewController*)viewController refresh];  
 }
 
 #pragma mark -

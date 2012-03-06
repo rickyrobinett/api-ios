@@ -42,7 +42,7 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
   NSString *__state;
   NSNumber *__postalCode;
   NSString *__phoneNumber;
-  NSString *__userId;
+  NSString *__userId;  
 }
 
 @synthesize nickname      = __nickname;
@@ -255,12 +255,12 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 }
 
 + (OIAddress *)addressWithStreet:(NSString *)street city:(NSString *)city postalCode:(NSNumber *)postalCode {
-  OIAddress *address = [[OIAddress alloc] init];
+  OIAddress *address = [[[OIAddress alloc] init] autorelease];
   address.address1 = street;
   address.city = city;
   address.postalCode = postalCode;
   
-  return [address autorelease];
+  return address;
 }
 
 @end

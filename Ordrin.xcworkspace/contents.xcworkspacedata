@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Source/libOrdrin/Ordrin.xcodeproj">
+      location = "group:Extras/DemoApp/DemoApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Extras/DemoApp/DemoApp.xcodeproj">
+      location = "group:Extras/OrdrinDemoApp/OrdrinDemoApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Source/libOrdrin/Ordrin.xcodeproj">
    </FileRef>
 </Workspace>

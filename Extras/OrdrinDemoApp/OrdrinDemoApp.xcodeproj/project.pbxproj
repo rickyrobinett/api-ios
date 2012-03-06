@@ -1,0 +1,394 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		341EF2AE1505F6C2003C0C17 /* RestaurantListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2AD1505F6C2003C0C17 /* RestaurantListDataSource.m */; };
+		341EF2B21505F87A003C0C17 /* RestaurantListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2B11505F87A003C0C17 /* RestaurantListModel.m */; };
+		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
+		34E9E6681505EF9300D502A6 /* RestaurantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */; };
+		34E9E66C1505F07800D502A6 /* RestaurantListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E66B1505F07800D502A6 /* RestaurantListView.m */; };
+		34F34EE81504C8E900DC2735 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F34EE71504C8E900DC2735 /* UIKit.framework */; };
+		34F34EEA1504C8E900DC2735 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F34EE91504C8E900DC2735 /* Foundation.framework */; };
+		34F34EEC1504C8E900DC2735 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F34EEB1504C8E900DC2735 /* CoreGraphics.framework */; };
+		34F34EF21504C8E900DC2735 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34F34EF01504C8E900DC2735 /* InfoPlist.strings */; };
+		34F34EF41504C8E900DC2735 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F34EF31504C8E900DC2735 /* main.m */; };
+		34F34EF81504C8E900DC2735 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F34EF71504C8E900DC2735 /* AppDelegate.m */; };
+		34F34F201504CE4900DC2735 /* AddressFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F34F1F1504CE4900DC2735 /* AddressFormViewController.m */; };
+		34F34F241504CFF600DC2735 /* AddressFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F34F231504CFF600DC2735 /* AddressFormView.m */; };
+		34F34F261504F11D00DC2735 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F34F251504F11D00DC2735 /* MobileCoreServices.framework */; };
+		34F34F281504F12400DC2735 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F34F271504F12400DC2735 /* CFNetwork.framework */; };
+		34F34F2A1504F12F00DC2735 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F34F291504F12F00DC2735 /* SystemConfiguration.framework */; };
+		34F34F2C1504F14700DC2735 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F34F2B1504F14700DC2735 /* libz.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		341EF2AC1505F6C2003C0C17 /* RestaurantListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListDataSource.h; sourceTree = "<group>"; };
+		341EF2AD1505F6C2003C0C17 /* RestaurantListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListDataSource.m; sourceTree = "<group>"; };
+		341EF2B01505F87A003C0C17 /* RestaurantListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListModel.h; sourceTree = "<group>"; };
+		341EF2B11505F87A003C0C17 /* RestaurantListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListModel.m; sourceTree = "<group>"; };
+		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
+		34D17F0B1505054400BE4037 /* OrdrinDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OrdrinDemo.h; path = ../OrdrinDemo.h; sourceTree = "<group>"; };
+		34E9E6661505EF9300D502A6 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
+		34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListViewController.m; sourceTree = "<group>"; };
+		34E9E66A1505F07800D502A6 /* RestaurantListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListView.h; sourceTree = "<group>"; };
+		34E9E66B1505F07800D502A6 /* RestaurantListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListView.m; sourceTree = "<group>"; };
+		34F34EE31504C8E900DC2735 /* OrdrinDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrdrinDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		34F34EE71504C8E900DC2735 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		34F34EE91504C8E900DC2735 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		34F34EEB1504C8E900DC2735 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		34F34EEF1504C8E900DC2735 /* OrdrinDemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OrdrinDemoApp-Info.plist"; sourceTree = "<group>"; };
+		34F34EF11504C8E900DC2735 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		34F34EF31504C8E900DC2735 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		34F34EF51504C8E900DC2735 /* OrdrinDemoApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OrdrinDemoApp-Prefix.pch"; sourceTree = "<group>"; };
+		34F34EF61504C8E900DC2735 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		34F34EF71504C8E900DC2735 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		34F34F1E1504CE4900DC2735 /* AddressFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressFormViewController.h; sourceTree = "<group>"; };
+		34F34F1F1504CE4900DC2735 /* AddressFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressFormViewController.m; sourceTree = "<group>"; };
+		34F34F221504CFF600DC2735 /* AddressFormView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressFormView.h; sourceTree = "<group>"; };
+		34F34F231504CFF600DC2735 /* AddressFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressFormView.m; sourceTree = "<group>"; };
+		34F34F251504F11D00DC2735 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		34F34F271504F12400DC2735 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		34F34F291504F12F00DC2735 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		34F34F2B1504F14700DC2735 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		34F34EE01504C8E900DC2735 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */,
+				34F34F2C1504F14700DC2735 /* libz.dylib in Frameworks */,
+				34F34F2A1504F12F00DC2735 /* SystemConfiguration.framework in Frameworks */,
+				34F34F281504F12400DC2735 /* CFNetwork.framework in Frameworks */,
+				34F34F261504F11D00DC2735 /* MobileCoreServices.framework in Frameworks */,
+				34F34EE81504C8E900DC2735 /* UIKit.framework in Frameworks */,
+				34F34EEA1504C8E900DC2735 /* Foundation.framework in Frameworks */,
+				34F34EEC1504C8E900DC2735 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		341EF2AA1505F6AE003C0C17 /* RestaurantListDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				341EF2AC1505F6C2003C0C17 /* RestaurantListDataSource.h */,
+				341EF2AD1505F6C2003C0C17 /* RestaurantListDataSource.m */,
+			);
+			name = RestaurantListDataSource;
+			sourceTree = "<group>";
+		};
+		341EF2AF1505F867003C0C17 /* RestaurantListModel */ = {
+			isa = PBXGroup;
+			children = (
+				341EF2B01505F87A003C0C17 /* RestaurantListModel.h */,
+				341EF2B11505F87A003C0C17 /* RestaurantListModel.m */,
+			);
+			name = RestaurantListModel;
+			sourceTree = "<group>";
+		};
+		34E9E6651505EF6E00D502A6 /* RestaurantListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				341EF2AF1505F867003C0C17 /* RestaurantListModel */,
+				341EF2AA1505F6AE003C0C17 /* RestaurantListDataSource */,
+				34E9E6691505F06100D502A6 /* RestaurantListView */,
+				34E9E6661505EF9300D502A6 /* RestaurantListViewController.h */,
+				34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */,
+			);
+			name = RestaurantListViewController;
+			sourceTree = "<group>";
+		};
+		34E9E6691505F06100D502A6 /* RestaurantListView */ = {
+			isa = PBXGroup;
+			children = (
+				34E9E66A1505F07800D502A6 /* RestaurantListView.h */,
+				34E9E66B1505F07800D502A6 /* RestaurantListView.m */,
+			);
+			name = RestaurantListView;
+			sourceTree = "<group>";
+		};
+		34F34ED81504C8E900DC2735 = {
+			isa = PBXGroup;
+			children = (
+				34F34EED1504C8E900DC2735 /* OrdrinDemoApp */,
+				34F34EE61504C8E900DC2735 /* Frameworks */,
+				34F34EE41504C8E900DC2735 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		34F34EE41504C8E900DC2735 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				34F34EE31504C8E900DC2735 /* OrdrinDemoApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		34F34EE61504C8E900DC2735 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				34D17F091505027C00BE4037 /* libOrdrin.a */,
+				34F34F2B1504F14700DC2735 /* libz.dylib */,
+				34F34F291504F12F00DC2735 /* SystemConfiguration.framework */,
+				34F34F271504F12400DC2735 /* CFNetwork.framework */,
+				34F34F251504F11D00DC2735 /* MobileCoreServices.framework */,
+				34F34EE71504C8E900DC2735 /* UIKit.framework */,
+				34F34EE91504C8E900DC2735 /* Foundation.framework */,
+				34F34EEB1504C8E900DC2735 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34F34EED1504C8E900DC2735 /* OrdrinDemoApp */ = {
+			isa = PBXGroup;
+			children = (
+				34D17F0B1505054400BE4037 /* OrdrinDemo.h */,
+				34F34F171504CD4D00DC2735 /* UI */,
+				34F34EF61504C8E900DC2735 /* AppDelegate.h */,
+				34F34EF71504C8E900DC2735 /* AppDelegate.m */,
+				34F34EEE1504C8E900DC2735 /* Supporting Files */,
+			);
+			path = OrdrinDemoApp;
+			sourceTree = "<group>";
+		};
+		34F34EEE1504C8E900DC2735 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				34F34EEF1504C8E900DC2735 /* OrdrinDemoApp-Info.plist */,
+				34F34EF01504C8E900DC2735 /* InfoPlist.strings */,
+				34F34EF31504C8E900DC2735 /* main.m */,
+				34F34EF51504C8E900DC2735 /* OrdrinDemoApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		34F34F171504CD4D00DC2735 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				34F34F191504CD5400DC2735 /* Restaurants */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		34F34F191504CD5400DC2735 /* Restaurants */ = {
+			isa = PBXGroup;
+			children = (
+				34E9E6651505EF6E00D502A6 /* RestaurantListViewController */,
+				34F34F1A1504CDC300DC2735 /* AddressFormViewController */,
+			);
+			name = Restaurants;
+			sourceTree = "<group>";
+		};
+		34F34F1A1504CDC300DC2735 /* AddressFormViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34F34F211504CECC00DC2735 /* AddressFormView */,
+				34F34F1E1504CE4900DC2735 /* AddressFormViewController.h */,
+				34F34F1F1504CE4900DC2735 /* AddressFormViewController.m */,
+			);
+			name = AddressFormViewController;
+			sourceTree = "<group>";
+		};
+		34F34F211504CECC00DC2735 /* AddressFormView */ = {
+			isa = PBXGroup;
+			children = (
+				34F34F221504CFF600DC2735 /* AddressFormView.h */,
+				34F34F231504CFF600DC2735 /* AddressFormView.m */,
+			);
+			name = AddressFormView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		34F34EE21504C8E900DC2735 /* OrdrinDemoApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34F34EFB1504C8E900DC2735 /* Build configuration list for PBXNativeTarget "OrdrinDemoApp" */;
+			buildPhases = (
+				34F34EDF1504C8E900DC2735 /* Sources */,
+				34F34EE01504C8E900DC2735 /* Frameworks */,
+				34F34EE11504C8E900DC2735 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OrdrinDemoApp;
+			productName = OrdrinDemoApp;
+			productReference = 34F34EE31504C8E900DC2735 /* OrdrinDemoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		34F34EDA1504C8E900DC2735 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 34F34EDD1504C8E900DC2735 /* Build configuration list for PBXProject "OrdrinDemoApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 34F34ED81504C8E900DC2735;
+			productRefGroup = 34F34EE41504C8E900DC2735 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				34F34EE21504C8E900DC2735 /* OrdrinDemoApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		34F34EE11504C8E900DC2735 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34F34EF21504C8E900DC2735 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		34F34EDF1504C8E900DC2735 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34F34EF41504C8E900DC2735 /* main.m in Sources */,
+				34F34EF81504C8E900DC2735 /* AppDelegate.m in Sources */,
+				34F34F201504CE4900DC2735 /* AddressFormViewController.m in Sources */,
+				34F34F241504CFF600DC2735 /* AddressFormView.m in Sources */,
+				34E9E6681505EF9300D502A6 /* RestaurantListViewController.m in Sources */,
+				34E9E66C1505F07800D502A6 /* RestaurantListView.m in Sources */,
+				341EF2AE1505F6C2003C0C17 /* RestaurantListDataSource.m in Sources */,
+				341EF2B21505F87A003C0C17 /* RestaurantListModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		34F34EF01504C8E900DC2735 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34F34EF11504C8E900DC2735 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		34F34EF91504C8E900DC2735 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		34F34EFA1504C8E900DC2735 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		34F34EFC1504C8E900DC2735 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OrdrinDemoApp/OrdrinDemoApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin;
+				INFOPLIST_FILE = "OrdrinDemoApp/OrdrinDemoApp-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		34F34EFD1504C8E900DC2735 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OrdrinDemoApp/OrdrinDemoApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = ../../Source/libOrdrin/Ordrin;
+				INFOPLIST_FILE = "OrdrinDemoApp/OrdrinDemoApp-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		34F34EDD1504C8E900DC2735 /* Build configuration list for PBXProject "OrdrinDemoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34F34EF91504C8E900DC2735 /* Debug */,
+				34F34EFA1504C8E900DC2735 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34F34EFB1504C8E900DC2735 /* Build configuration list for PBXNativeTarget "OrdrinDemoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34F34EFC1504C8E900DC2735 /* Debug */,
+				34F34EFD1504C8E900DC2735 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 34F34EDA1504C8E900DC2735 /* Project object */;
+}

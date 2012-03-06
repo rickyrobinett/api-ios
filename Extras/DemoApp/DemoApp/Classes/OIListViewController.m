@@ -52,7 +52,6 @@
   OIAddress *address = [OIAddress addressWithStreet:@"1 Main St"
                                                city:@"College Station"
                                          postalCode:[NSNumber numberWithInt:77840]];
-
   // You can use [OIDateTime dateTime:[NSDate date] or [OIDateTime dateTimeASAP]
 
   [OIRestaurant restaurantsNearAddress:address availableAt:[OIDateTime dateTime:[NSDate date]] usingBlock:^void(NSArray *restaurants) {
