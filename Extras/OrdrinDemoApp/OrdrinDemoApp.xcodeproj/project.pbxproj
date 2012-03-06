@@ -12,6 +12,9 @@
 		341EF2B61506187B003C0C17 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2B51506187B003C0C17 /* RestaurantDetailViewController.m */; };
 		341EF2BA150620D7003C0C17 /* RestaurantDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2B9150620D7003C0C17 /* RestaurantDetailView.m */; };
 		341EF2BE15062325003C0C17 /* RestaurantDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2BD15062325003C0C17 /* RestaurantDetailDataSource.m */; };
+		341EF2C215063F3B003C0C17 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2C115063F3B003C0C17 /* AccountViewController.m */; };
+		341EF2C7150640CC003C0C17 /* AccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2C6150640CC003C0C17 /* AccountView.m */; };
+		341EF2CC15064DD3003C0C17 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2CB15064DD3003C0C17 /* LoginView.m */; };
 		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
 		34E9E6681505EF9300D502A6 /* RestaurantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */; };
 		34E9E66C1505F07800D502A6 /* RestaurantListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E66B1505F07800D502A6 /* RestaurantListView.m */; };
@@ -40,6 +43,12 @@
 		341EF2B9150620D7003C0C17 /* RestaurantDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailView.m; sourceTree = "<group>"; };
 		341EF2BC15062325003C0C17 /* RestaurantDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailDataSource.h; sourceTree = "<group>"; };
 		341EF2BD15062325003C0C17 /* RestaurantDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailDataSource.m; sourceTree = "<group>"; };
+		341EF2C015063F3B003C0C17 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
+		341EF2C115063F3B003C0C17 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
+		341EF2C5150640CC003C0C17 /* AccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountView.h; sourceTree = "<group>"; };
+		341EF2C6150640CC003C0C17 /* AccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountView.m; sourceTree = "<group>"; };
+		341EF2CA15064DD3003C0C17 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		341EF2CB15064DD3003C0C17 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
 		34D17F0B1505054400BE4037 /* OrdrinDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OrdrinDemo.h; path = ../OrdrinDemo.h; sourceTree = "<group>"; };
 		34E9E6661505EF9300D502A6 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
@@ -135,8 +144,46 @@
 		341EF2BF150632BA003C0C17 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				341EF2C31506408E003C0C17 /* AccountViewController */,
 			);
 			name = User;
+			sourceTree = "<group>";
+		};
+		341EF2C31506408E003C0C17 /* AccountViewController */ = {
+			isa = PBXGroup;
+			children = (
+				341EF2C4150640AE003C0C17 /* AccountView */,
+				341EF2C015063F3B003C0C17 /* AccountViewController.h */,
+				341EF2C115063F3B003C0C17 /* AccountViewController.m */,
+			);
+			name = AccountViewController;
+			sourceTree = "<group>";
+		};
+		341EF2C4150640AE003C0C17 /* AccountView */ = {
+			isa = PBXGroup;
+			children = (
+				341EF2C915064DB4003C0C17 /* CreateAccountView */,
+				341EF2C815064DAB003C0C17 /* LoginView */,
+				341EF2C5150640CC003C0C17 /* AccountView.h */,
+				341EF2C6150640CC003C0C17 /* AccountView.m */,
+			);
+			name = AccountView;
+			sourceTree = "<group>";
+		};
+		341EF2C815064DAB003C0C17 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				341EF2CA15064DD3003C0C17 /* LoginView.h */,
+				341EF2CB15064DD3003C0C17 /* LoginView.m */,
+			);
+			name = LoginView;
+			sourceTree = "<group>";
+		};
+		341EF2C915064DB4003C0C17 /* CreateAccountView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CreateAccountView;
 			sourceTree = "<group>";
 		};
 		34E9E6651505EF6E00D502A6 /* RestaurantListViewController */ = {
@@ -325,6 +372,9 @@
 				341EF2B61506187B003C0C17 /* RestaurantDetailViewController.m in Sources */,
 				341EF2BA150620D7003C0C17 /* RestaurantDetailView.m in Sources */,
 				341EF2BE15062325003C0C17 /* RestaurantDetailDataSource.m in Sources */,
+				341EF2C215063F3B003C0C17 /* AccountViewController.m in Sources */,
+				341EF2C7150640CC003C0C17 /* AccountView.m in Sources */,
+				341EF2CC15064DD3003C0C17 /* LoginView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

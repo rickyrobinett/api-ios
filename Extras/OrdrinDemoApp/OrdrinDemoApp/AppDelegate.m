@@ -17,6 +17,7 @@
 #import "AddressFormViewController.h"
 #import "OICore.h"
 #import "OrdrinDemo.h"
+#import "AccountViewController.h"
 
 @implementation AppDelegate
 
@@ -33,16 +34,21 @@
   self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
   self.window.backgroundColor = [UIColor whiteColor];
     
+  AccountViewController *accountViewController = [[AccountViewController alloc] init];
   AddressFormViewController *addressFormViewController = [[AddressFormViewController alloc] init];
-  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addressFormViewController];
+  
+  UINavigationController *accountNavController = [[UINavigationController alloc] initWithRootViewController:accountViewController];  
+  UINavigationController *addressNavController = [[UINavigationController alloc] initWithRootViewController:addressFormViewController];
   
   UITabBarController *tabBarController = [[UITabBarController alloc] init];
-  tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, nil];
+  tabBarController.viewControllers = [NSArray arrayWithObjects:addressNavController, accountNavController, nil];
   
   self.window.rootViewController = tabBarController;
   [self.window makeKeyAndVisible];
   
-  OI_RELEASE_SAFELY( navigationController );
+  OI_RELEASE_SAFELY( accountViewController );
+  OI_RELEASE_SAFELY( accountNavController );  
+  OI_RELEASE_SAFELY( addressNavController );
   OI_RELEASE_SAFELY( addressFormViewController );
   OI_RELEASE_SAFELY( tabBarController );
   

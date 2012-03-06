@@ -40,7 +40,7 @@
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  if ( !CGRectEqualToRect(self.frame, __tableView.frame)) {
+  if ( !CGRectEqualToRect(self.frame, __tableView.frame) ) {
     __tableView.frame = self.frame;
   }
 }

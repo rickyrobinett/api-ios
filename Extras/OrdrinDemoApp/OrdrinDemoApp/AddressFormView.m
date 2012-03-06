@@ -56,6 +56,7 @@
   if ( self ) {
     
     __findButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [__findButton setTitle:@"Search" forState:UIControlStateNormal];
     
     __streetField = [[UITextField alloc] initWithFrame:CGRectZero];
     __cityField = [[UITextField alloc] initWithFrame:CGRectZero];
