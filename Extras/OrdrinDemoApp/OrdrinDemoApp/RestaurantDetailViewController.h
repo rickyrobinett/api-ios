@@ -18,14 +18,16 @@
 @class OIRestaurant;
 @class RestaurantDetailView;
 @class RestaurantDetailDataSource;
+@class OIDelivery;
 
-@interface RestaurantDetailViewController : UIViewController {
+@interface RestaurantDetailViewController : UIViewController <UITableViewDelegate>{
   
 @private
   OIRestaurant *__restaurant;
+  OIDelivery *__delivery;
   RestaurantDetailView *__restaurantDetailView;
   RestaurantDetailDataSource *__restaurantDetailDataSource;
 }
 
-- (id)initWithRestaurant:(OIRestaurant *)restaurant;
+- (id)initWithRestaurant:(OIRestaurant *)restaurant delivery:(OIDelivery *)delivery;
 @end

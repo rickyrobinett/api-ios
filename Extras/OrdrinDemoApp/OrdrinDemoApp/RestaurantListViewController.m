@@ -22,6 +22,7 @@
 #import "OIRestaurantBase.h"
 #import "OIRestaurant.h"
 #import "RestaurantDetailViewController.h"
+#import "OIDateTime.h"
 
 @interface RestaurantListViewController (Private)
 - (void)reloadTableView;
@@ -70,9 +71,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   OIRestaurantBase *restaurantBase = [__restaurantDataSource.model.items objectAtIndex:indexPath.row]; 
   [OIRestaurant createRestaurantByRestaurantBase:restaurantBase usingBlock:^void( OIRestaurant *restaurant ) {
-    RestaurantDetailViewController *detailViewController = [[RestaurantDetailViewController alloc] initWithRestaurant:restaurant];    
-    [self.navigationController pushViewController:detailViewController animated:YES];    
-    OI_RELEASE_SAFELY( detailViewController );
+    [restaurant deliveryCheckToAddress:restaurant.address atTime:[OIDateTime dateTimeASAP] usingBlock:^void ( OIDelivery *delivery ){   
+      RestaurantDetailViewController *detailViewController = [[RestaurantDetailViewController alloc] initWithRestaurant:restaurant delivery:delivery];
+      [self.navigationController pushViewController:detailViewController animated:YES];    
+      OI_RELEASE_SAFELY( detailViewController );      
+    }];    
   }];
 }
 

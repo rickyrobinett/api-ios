@@ -132,6 +132,13 @@
 			name = RestaurantDetailDataSource;
 			sourceTree = "<group>";
 		};
+		341EF2BF150632BA003C0C17 /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 		34E9E6651505EF6E00D502A6 /* RestaurantListViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +218,7 @@
 		34F34F171504CD4D00DC2735 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				341EF2BF150632BA003C0C17 /* User */,
 				34F34F191504CD5400DC2735 /* Restaurants */,
 			);
 			name = UI;

@@ -20,6 +20,7 @@
 #import "RestaurantDetailDataSource.h"
 #import "OIDelivery.h"
 #import "OIDateTime.h"
+#import "OIDelivery.h"
 
 @interface RestaurantDetailViewController (Private)
 - (void)createModel;
@@ -30,11 +31,12 @@
 #pragma mark -
 #pragma mark Initializations
 
-- (id)initWithRestaurant:(OIRestaurant *)restaurant {
+- (id)initWithRestaurant:(OIRestaurant *)restaurant delivery:(OIDelivery *)delivery {
   self = [super init];
   if ( self ) {
-    self.title = @"Detail";
+    self.title = restaurant.name;
     __restaurant = [restaurant retain];
+    __delivery = [delivery retain];
   }
   
   return self;
@@ -47,6 +49,7 @@
   [super loadView];
   
   __restaurantDetailView = [[RestaurantDetailView alloc] init];
+  __restaurantDetailView.tableView.delegate = self;
   self.view = __restaurantDetailView;
   
   [self createModel];
@@ -59,11 +62,23 @@
 }
 
 #pragma mark -
+#pragma mark UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  if ( [__delivery isAvailable] == NO ) {
+    return 58.0f;
+  }
+  
+  return 44.0f;
+}
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)releaseWithDealloc:(BOOL)dealloc {  
   OI_RELEASE_SAFELY( __restaurantDetailView );
   if ( dealloc ) {
+    OI_RELEASE_SAFELY( __delivery );
     OI_RELEASE_SAFELY( __restaurant );
     OI_RELEASE_SAFELY( __restaurantDetailDataSource );
   }  
@@ -83,10 +98,8 @@
 @implementation RestaurantDetailViewController (Private)
 
 - (void)createModel {
-  [__restaurant deliveryCheckToAddress:__restaurant.address atTime:[OIDateTime dateTimeASAP] usingBlock:^void ( OIDelivery *delivery ){   
-    __restaurantDetailDataSource = [[RestaurantDetailDataSource alloc] initWithRestaurant:__restaurant delivery:delivery];
-    __restaurantDetailView.tableView.dataSource = __restaurantDetailDataSource;  
-  }];  
+  __restaurantDetailDataSource = [[RestaurantDetailDataSource alloc] initWithRestaurant:__restaurant delivery:__delivery];
+  __restaurantDetailView.tableView.dataSource = __restaurantDetailDataSource;      
 }
 
 @end
