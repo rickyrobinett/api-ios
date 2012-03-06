@@ -17,6 +17,7 @@
 #import "AccountView.h"
 #import "OICore.h"
 #import "LoginView.h"
+#import "CreateAccountView.h"
 
 @interface AccountViewController (Private)
 - (void)hideKeyboardForLoginViewIfNeeded;
@@ -58,8 +59,11 @@
   self.view = __accountView;
 }
 
+#pragma mark -
+#pragma mark Events
+
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  
+  [self hideKeyboard];
 }
 
 #pragma mark -
@@ -83,7 +87,8 @@
 @implementation AccountViewController (UserAction)
 
 - (void)showCreateAccountView {
-  [__accountView showCreateAccountView];  
+  [__accountView showCreateAccountView];
+  [__accountView.createAccountView.createAccountButton addTarget:self action:@selector(createAccountButtonDidPress) forControlEvents:UIControlEventTouchDown];
 }
 
 - (void)showLoginView {
@@ -114,7 +119,12 @@
 }
 
 - (void)hideKeyboardForCreateAccountViewIfNeeded {
-  
+  if ( __accountView.createAccountView ) {
+    [__accountView.createAccountView.firstNameField resignFirstResponder];
+    [__accountView.createAccountView.lastNameField resignFirstResponder];
+    [__accountView.createAccountView.emailField resignFirstResponder];
+    [__accountView.createAccountView.passwordField resignFirstResponder];
+  }
 }
 
 - (void)hideKeyboard {

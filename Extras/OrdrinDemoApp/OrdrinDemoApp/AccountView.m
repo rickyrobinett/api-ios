@@ -15,6 +15,7 @@
 
 #import "AccountView.h"
 #import "LoginView.h"
+#import "CreateAccountView.h"
 #import "OICore.h"
 
 #define BUTTON_WIDTH                250
@@ -32,6 +33,7 @@
 
 @implementation AccountView
 
+@synthesize createAccountView   = __createAccountView;
 @synthesize loginView           = __loginView;
 @synthesize createAccountButton = __createAccountButton;
 @synthesize loginButton         = __loginButton;
@@ -75,6 +77,11 @@
 
 - (void)showCreateAccountView {
   [self removeLoginViewIfNeeded];
+  
+  if ( !__createAccountView ) {
+    __createAccountView = [[CreateAccountView alloc] initWithFrame:SUBVIEW_FRAME];
+    [self addSubview:__createAccountView];
+  }
 }
 
 - (void)showLoginView {
@@ -94,6 +101,7 @@
   __createAccountButton = nil;
   __loginButton = nil;
   [self removeLoginViewIfNeeded];
+  [self removeCreateAccountViewIfNeeded];
   
   [super dealloc];
 }
@@ -106,6 +114,10 @@
 @implementation AccountView (Private)
 
 - (void)removeCreateAccountViewIfNeeded {
+  if ( __createAccountView ) {
+    [__createAccountView removeFromSuperview];
+    OI_RELEASE_SAFELY( __createAccountView );
+  }
 }
 
 - (void)removeLoginViewIfNeeded {

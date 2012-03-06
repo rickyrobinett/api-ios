@@ -15,6 +15,7 @@
 		341EF2C215063F3B003C0C17 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2C115063F3B003C0C17 /* AccountViewController.m */; };
 		341EF2C7150640CC003C0C17 /* AccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2C6150640CC003C0C17 /* AccountView.m */; };
 		341EF2CC15064DD3003C0C17 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2CB15064DD3003C0C17 /* LoginView.m */; };
+		346DDC2A1506863F0050FBC7 /* CreateAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 346DDC291506863F0050FBC7 /* CreateAccountView.m */; };
 		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
 		34E9E6681505EF9300D502A6 /* RestaurantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */; };
 		34E9E66C1505F07800D502A6 /* RestaurantListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E66B1505F07800D502A6 /* RestaurantListView.m */; };
@@ -49,6 +50,8 @@
 		341EF2C6150640CC003C0C17 /* AccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountView.m; sourceTree = "<group>"; };
 		341EF2CA15064DD3003C0C17 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		341EF2CB15064DD3003C0C17 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		346DDC281506863F0050FBC7 /* CreateAccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountView.h; sourceTree = "<group>"; };
+		346DDC291506863F0050FBC7 /* CreateAccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountView.m; sourceTree = "<group>"; };
 		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
 		34D17F0B1505054400BE4037 /* OrdrinDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OrdrinDemo.h; path = ../OrdrinDemo.h; sourceTree = "<group>"; };
 		34E9E6661505EF9300D502A6 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
@@ -152,6 +155,7 @@
 		341EF2C31506408E003C0C17 /* AccountViewController */ = {
 			isa = PBXGroup;
 			children = (
+				346DDC261506862D0050FBC7 /* CreateAccountView */,
 				341EF2C4150640AE003C0C17 /* AccountView */,
 				341EF2C015063F3B003C0C17 /* AccountViewController.h */,
 				341EF2C115063F3B003C0C17 /* AccountViewController.m */,
@@ -182,6 +186,15 @@
 		341EF2C915064DB4003C0C17 /* CreateAccountView */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			name = CreateAccountView;
+			sourceTree = "<group>";
+		};
+		346DDC261506862D0050FBC7 /* CreateAccountView */ = {
+			isa = PBXGroup;
+			children = (
+				346DDC281506863F0050FBC7 /* CreateAccountView.h */,
+				346DDC291506863F0050FBC7 /* CreateAccountView.m */,
 			);
 			name = CreateAccountView;
 			sourceTree = "<group>";
@@ -375,6 +388,7 @@
 				341EF2C215063F3B003C0C17 /* AccountViewController.m in Sources */,
 				341EF2C7150640CC003C0C17 /* AccountView.m in Sources */,
 				341EF2CC15064DD3003C0C17 /* LoginView.m in Sources */,
+				346DDC2A1506863F0050FBC7 /* CreateAccountView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

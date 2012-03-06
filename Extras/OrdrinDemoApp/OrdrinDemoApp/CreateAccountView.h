@@ -15,25 +15,21 @@
 
 #import <UIKit/UIKit.h>
 
-@class LoginView;
-@class CreateAccountView;
+@interface CreateAccountView : UIView {
 
-@interface AccountView : UIView {
-  
 @private
-  UIButton *__createAccountButton;
-  UIButton *__loginButton;
+  UITextField *__emailField;
+  UITextField *__firstNameField;
+  UITextField *__lastNameField;
+  UITextField *__passwordField;
   
-  LoginView *__loginView;
-  CreateAccountView *__createAccountView;
+  UIButton *__createAccountButton;
 }
 
-- (void)showCreateAccountView;
-- (void)showLoginView;
-
-@property (nonatomic, readonly) LoginView *loginView;
-@property (nonatomic, readonly) CreateAccountView *createAccountView;
 @property (nonatomic, readonly) UIButton *createAccountButton;
-@property (nonatomic, readonly) UIButton *loginButton;
+@property (nonatomic, readonly) UITextField *emailField;
+@property (nonatomic, readonly) UITextField *firstNameField;
+@property (nonatomic, readonly) UITextField *lastNameField;
+@property (nonatomic, readonly) UITextField *passwordField;
 
 @end
