@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		341EF2AE1505F6C2003C0C17 /* RestaurantListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2AD1505F6C2003C0C17 /* RestaurantListDataSource.m */; };
 		341EF2B21505F87A003C0C17 /* RestaurantListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2B11505F87A003C0C17 /* RestaurantListModel.m */; };
+		341EF2B61506187B003C0C17 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2B51506187B003C0C17 /* RestaurantDetailViewController.m */; };
+		341EF2BA150620D7003C0C17 /* RestaurantDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2B9150620D7003C0C17 /* RestaurantDetailView.m */; };
+		341EF2BE15062325003C0C17 /* RestaurantDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2BD15062325003C0C17 /* RestaurantDetailDataSource.m */; };
 		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
 		34E9E6681505EF9300D502A6 /* RestaurantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */; };
 		34E9E66C1505F07800D502A6 /* RestaurantListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E66B1505F07800D502A6 /* RestaurantListView.m */; };
@@ -31,6 +34,12 @@
 		341EF2AD1505F6C2003C0C17 /* RestaurantListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListDataSource.m; sourceTree = "<group>"; };
 		341EF2B01505F87A003C0C17 /* RestaurantListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListModel.h; sourceTree = "<group>"; };
 		341EF2B11505F87A003C0C17 /* RestaurantListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListModel.m; sourceTree = "<group>"; };
+		341EF2B41506187B003C0C17 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
+		341EF2B51506187B003C0C17 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
+		341EF2B8150620D7003C0C17 /* RestaurantDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailView.h; sourceTree = "<group>"; };
+		341EF2B9150620D7003C0C17 /* RestaurantDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailView.m; sourceTree = "<group>"; };
+		341EF2BC15062325003C0C17 /* RestaurantDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailDataSource.h; sourceTree = "<group>"; };
+		341EF2BD15062325003C0C17 /* RestaurantDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailDataSource.m; sourceTree = "<group>"; };
 		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
 		34D17F0B1505054400BE4037 /* OrdrinDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OrdrinDemo.h; path = ../OrdrinDemo.h; sourceTree = "<group>"; };
 		34E9E6661505EF9300D502A6 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
@@ -92,6 +101,35 @@
 				341EF2B11505F87A003C0C17 /* RestaurantListModel.m */,
 			);
 			name = RestaurantListModel;
+			sourceTree = "<group>";
+		};
+		341EF2B31506185A003C0C17 /* RestaurantDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				341EF2BB15062313003C0C17 /* RestaurantDetailDataSource */,
+				341EF2B7150620C0003C0C17 /* RestaurantDetailView */,
+				341EF2B41506187B003C0C17 /* RestaurantDetailViewController.h */,
+				341EF2B51506187B003C0C17 /* RestaurantDetailViewController.m */,
+			);
+			name = RestaurantDetailViewController;
+			sourceTree = "<group>";
+		};
+		341EF2B7150620C0003C0C17 /* RestaurantDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				341EF2B8150620D7003C0C17 /* RestaurantDetailView.h */,
+				341EF2B9150620D7003C0C17 /* RestaurantDetailView.m */,
+			);
+			name = RestaurantDetailView;
+			sourceTree = "<group>";
+		};
+		341EF2BB15062313003C0C17 /* RestaurantDetailDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				341EF2BC15062325003C0C17 /* RestaurantDetailDataSource.h */,
+				341EF2BD15062325003C0C17 /* RestaurantDetailDataSource.m */,
+			);
+			name = RestaurantDetailDataSource;
 			sourceTree = "<group>";
 		};
 		34E9E6651505EF6E00D502A6 /* RestaurantListViewController */ = {
@@ -181,6 +219,7 @@
 		34F34F191504CD5400DC2735 /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				341EF2B31506185A003C0C17 /* RestaurantDetailViewController */,
 				34E9E6651505EF6E00D502A6 /* RestaurantListViewController */,
 				34F34F1A1504CDC300DC2735 /* AddressFormViewController */,
 			);
@@ -275,6 +314,9 @@
 				34E9E66C1505F07800D502A6 /* RestaurantListView.m in Sources */,
 				341EF2AE1505F6C2003C0C17 /* RestaurantListDataSource.m in Sources */,
 				341EF2B21505F87A003C0C17 /* RestaurantListModel.m in Sources */,
+				341EF2B61506187B003C0C17 /* RestaurantDetailViewController.m in Sources */,
+				341EF2BA150620D7003C0C17 /* RestaurantDetailView.m in Sources */,
+				341EF2BE15062325003C0C17 /* RestaurantDetailDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

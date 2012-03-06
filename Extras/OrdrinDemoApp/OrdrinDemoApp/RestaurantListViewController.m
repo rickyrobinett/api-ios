@@ -18,8 +18,13 @@
 #import "OICore.h"
 #import "OIAddress.h"
 #import "RestaurantListDataSource.h"
+#import "RestaurantListModel.h"
+#import "OIRestaurantBase.h"
+#import "OIRestaurant.h"
+#import "RestaurantDetailViewController.h"
 
 @interface RestaurantListViewController (Private)
+- (void)reloadTableView;
 - (void)createModel;
 @end
 
@@ -31,7 +36,10 @@
 - (id)initWithAddress:(OIAddress *)address {
   self = [super init];
   if ( self ) {
+    self.title = @"Restaurants";
     __address = [address retain];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kRestaurantsModelDidFinishNotification object:nil];
   }
   
   return self;
@@ -57,12 +65,26 @@
 }
 
 #pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  OIRestaurantBase *restaurantBase = [__restaurantDataSource.model.items objectAtIndex:indexPath.row]; 
+  [OIRestaurant createRestaurantByRestaurantBase:restaurantBase usingBlock:^void( OIRestaurant *restaurant ) {
+    RestaurantDetailViewController *detailViewController = [[RestaurantDetailViewController alloc] initWithRestaurant:restaurant];    
+    [self.navigationController pushViewController:detailViewController animated:YES];    
+    OI_RELEASE_SAFELY( detailViewController );
+  }];
+}
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)releaseWithDealloc:(BOOL)dealloc {   
   OI_RELEASE_SAFELY( __restaurantListView );
   if ( dealloc ) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kRestaurantsModelDidFinishNotification object:nil];
     OI_RELEASE_SAFELY( __address );
+    OI_RELEASE_SAFELY( __restaurantDataSource );
   }  
 }
 
@@ -79,8 +101,13 @@
 
 @implementation RestaurantListViewController (Private)
 
+- (void)reloadTableView {
+  [__restaurantListView.tableView reloadData];
+}
+
 - (void)createModel {
-  __restaurantListView.tableView.dataSource = [[RestaurantListDataSource alloc] initWithAddress:__address];
+  __restaurantDataSource = [[RestaurantListDataSource alloc] initWithAddress:__address];
+  __restaurantListView.tableView.dataSource = __restaurantDataSource;
 }
 
 @end

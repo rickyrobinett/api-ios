@@ -17,6 +17,7 @@
 #import "OICore.h"
 #import "OIRestaurantBase.h"
 #import "OIAddress.h"
+#import "OIDateTime.h"
 
 @interface RestaurantListModel (Private)
 - (void)initRestaurantsWithAddress:(OIAddress *)address;
@@ -55,8 +56,9 @@
 @implementation RestaurantListModel (Private)
 
 - (void)initRestaurantsWithAddress:(OIAddress *)address {
-  [OIRestaurantBase restaurantsNearAddress:address availableAt:[NSDate date] usingBlock:^void( NSArray *restaurants ) {
+  [OIRestaurantBase restaurantsNearAddress:address availableAt:[OIDateTime dateTimeASAP] usingBlock:^void( NSArray *restaurants ) {
     __items = [[NSMutableArray alloc] initWithArray:restaurants];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRestaurantsModelDidFinishNotification object:nil];
   }];
 }
 

@@ -13,19 +13,17 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@class RestaurantListView;
-@class RestaurantListDataSource;
-@class OIAddress;
+@class OIRestaurant;
+@class OIDelivery;
 
-@interface RestaurantListViewController : UIViewController <UITableViewDelegate> {
-
+@interface RestaurantDetailDataSource : NSObject <UITableViewDataSource> {
+  
 @private
-  RestaurantListDataSource *__restaurantDataSource;
-  RestaurantListView *__restaurantListView;
-  OIAddress *__address;
+  OIRestaurant *__restaurant;
+  OIDelivery *__delivery;
 }
 
-- (id)initWithAddress:(OIAddress *)address;
+- (id)initWithRestaurant:(OIRestaurant *)restaurant delivery:(OIDelivery *)delivery;
 @end

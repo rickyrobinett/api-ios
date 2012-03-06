@@ -15,6 +15,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kRestaurantsModelDidFinishNotification      @"kRestaurantsModelDidFinishNotification"
 @class OIAddress;
 
 @interface RestaurantListModel : NSObject {

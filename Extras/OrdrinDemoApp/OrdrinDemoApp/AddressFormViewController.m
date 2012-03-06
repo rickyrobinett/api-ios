@@ -32,7 +32,7 @@
 - (id)init {
   self = [super init];  
   if ( self ) {
-    self.title = @"Restaurants";
+    self.title = @"Address";
   }  
   return self;
 }
@@ -89,7 +89,7 @@
   OIAddress *address = [OIAddress addressWithStreet:@"1 Main St"
                                                city:@"College Station"
                                          postalCode:[NSNumber numberWithInt:77840]];
-
+  
   RestaurantListViewController *restaurantListViewController = [[RestaurantListViewController alloc] initWithAddress:address];
   restaurantListViewController.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:restaurantListViewController animated:YES];

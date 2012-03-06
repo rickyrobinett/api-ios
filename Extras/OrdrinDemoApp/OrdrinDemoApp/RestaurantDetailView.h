@@ -15,17 +15,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class RestaurantListView;
-@class RestaurantListDataSource;
-@class OIAddress;
-
-@interface RestaurantListViewController : UIViewController <UITableViewDelegate> {
+@interface RestaurantDetailView : UIView {
 
 @private
-  RestaurantListDataSource *__restaurantDataSource;
-  RestaurantListView *__restaurantListView;
-  OIAddress *__address;
+  UITableView *__tableView;
 }
 
-- (id)initWithAddress:(OIAddress *)address;
+@property (nonatomic, retain) UITableView *tableView;
 @end

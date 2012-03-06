@@ -17,6 +17,7 @@
 #import "RestaurantListModel.h"
 #import "OIAddress.h"
 #import "OIRestaurantBase.h"
+#import "OICore.h"
 
 static NSString *cellIdentifier = @"restaurantCell";
 
@@ -45,12 +46,10 @@ static NSString *cellIdentifier = @"restaurantCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
   
   if ( !cell ) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
-    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
   }
 
   OIRestaurantBase *restaurant = [__model.items objectAtIndex:indexPath.row];
@@ -63,6 +62,7 @@ static NSString *cellIdentifier = @"restaurantCell";
 #pragma mark Memory management
 
 - (void)dealloc {
+  OI_RELEASE_SAFELY( __model );
   [super dealloc];
 }
 

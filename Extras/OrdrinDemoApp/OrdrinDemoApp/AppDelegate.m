@@ -16,18 +16,20 @@
 #import "AppDelegate.h"
 #import "AddressFormViewController.h"
 #import "OICore.h"
+#import "OrdrinDemo.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 
-- (void)dealloc
-{
+- (void)dealloc {
   [_window release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [[OIAPIClient sharedInstance] setApiKey:OI_DEVELOPER_KEY];
+  
   self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
   self.window.backgroundColor = [UIColor whiteColor];
     
