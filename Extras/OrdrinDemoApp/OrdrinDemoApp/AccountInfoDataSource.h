@@ -13,8 +13,8 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface OIAccountNavigatorView : UIView
+@interface AccountInfoDataSource : NSObject <UITableViewDataSource>
 
 @end

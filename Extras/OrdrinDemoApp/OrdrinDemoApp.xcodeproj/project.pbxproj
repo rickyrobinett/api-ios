@@ -17,6 +17,14 @@
 		341EF2CC15064DD3003C0C17 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2CB15064DD3003C0C17 /* LoginView.m */; };
 		346DDC2A1506863F0050FBC7 /* CreateAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 346DDC291506863F0050FBC7 /* CreateAccountView.m */; };
 		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
+		34E3E24D1507411600DE69F3 /* UserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E24C1507411600DE69F3 /* UserMenuViewController.m */; };
+		34E3E2511507535800DE69F3 /* UserMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E2501507535800DE69F3 /* UserMenuView.m */; };
+		34E3E25515075F5D00DE69F3 /* AccountInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E25415075F5D00DE69F3 /* AccountInfoViewController.m */; };
+		34E3E259150761BE00DE69F3 /* AccountInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E258150761BE00DE69F3 /* AccountInfoView.m */; };
+		34E3E25D1507646C00DE69F3 /* AccountInfoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E25C1507646C00DE69F3 /* AccountInfoDataSource.m */; };
+		34E3E26115076A9200DE69F3 /* UserAddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E26015076A9200DE69F3 /* UserAddressesViewController.m */; };
+		34E3E26515076C6200DE69F3 /* UserAddressesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E26415076C6200DE69F3 /* UserAddressesView.m */; };
+		34E3E26915076F3500DE69F3 /* UserAddressesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E26815076F3500DE69F3 /* UserAddressesDataSource.m */; };
 		34E9E6681505EF9300D502A6 /* RestaurantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */; };
 		34E9E66C1505F07800D502A6 /* RestaurantListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E66B1505F07800D502A6 /* RestaurantListView.m */; };
 		34F34EE81504C8E900DC2735 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F34EE71504C8E900DC2735 /* UIKit.framework */; };
@@ -54,6 +62,22 @@
 		346DDC291506863F0050FBC7 /* CreateAccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountView.m; sourceTree = "<group>"; };
 		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
 		34D17F0B1505054400BE4037 /* OrdrinDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OrdrinDemo.h; path = ../OrdrinDemo.h; sourceTree = "<group>"; };
+		34E3E24B1507411600DE69F3 /* UserMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMenuViewController.h; sourceTree = "<group>"; };
+		34E3E24C1507411600DE69F3 /* UserMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMenuViewController.m; sourceTree = "<group>"; };
+		34E3E24F1507535800DE69F3 /* UserMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMenuView.h; sourceTree = "<group>"; };
+		34E3E2501507535800DE69F3 /* UserMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMenuView.m; sourceTree = "<group>"; };
+		34E3E25315075F5D00DE69F3 /* AccountInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfoViewController.h; sourceTree = "<group>"; };
+		34E3E25415075F5D00DE69F3 /* AccountInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoViewController.m; sourceTree = "<group>"; };
+		34E3E257150761BE00DE69F3 /* AccountInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfoView.h; sourceTree = "<group>"; };
+		34E3E258150761BE00DE69F3 /* AccountInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoView.m; sourceTree = "<group>"; };
+		34E3E25B1507646C00DE69F3 /* AccountInfoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfoDataSource.h; sourceTree = "<group>"; };
+		34E3E25C1507646C00DE69F3 /* AccountInfoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoDataSource.m; sourceTree = "<group>"; };
+		34E3E25F15076A9200DE69F3 /* UserAddressesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressesViewController.h; sourceTree = "<group>"; };
+		34E3E26015076A9200DE69F3 /* UserAddressesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressesViewController.m; sourceTree = "<group>"; };
+		34E3E26315076C6200DE69F3 /* UserAddressesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressesView.h; sourceTree = "<group>"; };
+		34E3E26415076C6200DE69F3 /* UserAddressesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressesView.m; sourceTree = "<group>"; };
+		34E3E26715076F3500DE69F3 /* UserAddressesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressesDataSource.h; sourceTree = "<group>"; };
+		34E3E26815076F3500DE69F3 /* UserAddressesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressesDataSource.m; sourceTree = "<group>"; };
 		34E9E6661505EF9300D502A6 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
 		34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListViewController.m; sourceTree = "<group>"; };
 		34E9E66A1505F07800D502A6 /* RestaurantListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListView.h; sourceTree = "<group>"; };
@@ -147,6 +171,9 @@
 		341EF2BF150632BA003C0C17 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				34E3E25E15076A1B00DE69F3 /* UserAddressesViewController */,
+				34E3E25215075F2400DE69F3 /* AccountInfoViewController */,
+				34E3E249150740F200DE69F3 /* UserMenuViewController */,
 				341EF2C31506408E003C0C17 /* AccountViewController */,
 			);
 			name = User;
@@ -197,6 +224,83 @@
 				346DDC291506863F0050FBC7 /* CreateAccountView.m */,
 			);
 			name = CreateAccountView;
+			sourceTree = "<group>";
+		};
+		34E3E249150740F200DE69F3 /* UserMenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E24E1507533B00DE69F3 /* UserMenuView */,
+				34E3E24B1507411600DE69F3 /* UserMenuViewController.h */,
+				34E3E24C1507411600DE69F3 /* UserMenuViewController.m */,
+			);
+			name = UserMenuViewController;
+			sourceTree = "<group>";
+		};
+		34E3E24E1507533B00DE69F3 /* UserMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E24F1507535800DE69F3 /* UserMenuView.h */,
+				34E3E2501507535800DE69F3 /* UserMenuView.m */,
+			);
+			name = UserMenuView;
+			sourceTree = "<group>";
+		};
+		34E3E25215075F2400DE69F3 /* AccountInfoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E25A1507645300DE69F3 /* AccountInfoDataSource */,
+				34E3E256150761A600DE69F3 /* AccountInfoView */,
+				34E3E25315075F5D00DE69F3 /* AccountInfoViewController.h */,
+				34E3E25415075F5D00DE69F3 /* AccountInfoViewController.m */,
+			);
+			name = AccountInfoViewController;
+			sourceTree = "<group>";
+		};
+		34E3E256150761A600DE69F3 /* AccountInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E257150761BE00DE69F3 /* AccountInfoView.h */,
+				34E3E258150761BE00DE69F3 /* AccountInfoView.m */,
+			);
+			name = AccountInfoView;
+			sourceTree = "<group>";
+		};
+		34E3E25A1507645300DE69F3 /* AccountInfoDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E25B1507646C00DE69F3 /* AccountInfoDataSource.h */,
+				34E3E25C1507646C00DE69F3 /* AccountInfoDataSource.m */,
+			);
+			name = AccountInfoDataSource;
+			sourceTree = "<group>";
+		};
+		34E3E25E15076A1B00DE69F3 /* UserAddressesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E26615076F1E00DE69F3 /* UserAddressesDataSource */,
+				34E3E26215076C5300DE69F3 /* UserAddressesView */,
+				34E3E25F15076A9200DE69F3 /* UserAddressesViewController.h */,
+				34E3E26015076A9200DE69F3 /* UserAddressesViewController.m */,
+			);
+			name = UserAddressesViewController;
+			sourceTree = "<group>";
+		};
+		34E3E26215076C5300DE69F3 /* UserAddressesView */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E26315076C6200DE69F3 /* UserAddressesView.h */,
+				34E3E26415076C6200DE69F3 /* UserAddressesView.m */,
+			);
+			name = UserAddressesView;
+			sourceTree = "<group>";
+		};
+		34E3E26615076F1E00DE69F3 /* UserAddressesDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E26715076F3500DE69F3 /* UserAddressesDataSource.h */,
+				34E3E26815076F3500DE69F3 /* UserAddressesDataSource.m */,
+			);
+			name = UserAddressesDataSource;
 			sourceTree = "<group>";
 		};
 		34E9E6651505EF6E00D502A6 /* RestaurantListViewController */ = {
@@ -389,6 +493,14 @@
 				341EF2C7150640CC003C0C17 /* AccountView.m in Sources */,
 				341EF2CC15064DD3003C0C17 /* LoginView.m in Sources */,
 				346DDC2A1506863F0050FBC7 /* CreateAccountView.m in Sources */,
+				34E3E24D1507411600DE69F3 /* UserMenuViewController.m in Sources */,
+				34E3E2511507535800DE69F3 /* UserMenuView.m in Sources */,
+				34E3E25515075F5D00DE69F3 /* AccountInfoViewController.m in Sources */,
+				34E3E259150761BE00DE69F3 /* AccountInfoView.m in Sources */,
+				34E3E25D1507646C00DE69F3 /* AccountInfoDataSource.m in Sources */,
+				34E3E26115076A9200DE69F3 /* UserAddressesViewController.m in Sources */,
+				34E3E26515076C6200DE69F3 /* UserAddressesView.m in Sources */,
+				34E3E26915076F3500DE69F3 /* UserAddressesDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

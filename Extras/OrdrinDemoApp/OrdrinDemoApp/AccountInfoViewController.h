@@ -15,6 +15,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OIAccountNavigatorView : UIView
+@class AccountInfoView;
+@class AccountInfoDataSource;
+
+@interface AccountInfoViewController : UIViewController {
+
+@private
+  AccountInfoView *__accountInfoView;
+  AccountInfoDataSource *__accountInfoDataSource;
+}
 
 @end

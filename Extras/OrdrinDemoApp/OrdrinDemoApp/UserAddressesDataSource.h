@@ -13,8 +13,13 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface OIAccountNavigatorView : UIView
+@interface UserAddressesDataSource : NSObject <UITableViewDataSource> {
 
+@private
+  NSMutableArray *__addresses;
+}
+
+- (id)initWithAddresses:(NSMutableArray *)addresses;
 @end

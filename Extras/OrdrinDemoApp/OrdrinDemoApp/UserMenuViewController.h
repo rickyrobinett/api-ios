@@ -15,6 +15,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OIAccountNavigatorView : UIView
+@class UserMenuView;
+
+@interface UserMenuViewController : UIViewController {
+
+@private
+  UserMenuView *__userMenuView;
+}
 
 @end

@@ -9,7 +9,8 @@
  * before the Municipal Court of Prague.
  *
  *  @author(s):
- *      Vitezslav Kot (vita@tapmates.com)
+ *      Petr Reichl (petr@tapmates.com)
+ *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
 #import "OIAccountNavigatorView.h"

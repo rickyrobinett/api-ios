@@ -15,6 +15,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OIAccountNavigatorView : UIView
+@class UserAddressesView;
+@class UserAddressesDataSource;
 
+@interface UserAddressesViewController : UIViewController {
+
+@private
+  UserAddressesView *__userAddressesView;
+  UserAddressesDataSource *__userAddressesDataSource;  
+  NSMutableArray *__addresses;
+}
+
+- (id)initWithAddresses:(NSMutableArray *)addresses;
 @end

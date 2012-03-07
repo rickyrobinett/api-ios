@@ -15,6 +15,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OIAccountNavigatorView : UIView
+@interface AccountInfoView : UIView {
 
+@private
+  UITableView *__tableView;
+}
+
+@property (nonatomic, readonly) UITableView *tableView;
 @end

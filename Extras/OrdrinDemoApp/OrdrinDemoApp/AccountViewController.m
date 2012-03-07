@@ -18,8 +18,12 @@
 #import "OICore.h"
 #import "LoginView.h"
 #import "CreateAccountView.h"
+#import "OIUserInfo.h"
+#import "OIUser.h"
+#import "UserMenuViewController.h"
 
 @interface AccountViewController (Private)
+- (void)showUserMenu:(BOOL)animated;
 - (void)hideKeyboardForLoginViewIfNeeded;
 - (void)hideKeyboardForCreateAccountViewIfNeeded;
 - (void)hideKeyboard;
@@ -59,6 +63,21 @@
   self.view = __accountView;
 }
 
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  
+  [self releaseWithDealloc:NO];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  if ( userInfo.userLogged ) {
+    [self showUserMenu:NO];
+  }
+}
+
 #pragma mark -
 #pragma mark Events
 
@@ -71,11 +90,12 @@
 
 - (void)releaseWithDealloc:(BOOL)dealloc {   
   OI_RELEASE_SAFELY( __accountView );
-  if ( dealloc ) {    
+  if ( dealloc ) {
   }  
 }
 
 - (void)dealloc {
+  [self releaseWithDealloc:YES];
   [super dealloc];
 }
 
@@ -101,7 +121,33 @@
 }
 
 - (void)loginButtonDidPress {
-  NSLog( @"loginButtonDidPress" );
+//  NSString *email = __accountView.loginView.emailField.text;
+//  NSString *password = __accountView.loginView.passwordField.text;  
+  NSString *email = @"testuser@gmail.cz";
+  NSString *password = @"tajneheslo";
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
+  userInfo.email = email;
+  userInfo.password = password;
+  
+  [OIUser accountInfo:email password:password usingBlockUser:^(OIUser *user) {
+    
+    userInfo.firstName = user.firstName;
+    userInfo.lastName = user.lastName;
+    userInfo.userLogged = YES;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User succesfully logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    OI_RELEASE_SAFELY( alert );
+    [self showUserMenu:YES];
+  } usingBlockError:^(NSError *error) {
+    userInfo.userLogged = NO;
+    if ( error ) {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't log in with entered email and password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+      OI_RELEASE_SAFELY( alert );
+    }    
+  }];
+  
 }
 
 @end
@@ -110,6 +156,13 @@
 #pragma mark Private
 
 @implementation AccountViewController (Private)
+
+- (void)showUserMenu:(BOOL)animated {
+  UserMenuViewController *userMenuViewController = [[UserMenuViewController alloc] init];
+  [self.navigationController pushViewController:userMenuViewController animated:animated];
+//  [self.navigationController presentModalViewController:userMenuViewController animated:animated];
+  OI_RELEASE_SAFELY( userMenuViewController );
+}
 
 - (void)hideKeyboardForLoginViewIfNeeded {
   if ( __accountView.loginView ) {
