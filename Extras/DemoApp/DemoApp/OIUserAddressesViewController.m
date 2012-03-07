@@ -93,7 +93,7 @@
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView   
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return __addresses.count;
 }
 

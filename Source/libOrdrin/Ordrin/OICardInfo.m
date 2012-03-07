@@ -146,7 +146,7 @@
   [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]];  
 }
 
-+ (void)loadCreditCardsUsingBlock:(void (^)(NSMutableArray *creditCards))block {
++ (void)loadCreditCardsUsingBlock:(void (^)(NSMutableArray *creditCards) )block {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
   NSString *URLParams = [NSString stringWithFormat:@"/u/%@/ccs",userInfo.email.urlEncode];
   NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
@@ -163,7 +163,7 @@
     for (item in allKeys) {      
       NSDictionary *cardInfoDict = [json objectForKey:item];
       
-      if(cardInfoDict) {
+      if( cardInfoDict ) {
         OICardInfo *cardInfo = [[OICardInfo alloc] init];
         
         cardInfo.nickname = item;

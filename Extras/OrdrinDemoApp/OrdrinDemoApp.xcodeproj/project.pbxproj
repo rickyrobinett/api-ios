@@ -25,6 +25,9 @@
 		34E3E26115076A9200DE69F3 /* UserAddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E26015076A9200DE69F3 /* UserAddressesViewController.m */; };
 		34E3E26515076C6200DE69F3 /* UserAddressesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E26415076C6200DE69F3 /* UserAddressesView.m */; };
 		34E3E26915076F3500DE69F3 /* UserAddressesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E26815076F3500DE69F3 /* UserAddressesDataSource.m */; };
+		34E3E26D150774EB00DE69F3 /* UserCreditCardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E26C150774EB00DE69F3 /* UserCreditCardsViewController.m */; };
+		34E3E2711507781200DE69F3 /* UserCreditCardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E2701507781200DE69F3 /* UserCreditCardsView.m */; };
+		34E3E27515077D6100DE69F3 /* UserCreditCardsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E27415077D6100DE69F3 /* UserCreditCardsDataSource.m */; };
 		34E9E6681505EF9300D502A6 /* RestaurantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */; };
 		34E9E66C1505F07800D502A6 /* RestaurantListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E66B1505F07800D502A6 /* RestaurantListView.m */; };
 		34F34EE81504C8E900DC2735 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F34EE71504C8E900DC2735 /* UIKit.framework */; };
@@ -78,6 +81,12 @@
 		34E3E26415076C6200DE69F3 /* UserAddressesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressesView.m; sourceTree = "<group>"; };
 		34E3E26715076F3500DE69F3 /* UserAddressesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressesDataSource.h; sourceTree = "<group>"; };
 		34E3E26815076F3500DE69F3 /* UserAddressesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressesDataSource.m; sourceTree = "<group>"; };
+		34E3E26B150774EB00DE69F3 /* UserCreditCardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCreditCardsViewController.h; sourceTree = "<group>"; };
+		34E3E26C150774EB00DE69F3 /* UserCreditCardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCreditCardsViewController.m; sourceTree = "<group>"; };
+		34E3E26F1507781200DE69F3 /* UserCreditCardsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCreditCardsView.h; sourceTree = "<group>"; };
+		34E3E2701507781200DE69F3 /* UserCreditCardsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCreditCardsView.m; sourceTree = "<group>"; };
+		34E3E27315077D6100DE69F3 /* UserCreditCardsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCreditCardsDataSource.h; sourceTree = "<group>"; };
+		34E3E27415077D6100DE69F3 /* UserCreditCardsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCreditCardsDataSource.m; sourceTree = "<group>"; };
 		34E9E6661505EF9300D502A6 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
 		34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListViewController.m; sourceTree = "<group>"; };
 		34E9E66A1505F07800D502A6 /* RestaurantListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListView.h; sourceTree = "<group>"; };
@@ -171,6 +180,7 @@
 		341EF2BF150632BA003C0C17 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				34E3E26A1507746400DE69F3 /* UserCreditCardsViewController */,
 				34E3E25E15076A1B00DE69F3 /* UserAddressesViewController */,
 				34E3E25215075F2400DE69F3 /* AccountInfoViewController */,
 				34E3E249150740F200DE69F3 /* UserMenuViewController */,
@@ -301,6 +311,35 @@
 				34E3E26815076F3500DE69F3 /* UserAddressesDataSource.m */,
 			);
 			name = UserAddressesDataSource;
+			sourceTree = "<group>";
+		};
+		34E3E26A1507746400DE69F3 /* UserCreditCardsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E27215077D4300DE69F3 /* UserCreditCardsDataSource */,
+				34E3E26E150777FF00DE69F3 /* UserCreditCardsView */,
+				34E3E26B150774EB00DE69F3 /* UserCreditCardsViewController.h */,
+				34E3E26C150774EB00DE69F3 /* UserCreditCardsViewController.m */,
+			);
+			name = UserCreditCardsViewController;
+			sourceTree = "<group>";
+		};
+		34E3E26E150777FF00DE69F3 /* UserCreditCardsView */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E26F1507781200DE69F3 /* UserCreditCardsView.h */,
+				34E3E2701507781200DE69F3 /* UserCreditCardsView.m */,
+			);
+			name = UserCreditCardsView;
+			sourceTree = "<group>";
+		};
+		34E3E27215077D4300DE69F3 /* UserCreditCardsDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E27315077D6100DE69F3 /* UserCreditCardsDataSource.h */,
+				34E3E27415077D6100DE69F3 /* UserCreditCardsDataSource.m */,
+			);
+			name = UserCreditCardsDataSource;
 			sourceTree = "<group>";
 		};
 		34E9E6651505EF6E00D502A6 /* RestaurantListViewController */ = {
@@ -501,6 +540,9 @@
 				34E3E26115076A9200DE69F3 /* UserAddressesViewController.m in Sources */,
 				34E3E26515076C6200DE69F3 /* UserAddressesView.m in Sources */,
 				34E3E26915076F3500DE69F3 /* UserAddressesDataSource.m in Sources */,
+				34E3E26D150774EB00DE69F3 /* UserCreditCardsViewController.m in Sources */,
+				34E3E2711507781200DE69F3 /* UserCreditCardsView.m in Sources */,
+				34E3E27515077D6100DE69F3 /* UserCreditCardsDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

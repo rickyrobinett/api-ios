@@ -20,6 +20,8 @@
 #import "AccountInfoViewController.h"
 #import "UserAddressesViewController.h"
 #import "OIAddress.h"
+#import "OICardInfo.h"
+#import "UserCreditCardsViewController.h"
 
 @interface UserMenuViewController (UserAction)
 - (void)accountInfoButtonDidPress;
@@ -82,6 +84,7 @@
   [self releaseWithDealloc:YES];
   [super dealloc];
 }
+
 @end
 
 #pragma mark -
@@ -104,7 +107,11 @@
 }
 
 - (void)creditCardsButtonDidPress {
-  
+  [OICardInfo loadCreditCardsUsingBlock:^void( NSMutableArray *creditCards ) {
+    UserCreditCardsViewController *userCreditCardsViewController = [[UserCreditCardsViewController alloc] initWithCreditCards:creditCards];
+    [self.navigationController pushViewController:userCreditCardsViewController animated:YES];
+    OI_RELEASE_SAFELY( userCreditCardsViewController );
+  }];
 }
 
 - (void)ordersHistoryButtonDidPress {
