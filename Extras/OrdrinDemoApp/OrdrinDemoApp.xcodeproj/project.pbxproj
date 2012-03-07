@@ -28,6 +28,8 @@
 		34E3E26D150774EB00DE69F3 /* UserCreditCardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E26C150774EB00DE69F3 /* UserCreditCardsViewController.m */; };
 		34E3E2711507781200DE69F3 /* UserCreditCardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E2701507781200DE69F3 /* UserCreditCardsView.m */; };
 		34E3E27515077D6100DE69F3 /* UserCreditCardsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E27415077D6100DE69F3 /* UserCreditCardsDataSource.m */; };
+		34E3E279150790FA00DE69F3 /* AddCreditCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E278150790FA00DE69F3 /* AddCreditCardViewController.m */; };
+		34E3E27D1507992200DE69F3 /* AddCreditCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E27C1507992200DE69F3 /* AddCreditCardView.m */; };
 		34E9E6681505EF9300D502A6 /* RestaurantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */; };
 		34E9E66C1505F07800D502A6 /* RestaurantListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9E66B1505F07800D502A6 /* RestaurantListView.m */; };
 		34F34EE81504C8E900DC2735 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F34EE71504C8E900DC2735 /* UIKit.framework */; };
@@ -87,6 +89,10 @@
 		34E3E2701507781200DE69F3 /* UserCreditCardsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCreditCardsView.m; sourceTree = "<group>"; };
 		34E3E27315077D6100DE69F3 /* UserCreditCardsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCreditCardsDataSource.h; sourceTree = "<group>"; };
 		34E3E27415077D6100DE69F3 /* UserCreditCardsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCreditCardsDataSource.m; sourceTree = "<group>"; };
+		34E3E277150790FA00DE69F3 /* AddCreditCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCreditCardViewController.h; sourceTree = "<group>"; };
+		34E3E278150790FA00DE69F3 /* AddCreditCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCreditCardViewController.m; sourceTree = "<group>"; };
+		34E3E27B1507992200DE69F3 /* AddCreditCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCreditCardView.h; sourceTree = "<group>"; };
+		34E3E27C1507992200DE69F3 /* AddCreditCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCreditCardView.m; sourceTree = "<group>"; };
 		34E9E6661505EF9300D502A6 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
 		34E9E6671505EF9300D502A6 /* RestaurantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListViewController.m; sourceTree = "<group>"; };
 		34E9E66A1505F07800D502A6 /* RestaurantListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListView.h; sourceTree = "<group>"; };
@@ -316,6 +322,7 @@
 		34E3E26A1507746400DE69F3 /* UserCreditCardsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				34E3E276150790B800DE69F3 /* AddCreditCardViewController */,
 				34E3E27215077D4300DE69F3 /* UserCreditCardsDataSource */,
 				34E3E26E150777FF00DE69F3 /* UserCreditCardsView */,
 				34E3E26B150774EB00DE69F3 /* UserCreditCardsViewController.h */,
@@ -340,6 +347,25 @@
 				34E3E27415077D6100DE69F3 /* UserCreditCardsDataSource.m */,
 			);
 			name = UserCreditCardsDataSource;
+			sourceTree = "<group>";
+		};
+		34E3E276150790B800DE69F3 /* AddCreditCardViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E27A1507991000DE69F3 /* AddCreditCardView */,
+				34E3E277150790FA00DE69F3 /* AddCreditCardViewController.h */,
+				34E3E278150790FA00DE69F3 /* AddCreditCardViewController.m */,
+			);
+			name = AddCreditCardViewController;
+			sourceTree = "<group>";
+		};
+		34E3E27A1507991000DE69F3 /* AddCreditCardView */ = {
+			isa = PBXGroup;
+			children = (
+				34E3E27B1507992200DE69F3 /* AddCreditCardView.h */,
+				34E3E27C1507992200DE69F3 /* AddCreditCardView.m */,
+			);
+			name = AddCreditCardView;
 			sourceTree = "<group>";
 		};
 		34E9E6651505EF6E00D502A6 /* RestaurantListViewController */ = {
@@ -543,6 +569,8 @@
 				34E3E26D150774EB00DE69F3 /* UserCreditCardsViewController.m in Sources */,
 				34E3E2711507781200DE69F3 /* UserCreditCardsView.m in Sources */,
 				34E3E27515077D6100DE69F3 /* UserCreditCardsDataSource.m in Sources */,
+				34E3E279150790FA00DE69F3 /* AddCreditCardViewController.m in Sources */,
+				34E3E27D1507992200DE69F3 /* AddCreditCardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@
 #import "UserCreditCardsViewController.h"
 #import "UserCreditCardsView.h"
 #import "UserCreditCardsDataSource.h"
+#import "AddCreditCardViewController.h"
 #import "OICore.h"
 
 @interface UserCreditCardsViewController (Private)
@@ -32,8 +33,12 @@
   self = [super init];
   if ( self ) {
     self.title = @"Credit cards";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewCreaditCard)];
-    __creditCards = [creditCards retain];
+    
+    UIBarButtonItem *createButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewCreaditCard)];
+    self.navigationItem.rightBarButtonItem = createButtonItem;
+    
+    OI_RELEASE_SAFELY( createButtonItem );
+    __creditCards = [creditCards retain];    
   }
   
   return self;
@@ -56,13 +61,14 @@
   [self releaseWithDealloc:NO];
 }
 
+
 #pragma mark -
 #pragma mark Memory management
 
 - (void)releaseWithDealloc:(BOOL)dealloc {
   OI_RELEASE_SAFELY( __userCreditCardsView );
   if ( dealloc ) {
-    OI_RELEASE_SAFELY( __userCreditCardsDataSource );    
+    OI_RELEASE_SAFELY( __userCreditCardsDataSource );
     OI_RELEASE_SAFELY( __creditCards );
   }  
 }
@@ -80,7 +86,9 @@
 @implementation UserCreditCardsViewController (Private)
 
 - (void)createNewCreaditCard {
-
+  AddCreditCardViewController *addCreditCardViewController = [[AddCreditCardViewController alloc] init];
+  [self.navigationController pushViewController:addCreditCardViewController animated:YES];
+  OI_RELEASE_SAFELY( addCreditCardViewController );
 }
 
 - (void)createModel {

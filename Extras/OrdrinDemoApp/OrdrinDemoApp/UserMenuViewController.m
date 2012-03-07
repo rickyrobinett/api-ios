@@ -115,7 +115,6 @@
 }
 
 - (void)ordersHistoryButtonDidPress {
-  
 }
 
 - (void)passwordButtonDidPress {
