@@ -13,29 +13,25 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class OIAPIUserAuthenticator;
+@interface ChangePasswordView : UIView {
 
-@interface OIUserInfo : NSObject {
+@private
+  UITextField *__passwordField;
+  UITextField *__oldPasswordField;
+  UITextField *__emailField;
   
+  UILabel *__passwordLabel;
+  UILabel *__oldPasswordLabel;
+  UILabel *__emailLabel;
+  
+  UIButton *__confirmButton;
 }
 
-@property (nonatomic, retain) NSString *email;
-@property (nonatomic, retain) NSString *password;
-@property (nonatomic, retain) NSString *firstName;
-@property (nonatomic, retain) NSString *lastName;
-@property (nonatomic, assign) BOOL userLogged;
-
-#pragma mark -
-#pragma mark Instance methods
-
-- (OIAPIUserAuthenticator *)createAuthenticatorWithUri:(NSString *)uri;
-- (void)logout;
-
-#pragma mark -
-#pragma mark Singleton
-
-+ (OIUserInfo *)sharedInstance;
+@property (nonatomic, readonly) UIButton *confirmButton;
+@property (nonatomic, readonly) UITextField *passwordField;
+@property (nonatomic, readonly) UITextField *oldPasswordField;
+@property (nonatomic, readonly) UITextField *emailField;
 
 @end

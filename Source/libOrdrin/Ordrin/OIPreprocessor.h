@@ -13,3 +13,6 @@
  */
 
 #define OI_RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
+
+#define OI_EMPTY_STR_IF_NIL(__POINTER) ((__POINTER == nil) ? @"" : __POINTER)
+#define OI_ZERO_IF_NIL(__POINTER) ((__POINTER == nil) ? 0 : __POINTER)

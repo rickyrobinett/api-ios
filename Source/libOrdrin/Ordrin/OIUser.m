@@ -129,7 +129,7 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
 
   __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
   [request setRequestMethod:@"PUT"];  
-  [request setPostValue:[password sha256] forKey:@"password"];  
+  [request setPostValue:[password sha256] forKey:@"password"];
   [request setCompletionBlock:^{
     userInfo.password = password;
 

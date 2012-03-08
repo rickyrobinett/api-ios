@@ -121,8 +121,38 @@
 
 + (void)addCreditCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
-  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/ccs/%@",userInfo.email.urlEncode, creditCard.nickname.urlEncode];    
-  __block ASIFormDataRequest *request = [OICardInfo createRequestForCreateOrUpdateActionWithCreditCard:creditCard];
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/ccs/%@",userInfo.email.urlEncode, creditCard.nickname.urlEncode];
+  NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
+
+  __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
+  
+  [request setRequestMethod:@"PUT"];
+  
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.nickname) forKey:@"nick"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.name) forKey:@"name"];
+  [request setPostValue:OI_ZERO_IF_NIL(creditCard.number) forKey:@"number"];
+  [request setPostValue:OI_ZERO_IF_NIL(creditCard.cvc) forKey:@"cvc"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.expirationMonth) forKey:@"expiry_month"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.expirationYear) forKey:@"expiry_year"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.address1) forKey:@"bill_addr"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.address2) forKey:@"bill_addr2"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.city) forKey:@"bill_city"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.state) forKey:@"bill_state"];
+  [request setPostValue:OI_ZERO_IF_NIL(creditCard.address.postalCode) forKey:@"bill_zip"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.phoneNumber) forKey:@"phone"];
+
+//  [request setPostValue:(creditCard.nickname.urlEncode) forKey:@"nick"];
+//  [request setPostValue:(creditCard.name.urlEncode) forKey:@"name"];
+//  [request setPostValue:(creditCard.number) forKey:@"number"];
+//  [request setPostValue:(creditCard.cvc) forKey:@"cvc"];
+//  [request setPostValue:(creditCard.expirationMonth.urlEncode) forKey:@"expiry_month"];
+//  [request setPostValue:(creditCard.expirationYear.urlEncode) forKey:@"expiry_year"];
+//  [request setPostValue:(creditCard.address.address1.urlEncode) forKey:@"bill_addr"];
+//  [request setPostValue:(creditCard.address.address2.urlEncode) forKey:@"bill_addr2"];
+//  [request setPostValue:(creditCard.address.city.urlEncode) forKey:@"bill_city"];
+//  [request setPostValue:(creditCard.address.state.urlEncode) forKey:@"bill_state"];
+//  [request setPostValue:(creditCard.address.postalCode) forKey:@"bill_zip"];
+//  [request setPostValue:(creditCard.address.phoneNumber.urlEncode) forKey:@"phone"];
   
   [request setCompletionBlock:^{
     NSDictionary *json = [[request responseString] objectFromJSONString];    
@@ -213,11 +243,11 @@
       cardInfo.type = [json objectForKey:@"type"];
       cardInfo.expirationMonth = [json objectForKey:@"expiry_month"];
       cardInfo.expirationYear = [json objectForKey:@"expiry_year"];
-      cardInfo.address.address1 =   [json objectForKey:@"addr"];
-      cardInfo.address.address2 =   [json objectForKey:@"addr2"];
-      cardInfo.address.city =   [json objectForKey:@"city"];
-      cardInfo.address.state =   [json objectForKey:@"state"];
-      cardInfo.address.postalCode =   [json objectForKey:@"zip"];
+      cardInfo.address.address1 = [json objectForKey:@"addr"];
+      cardInfo.address.address2 = [json objectForKey:@"addr2"];
+      cardInfo.address.city = [json objectForKey:@"city"];
+      cardInfo.address.state = [json objectForKey:@"state"];
+      cardInfo.address.postalCode = [json objectForKey:@"zip"];
       
       if ( block ) {
         block( cardInfo );
@@ -273,12 +303,12 @@
 @implementation OICardInfo (Private)
 + (ASIFormDataRequest *)createRequestForCreateOrUpdateActionWithCreditCard:(OICardInfo *)creditCard {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
-  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/ccs/%@",userInfo.email.urlEncode, creditCard.nickname.urlEncode];  
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/ccs/%@",userInfo.email.urlEncode, creditCard.nickname.urlEncode];
   NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
   
   ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
   [request setRequestMethod:@"PUT"];
-  
+
   [request setPostValue:creditCard.nickname forKey:@"nick"];
   [request setPostValue:creditCard.name forKey:@"name"];
   [request setPostValue:creditCard.number forKey:@"number"];
@@ -291,7 +321,7 @@
   [request setPostValue:creditCard.address.state forKey:@"bill_state"];
   [request setPostValue:creditCard.address.postalCode forKey:@"bill_zip"];
   [request setPostValue:creditCard.address.phoneNumber forKey:@"phone"];
-  
+
   return request;
 }
 

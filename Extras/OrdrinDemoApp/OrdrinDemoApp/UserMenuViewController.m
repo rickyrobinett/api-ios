@@ -22,6 +22,7 @@
 #import "OIAddress.h"
 #import "OICardInfo.h"
 #import "UserCreditCardsViewController.h"
+#import "ChangePasswordViewController.h"
 
 @interface UserMenuViewController (UserAction)
 - (void)accountInfoButtonDidPress;
@@ -115,14 +116,19 @@
 }
 
 - (void)ordersHistoryButtonDidPress {
+  
 }
 
 - (void)passwordButtonDidPress {
-  
+  ChangePasswordViewController *changePasswordViewController = [[ChangePasswordViewController alloc] init];
+  [self.navigationController pushViewController:changePasswordViewController animated:YES];
+  OI_RELEASE_SAFELY( changePasswordViewController );
 }
 
 - (void)logoutButtonDidPress {
-  
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  [userInfo logout];
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

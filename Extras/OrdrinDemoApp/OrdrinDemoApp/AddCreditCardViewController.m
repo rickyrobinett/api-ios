@@ -16,6 +16,8 @@
 #import "AddCreditCardViewController.h"
 #import "AddCreditCardView.h"
 #import "OICore.h"
+#import "OICardInfo.h"
+#import "OIAddress.h"
 
 @interface AddCreditCardViewController (Private)
 - (void)saveButtonDidPress;
@@ -119,7 +121,38 @@
 @implementation AddCreditCardViewController (Private)
 
 - (void)saveButtonDidPress {
+  if ( !__addCreditCardView.nickNameField.text || [__addCreditCardView.nickNameField.text isEqualToString:@""] ) {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You must fill nick name at least." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    OI_RELEASE_SAFELY( alertView );
+    return;
+  }
   
+  OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];
+  cardInfo.nickname = __addCreditCardView.nickNameField.text;
+  cardInfo.name = __addCreditCardView.nameField.text;
+  cardInfo.lastFiveDigits = [NSNumber numberWithInt:__addCreditCardView.ccLastFiveField.text.intValue];
+  cardInfo.expirationYear = __addCreditCardView.expiryYearField.text;
+  cardInfo.expirationMonth = __addCreditCardView.expiryMonthField.text;
+  cardInfo.type = __addCreditCardView.typeField.text;
+
+  NSNumber *postalCode = [NSNumber numberWithInt:__addCreditCardView.billCityField.text.intValue];
+  OIAddress *address = [OIAddress addressWithStreet:__addCreditCardView.billAddr1Field.text city:__addCreditCardView.billCityField.text postalCode:postalCode];
+  address.address2 = __addCreditCardView.billAddr2Field.text;
+  address.state = __addCreditCardView.billStateField.text;
+
+  cardInfo.address = address;
+
+  [OICardInfo addCreditCard:cardInfo usingBlock:^void( NSError *error ) {
+    if ( error ) {
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error with adding credit card." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alertView show];
+      OI_RELEASE_SAFELY( alertView );
+      return;      
+    } else {
+      [self.navigationController popViewControllerAnimated:YES];
+    }
+  }];
 }
 
 - (void)hideKeyboard {

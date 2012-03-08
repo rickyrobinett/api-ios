@@ -124,7 +124,7 @@
 //  NSString *email = __accountView.loginView.emailField.text;
 //  NSString *password = __accountView.loginView.passwordField.text;  
   NSString *email = @"testuser@gmail.cz";
-  NSString *password = @"tajneheslo";
+  NSString *password = @"tajnehesloss";
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
   userInfo.email = email;
   userInfo.password = password;

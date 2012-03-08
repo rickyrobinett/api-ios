@@ -17,6 +17,8 @@
 		341EF2CC15064DD3003C0C17 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2CB15064DD3003C0C17 /* LoginView.m */; };
 		346DDC2A1506863F0050FBC7 /* CreateAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 346DDC291506863F0050FBC7 /* CreateAccountView.m */; };
 		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
+		34E3389C1508ED8D00815430 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3389B1508ED8D00815430 /* ChangePasswordViewController.m */; };
+		34E338A01508EE7200815430 /* ChangePasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3389F1508EE7200815430 /* ChangePasswordView.m */; };
 		34E3E24D1507411600DE69F3 /* UserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E24C1507411600DE69F3 /* UserMenuViewController.m */; };
 		34E3E2511507535800DE69F3 /* UserMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E2501507535800DE69F3 /* UserMenuView.m */; };
 		34E3E25515075F5D00DE69F3 /* AccountInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3E25415075F5D00DE69F3 /* AccountInfoViewController.m */; };
@@ -67,6 +69,10 @@
 		346DDC291506863F0050FBC7 /* CreateAccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountView.m; sourceTree = "<group>"; };
 		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
 		34D17F0B1505054400BE4037 /* OrdrinDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OrdrinDemo.h; path = ../OrdrinDemo.h; sourceTree = "<group>"; };
+		34E3389A1508ED8D00815430 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		34E3389B1508ED8D00815430 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		34E3389E1508EE7200815430 /* ChangePasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordView.h; sourceTree = "<group>"; };
+		34E3389F1508EE7200815430 /* ChangePasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordView.m; sourceTree = "<group>"; };
 		34E3E24B1507411600DE69F3 /* UserMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMenuViewController.h; sourceTree = "<group>"; };
 		34E3E24C1507411600DE69F3 /* UserMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMenuViewController.m; sourceTree = "<group>"; };
 		34E3E24F1507535800DE69F3 /* UserMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMenuView.h; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 		341EF2BF150632BA003C0C17 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				34E338981508ED6D00815430 /* ChangePasswordViewController */,
 				34E3E26A1507746400DE69F3 /* UserCreditCardsViewController */,
 				34E3E25E15076A1B00DE69F3 /* UserAddressesViewController */,
 				34E3E25215075F2400DE69F3 /* AccountInfoViewController */,
@@ -240,6 +247,25 @@
 				346DDC291506863F0050FBC7 /* CreateAccountView.m */,
 			);
 			name = CreateAccountView;
+			sourceTree = "<group>";
+		};
+		34E338981508ED6D00815430 /* ChangePasswordViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34E3389D1508EE6100815430 /* ChangePasswordView */,
+				34E3389A1508ED8D00815430 /* ChangePasswordViewController.h */,
+				34E3389B1508ED8D00815430 /* ChangePasswordViewController.m */,
+			);
+			name = ChangePasswordViewController;
+			sourceTree = "<group>";
+		};
+		34E3389D1508EE6100815430 /* ChangePasswordView */ = {
+			isa = PBXGroup;
+			children = (
+				34E3389E1508EE7200815430 /* ChangePasswordView.h */,
+				34E3389F1508EE7200815430 /* ChangePasswordView.m */,
+			);
+			name = ChangePasswordView;
 			sourceTree = "<group>";
 		};
 		34E3E249150740F200DE69F3 /* UserMenuViewController */ = {
@@ -571,6 +597,8 @@
 				34E3E27515077D6100DE69F3 /* UserCreditCardsDataSource.m in Sources */,
 				34E3E279150790FA00DE69F3 /* AddCreditCardViewController.m in Sources */,
 				34E3E27D1507992200DE69F3 /* AddCreditCardView.m in Sources */,
+				34E3389C1508ED8D00815430 /* ChangePasswordViewController.m in Sources */,
+				34E338A01508EE7200815430 /* ChangePasswordView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

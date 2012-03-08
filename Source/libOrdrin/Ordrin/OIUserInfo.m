@@ -39,8 +39,16 @@
   return [OIAPIUserAuthenticator authenticatorWithEmail:__email password:__password uri:[NSURL URLWithString:uri]];
 }
 
+- (void)logout {
+  __email = @"";
+  __password = @"";
+  __firstName = @"";
+  __lastName = @"";
+  __userLogged = NO;
+}
+
 #pragma mark -
-#pragma Memory management
+#pragma mark Memory management
 
 - (void)dealloc {
   OI_RELEASE_SAFELY( __firstName );
