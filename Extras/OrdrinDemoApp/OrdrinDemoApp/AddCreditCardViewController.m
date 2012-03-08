@@ -69,7 +69,16 @@
 #pragma mark UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-  
+  CGFloat originY = textField.frame.origin.y + textField.frame.size.height;
+  if ( originY > 160 ) {
+    CGRect frame = __addCreditCardView.frame;
+    frame.origin.y = 160 - originY;
+
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDelay:1.0];
+    __addCreditCardView.frame = frame;
+    [UIView commitAnimations];
+  }
 }
 
 #pragma mark -
@@ -77,6 +86,16 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   [self hideKeyboard];
+  
+  if ( __addCreditCardView.frame.origin.y != 0 ) {
+    CGRect frame = __addCreditCardView.frame;
+    frame.origin.y = 0;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDelay:1.0];
+    __addCreditCardView.frame = frame;
+    [UIView commitAnimations];
+    
+  }    
 }
 
 #pragma mark -

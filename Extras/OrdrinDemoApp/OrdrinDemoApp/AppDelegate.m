@@ -29,6 +29,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [[UIApplication sharedApplication] setStatusBarHidden:YES];
   [[OIAPIClient sharedInstance] setApiKey:OI_DEVELOPER_KEY];
   
   self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];

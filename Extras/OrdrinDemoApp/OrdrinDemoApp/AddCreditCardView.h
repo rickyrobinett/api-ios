@@ -16,7 +16,33 @@
   UITextField *__billCityField;
   UITextField *__billStateField;
   UITextField *__billZipField;
+  
+  UILabel *__nickNameLabel;
+  UILabel *__nameLabel;
+  UILabel *__ccLastFiveLabel;
+  UILabel *__expiryMonthLabel;
+  UILabel *__expiryYearLabel;
+  UILabel *__typeLabel;
+  
+  UILabel *__billAddr1Label;
+  UILabel *__billAddr2Label;
+  UILabel *__billCityLabel;
+  UILabel *__billStateLabel;
+  UILabel *__billZiplabel;
+  
 }
+
+@property (nonatomic, readonly) UILabel *nickNameLabel;
+@property (nonatomic, readonly) UILabel *nameLabel;
+@property (nonatomic, readonly) UILabel *ccLastFiveLabel;
+@property (nonatomic, readonly) UILabel *expiryMonthLabel;
+@property (nonatomic, readonly) UILabel *expiryYearLabel;
+@property (nonatomic, readonly) UILabel *typeLabel;
+@property (nonatomic, readonly) UILabel *billAddr1Label;
+@property (nonatomic, readonly) UILabel *billAddr2Label;
+@property (nonatomic, readonly) UILabel *billCityLabel;
+@property (nonatomic, readonly) UILabel *billStateLabel;
+@property (nonatomic, readonly) UILabel *billZipLabel;
 
 @property (nonatomic, readonly) UITextField *nickNameField;
 @property (nonatomic, readonly) UITextField *nameField;
