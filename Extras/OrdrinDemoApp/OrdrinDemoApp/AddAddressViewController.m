@@ -19,6 +19,7 @@
 #import "OIAddress.h"
 
 @interface AddAddressViewController (Private)
+- (void)hideKeyboard;
 - (void)createAddressButtonDidPress;
 @end
 
@@ -54,6 +55,13 @@
 }
 
 #pragma mark -
+#pragma mark Events
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  [self hideKeyboard];
+}
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)releaseWithDealloc:(BOOL)dealloc {
@@ -73,6 +81,15 @@
 #pragma mark Private
 
 @implementation AddAddressViewController (Private)
+
+- (void)hideKeyboard {
+  [__addAddressView.stateField resignFirstResponder];
+  [__addAddressView.zipField resignFirstResponder];
+  [__addAddressView.cityField resignFirstResponder];
+  [__addAddressView.addr1Field resignFirstResponder];
+  [__addAddressView.addr2Field resignFirstResponder];
+  [__addAddressView.phoneField resignFirstResponder];  
+}
 
 - (void)createAddressButtonDidPress {
   NSString *street = __addAddressView.addr1Field.text;

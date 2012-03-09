@@ -122,8 +122,8 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 #pragma mark Class methods
 
 + (void)addAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block {
-  OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
-  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@",userInfo.email, address.nickname.urlEncode];
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance]; 
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@",userInfo.email.urlEncode, address.nickname.urlEncode];
   
   __block ASIFormDataRequest *request = [OIAddress createRequestForCreateOrUpdateActionWithAddress:address];
   
@@ -275,7 +275,7 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 + (ASIFormDataRequest *)createRequestForCreateOrUpdateActionWithAddress:(OIAddress *)address {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
   NSString *email = userInfo.email;  
-  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@", email, address.nickname.urlEncode];
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@", email.urlEncode, address.nickname.urlEncode];
   NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
   
   ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];

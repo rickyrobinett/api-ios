@@ -175,7 +175,6 @@
 - (void)showUserMenu:(BOOL)animated {
   UserMenuViewController *userMenuViewController = [[UserMenuViewController alloc] init];
   [self.navigationController pushViewController:userMenuViewController animated:animated];
-//  [self.navigationController presentModalViewController:userMenuViewController animated:animated];
   OI_RELEASE_SAFELY( userMenuViewController );
 }
 
