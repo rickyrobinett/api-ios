@@ -26,7 +26,7 @@
 // Variables
 
 NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
-
+NSString const* OIUserURL = @"https://u.ordr.in/";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Implementation
 
@@ -72,15 +72,21 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
     NSDictionary *json = [[request responseString] objectFromJSONString];
     OIUser *user = [[[OIUser alloc] init] autorelease];
     
-//    OIUserInfo *userInfo = [OIUserInfo sharedInstance];
-//    userInfo.password = password;
-//    userInfo.email = [json objectForKey:@"em"];
+    OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+    userInfo.password = password;
+    userInfo.email = [json objectForKey:@"em"];
     
-    user.firstName = [json objectForKey:@"first_name"];
-    user.lastName = [json objectForKey:@"last_name"];
+    NSString *em = [json objectForKey:@"em"];
+    NSString *pw = [json objectForKey:@"pw"];
+    NSString *passwordSha256 = password.sha256;
     
-    if ( blockUser ) {
-      blockUser(user);
+    if ( [email isEqualToString:em] && [pw isEqualToString:passwordSha256] ) {
+      user.firstName = [json objectForKey:@"first_name"];
+      user.lastName = [json objectForKey:@"last_name"];
+      
+      if ( blockUser ) {
+        blockUser(user);
+      }      
     }
     
   }]; 
@@ -94,13 +100,17 @@ NSString const* OIUserBaseURL = @"https://u-test.ordr.in";
 }
 
 + (void)createNewAccount:(OIUser *)account email:(NSString *)email password:(NSString *)password usingBlock:(void (^)(NSError *error))block {
-  NSString *URL = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [email urlEncode]];
+  NSString *URL = [NSString stringWithFormat:@"%@/u/%@", OIUserBaseURL, [email urlEncode]];  
   
   __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
+
+  [request setRequestMethod:@"POST"];
   
+  NSString *passwordSha = password.sha256;
+  [request setPostValue:email forKey:@"email"];  
   [request setPostValue:account.firstName forKey:@"first_name"];
   [request setPostValue:account.lastName forKey:@"last_name"];
-  [request setPostValue:[password sha256] forKey:@"password"];
+  [request setPostValue:passwordSha forKey:@"pw"];
   
   [request setCompletionBlock:^{
     block(nil);

@@ -118,13 +118,28 @@
 
 - (void)createAccountButtonDidPress {
   NSLog( @"createAccountButtonDidPress" );
+  
+  NSString *firstName = __accountView.createAccountView.firstNameField.text;
+  NSString *lastName = __accountView.createAccountView.lastNameField.text;
+  
+  NSString *password = __accountView.createAccountView.passwordField.text;
+  NSString *email = __accountView.createAccountView.emailField.text;
+  
+  OIUser *user = [OIUser userWithFirstName:firstName lastName:lastName];
+  [OIUser createNewAccount:user email:email password:password usingBlock:^void( NSError *error ){    
+    if ( error ) {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+      OI_RELEASE_SAFELY( alert );      
+    }
+  }];
 }
 
 - (void)loginButtonDidPress {
 //  NSString *email = __accountView.loginView.emailField.text;
 //  NSString *password = __accountView.loginView.passwordField.text;  
-  NSString *email = @"testuser@gmail.cz";
-  NSString *password = @"tajnehesloss";
+  NSString *email = @"daniel@seznam.cz";
+  NSString *password = @"Daniel";
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
   userInfo.email = email;
   userInfo.password = password;
@@ -135,14 +150,14 @@
     userInfo.lastName = user.lastName;
     userInfo.userLogged = YES;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User succesfully logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"User succesfully logged in." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
     OI_RELEASE_SAFELY( alert );
     [self showUserMenu:YES];
   } usingBlockError:^(NSError *error) {
     userInfo.userLogged = NO;
     if ( error ) {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't log in with entered email and password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
       [alert show];
       OI_RELEASE_SAFELY( alert );
     }    

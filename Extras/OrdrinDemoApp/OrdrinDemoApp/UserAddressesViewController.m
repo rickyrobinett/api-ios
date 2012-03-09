@@ -17,9 +17,11 @@
 #import "UserAddressesView.h"
 #import "UserAddressesDataSource.h"
 #import "OICore.h"
+#import "AddAddressViewController.h"
 
 @interface UserAddressesViewController (Private)
 - (void)createModel;
+- (void)createNewAddressButtonDidPress;
 @end
 
 @implementation UserAddressesViewController
@@ -32,6 +34,7 @@
   if ( self ) {
     self.title = @"Addresses";
     __addresses = [addresses retain];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewAddressButtonDidPress)];
   }
   
   return self;
@@ -76,6 +79,12 @@
 #pragma mark Private
 
 @implementation UserAddressesViewController (Private)
+
+- (void)createNewAddressButtonDidPress {
+  AddAddressViewController *addAddressViewController = [[AddAddressViewController alloc] init];
+  [self.navigationController pushViewController:addAddressViewController animated:YES];
+  OI_RELEASE_SAFELY( addAddressViewController );
+}
 
 - (void)createModel {
   __userAddressesDataSource = [[UserAddressesDataSource alloc] initWithAddresses:__addresses];

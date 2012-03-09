@@ -15,6 +15,7 @@
 		341EF2C215063F3B003C0C17 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2C115063F3B003C0C17 /* AccountViewController.m */; };
 		341EF2C7150640CC003C0C17 /* AccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2C6150640CC003C0C17 /* AccountView.m */; };
 		341EF2CC15064DD3003C0C17 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2CB15064DD3003C0C17 /* LoginView.m */; };
+		345491BB150A2A1000721E05 /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345491BA150A2A1000721E05 /* AddAddressViewController.m */; };
 		346DDC2A1506863F0050FBC7 /* CreateAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 346DDC291506863F0050FBC7 /* CreateAccountView.m */; };
 		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
 		34E3389C1508ED8D00815430 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3389B1508ED8D00815430 /* ChangePasswordViewController.m */; };
@@ -65,6 +66,8 @@
 		341EF2C6150640CC003C0C17 /* AccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountView.m; sourceTree = "<group>"; };
 		341EF2CA15064DD3003C0C17 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		341EF2CB15064DD3003C0C17 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		345491B9150A2A1000721E05 /* AddAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
+		345491BA150A2A1000721E05 /* AddAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		346DDC281506863F0050FBC7 /* CreateAccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountView.h; sourceTree = "<group>"; };
 		346DDC291506863F0050FBC7 /* CreateAccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountView.m; sourceTree = "<group>"; };
 		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
@@ -240,6 +243,15 @@
 			name = CreateAccountView;
 			sourceTree = "<group>";
 		};
+		345491B7150A29E400721E05 /* AddAddressViewController */ = {
+			isa = PBXGroup;
+			children = (
+				345491B9150A2A1000721E05 /* AddAddressViewController.h */,
+				345491BA150A2A1000721E05 /* AddAddressViewController.m */,
+			);
+			name = AddAddressViewController;
+			sourceTree = "<group>";
+		};
 		346DDC261506862D0050FBC7 /* CreateAccountView */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +331,7 @@
 		34E3E25E15076A1B00DE69F3 /* UserAddressesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				345491B7150A29E400721E05 /* AddAddressViewController */,
 				34E3E26615076F1E00DE69F3 /* UserAddressesDataSource */,
 				34E3E26215076C5300DE69F3 /* UserAddressesView */,
 				34E3E25F15076A9200DE69F3 /* UserAddressesViewController.h */,
@@ -599,6 +612,7 @@
 				34E3E27D1507992200DE69F3 /* AddCreditCardView.m in Sources */,
 				34E3389C1508ED8D00815430 /* ChangePasswordViewController.m in Sources */,
 				34E338A01508EE7200815430 /* ChangePasswordView.m in Sources */,
+				345491BB150A2A1000721E05 /* AddAddressViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
