@@ -18,6 +18,8 @@
 		345491BB150A2A1000721E05 /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345491BA150A2A1000721E05 /* AddAddressViewController.m */; };
 		345491BF150A2BF900721E05 /* AddAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 345491BE150A2BF900721E05 /* AddAddressView.m */; };
 		346DDC2A1506863F0050FBC7 /* CreateAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 346DDC291506863F0050FBC7 /* CreateAccountView.m */; };
+		348E25B4150BD8A200C89AE2 /* UserAddressTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E25B3150BD8A200C89AE2 /* UserAddressTextCell.m */; };
+		348E25B8150BDEE600C89AE2 /* UserAddressEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E25B7150BDEE600C89AE2 /* UserAddressEditCell.m */; };
 		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
 		34E3389C1508ED8D00815430 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3389B1508ED8D00815430 /* ChangePasswordViewController.m */; };
 		34E338A01508EE7200815430 /* ChangePasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3389F1508EE7200815430 /* ChangePasswordView.m */; };
@@ -73,6 +75,10 @@
 		345491BE150A2BF900721E05 /* AddAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressView.m; sourceTree = "<group>"; };
 		346DDC281506863F0050FBC7 /* CreateAccountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountView.h; sourceTree = "<group>"; };
 		346DDC291506863F0050FBC7 /* CreateAccountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountView.m; sourceTree = "<group>"; };
+		348E25B2150BD8A200C89AE2 /* UserAddressTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressTextCell.h; sourceTree = "<group>"; };
+		348E25B3150BD8A200C89AE2 /* UserAddressTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressTextCell.m; sourceTree = "<group>"; };
+		348E25B6150BDEE600C89AE2 /* UserAddressEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressEditCell.h; sourceTree = "<group>"; };
+		348E25B7150BDEE600C89AE2 /* UserAddressEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressEditCell.m; sourceTree = "<group>"; };
 		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
 		34D17F0B1505054400BE4037 /* OrdrinDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OrdrinDemo.h; path = ../OrdrinDemo.h; sourceTree = "<group>"; };
 		34E3389A1508ED8D00815430 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
@@ -274,6 +280,33 @@
 			name = CreateAccountView;
 			sourceTree = "<group>";
 		};
+		348E25AF150BD84400C89AE2 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				348E25B5150BDE7C00C89AE2 /* UserAddressEditCell */,
+				348E25B1150BD85000C89AE2 /* UserAddressTextCell */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
+		348E25B1150BD85000C89AE2 /* UserAddressTextCell */ = {
+			isa = PBXGroup;
+			children = (
+				348E25B2150BD8A200C89AE2 /* UserAddressTextCell.h */,
+				348E25B3150BD8A200C89AE2 /* UserAddressTextCell.m */,
+			);
+			name = UserAddressTextCell;
+			sourceTree = "<group>";
+		};
+		348E25B5150BDE7C00C89AE2 /* UserAddressEditCell */ = {
+			isa = PBXGroup;
+			children = (
+				348E25B6150BDEE600C89AE2 /* UserAddressEditCell.h */,
+				348E25B7150BDEE600C89AE2 /* UserAddressEditCell.m */,
+			);
+			name = UserAddressEditCell;
+			sourceTree = "<group>";
+		};
 		34E338981508ED6D00815430 /* ChangePasswordViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +389,7 @@
 		34E3E26215076C5300DE69F3 /* UserAddressesView */ = {
 			isa = PBXGroup;
 			children = (
+				348E25AF150BD84400C89AE2 /* cells */,
 				34E3E26315076C6200DE69F3 /* UserAddressesView.h */,
 				34E3E26415076C6200DE69F3 /* UserAddressesView.m */,
 			);
@@ -627,6 +661,8 @@
 				34E338A01508EE7200815430 /* ChangePasswordView.m in Sources */,
 				345491BB150A2A1000721E05 /* AddAddressViewController.m in Sources */,
 				345491BF150A2BF900721E05 /* AddAddressView.m in Sources */,
+				348E25B4150BD8A200C89AE2 /* UserAddressTextCell.m in Sources */,
+				348E25B8150BDEE600C89AE2 /* UserAddressEditCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,7 +29,7 @@
     __email = [email copy];
     
     NSMutableString *hash = [[NSMutableString alloc] init];
-    [hash appendString:password];
+    [hash appendString:password.sha256];
     [hash appendString:email];
     [hash appendString:[uri relativeString]];
     __hash = [[hash sha256] copy];

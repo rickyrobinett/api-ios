@@ -71,16 +71,17 @@ NSString const* OIUserURL = @"https://u.ordr.in/";
     
     NSDictionary *json = [[request responseString] objectFromJSONString];
     OIUser *user = [[[OIUser alloc] init] autorelease];
-    
-    OIUserInfo *userInfo = [OIUserInfo sharedInstance];
-    userInfo.password = password;
-    userInfo.email = [json objectForKey:@"em"];
-    
+        
     NSString *em = [json objectForKey:@"em"];
     NSString *pw = [json objectForKey:@"pw"];
+    NSString *psswd = password;
     NSString *passwordSha256 = password.sha256;
     
     if ( [email isEqualToString:em] && [pw isEqualToString:passwordSha256] ) {
+      OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+      userInfo.password = psswd;
+      userInfo.email = [json objectForKey:@"em"];
+      
       user.firstName = [json objectForKey:@"first_name"];
       user.lastName = [json objectForKey:@"last_name"];
       
