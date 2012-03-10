@@ -24,6 +24,8 @@ static NSString *cellEditIdentifier = @"cellEditIdentifier";
 
 @implementation UserAddressesDataSource
 
+@synthesize addresses = __addresses;
+
 #pragma mark -
 #pragma mark Initializations
 
@@ -89,6 +91,7 @@ static NSString *cellEditIdentifier = @"cellEditIdentifier";
       cell = [[[UserAddressEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellEditIdentifier] autorelease];
     }
     
+    cell.section = indexPath.section;
     return cell;
   }
 }

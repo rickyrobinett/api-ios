@@ -22,4 +22,5 @@
 }
 
 - (id)initWithAddresses:(NSMutableArray *)addresses;
+@property (nonatomic, readonly) NSMutableArray *addresses;
 @end

@@ -18,8 +18,13 @@
 #import "UserAddressesDataSource.h"
 #import "OICore.h"
 #import "AddAddressViewController.h"
+#import "UserAddressEditCell.h"
+#import "OIAddress.h"
 
 @interface UserAddressesViewController (Private)
+- (void)deleteAddressNotification:(NSNotification *)notification;
+- (void)editAddressNotification:(NSNotification *)notification;
+
 - (void)createModel;
 - (void)createNewAddressButtonDidPress;
 @end
@@ -35,6 +40,9 @@
     self.title = @"Addresses";
     __addresses = [addresses retain];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewAddressButtonDidPress)];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAddressNotification:) name:kDeleteButtonDidPressNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editAddressNotification:) name:kEditButtonDidPressNotification object:nil];    
   }
   
   return self;
@@ -63,6 +71,8 @@
 - (void)releaseWithDealloc:(BOOL)dealloc {
   OI_RELEASE_SAFELY( __userAddressesView );
   if ( dealloc ) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kDeleteButtonDidPressNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kEditButtonDidPressNotification object:nil];    
     OI_RELEASE_SAFELY( __userAddressesDataSource );
     OI_RELEASE_SAFELY( __addresses );
   }  
@@ -79,6 +89,23 @@
 #pragma mark Private
 
 @implementation UserAddressesViewController (Private)
+
+- (void)deleteAddressNotification:(NSNotification *)notification {
+  NSNumber *section = [notification.userInfo objectForKey:@"section"];
+  OIAddress *address = [__userAddressesDataSource.addresses objectAtIndex:section.integerValue];
+  [OIAddress deleteAddressByNickname:address.nickname usingBlock:^void( NSError *error ) {
+    if ( error ) {
+      
+    }
+  }];
+  
+  NSLog( @"deleteAddressNotification %d", section.integerValue );
+}
+
+- (void)editAddressNotification:(NSNotification *)notification {
+  NSNumber *section = [notification.userInfo objectForKey:@"section"];
+  NSLog( @"editAddressNotification %d", section.integerValue );
+}
 
 - (void)createNewAddressButtonDidPress {
   AddAddressViewController *addAddressViewController = [[AddAddressViewController alloc] init];

@@ -37,11 +37,15 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];  
   if (self) {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;    
     __deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [__deleteButton setTitle:@"DELETE" forState:UIControlStateNormal];
     
     __editButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [__editButton setTitle:@"EDIT" forState:UIControlStateNormal];
+    
+    [__editButton addTarget:self action:@selector(editButtonDidPress) forControlEvents:UIControlEventTouchDown];
+    [__deleteButton addTarget:self action:@selector(deleteButtonDidPress) forControlEvents:UIControlEventTouchDown];    
     
     [self addSubview:__deleteButton];
     [self addSubview:__editButton];

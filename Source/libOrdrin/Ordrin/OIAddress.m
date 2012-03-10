@@ -252,12 +252,16 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
   NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
   
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
+  [request setRequestMethod:@"DELETE"];
   
-  [request setRequestMethod:@"DELETE"];  
+//  [request setPostValue:userInfo.email forKey:@"email"];
+//  [request setPostValue:[userInfo.password sha256] forKey:@"password"];
+//  [request setPostValue:nickname forKey:@"nick"];
+  
   [request setCompletionBlock:^{
     
     NSDictionary *json = [[request responseString] objectFromJSONString];
-    
+    NSLog( @"%@", request.responseStatusMessage );
     if ( json ) {
       NSNumber *error = [json objectForKey:@"_error"];
       if ( error.intValue == 0 ) {
