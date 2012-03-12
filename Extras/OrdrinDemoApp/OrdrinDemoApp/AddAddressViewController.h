@@ -17,7 +17,7 @@
 
 @class AddAddressView;
 
-@interface AddAddressViewController : UIViewController {
+@interface AddAddressViewController : UIViewController<UITextFieldDelegate> {
 
 @private
   id __delegate;

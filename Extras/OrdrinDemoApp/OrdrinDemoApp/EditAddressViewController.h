@@ -18,7 +18,7 @@
 @class OIAddress;
 @class EditAddressView;
 
-@interface EditAddressViewController : UIViewController {
+@interface EditAddressViewController : UIViewController<UITextFieldDelegate> {
  
 @private
   id __delegate;  

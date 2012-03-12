@@ -49,7 +49,8 @@
 - (void)loadView {
   [super loadView];
 
-  __addAddressView = [[AddAddressView alloc] init];  
+  __addAddressView = [[AddAddressView alloc] init];
+  __addAddressView.phoneField.delegate = self;
   self.view = __addAddressView;
 }
 
@@ -60,10 +61,36 @@
 }
 
 #pragma mark -
+#pragma mark UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+  CGFloat originY = textField.frame.origin.y + textField.frame.size.height;
+  if ( originY > 185 ) {
+    CGRect frame = __addAddressView.frame;
+    frame.origin.y = 185 - originY;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDelay:1.0];
+    __addAddressView.frame = frame;
+    [UIView commitAnimations];
+  }
+}
+
+#pragma mark -
 #pragma mark Events
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   [self hideKeyboard];
+  
+  if ( __addAddressView.frame.origin.y != 0 ) {
+    CGRect frame = __addAddressView.frame;
+    frame.origin.y = 0;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDelay:1.0];
+    __addAddressView.frame = frame;
+    [UIView commitAnimations];
+  }
+  
 }
 
 #pragma mark -

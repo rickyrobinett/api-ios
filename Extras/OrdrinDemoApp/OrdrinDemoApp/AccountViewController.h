@@ -17,7 +17,7 @@
 
 @class AccountView;
 
-@interface AccountViewController : UIViewController {
+@interface AccountViewController : UIViewController<UITextFieldDelegate> {
 
 @private
   AccountView *__accountView;

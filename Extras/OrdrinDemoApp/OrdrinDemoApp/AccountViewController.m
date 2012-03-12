@@ -70,12 +70,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  
-  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
-  if ( userInfo.userLogged ) {
-    [self showUserMenu:NO];
-  }
+  [super viewWillAppear:animated];  
+}
+
+#pragma mark -
+#pragma mark UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+  CGFloat originY = textField.frame.origin.y + textField.frame.size.height;  
 }
 
 #pragma mark -
@@ -83,6 +85,15 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   [self hideKeyboard];
+      
+  if ( __accountView.frame.origin.y != 0 ) {  
+    CGRect frame = __accountView.frame;    
+    frame.origin.y = 0;    
+    [UIView beginAnimations:nil context:nil];    
+    [UIView setAnimationDelay:0.5];    
+    __accountView.frame = frame;    
+    [UIView commitAnimations];  
+  }    
 }
 
 #pragma mark -
@@ -109,11 +120,17 @@
 - (void)showCreateAccountView {
   [__accountView showCreateAccountView];
   [__accountView.createAccountView.createAccountButton addTarget:self action:@selector(createAccountButtonDidPress) forControlEvents:UIControlEventTouchDown];
+  __accountView.createAccountView.firstNameField.delegate = self;
+  __accountView.createAccountView.lastNameField.delegate = self;
+  __accountView.createAccountView.emailField.delegate = self;
+  __accountView.createAccountView.passwordField.delegate = self;  
 }
 
 - (void)showLoginView {
   [__accountView showLoginView];
-  [__accountView.loginView.loginButton addTarget:self action:@selector(loginButtonDidPress) forControlEvents:UIControlEventTouchDown];  
+  [__accountView.loginView.loginButton addTarget:self action:@selector(loginButtonDidPress) forControlEvents:UIControlEventTouchDown];
+  __accountView.loginView.emailField.delegate = self;
+  __accountView.loginView.passwordField.delegate = self;
 }
 
 - (void)createAccountButtonDidPress {
