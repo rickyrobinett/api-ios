@@ -157,6 +157,9 @@
   
   [request setCompletionBlock:^{    
     NSDictionary *json = [[request responseString] objectFromJSONString];
+    NSLog( @"%@", json );
+    NSLog( @"%@", request.responseStatusMessage );    
+    
     NSArray *allKeys = [json allKeys];    
     NSString *item;
     
@@ -296,7 +299,7 @@
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.state) forKey:@"bill_state"];
   [request setPostValue:OI_ZERO_IF_NIL(creditCard.address.postalCode) forKey:@"bill_zip"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.phoneNumber) forKey:@"phone"];
-
+  
   return request;
 }
 

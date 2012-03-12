@@ -84,7 +84,7 @@
 @implementation AddressFormViewController (Private)
 
 - (void)findButtonDidPress {
-  NSNumber *postalCode = [NSNumber numberWithInt:__addressFormView.postalCodeField.text.intValue];
+//  NSNumber *postalCode = [NSNumber numberWithInt:__addressFormView.postalCodeField.text.intValue];
 //  OIAddress *address = [OIAddress addressWithStreet:__addressFormView.streetField.text city:__addressFormView.cityField.text postalCode:postalCode];
   OIAddress *address = [OIAddress addressWithStreet:@"1 Main St"
                                                city:@"College Station"

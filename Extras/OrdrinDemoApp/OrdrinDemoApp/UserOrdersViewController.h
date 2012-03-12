@@ -13,17 +13,16 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-static NSString *kAddressesDidLoadNotification = @"kAddressesDidLoadNotification";
+@class UserOrdersView;
+@class AddressFormView;
 
-@interface UserAddressesModel : NSObject {
+@interface UserOrdersViewController : UIViewController {
 
 @private
-  NSMutableArray *__items;
+  UserOrdersView *__userOrdersView;
+  AddressFormView *__addressForm;
 }
-
-- (void)reload;
-@property (nonatomic, readonly) NSMutableArray *items;
 
 @end

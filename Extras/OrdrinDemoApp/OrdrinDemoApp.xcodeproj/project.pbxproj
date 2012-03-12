@@ -20,6 +20,12 @@
 		346DDC2A1506863F0050FBC7 /* CreateAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 346DDC291506863F0050FBC7 /* CreateAccountView.m */; };
 		348C11EA150DC24800BF32C4 /* EditAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C11E9150DC24800BF32C4 /* EditAddressViewController.m */; };
 		348C11EE150DC30E00BF32C4 /* EditAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C11ED150DC30E00BF32C4 /* EditAddressView.m */; };
+		348C8D62150E2E83005A8010 /* UserOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C8D61150E2E83005A8010 /* UserOrdersViewController.m */; };
+		348C8D66150E2F82005A8010 /* UserOrdersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C8D65150E2F82005A8010 /* UserOrdersView.m */; };
+		348C8D6A150E320C005A8010 /* UserOrdersDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C8D69150E320C005A8010 /* UserOrdersDataSource.m */; };
+		348C8D6E150E3300005A8010 /* UserOrdersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C8D6D150E3300005A8010 /* UserOrdersModel.m */; };
+		348C8D72150E3EDA005A8010 /* NewOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C8D71150E3EDA005A8010 /* NewOrderViewController.m */; };
+		348C8D78150E4B5F005A8010 /* NewOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C8D77150E4B5F005A8010 /* NewOrderView.m */; };
 		348E25B4150BD8A200C89AE2 /* UserAddressTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E25B3150BD8A200C89AE2 /* UserAddressTextCell.m */; };
 		348E25B8150BDEE600C89AE2 /* UserAddressEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E25B7150BDEE600C89AE2 /* UserAddressEditCell.m */; };
 		34B8E499150CCDC400B58F12 /* UserAddressesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8E498150CCDC400B58F12 /* UserAddressesModel.m */; };
@@ -82,6 +88,18 @@
 		348C11E9150DC24800BF32C4 /* EditAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAddressViewController.m; sourceTree = "<group>"; };
 		348C11EC150DC30E00BF32C4 /* EditAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAddressView.h; sourceTree = "<group>"; };
 		348C11ED150DC30E00BF32C4 /* EditAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAddressView.m; sourceTree = "<group>"; };
+		348C8D60150E2E83005A8010 /* UserOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrdersViewController.h; sourceTree = "<group>"; };
+		348C8D61150E2E83005A8010 /* UserOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOrdersViewController.m; sourceTree = "<group>"; };
+		348C8D64150E2F82005A8010 /* UserOrdersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrdersView.h; sourceTree = "<group>"; };
+		348C8D65150E2F82005A8010 /* UserOrdersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOrdersView.m; sourceTree = "<group>"; };
+		348C8D68150E320C005A8010 /* UserOrdersDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrdersDataSource.h; sourceTree = "<group>"; };
+		348C8D69150E320C005A8010 /* UserOrdersDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOrdersDataSource.m; sourceTree = "<group>"; };
+		348C8D6C150E3300005A8010 /* UserOrdersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrdersModel.h; sourceTree = "<group>"; };
+		348C8D6D150E3300005A8010 /* UserOrdersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOrdersModel.m; sourceTree = "<group>"; };
+		348C8D70150E3EDA005A8010 /* NewOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewOrderViewController.h; sourceTree = "<group>"; };
+		348C8D71150E3EDA005A8010 /* NewOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOrderViewController.m; sourceTree = "<group>"; };
+		348C8D76150E4B5F005A8010 /* NewOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewOrderView.h; sourceTree = "<group>"; };
+		348C8D77150E4B5F005A8010 /* NewOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOrderView.m; sourceTree = "<group>"; };
 		348E25B2150BD8A200C89AE2 /* UserAddressTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressTextCell.h; sourceTree = "<group>"; };
 		348E25B3150BD8A200C89AE2 /* UserAddressTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressTextCell.m; sourceTree = "<group>"; };
 		348E25B6150BDEE600C89AE2 /* UserAddressEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressEditCell.h; sourceTree = "<group>"; };
@@ -213,6 +231,7 @@
 		341EF2BF150632BA003C0C17 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				348C8D5E150E2E27005A8010 /* UserOrdersViewController */,
 				34E338981508ED6D00815430 /* ChangePasswordViewController */,
 				34E3E26A1507746400DE69F3 /* UserCreditCardsViewController */,
 				34E3E25E15076A1B00DE69F3 /* UserAddressesViewController */,
@@ -306,6 +325,65 @@
 				348C11ED150DC30E00BF32C4 /* EditAddressView.m */,
 			);
 			name = EditAddressView;
+			sourceTree = "<group>";
+		};
+		348C8D5E150E2E27005A8010 /* UserOrdersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				348C8D6F150E3CA3005A8010 /* NewOrderViewController */,
+				348C8D6B150E32EC005A8010 /* UserOrdersModel */,
+				348C8D67150E31F7005A8010 /* UserOrdersDataSource */,
+				348C8D63150E2F74005A8010 /* UserOrdersView */,
+				348C8D60150E2E83005A8010 /* UserOrdersViewController.h */,
+				348C8D61150E2E83005A8010 /* UserOrdersViewController.m */,
+			);
+			name = UserOrdersViewController;
+			sourceTree = "<group>";
+		};
+		348C8D63150E2F74005A8010 /* UserOrdersView */ = {
+			isa = PBXGroup;
+			children = (
+				348C8D64150E2F82005A8010 /* UserOrdersView.h */,
+				348C8D65150E2F82005A8010 /* UserOrdersView.m */,
+			);
+			name = UserOrdersView;
+			sourceTree = "<group>";
+		};
+		348C8D67150E31F7005A8010 /* UserOrdersDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				348C8D68150E320C005A8010 /* UserOrdersDataSource.h */,
+				348C8D69150E320C005A8010 /* UserOrdersDataSource.m */,
+			);
+			name = UserOrdersDataSource;
+			sourceTree = "<group>";
+		};
+		348C8D6B150E32EC005A8010 /* UserOrdersModel */ = {
+			isa = PBXGroup;
+			children = (
+				348C8D6C150E3300005A8010 /* UserOrdersModel.h */,
+				348C8D6D150E3300005A8010 /* UserOrdersModel.m */,
+			);
+			name = UserOrdersModel;
+			sourceTree = "<group>";
+		};
+		348C8D6F150E3CA3005A8010 /* NewOrderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				348C8D75150E4B50005A8010 /* NewOrderView */,
+				348C8D70150E3EDA005A8010 /* NewOrderViewController.h */,
+				348C8D71150E3EDA005A8010 /* NewOrderViewController.m */,
+			);
+			name = NewOrderViewController;
+			sourceTree = "<group>";
+		};
+		348C8D75150E4B50005A8010 /* NewOrderView */ = {
+			isa = PBXGroup;
+			children = (
+				348C8D76150E4B5F005A8010 /* NewOrderView.h */,
+				348C8D77150E4B5F005A8010 /* NewOrderView.m */,
+			);
+			name = NewOrderView;
 			sourceTree = "<group>";
 		};
 		348E25AF150BD84400C89AE2 /* cells */ = {
@@ -705,6 +783,12 @@
 				34B8E499150CCDC400B58F12 /* UserAddressesModel.m in Sources */,
 				348C11EA150DC24800BF32C4 /* EditAddressViewController.m in Sources */,
 				348C11EE150DC30E00BF32C4 /* EditAddressView.m in Sources */,
+				348C8D62150E2E83005A8010 /* UserOrdersViewController.m in Sources */,
+				348C8D66150E2F82005A8010 /* UserOrdersView.m in Sources */,
+				348C8D6A150E320C005A8010 /* UserOrdersDataSource.m in Sources */,
+				348C8D6E150E3300005A8010 /* UserOrdersModel.m in Sources */,
+				348C8D72150E3EDA005A8010 /* NewOrderViewController.m in Sources */,
+				348C8D78150E4B5F005A8010 /* NewOrderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

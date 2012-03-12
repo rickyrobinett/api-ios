@@ -13,15 +13,15 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import "UserAddressesModel.h"
+#import "UserOrdersModel.h"
+#import "OIOrder.h"
 #import "OICore.h"
-#import "OIAddress.h"
 
-@interface UserAddressesModel (Private)
-- (void)initAllAddresses;
+@interface UserOrdersModel (Private)
+- (void)initAllOrders;
 @end
 
-@implementation UserAddressesModel
+@implementation UserOrdersModel
 
 @synthesize items = __items;
 
@@ -31,9 +31,9 @@
 - (id)init {
   self = [super init];
   if ( self ) {
-    [self initAllAddresses];
+    [self initAllOrders];
   }
-
+  
   return self;
 }
 
@@ -45,7 +45,7 @@
     OI_RELEASE_SAFELY( __items );
   }
   
-  [self initAllAddresses];
+  [self initAllOrders];
 }
 
 #pragma mark -
@@ -61,13 +61,13 @@
 #pragma mark -
 #pragma mark Private
 
-@implementation UserAddressesModel (Private)
+@implementation UserOrdersModel (Private)
 
-- (void)initAllAddresses {
-  [OIAddress loadAddressesUsingBlock:^void( NSMutableArray *addresses ) {
-    __items = [[NSMutableArray alloc] initWithArray:addresses];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAddressesDidLoadNotification object:nil];
-  }];  
+- (void)initAllOrders {
+  [OIOrder loadOrderHistoryUsingBlock:^void( NSMutableArray *orders ) {
+    __items = [[NSMutableArray alloc] initWithArray:orders];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kOrdersDidLoadNotification object:nil];    
+  }];
 }
 
 @end

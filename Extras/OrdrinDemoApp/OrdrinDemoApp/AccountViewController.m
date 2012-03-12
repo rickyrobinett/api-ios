@@ -77,7 +77,16 @@
 #pragma mark UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-  CGFloat originY = textField.frame.origin.y + textField.frame.size.height;  
+  CGFloat originY = textField.frame.origin.y + textField.frame.size.height;
+  
+  if ( originY >= 80 ) {
+    CGRect frame = __accountView.frame;    
+    frame.origin.y = - originY;    
+    [UIView beginAnimations:nil context:nil];    
+    [UIView setAnimationDelay:0.5];
+    __accountView.frame = frame;
+    [UIView commitAnimations];      
+  }
 }
 
 #pragma mark -

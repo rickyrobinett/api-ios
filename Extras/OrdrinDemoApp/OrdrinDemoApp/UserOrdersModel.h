@@ -13,17 +13,16 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
+static NSString *kOrdersDidLoadNotification = @"kOrdersDidLoadNotification";
+
 #import <Foundation/Foundation.h>
 
-static NSString *kAddressesDidLoadNotification = @"kAddressesDidLoadNotification";
-
-@interface UserAddressesModel : NSObject {
+@interface UserOrdersModel : NSObject {
 
 @private
   NSMutableArray *__items;
 }
 
-- (void)reload;
 @property (nonatomic, readonly) NSMutableArray *items;
 
 @end

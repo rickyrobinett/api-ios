@@ -14,9 +14,9 @@
  */
 
 #import "AddressFormView.h"
-
 #import "OICore.h"
 
+#define BACKGROUND_COLOR          [UIColor whiteColor]
 #define PADDING                   50
 
 #define LABEL_FONT                [UIFont fontWithName:@"Helvetica" size:12.0]
@@ -36,6 +36,11 @@
 #define POSTAL_CODE_LABEL_FRAME   CGRectMake ( 5, 165, LABEL_WIDTH, LABEL_HEIGHT)
 
 #define FIND_BUTTON_FRAME         CGRectMake ( 200, 250, 60, 40)
+
+@interface AddressFormView (Private)
+- (void)initSubviews;
+@end
+
 @implementation AddressFormView
 
 @synthesize streetField     = __streetField;
@@ -51,37 +56,19 @@
 #pragma mark -
 #pragma mark Initializations
 
+- (id)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if ( self ) {
+    [self initSubviews];
+  }
+  
+  return self;
+}
+
 - (id)init {
   self = [super init];  
   if ( self ) {
-    
-    __findButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [__findButton setTitle:@"Search" forState:UIControlStateNormal];
-    
-    __streetField = [[UITextField alloc] initWithFrame:CGRectZero];
-    __cityField = [[UITextField alloc] initWithFrame:CGRectZero];
-    __postalCodeField = [[UITextField alloc] initWithFrame:CGRectZero];
-    
-    __streetField.borderStyle = __cityField.borderStyle = __postalCodeField.borderStyle = UITextBorderStyleRoundedRect;
-    
-    __streetLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    __cityLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    __postalCodeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    
-    __streetLabel.font = __cityLabel.font = __postalCodeLabel.font = LABEL_FONT;
-    
-    __streetLabel.text = @"Street";
-    __cityLabel.text = @"City";
-    __postalCodeLabel.text = @"Zip";
-    
-    [self addSubview:__findButton];
-    [self addSubview:__streetLabel];
-    [self addSubview:__cityLabel];
-    [self addSubview:__postalCodeLabel];
-    
-    [self addSubview:__streetField];
-    [self addSubview:__cityField];
-    [self addSubview:__postalCodeField];
+    [self initSubviews];    
   }
   
   return self;
@@ -117,8 +104,13 @@
     __postalCodeLabel.frame = POSTAL_CODE_LABEL_FRAME;
   }
 
-  if ( !CGRectEqualToRect( __findButton.frame, FIND_BUTTON_FRAME)) {
-    __findButton.frame = FIND_BUTTON_FRAME;
+  if ( CGRectEqualToRect( __findButton.frame, CGRectZero)) {
+    CGRect frame;
+    frame.size.width = self.frame.size.width - 20;
+    frame.size.height = 40;
+    frame.origin.x = 10;
+    frame.origin.y = __postalCodeField.frame.origin.y + CGRectGetHeight(__postalCodeField.frame) + 10;
+    __findButton.frame = frame;
   }  
 }
 
@@ -138,3 +130,44 @@
 }
 
 @end
+
+#pragma mark -
+#pragma mark Private
+
+@implementation AddressFormView (Private)
+
+- (void)initSubviews {
+  self.backgroundColor = BACKGROUND_COLOR;
+  __findButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [__findButton setTitle:@"Search" forState:UIControlStateNormal];
+  __findButton.frame = CGRectZero;
+  
+  __streetField = [[UITextField alloc] initWithFrame:CGRectZero];
+  __cityField = [[UITextField alloc] initWithFrame:CGRectZero];
+  __postalCodeField = [[UITextField alloc] initWithFrame:CGRectZero];
+  
+  __streetField.borderStyle = __cityField.borderStyle = __postalCodeField.borderStyle = UITextBorderStyleRoundedRect;
+  
+  __streetLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  __cityLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  __postalCodeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  
+  __streetLabel.font = __cityLabel.font = __postalCodeLabel.font = LABEL_FONT;
+  __streetLabel.backgroundColor = __cityLabel.backgroundColor = __postalCodeLabel.backgroundColor = [UIColor clearColor];
+  
+  __streetLabel.text = @"Street";
+  __cityLabel.text = @"City";
+  __postalCodeLabel.text = @"Zip";
+  
+  [self addSubview:__findButton];
+  [self addSubview:__streetLabel];
+  [self addSubview:__cityLabel];
+  [self addSubview:__postalCodeLabel];
+  
+  [self addSubview:__streetField];
+  [self addSubview:__cityField];
+  [self addSubview:__postalCodeField];  
+}
+
+@end
+

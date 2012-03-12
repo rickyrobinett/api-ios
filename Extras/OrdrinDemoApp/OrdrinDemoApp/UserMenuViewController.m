@@ -23,6 +23,7 @@
 #import "OICardInfo.h"
 #import "UserCreditCardsViewController.h"
 #import "ChangePasswordViewController.h"
+#import "UserOrdersViewController.h"
 
 @interface UserMenuViewController (UserAction)
 - (void)accountInfoButtonDidPress;
@@ -114,7 +115,9 @@
 }
 
 - (void)ordersHistoryButtonDidPress {
-  
+  UserOrdersViewController *userOrdersViewController = [[UserOrdersViewController alloc] init];
+  [self.navigationController pushViewController:userOrdersViewController animated:YES];
+  OI_RELEASE_SAFELY( userOrdersViewController );
 }
 
 - (void)passwordButtonDidPress {

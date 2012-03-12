@@ -129,7 +129,7 @@
   }
   
   OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];
-  cardInfo.nickname = @"Master";  
+  cardInfo.nickname = @"sraster";  
   cardInfo.name = @"KGB";
   cardInfo.lastFiveDigits = [NSNumber numberWithInt:333];
   cardInfo.expirationYear = @"2012";
@@ -139,8 +139,9 @@
   OIAddress *address = [OIAddress addressWithStreet:@"address1" city:@"Mexico city" postalCode:postalCode];
   address.address2 = @"address2";
   address.state = @"FL";
-  
+  address.phoneNumber = @"737716364";
   cardInfo.address = address;
+  
   
 //  cardInfo.nickname = __addCreditCardView.nickNameField.text;
 //  cardInfo.name = __addCreditCardView.nameField.text;
