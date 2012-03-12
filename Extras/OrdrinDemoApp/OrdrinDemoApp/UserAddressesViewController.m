@@ -20,8 +20,11 @@
 #import "AddAddressViewController.h"
 #import "UserAddressEditCell.h"
 #import "OIAddress.h"
+#import "UserAddressesModel.h"
+#import "EditAddressViewController.h"
 
 @interface UserAddressesViewController (Private)
+- (void)addressesDidLoadNotification:(NSNotification *)notification;
 - (void)deleteAddressNotification:(NSNotification *)notification;
 - (void)editAddressNotification:(NSNotification *)notification;
 
@@ -31,18 +34,21 @@
 
 @implementation UserAddressesViewController
 
+@synthesize userAddressesDataSource = __userAddressesDataSource;
+
 #pragma mark -
 #pragma mark Initializations
 
-- (id)initWithAddresses:(NSMutableArray *)addresses {
+- (id)init {
   self = [super init];
   if ( self ) {
     self.title = @"Addresses";
-    __addresses = [addresses retain];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewAddressButtonDidPress)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAddressNotification:) name:kDeleteButtonDidPressNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editAddressNotification:) name:kEditButtonDidPressNotification object:nil];    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addressesDidLoadNotification:) name:kAddressesDidLoadNotification object:nil];    
+    
   }
   
   return self;
@@ -71,10 +77,10 @@
 - (void)releaseWithDealloc:(BOOL)dealloc {
   OI_RELEASE_SAFELY( __userAddressesView );
   if ( dealloc ) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddressesDidLoadNotification object:nil];    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kDeleteButtonDidPressNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kEditButtonDidPressNotification object:nil];    
     OI_RELEASE_SAFELY( __userAddressesDataSource );
-    OI_RELEASE_SAFELY( __addresses );
   }  
 }
 
@@ -90,12 +96,18 @@
 
 @implementation UserAddressesViewController (Private)
 
+- (void)addressesDidLoadNotification:(NSNotification *)notification {
+  [__userAddressesView.tableView reloadData];
+}
+
 - (void)deleteAddressNotification:(NSNotification *)notification {
   NSNumber *section = [notification.userInfo objectForKey:@"section"];
-  OIAddress *address = [__userAddressesDataSource.addresses objectAtIndex:section.integerValue];
+  OIAddress *address = [__userAddressesDataSource.model.items objectAtIndex:section.integerValue];
   [OIAddress deleteAddressByNickname:address.nickname usingBlock:^void( NSError *error ) {
     if ( error ) {
       
+    } else {
+      [__userAddressesDataSource.model reload];
     }
   }];
   
@@ -104,17 +116,21 @@
 
 - (void)editAddressNotification:(NSNotification *)notification {
   NSNumber *section = [notification.userInfo objectForKey:@"section"];
-  NSLog( @"editAddressNotification %d", section.integerValue );
+  OIAddress *address = [__userAddressesDataSource.model.items objectAtIndex:section.integerValue];
+  EditAddressViewController *editAddressViewController = [[EditAddressViewController alloc] initWithAddress:address];
+  editAddressViewController.delegate = self;
+  [self.navigationController pushViewController:editAddressViewController animated:YES];
 }
 
 - (void)createNewAddressButtonDidPress {
   AddAddressViewController *addAddressViewController = [[AddAddressViewController alloc] init];
+  addAddressViewController.delegate = self;
   [self.navigationController pushViewController:addAddressViewController animated:YES];
   OI_RELEASE_SAFELY( addAddressViewController );
 }
 
 - (void)createModel {
-  __userAddressesDataSource = [[UserAddressesDataSource alloc] initWithAddresses:__addresses];
+  __userAddressesDataSource = [[UserAddressesDataSource alloc] init];
   __userAddressesView.tableView.dataSource = __userAddressesDataSource;
 }
 

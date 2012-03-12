@@ -122,40 +122,12 @@
 + (void)addCreditCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
   NSString *URLParams = [NSString stringWithFormat:@"/u/%@/ccs/%@",userInfo.email.urlEncode, creditCard.nickname.urlEncode];
-  NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
 
-  __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
-  
-  [request setRequestMethod:@"PUT"];
-  
-  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.nickname) forKey:@"nick"];
-  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.name) forKey:@"name"];
-  [request setPostValue:OI_ZERO_IF_NIL(creditCard.number) forKey:@"number"];
-  [request setPostValue:OI_ZERO_IF_NIL(creditCard.cvc) forKey:@"cvc"];
-  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.expirationMonth) forKey:@"expiry_month"];
-  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.expirationYear) forKey:@"expiry_year"];
-  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.address1) forKey:@"bill_addr"];
-  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.address2) forKey:@"bill_addr2"];
-  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.city) forKey:@"bill_city"];
-  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.state) forKey:@"bill_state"];
-  [request setPostValue:OI_ZERO_IF_NIL(creditCard.address.postalCode) forKey:@"bill_zip"];
-  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.phoneNumber) forKey:@"phone"];
-
-//  [request setPostValue:(creditCard.nickname.urlEncode) forKey:@"nick"];
-//  [request setPostValue:(creditCard.name.urlEncode) forKey:@"name"];
-//  [request setPostValue:(creditCard.number) forKey:@"number"];
-//  [request setPostValue:(creditCard.cvc) forKey:@"cvc"];
-//  [request setPostValue:(creditCard.expirationMonth.urlEncode) forKey:@"expiry_month"];
-//  [request setPostValue:(creditCard.expirationYear.urlEncode) forKey:@"expiry_year"];
-//  [request setPostValue:(creditCard.address.address1.urlEncode) forKey:@"bill_addr"];
-//  [request setPostValue:(creditCard.address.address2.urlEncode) forKey:@"bill_addr2"];
-//  [request setPostValue:(creditCard.address.city.urlEncode) forKey:@"bill_city"];
-//  [request setPostValue:(creditCard.address.state.urlEncode) forKey:@"bill_state"];
-//  [request setPostValue:(creditCard.address.postalCode) forKey:@"bill_zip"];
-//  [request setPostValue:(creditCard.address.phoneNumber.urlEncode) forKey:@"phone"];
-  
+  __block ASIFormDataRequest *request = [self createRequestForCreateOrUpdateActionWithCreditCard:creditCard];
   [request setCompletionBlock:^{
-    NSDictionary *json = [[request responseString] objectFromJSONString];    
+    NSDictionary *json = [[request responseString] objectFromJSONString];
+    NSLog( @"%@", json );
+    NSLog( @"%@", request.responseStatusMessage );    
     if ( json ) {
       NSNumber *error = [json objectForKey:@"_error"];
       if ( error.intValue == 0 ) {
@@ -309,18 +281,21 @@
   ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
   [request setRequestMethod:@"PUT"];
 
-  [request setPostValue:creditCard.nickname forKey:@"nick"];
-  [request setPostValue:creditCard.name forKey:@"name"];
-  [request setPostValue:creditCard.number forKey:@"number"];
-  [request setPostValue:creditCard.cvc forKey:@"cvc"];
-  [request setPostValue:creditCard.expirationMonth forKey:@"expiry_month"];
-  [request setPostValue:creditCard.expirationYear forKey:@"expiry_year"];
-  [request setPostValue:creditCard.address.address1 forKey:@"bill_addr"];
-  [request setPostValue:creditCard.address.address2 forKey:@"bill_addr2"];
-  [request setPostValue:creditCard.address.city forKey:@"bill_city"];
-  [request setPostValue:creditCard.address.state forKey:@"bill_state"];
-  [request setPostValue:creditCard.address.postalCode forKey:@"bill_zip"];
-  [request setPostValue:creditCard.address.phoneNumber forKey:@"phone"];
+  [request setPostValue:userInfo.email forKey:@"email"];
+  [request setPostValue:userInfo.password.sha256 forKey:@"password"];
+
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.nickname) forKey:@"nick"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.name) forKey:@"name"];
+  [request setPostValue:OI_ZERO_IF_NIL(creditCard.number) forKey:@"number"];
+  [request setPostValue:OI_ZERO_IF_NIL(creditCard.lastFiveDigits) forKey:@"cvc"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.expirationMonth) forKey:@"expiry_month"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.expirationYear) forKey:@"expiry_year"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.address1) forKey:@"bill_addr"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.address2) forKey:@"bill_addr2"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.city) forKey:@"bill_city"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.state) forKey:@"bill_state"];
+  [request setPostValue:OI_ZERO_IF_NIL(creditCard.address.postalCode) forKey:@"bill_zip"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.phoneNumber) forKey:@"phone"];
 
   return request;
 }

@@ -18,21 +18,22 @@
 #import "OIAddress.h"
 #import "UserAddressTextCell.h"
 #import "UserAddressEditCell.h"
+#import "UserAddressesModel.h"
 
 static NSString *cellTextIdentifier = @"cellTextIdentifier";
 static NSString *cellEditIdentifier = @"cellEditIdentifier";
 
 @implementation UserAddressesDataSource
 
-@synthesize addresses = __addresses;
+@synthesize model = __model;
 
 #pragma mark -
 #pragma mark Initializations
 
-- (id)initWithAddresses:(NSMutableArray *)addresses {
+- (id)init {
   self = [super init];
   if ( self ) {
-    __addresses = [addresses retain];    
+    __model = [[UserAddressesModel alloc] init];
   }
   
   return self;
@@ -42,7 +43,7 @@ static NSString *cellEditIdentifier = @"cellEditIdentifier";
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {  
-  return __addresses.count;
+  return __model.items.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {  
@@ -51,7 +52,7 @@ static NSString *cellEditIdentifier = @"cellEditIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-  OIAddress *address = [__addresses objectAtIndex:indexPath.section];
+  OIAddress *address = [__model.items objectAtIndex:indexPath.section];
 
   if ( indexPath.row < 7 ) {
     UserAddressTextCell *cell = [tableView dequeueReusableCellWithIdentifier:cellTextIdentifier];      
@@ -100,7 +101,7 @@ static NSString *cellEditIdentifier = @"cellEditIdentifier";
 #pragma mark Memory management
 
 - (void)dealloc {
-  OI_RELEASE_SAFELY( __addresses );
+  OI_RELEASE_SAFELY( __model );
   [super dealloc];
 }
 

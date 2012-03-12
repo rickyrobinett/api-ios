@@ -20,6 +20,9 @@
 @interface AddAddressViewController : UIViewController {
 
 @private
+  id __delegate;
   AddAddressView *__addAddressView;
 }
+
+@property (nonatomic, assign) id delegate;
 @end

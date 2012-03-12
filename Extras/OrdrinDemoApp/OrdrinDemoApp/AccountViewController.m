@@ -139,7 +139,7 @@
 //  NSString *email = __accountView.loginView.emailField.text;
 //  NSString *password = __accountView.loginView.passwordField.text;  
   NSString *email = @"daniel@seznam.cz";
-  NSString *password = @"Daniel";
+  NSString *password = @"mlok";
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];  
   userInfo.email = email;
   userInfo.password = password;

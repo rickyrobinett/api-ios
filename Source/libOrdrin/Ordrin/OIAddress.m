@@ -123,28 +123,9 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 
 + (void)addAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance]; 
-//  NSString *URL = [NSString stringWithFormat:@"%@/u/%@/addrs/%@", OIUserBaseURL, [userInfo.email urlEncode], [[address nickname] urlEncode]];
-//  NSString *URLParams = [NSString stringWithFormat:@"u/%@/addrs/%@",[userInfo.email urlEncode], [[address nickname] urlEncode]];
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@",userInfo.email.urlEncode, address.nickname.urlEncode];
   
-  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@",userInfo.email.urlEncode, @"Home".urlEncode];
-//  
-//  __block ASIFormDataRequest *request = [OIAddress createRequestForCreateOrUpdateActionWithAddress:address];
-
-//  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@",userInfo.email.urlEncode, address.nickname.urlEncode];
-  NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
-  
-  __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
-  [request setRequestMethod:@"PUT"];
-  
-  [request setPostValue:userInfo.email forKey:@"email"];
-  [request setPostValue:[userInfo.password sha256] forKey:@"password"];
-  [request setPostValue:@"Home" forKey:@"nick"];
-  [request setPostValue:@"Nebory 497" forKey:@"addr"];
-  [request setPostValue:@"hotel steel" forKey:@"addr2"];
-  [request setPostValue:@"Trinec" forKey:@"city"];
-  [request setPostValue:@"Cz" forKey:@"state"];
-  [request setPostValue:[NSNumber numberWithInt:73961] forKey:@"zip"];
-  [request setPostValue:@"732320004" forKey:@"phone"];
+  __block ASIFormDataRequest *request = [OIAddress createRequestForCreateOrUpdateActionWithAddress:address];
   
   [request setCompletionBlock:^{
     NSString *statusMessage = request.responseStatusMessage;
@@ -253,11 +234,6 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
   
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
   [request setRequestMethod:@"DELETE"];
-  
-//  [request setPostValue:userInfo.email forKey:@"email"];
-//  [request setPostValue:[userInfo.password sha256] forKey:@"password"];
-//  [request setPostValue:nickname forKey:@"nick"];
-  
   [request setCompletionBlock:^{
     
     NSDictionary *json = [[request responseString] objectFromJSONString];
@@ -305,22 +281,18 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
   NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
   
   ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
-  [request setRequestMethod:@"POST"];
+  [request setRequestMethod:@"PUT"];
     
-//  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.nickname) forKey:@"nick"];
-//  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.address1) forKey:@"addr"];
-//  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.address2) forKey:@"addr2"];
-//  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.city) forKey:@"city"];
-//  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.state) forKey:@"state"];
-//  [request setPostValue:OI_ZERO_IF_NIL(address.postalCode) forKey:@"zip"];
-//  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.phoneNumber) forKey:@"phone"];
-  [request setPostValue:@"Home" forKey:@"nick"];
-  [request setPostValue:@"820 University Dr" forKey:@"addr"];
-  [request setPostValue:@"Apartment 11" forKey:@"addr2"];
-  [request setPostValue:@"College Station" forKey:@"city"];
-  [request setPostValue:@"Tx" forKey:@"state"];
-  [request setPostValue:[NSNumber numberWithInt:77840] forKey:@"zip"];
-  [request setPostValue:@"888-220-5126" forKey:@"phone"];
+  [request setPostValue:userInfo.email forKey:@"email"];
+  [request setPostValue:[userInfo.password sha256] forKey:@"password"];
+  
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.nickname) forKey:@"nick"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.address1) forKey:@"addr"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.address2) forKey:@"addr2"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.city) forKey:@"city"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.state) forKey:@"state"];
+  [request setPostValue:OI_ZERO_IF_NIL(address.postalCode) forKey:@"zip"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.phoneNumber) forKey:@"phone"];
   
   return request;
 }

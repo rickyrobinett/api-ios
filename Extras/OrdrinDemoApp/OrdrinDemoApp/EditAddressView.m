@@ -13,7 +13,8 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import "AddAddressView.h"
+#import "EditAddressView.h"
+#import "OIAddress.h"
 #import "OICore.h"
 
 #define FIELD_LEFT_PADDING            120
@@ -43,7 +44,8 @@
 #define ZIP_LABEL_FRAME               CGRectMake(LABEL_LEFT_PADDING, 185, LABEL_WIDTH, LABEL_HEIGHT)
 #define PHONE_LABEL_FRAME             CGRectMake(LABEL_LEFT_PADDING, 220, LABEL_WIDTH, LABEL_HEIGHT)
 
-@implementation AddAddressView
+
+@implementation EditAddressView
 
 @synthesize nickNameField = __nickNameField;
 @synthesize phoneField    = __phoneField;
@@ -53,18 +55,10 @@
 @synthesize stateField    = __stateField;
 @synthesize zipField      = __zipField;
 
-@synthesize nickNameLabel = __nickNameLabel;
-@synthesize phoneLabel    = __phoneLabel;
-@synthesize addr1Label    = __addr1Label;
-@synthesize addr2Label    = __addr2Label;
-@synthesize cityLabel     = __cityLabel;
-@synthesize stateLabel    = __stateLabel;
-@synthesize zipLabel      = __zipLabel;
-
 #pragma mark -
 #pragma mark Initializations
 
-- (id)init {
+- (id)initWithAddress:(OIAddress *)address {
   self = [super init];
   if ( self ) {
     __addr1Label = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -85,12 +79,20 @@
     __nickNameLabel.font = __phoneLabel.font = __zipLabel.font = __stateLabel.font = __cityLabel.font = __addr2Label.font = __addr1Label.font = LABEL_FONT;
     
     __phoneField = [[UITextField alloc] initWithFrame:CGRectZero];
+    __phoneField.text = address.phoneNumber;
     __nickNameField = [[UITextField alloc] initWithFrame:CGRectZero];
+    __nickNameField.enabled = NO;
+    __nickNameField.text = address.nickname;
     __addr1Field = [[UITextField alloc] initWithFrame:CGRectZero];
+    __addr1Field.text = address.address1;
     __addr2Field = [[UITextField alloc] initWithFrame:CGRectZero];
+    __addr2Field.text = address.address2;
     __cityField = [[UITextField alloc] initWithFrame:CGRectZero];
+    __cityField.text = address.city;
     __stateField = [[UITextField alloc] initWithFrame:CGRectZero];
+    __stateField.text = address.state;
     __zipField = [[UITextField alloc] initWithFrame:CGRectZero];
+    __zipField.text = [NSString stringWithFormat:@"%@", address.postalCode];
     
     __nickNameField.borderStyle = __phoneField.borderStyle = __zipField.borderStyle = __stateField.borderStyle = __cityField.borderStyle = __addr2Field.borderStyle = __addr1Field.borderStyle = UITextBorderStyleRoundedRect;
     
@@ -110,7 +112,6 @@
     [self addSubview:__phoneField];
     [self addSubview:__stateField];    
   }
-  
   return self;
 }
 
@@ -139,7 +140,7 @@
   if ( !CGRectEqualToRect(ZIP_FIELD_FRAME, __zipField.frame) ) {
     __zipField.frame = ZIP_FIELD_FRAME;
   }
-
+  
   if ( !CGRectEqualToRect(PHONE_FIELD_FRAME, __phoneField.frame) ) {
     __phoneField.frame = PHONE_FIELD_FRAME;
   }  
@@ -171,7 +172,7 @@
   if ( !CGRectEqualToRect(NICK_NAME_FIELD_FRAME, __nickNameField.frame) ) {
     __nickNameField.frame = NICK_NAME_FIELD_FRAME;
   }
-
+  
   if ( !CGRectEqualToRect(NICK_NAME_LABEL_FRAME, __nickNameLabel.frame) ) {
     __nickNameLabel.frame = NICK_NAME_LABEL_FRAME;
   }
@@ -189,7 +190,7 @@
   OI_RELEASE_SAFELY( __stateField );
   OI_RELEASE_SAFELY( __zipField );
   OI_RELEASE_SAFELY( __phoneField );
-
+  
   OI_RELEASE_SAFELY( __nickNameLabel );  
   OI_RELEASE_SAFELY( __addr1Label );
   OI_RELEASE_SAFELY( __addr1Label );

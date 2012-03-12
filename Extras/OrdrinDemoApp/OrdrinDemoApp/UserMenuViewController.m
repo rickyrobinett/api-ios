@@ -100,11 +100,9 @@
 }
 
 - (void)addressButtonDidPress {
-  [OIAddress loadAddressesUsingBlock:^void( NSMutableArray *addresses ) {
-    UserAddressesViewController *userAddressesViewController = [[UserAddressesViewController alloc] initWithAddresses:addresses];
-    [self.navigationController pushViewController:userAddressesViewController animated:YES];
-    OI_RELEASE_SAFELY( userAddressesViewController );    
-  }];
+  UserAddressesViewController *userAddressesViewController = [[UserAddressesViewController alloc] init];
+  [self.navigationController pushViewController:userAddressesViewController animated:YES];
+  OI_RELEASE_SAFELY( userAddressesViewController );      
 }
 
 - (void)creditCardsButtonDidPress {

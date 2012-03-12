@@ -13,15 +13,19 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class UserAddressesModel;
+@class OIAddress;
+@class EditAddressView;
 
-@interface UserAddressesDataSource : NSObject <UITableViewDataSource> {
-
+@interface EditAddressViewController : UIViewController {
+ 
 @private
-  UserAddressesModel *__model;
+  id __delegate;  
+  OIAddress *__editAddress;
+  EditAddressView *__editAddressView;
 }
 
-@property (nonatomic, readonly) UserAddressesModel *model;
+@property (nonatomic, assign) id delegate;
+- (id)initWithAddress:(OIAddress *)address;
 @end

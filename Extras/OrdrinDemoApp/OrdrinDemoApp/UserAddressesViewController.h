@@ -23,8 +23,7 @@
 @private
   UserAddressesView *__userAddressesView;
   UserAddressesDataSource *__userAddressesDataSource;  
-  NSMutableArray *__addresses;
 }
 
-- (id)initWithAddresses:(NSMutableArray *)addresses;
+@property (nonatomic, readonly) UserAddressesDataSource *userAddressesDataSource;
 @end

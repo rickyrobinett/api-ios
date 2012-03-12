@@ -15,13 +15,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class UserAddressesModel;
-
-@interface UserAddressesDataSource : NSObject <UITableViewDataSource> {
+static NSString *kAddressesDidLoadNotification = @"kAddressesDidLoadNotification";
+@interface UserAddressesModel : NSObject {
 
 @private
-  UserAddressesModel *__model;
+  NSMutableArray *__items;
 }
 
-@property (nonatomic, readonly) UserAddressesModel *model;
+- (void)reload;
+@property (nonatomic, readonly) NSMutableArray *items;
+
 @end

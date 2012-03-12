@@ -129,19 +129,32 @@
   }
   
   OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];
-  cardInfo.nickname = __addCreditCardView.nickNameField.text;
-  cardInfo.name = __addCreditCardView.nameField.text;
-  cardInfo.lastFiveDigits = [NSNumber numberWithInt:__addCreditCardView.ccLastFiveField.text.intValue];
-  cardInfo.expirationYear = __addCreditCardView.expiryYearField.text;
-  cardInfo.expirationMonth = __addCreditCardView.expiryMonthField.text;
-  cardInfo.type = __addCreditCardView.typeField.text;
-
-  NSNumber *postalCode = [NSNumber numberWithInt:__addCreditCardView.billCityField.text.intValue];
-  OIAddress *address = [OIAddress addressWithStreet:__addCreditCardView.billAddr1Field.text city:__addCreditCardView.billCityField.text postalCode:postalCode];
-  address.address2 = __addCreditCardView.billAddr2Field.text;
-  address.state = __addCreditCardView.billStateField.text;
-
+  cardInfo.nickname = @"Master";  
+  cardInfo.name = @"KGB";
+  cardInfo.lastFiveDigits = [NSNumber numberWithInt:333];
+  cardInfo.expirationYear = @"2012";
+  cardInfo.expirationMonth = @"112";
+  cardInfo.number = [NSNumber numberWithInt:12345678912345];
+  NSNumber *postalCode = [NSNumber numberWithInt:73961];
+  OIAddress *address = [OIAddress addressWithStreet:@"address1" city:@"Mexico city" postalCode:postalCode];
+  address.address2 = @"address2";
+  address.state = @"FL";
+  
   cardInfo.address = address;
+  
+//  cardInfo.nickname = __addCreditCardView.nickNameField.text;
+//  cardInfo.name = __addCreditCardView.nameField.text;
+//  cardInfo.lastFiveDigits = [NSNumber numberWithInt:__addCreditCardView.ccLastFiveField.text.intValue];
+//  cardInfo.expirationYear = __addCreditCardView.expiryYearField.text;
+//  cardInfo.expirationMonth = __addCreditCardView.expiryMonthField.text;
+//  cardInfo.type = __addCreditCardView.typeField.text;
+//
+//  NSNumber *postalCode = [NSNumber numberWithInt:__addCreditCardView.billCityField.text.intValue];
+//  OIAddress *address = [OIAddress addressWithStreet:__addCreditCardView.billAddr1Field.text city:__addCreditCardView.billCityField.text postalCode:postalCode];
+//  address.address2 = __addCreditCardView.billAddr2Field.text;
+//  address.state = __addCreditCardView.billStateField.text;
+//
+//  cardInfo.address = address;
 
   [OICardInfo addCreditCard:cardInfo usingBlock:^void( NSError *error ) {
     if ( error ) {
