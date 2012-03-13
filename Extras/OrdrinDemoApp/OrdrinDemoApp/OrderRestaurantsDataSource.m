@@ -13,12 +13,12 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import "RestaurantsPopoverDataSource.h"
+#import "OrderRestaurantsDataSource.h"
 #import "OICore.h"
 #import "OIRestaurantBase.h"
 #import "TextViewCell.h"
 
-@implementation RestaurantsPopoverDataSource
+@implementation OrderRestaurantsDataSource
 
 #pragma mark -
 #pragma mark Initializations

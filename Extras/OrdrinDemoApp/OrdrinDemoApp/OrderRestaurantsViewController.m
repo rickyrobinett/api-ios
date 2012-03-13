@@ -13,16 +13,18 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import "RestaurantsPopoverViewController.h"
+#import "OrderRestaurantsViewController.h"
 #import "RestaurantListView.h"
 #import "OICore.h"
-#import "RestaurantsPopoverDataSource.h"
+#import "OrderRestaurantsDataSource.h"
 
-@interface RestaurantsPopoverViewController (Private)
+@interface OrderRestaurantsViewController (Private)
 - (void)createModel;
 @end
 
-@implementation RestaurantsPopoverViewController
+@implementation OrderRestaurantsViewController
+
+@synthesize delegate = __delegate;
 
 #pragma mark -
 #pragma mark Initializations
@@ -59,9 +61,7 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSNumber *row = [NSNumber numberWithInteger:indexPath.row];
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:row forKey:@"row"];
-  [[NSNotificationCenter defaultCenter] postNotificationName:kRestaurantDidSelectNotification object:nil userInfo:userInfo];
+  [__delegate restaurantDidSelect:indexPath.row];
   [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -71,6 +71,7 @@
 - (void)releaseWithDealloc:(BOOL)dealloc {
   OI_RELEASE_SAFELY( __restaurantListView );
   if ( dealloc ) {
+    __delegate = nil;
     OI_RELEASE_SAFELY( __restaurants ); 
     OI_RELEASE_SAFELY( __dataSource );
   }
@@ -85,10 +86,10 @@
 #pragma mark -
 #pragma mark Private
 
-@implementation RestaurantsPopoverViewController (Private)
+@implementation OrderRestaurantsViewController (Private)
 
 - (void)createModel {
-  __dataSource = [[RestaurantsPopoverDataSource alloc] initWithRestaurants:__restaurants]; 
+  __dataSource = [[OrderRestaurantsDataSource alloc] initWithRestaurants:__restaurants]; 
   __restaurantListView.tableView.dataSource = __dataSource;
   __restaurantListView.tableView.delegate = self;
 }

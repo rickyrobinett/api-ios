@@ -16,6 +16,7 @@
 #import <UIKit/UIKit.h>
 #import "OrderAddressesViewController.h"
 #import "OrderCardsViewController.h"
+#import "OrderRestaurantsViewController.h"
 
 @class NewOrderView;
 @class NewOrderModel;
@@ -25,7 +26,7 @@
 @class MenuItemsDataSource;
 
 
-@interface NewOrderViewController : UIViewController<OrderAddressesDelegate, OrderCardsDelegate> {
+@interface NewOrderViewController : UIViewController<OrderAddressesDelegate, OrderCardsDelegate, OrderRestaurantsDelegate> {
 
 @private
   NewOrderView *__newOrderView;

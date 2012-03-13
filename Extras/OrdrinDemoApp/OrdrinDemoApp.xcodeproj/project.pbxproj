@@ -31,14 +31,14 @@
 		348E25B8150BDEE600C89AE2 /* ActionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E25B7150BDEE600C89AE2 /* ActionViewCell.m */; };
 		348E6A63150F1EAA00D39536 /* EditCreditCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E6A62150F1EAA00D39536 /* EditCreditCardViewController.m */; };
 		34A2EDB8150F4E49004FA32A /* NewOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDB7150F4E49004FA32A /* NewOrderModel.m */; };
-		34A2EDBC150F5FDC004FA32A /* RestaurantsPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDBB150F5FDC004FA32A /* RestaurantsPopoverViewController.m */; };
-		34A2EDC0150F6324004FA32A /* RestaurantsPopoverDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDBF150F6324004FA32A /* RestaurantsPopoverDataSource.m */; };
+		34A2EDBC150F5FDC004FA32A /* OrderRestaurantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDBB150F5FDC004FA32A /* OrderRestaurantsViewController.m */; };
 		34A2EDC4150F81AA004FA32A /* MenuItemsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDC3150F81AA004FA32A /* MenuItemsDataSource.m */; };
 		34A2EDC8150F8EDC004FA32A /* OrderAddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDC7150F8EDC004FA32A /* OrderAddressesViewController.m */; };
 		34A2EDCC150F99C9004FA32A /* OrderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDCB150F99C9004FA32A /* OrderTableView.m */; };
 		34A2EDD0150F9B5F004FA32A /* OrderAddressesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDCF150F9B5F004FA32A /* OrderAddressesDataSource.m */; };
 		34A2EDD4150FB7A0004FA32A /* OrderCardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDD3150FB7A0004FA32A /* OrderCardsViewController.m */; };
 		34A2EDD8150FBD3C004FA32A /* OrderCardsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDD7150FBD3C004FA32A /* OrderCardsDataSource.m */; };
+		34A2EDDA150FCA38004FA32A /* OrderRestaurantsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDD9150FCA38004FA32A /* OrderRestaurantsDataSource.m */; };
 		34B8E499150CCDC400B58F12 /* UserAddressesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8E498150CCDC400B58F12 /* UserAddressesModel.m */; };
 		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
 		34E3389C1508ED8D00815430 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3389B1508ED8D00815430 /* ChangePasswordViewController.m */; };
@@ -121,10 +121,9 @@
 		348E6A62150F1EAA00D39536 /* EditCreditCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCreditCardViewController.m; sourceTree = "<group>"; };
 		34A2EDB6150F4E49004FA32A /* NewOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewOrderModel.h; sourceTree = "<group>"; };
 		34A2EDB7150F4E49004FA32A /* NewOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOrderModel.m; sourceTree = "<group>"; };
-		34A2EDBA150F5FDC004FA32A /* RestaurantsPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantsPopoverViewController.h; sourceTree = "<group>"; };
-		34A2EDBB150F5FDC004FA32A /* RestaurantsPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantsPopoverViewController.m; sourceTree = "<group>"; };
-		34A2EDBE150F6324004FA32A /* RestaurantsPopoverDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantsPopoverDataSource.h; sourceTree = "<group>"; };
-		34A2EDBF150F6324004FA32A /* RestaurantsPopoverDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantsPopoverDataSource.m; sourceTree = "<group>"; };
+		34A2EDBA150F5FDC004FA32A /* OrderRestaurantsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderRestaurantsViewController.h; sourceTree = "<group>"; };
+		34A2EDBB150F5FDC004FA32A /* OrderRestaurantsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderRestaurantsViewController.m; sourceTree = "<group>"; };
+		34A2EDBE150F6324004FA32A /* OrderRestaurantsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderRestaurantsDataSource.h; sourceTree = "<group>"; };
 		34A2EDC2150F81AA004FA32A /* MenuItemsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemsDataSource.h; sourceTree = "<group>"; };
 		34A2EDC3150F81AA004FA32A /* MenuItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemsDataSource.m; sourceTree = "<group>"; };
 		34A2EDC6150F8EDC004FA32A /* OrderAddressesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderAddressesViewController.h; sourceTree = "<group>"; };
@@ -137,6 +136,7 @@
 		34A2EDD3150FB7A0004FA32A /* OrderCardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCardsViewController.m; sourceTree = "<group>"; };
 		34A2EDD6150FBD3C004FA32A /* OrderCardsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCardsDataSource.h; sourceTree = "<group>"; };
 		34A2EDD7150FBD3C004FA32A /* OrderCardsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCardsDataSource.m; sourceTree = "<group>"; };
+		34A2EDD9150FCA38004FA32A /* OrderRestaurantsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderRestaurantsDataSource.m; sourceTree = "<group>"; };
 		34B8E497150CCDC400B58F12 /* UserAddressesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressesModel.h; sourceTree = "<group>"; };
 		34B8E498150CCDC400B58F12 /* UserAddressesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressesModel.m; sourceTree = "<group>"; };
 		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
@@ -483,20 +483,20 @@
 		34A2EDB9150F5FA2004FA32A /* RestaurantsPopoverViewController */ = {
 			isa = PBXGroup;
 			children = (
-				34A2EDBD150F6310004FA32A /* RestaurantsPopoverDataSource */,
-				34A2EDBA150F5FDC004FA32A /* RestaurantsPopoverViewController.h */,
-				34A2EDBB150F5FDC004FA32A /* RestaurantsPopoverViewController.m */,
+				34A2EDBD150F6310004FA32A /* OrderRestaurantsDataSource */,
+				34A2EDBA150F5FDC004FA32A /* OrderRestaurantsViewController.h */,
+				34A2EDBB150F5FDC004FA32A /* OrderRestaurantsViewController.m */,
 			);
 			name = RestaurantsPopoverViewController;
 			sourceTree = "<group>";
 		};
-		34A2EDBD150F6310004FA32A /* RestaurantsPopoverDataSource */ = {
+		34A2EDBD150F6310004FA32A /* OrderRestaurantsDataSource */ = {
 			isa = PBXGroup;
 			children = (
-				34A2EDBE150F6324004FA32A /* RestaurantsPopoverDataSource.h */,
-				34A2EDBF150F6324004FA32A /* RestaurantsPopoverDataSource.m */,
+				34A2EDD9150FCA38004FA32A /* OrderRestaurantsDataSource.m */,
+				34A2EDBE150F6324004FA32A /* OrderRestaurantsDataSource.h */,
 			);
-			name = RestaurantsPopoverDataSource;
+			name = OrderRestaurantsDataSource;
 			sourceTree = "<group>";
 		};
 		34A2EDC1150F8184004FA32A /* MenuItemsDataSource */ = {
@@ -935,14 +935,14 @@
 				340A9CA0150E9CC400E8DB80 /* TextViewCell.m in Sources */,
 				348E6A63150F1EAA00D39536 /* EditCreditCardViewController.m in Sources */,
 				34A2EDB8150F4E49004FA32A /* NewOrderModel.m in Sources */,
-				34A2EDBC150F5FDC004FA32A /* RestaurantsPopoverViewController.m in Sources */,
-				34A2EDC0150F6324004FA32A /* RestaurantsPopoverDataSource.m in Sources */,
+				34A2EDBC150F5FDC004FA32A /* OrderRestaurantsViewController.m in Sources */,
 				34A2EDC4150F81AA004FA32A /* MenuItemsDataSource.m in Sources */,
 				34A2EDC8150F8EDC004FA32A /* OrderAddressesViewController.m in Sources */,
 				34A2EDCC150F99C9004FA32A /* OrderTableView.m in Sources */,
 				34A2EDD0150F9B5F004FA32A /* OrderAddressesDataSource.m in Sources */,
 				34A2EDD4150FB7A0004FA32A /* OrderCardsViewController.m in Sources */,
 				34A2EDD8150FBD3C004FA32A /* OrderCardsDataSource.m in Sources */,
+				34A2EDDA150FCA38004FA32A /* OrderRestaurantsDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

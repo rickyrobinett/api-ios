@@ -15,7 +15,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RestaurantsPopoverDataSource : NSObject<UITableViewDataSource> {
+@interface OrderRestaurantsDataSource : NSObject<UITableViewDataSource> {
 
 @private
   NSArray *__restaurants;

@@ -16,17 +16,22 @@
 #import <UIKit/UIKit.h>
 
 @class RestaurantListView;
-@class RestaurantsPopoverDataSource;
+@class OrderRestaurantsDataSource;
 
-static NSString *kRestaurantDidSelectNotification = @"kRestaurantDidSelectNotification";
+@protocol OrderRestaurantsDelegate <NSObject>
+- (void)restaurantDidSelect:(NSUInteger)index;
+@end
 
-@interface RestaurantsPopoverViewController : UIViewController<UITableViewDelegate> {
+@interface OrderRestaurantsViewController : UIViewController<UITableViewDelegate> {
 
 @private
+  id<OrderRestaurantsDelegate> __delegate;
   NSArray *__restaurants;
   RestaurantListView *__restaurantListView;
-  RestaurantsPopoverDataSource *__dataSource;
+  OrderRestaurantsDataSource *__dataSource;
 }
 
 - (id)initWithRestaurants:(NSArray *)restaurants;
+
+@property (nonatomic, assign) id<OrderRestaurantsDelegate> delegate;
 @end

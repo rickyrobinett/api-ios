@@ -24,7 +24,6 @@
 
 #import "NewOrderView.h"
 #import "NewOrderModel.h"
-#import "RestaurantsPopoverViewController.h"
 #import "MenuItemsDataSource.h"
 
 @interface NewOrderViewController (UserAction)
@@ -35,7 +34,6 @@
 @end
 
 @interface NewOrderViewController (Private)
-- (void)restaurantDidSelectNotification:(NSNotification *)notification;
 - (void)createModel;
 - (void)initRestaurantMenu;
 @end
@@ -54,9 +52,7 @@
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveButtonDidPress)];
     self.navigationItem.rightBarButtonItem = saveButton;
     
-    OI_RELEASE_SAFELY( saveButton );
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restaurantDidSelectNotification:) name:kRestaurantDidSelectNotification object:nil];
+    OI_RELEASE_SAFELY( saveButton );    
   }  
   return self;
 }
@@ -98,6 +94,19 @@
 #pragma mark -
 #pragma mark OrderAddressesDelegate
 
+- (void)restaurantDidSelect:(NSUInteger)index {
+  if ( __selectedRestaurant ) {
+    OI_RELEASE_SAFELY( __selectedRestaurant );
+  }
+  
+  OIRestaurantBase *restaurantBase = [__newOrderModel.restaurants objectAtIndex:index];
+  [__newOrderView.restaurantsButton setTitle:restaurantBase.name forState:UIControlStateNormal];  
+  [OIRestaurant createRestaurantByRestaurantBase:restaurantBase usingBlock:^void( OIRestaurant *restaurant ) {
+    __selectedRestaurant = [restaurant retain];
+    [self initRestaurantMenu];
+  }];  
+}
+
 - (void)addressDidSelect:(NSUInteger)index {
   if ( __selectedAddress ) {
     OI_RELEASE_SAFELY( __selectedAddress );
@@ -114,7 +123,6 @@
 - (void)releaseWithDealloc:(BOOL)dealloc {   
   OI_RELEASE_SAFELY( __newOrderView );
   if ( dealloc ) {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kRestaurantDidSelectNotification object:nil];
     OI_RELEASE_SAFELY( __address );
     OI_RELEASE_SAFELY( __newOrderModel );
     OI_RELEASE_SAFELY( __selectedRestaurant );
@@ -151,8 +159,8 @@
 }
 
 - (void)restaurantsButtonDidPress {
-  RestaurantsPopoverViewController *restaurantsViewController = [[RestaurantsPopoverViewController alloc] initWithRestaurants:__newOrderModel.restaurants];
-  
+  OrderRestaurantsViewController *restaurantsViewController = [[OrderRestaurantsViewController alloc] initWithRestaurants:__newOrderModel.restaurants];
+  restaurantsViewController.delegate = self;
   [self.navigationController pushViewController:restaurantsViewController animated:YES];
   OI_RELEASE_SAFELY( restaurantsViewController );
 }
@@ -166,20 +174,6 @@
 @end
 
 @implementation NewOrderViewController (Private)
-
-- (void)restaurantDidSelectNotification:(NSNotification *)notification {
-  if ( __selectedRestaurant ) {
-    OI_RELEASE_SAFELY( __selectedRestaurant );
-  }
-  
-  NSNumber *row = [notification.userInfo objectForKey:@"row"];
-  OIRestaurantBase *restaurantBase = [__newOrderModel.restaurants objectAtIndex:row.integerValue];
-  [__newOrderView.restaurantsButton setTitle:restaurantBase.name forState:UIControlStateNormal];  
-  [OIRestaurant createRestaurantByRestaurantBase:restaurantBase usingBlock:^void( OIRestaurant *restaurant ) {
-    __selectedRestaurant = [restaurant retain];
-    [self initRestaurantMenu];
-  }];
-}
 
 - (void)createModel {
   __newOrderModel = [[NewOrderModel alloc] initWithAddress:__address];
