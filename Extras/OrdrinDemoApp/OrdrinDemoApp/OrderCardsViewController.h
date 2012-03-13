@@ -16,22 +16,22 @@
 #import <UIKit/UIKit.h>
 
 @class OrderTableView;
-@class OrderAddressesDataSource;
+@class OrderCardsDataSource;
 
-@protocol OrderAddressesDelegate <NSObject>
-- (void)addressDidSelect:(NSUInteger)index;
+@protocol OrderCardsDelegate <NSObject>
+- (void)creditCardDidSelect:(NSUInteger)index;
 @end
 
-@interface OrderAddressesViewController : UIViewController<UITableViewDelegate> {
-
+@interface OrderCardsViewController : UIViewController<UITableViewDelegate> {
+  
 @private
-  id<OrderAddressesDelegate> __delegate;
-  NSArray *__addresses;
-  OrderTableView *__addressesView;
-  OrderAddressesDataSource *__dataSource;
+  id<OrderCardsDelegate> __delegate;
+  OrderTableView *__cardsView;
+  OrderCardsDataSource *__dataSource;
+  NSArray *__creditCards;
 }
 
-@property (nonatomic, assign) id<OrderAddressesDelegate> delegate;
+- (id)initWithCreditCards:(NSArray *)creditCards;
+@property (nonatomic, retain) id<OrderCardsDelegate> delegate;
 
-- (id)initWithAddresses:(NSArray *)addresses;
 @end

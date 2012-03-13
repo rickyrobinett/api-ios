@@ -18,14 +18,17 @@
 #import "OIRestaurantBase.h"
 #import "OIDateTime.h"
 #import "OICore.h"
+#import "OICardInfo.h"
 
 @interface NewOrderModel (Private)
+- (void)initCreditCards;
 - (void)initAddresses;
 - (void)initRestaurants;
 @end
 
 @implementation NewOrderModel
 
+@synthesize creditCards = __creditCards;
 @synthesize restaurants = __restaurants;
 @synthesize addresses   = __addresses;
 
@@ -36,6 +39,8 @@
   self = [super init];
   if ( self ) {
     __address = [address retain];
+    
+    [self initCreditCards];
     [self initRestaurants];
     [self initAddresses];
   }
@@ -47,9 +52,10 @@
 #pragma mark Memory management
 
 - (void)dealloc {
-  OI_RELEASE_SAFELY( __address );  
+  OI_RELEASE_SAFELY( __address );
   OI_RELEASE_SAFELY( __restaurants );
-  OI_RELEASE_SAFELY( __addresses );  
+  OI_RELEASE_SAFELY( __addresses );
+  OI_RELEASE_SAFELY( __creditCards );
   [super dealloc];
 }
 
@@ -59,6 +65,12 @@
 #pragma mark Private
 
 @implementation NewOrderModel (Private)
+
+- (void)initCreditCards {
+  [OICardInfo loadCreditCardsUsingBlock:^void( NSMutableArray *creditCards ) {
+    __creditCards = [[NSArray alloc] initWithArray:creditCards];
+  }];
+}
 
 - (void)initAddresses {
   [OIAddress loadAddressesUsingBlock:^void( NSMutableArray *addresses ) {

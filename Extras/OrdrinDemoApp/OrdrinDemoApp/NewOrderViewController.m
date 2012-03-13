@@ -14,22 +14,28 @@
  */
 
 #import "NewOrderViewController.h"
-#import "NewOrderView.h"
 #import "OICore.h"
 #import "OIOrder.h"
-#import "NewOrderModel.h"
-#import "OIAddress.h"
-#import "RestaurantsPopoverViewController.h"
+#import "OIUserInfo.h"
+#import "OICardInfo.h"
 #import "OIRestaurantBase.h"
 #import "OIRestaurant.h"
-#import "MenuItemsDataSource.h"
-#import "OIUserInfo.h"
+#import "OIAddress.h"
 
-@interface NewOrderViewController (Private)
-- (void)restaurantDidSelectNotification:(NSNotification *)notification;
+#import "NewOrderView.h"
+#import "NewOrderModel.h"
+#import "RestaurantsPopoverViewController.h"
+#import "MenuItemsDataSource.h"
+
+@interface NewOrderViewController (UserAction)
+- (void)creditCardsButtonDidPress;
 - (void)restaurantsButtonDidPress;
 - (void)addressesButtonDidPress;
 - (void)saveButtonDidPress;
+@end
+
+@interface NewOrderViewController (Private)
+- (void)restaurantDidSelectNotification:(NSNotification *)notification;
 - (void)createModel;
 - (void)initRestaurantMenu;
 @end
@@ -64,6 +70,7 @@
   __newOrderView = [[NewOrderView alloc] init];
   [__newOrderView.restaurantsButton addTarget:self action:@selector(restaurantsButtonDidPress) forControlEvents:UIControlEventTouchDown];  
   [__newOrderView.addressesButton addTarget:self action:@selector(addressesButtonDidPress) forControlEvents:UIControlEventTouchDown];
+  [__newOrderView.creditCardButton addTarget:self action:@selector(creditCardsButtonDidPress) forControlEvents:UIControlEventTouchDown];
   
   self.view = __newOrderView;
   [self createModel];
@@ -76,6 +83,32 @@
 }
 
 #pragma mark -
+#pragma mark OrderCardsDelegate
+
+- (void)creditCardDidSelect:(NSUInteger)index {
+  if ( __selectedCard ) {
+    OI_RELEASE_SAFELY( __selectedCard );
+  }
+  
+  OICardInfo *creditCard = [__newOrderModel.creditCards objectAtIndex:index];
+  [__newOrderView.creditCardButton setTitle:creditCard.type forState:UIControlStateNormal];
+  __selectedCard = [creditCard retain];
+}
+
+#pragma mark -
+#pragma mark OrderAddressesDelegate
+
+- (void)addressDidSelect:(NSUInteger)index {
+  if ( __selectedAddress ) {
+    OI_RELEASE_SAFELY( __selectedAddress );
+  }
+  
+  OIAddress *address = [__newOrderModel.addresses objectAtIndex:index];
+  [__newOrderView.addressesButton setTitle:address.addressAsString forState:UIControlStateNormal];
+  __selectedAddress = [address retain];
+}
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)releaseWithDealloc:(BOOL)dealloc {   
@@ -85,6 +118,8 @@
     OI_RELEASE_SAFELY( __address );
     OI_RELEASE_SAFELY( __newOrderModel );
     OI_RELEASE_SAFELY( __selectedRestaurant );
+    OI_RELEASE_SAFELY( __selectedAddress );  
+    OI_RELEASE_SAFELY( __selectedCard );    
     OI_RELEASE_SAFELY( __menuItemsDataSource );
   }  
 }
@@ -99,10 +134,38 @@
 #pragma mark -
 #pragma mark Private
 
-@implementation NewOrderViewController (Private)
+@implementation NewOrderViewController (UserAction)
+
+- (void)creditCardsButtonDidPress {
+  OrderCardsViewController *cardsViewController = [[OrderCardsViewController alloc] initWithCreditCards:__newOrderModel.creditCards];
+  cardsViewController.delegate = self;
+  [self.navigationController pushViewController:cardsViewController animated:YES];
+  OI_RELEASE_SAFELY( cardsViewController );
+}
 
 - (void)addressesButtonDidPress {
+  OrderAddressesViewController *addressesViewController = [[OrderAddressesViewController alloc] initWithAddresses:__newOrderModel.addresses];  
+  addressesViewController.delegate = self;
+  [self.navigationController pushViewController:addressesViewController animated:YES];
+  OI_RELEASE_SAFELY( addressesViewController );
 }
+
+- (void)restaurantsButtonDidPress {
+  RestaurantsPopoverViewController *restaurantsViewController = [[RestaurantsPopoverViewController alloc] initWithRestaurants:__newOrderModel.restaurants];
+  
+  [self.navigationController pushViewController:restaurantsViewController animated:YES];
+  OI_RELEASE_SAFELY( restaurantsViewController );
+}
+- (void)saveButtonDidPress {
+  OIOrder *order = [[OIOrder alloc] init];
+  [order orderForUser:nil atAddress:nil withCard:nil usingBlock:^void( NSError *error ) {
+    
+  }];
+}
+
+@end
+
+@implementation NewOrderViewController (Private)
 
 - (void)restaurantDidSelectNotification:(NSNotification *)notification {
   if ( __selectedRestaurant ) {
@@ -118,22 +181,8 @@
   }];
 }
 
-- (void)restaurantsButtonDidPress {
-  RestaurantsPopoverViewController *restaurantsViewController = [[RestaurantsPopoverViewController alloc] initWithRestaurants:__newOrderModel.restaurants];
-  
-  [self.navigationController pushViewController:restaurantsViewController animated:YES];
-  OI_RELEASE_SAFELY( restaurantsViewController );
-}
-
 - (void)createModel {
   __newOrderModel = [[NewOrderModel alloc] initWithAddress:__address];
-}
-
-- (void)saveButtonDidPress {
-  OIOrder *order = [[OIOrder alloc] init];
-  [order orderForUser:nil atAddress:nil withCard:nil usingBlock:^void( NSError *error ) {
-    
-  }];
 }
 
 - (void)initRestaurantMenu {

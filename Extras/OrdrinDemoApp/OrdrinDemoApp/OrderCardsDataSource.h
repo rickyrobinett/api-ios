@@ -13,25 +13,15 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@class OrderTableView;
-@class OrderAddressesDataSource;
-
-@protocol OrderAddressesDelegate <NSObject>
-- (void)addressDidSelect:(NSUInteger)index;
-@end
-
-@interface OrderAddressesViewController : UIViewController<UITableViewDelegate> {
+@interface OrderCardsDataSource : NSObject<UITableViewDataSource> {
 
 @private
-  id<OrderAddressesDelegate> __delegate;
-  NSArray *__addresses;
-  OrderTableView *__addressesView;
-  OrderAddressesDataSource *__dataSource;
+  NSArray *__creditCards;
 }
 
-@property (nonatomic, assign) id<OrderAddressesDelegate> delegate;
+@property (nonatomic, readonly) NSArray *creditcards;
+- (id)initWithCreditCards:(NSArray *)creditCards;
 
-- (id)initWithAddresses:(NSArray *)addresses;
 @end

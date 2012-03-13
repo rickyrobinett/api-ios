@@ -14,21 +14,28 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "OrderAddressesViewController.h"
+#import "OrderCardsViewController.h"
 
 @class NewOrderView;
 @class NewOrderModel;
 @class OIAddress;
 @class OIRestaurant;
+@class OICardInfo;
 @class MenuItemsDataSource;
 
-@interface NewOrderViewController : UIViewController {
+
+@interface NewOrderViewController : UIViewController<OrderAddressesDelegate, OrderCardsDelegate> {
 
 @private
   NewOrderView *__newOrderView;
   NewOrderModel *__newOrderModel;
   OIAddress *__address;
-  OIRestaurant *__selectedRestaurant;
   MenuItemsDataSource *__menuItemsDataSource;  
+  
+  OIRestaurant *__selectedRestaurant;
+  OIAddress *__selectedAddress;
+  OICardInfo *__selectedCard;
 }
 
 - (id)initWithAddress:(OIAddress *)address;

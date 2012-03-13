@@ -15,23 +15,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class OrderTableView;
-@class OrderAddressesDataSource;
-
-@protocol OrderAddressesDelegate <NSObject>
-- (void)addressDidSelect:(NSUInteger)index;
-@end
-
-@interface OrderAddressesViewController : UIViewController<UITableViewDelegate> {
+@interface OrderTableView : UIView {
 
 @private
-  id<OrderAddressesDelegate> __delegate;
-  NSArray *__addresses;
-  OrderTableView *__addressesView;
-  OrderAddressesDataSource *__dataSource;
+  UITableView *__tableView;
 }
 
-@property (nonatomic, assign) id<OrderAddressesDelegate> delegate;
-
-- (id)initWithAddresses:(NSArray *)addresses;
+@property (nonatomic, readonly) UITableView *tableView;
 @end

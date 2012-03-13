@@ -16,10 +16,12 @@
 #import <Foundation/Foundation.h>
 
 @class OIAddress;
+@class OICardInfo;
 
 @interface NewOrderModel : NSObject {
   
 @private
+  NSArray *__creditCards;
   NSArray *__restaurants;
   NSArray *__addresses;
   OIAddress *__address;
@@ -27,6 +29,7 @@
 
 - (id)initWithAddress:(OIAddress *)address;
 
+@property (nonatomic, readonly) NSArray *creditCards;
 @property (nonatomic, readonly) NSArray *addresses;
 @property (nonatomic, readonly) NSArray *restaurants;
 @end

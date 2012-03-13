@@ -35,10 +35,16 @@
 #define ADDRESSES_BUTTON_TOP_PADDING  (MENU_TABLE_TOP_PADDING + MENU_TABLE_HEIGHT + TOP_PADDING)
 #define ADDRESSES_BUTTON_FRAME        CGRectMake (LEFT_PADDING, ADDRESSES_BUTTON_TOP_PADDING, BUTTON_WIDTH, BUTTON_HEIGHT)
 
+
+#define CARD_BUTTON_TOP_PADDING       (ADDRESSES_BUTTON_TOP_PADDING + BUTTON_HEIGHT + TOP_PADDING)
+#define CARD_BUTTON_FRAME             CGRectMake (LEFT_PADDING, CARD_BUTTON_TOP_PADDING, BUTTON_WIDTH, BUTTON_HEIGHT)
+
 @implementation NewOrderView
 
+@synthesize creditCardButton  = __creditCardButton;
 @synthesize restaurantsButton = __restaurantsButton;
 @synthesize addressesButton   = __addressesButton;
+
 @synthesize tableView         = __tableView;
 
 #pragma mark -
@@ -48,7 +54,7 @@
   self = [super init];
   if ( self ) {
     __scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-    __scrollView.contentSize = CGSizeMake(320, 1000);
+    __scrollView.contentSize = CGSizeMake(320, 600);
     __scrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     __restaurantsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -57,12 +63,16 @@
     __addressesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [__addressesButton setTitle:@"No address choosen" forState:UIControlStateNormal];
     
+    __creditCardButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [__creditCardButton setTitle:@"No credit card choosen" forState:UIControlStateNormal];
+    
     __tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     __tableView.backgroundColor = [UIColor clearColor];
     __tableView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     __tableView.layer.borderWidth = 1.0;
     
     [__scrollView addSubview:__tableView];
+    [__scrollView addSubview:__creditCardButton];    
     [__scrollView addSubview:__restaurantsButton];
     [__scrollView addSubview:__addressesButton];
     
@@ -77,6 +87,10 @@
   
   if ( !CGRectEqualToRect(__scrollView.frame, self.frame) ) {
     __scrollView.frame = self.frame;
+  }
+
+  if ( !CGRectEqualToRect(__creditCardButton.frame, CARD_BUTTON_FRAME) ) {
+    __creditCardButton.frame = CARD_BUTTON_FRAME;
   }
   
   if ( !CGRectEqualToRect(__addressesButton.frame, ADDRESSES_BUTTON_FRAME) ) {
@@ -96,6 +110,7 @@
 #pragma mark Memory management
 
 - (void)dealloc {
+  __creditCardButton = nil;
   __addressesButton = nil;
   __restaurantsButton = nil;
   OI_RELEASE_SAFELY( __tableView );  

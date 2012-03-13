@@ -13,26 +13,26 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import "OrderAddressesViewController.h"
+#import "OrderCardsViewController.h"
 #import "OICore.h"
 #import "OrderTableView.h"
-#import "OrderAddressesDataSource.h"
+#import "OrderCardsDataSource.h"
 
-@interface OrderAddressesViewController (Private)
+@interface OrderCardsViewController (Private)
 - (void)createModel;
 @end
 
-@implementation OrderAddressesViewController
+@implementation OrderCardsViewController
 
 @synthesize delegate = __delegate;
 
 #pragma mark -
 #pragma mark Initializations
 
-- (id)initWithAddresses:(NSArray *)addresses {
+- (id)initWithCreditCards:(NSArray *)creditCards {
   self = [super init];
   if ( self ) {
-    __addresses = [addresses retain];
+    __creditCards = [creditCards retain];
   }
   
   return self;
@@ -44,15 +44,14 @@
 - (void)loadView {
   [super loadView];
   
-  __addressesView = [[OrderTableView alloc] init];
-  self.view = __addressesView;
+  __cardsView = [[OrderTableView alloc] init];
+  self.view = __cardsView;
   
   [self createModel];
 }
 
 - (void)viewDidUnload {
   [super viewDidUnload];
-  
   [self releaseWithDealloc:NO];
 }
 
@@ -60,19 +59,19 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [__delegate addressDidSelect:indexPath.row];
+  [__delegate creditCardDidSelect:indexPath.row];
   [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
-#pragma mark Memory management
+#pragma mark Memory anagement
 
 - (void)releaseWithDealloc:(BOOL)dealloc {
-  OI_RELEASE_SAFELY( __addressesView );
+  OI_RELEASE_SAFELY( __cardsView );
   if ( dealloc ) {
+    OI_RELEASE_SAFELY( __dataSource );
+    OI_RELEASE_SAFELY( __creditCards );    
     __delegate = nil;
-    OI_RELEASE_SAFELY( __addresses );
-    OI_RELEASE_SAFELY( __dataSource );    
   }
 }
 
@@ -86,12 +85,12 @@
 #pragma mark -
 #pragma mark Private
 
-@implementation OrderAddressesViewController (Private)
+@implementation OrderCardsViewController (Private)
 
 - (void)createModel {
-  __dataSource = [[OrderAddressesDataSource alloc] initWithAddresses:__addresses];
-  __addressesView.tableView.dataSource = __dataSource;
-  __addressesView.tableView.delegate = self;
+  __dataSource = [[OrderCardsDataSource alloc] initWithCreditCards:__creditCards];
+  __cardsView.tableView.dataSource = __dataSource;
+  __cardsView.tableView.delegate = self;  
 }
 
 @end
