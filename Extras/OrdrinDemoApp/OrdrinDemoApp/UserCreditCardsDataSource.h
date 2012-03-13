@@ -15,11 +15,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class UserCreditCardsModel;
+
 @interface UserCreditCardsDataSource : NSObject <UITableViewDataSource> {
 
 @private
-  NSMutableArray *__creditCards;
+  UserCreditCardsModel *__model;
 }
 
-- (id)initWithCreditCards:(NSMutableArray *)creditCards;
+@property (nonatomic, readonly) UserCreditCardsModel *model;
 @end

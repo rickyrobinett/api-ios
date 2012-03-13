@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340A9C9E150E975800E8DB80 /* UserCreditCardsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 340A9C9D150E975800E8DB80 /* UserCreditCardsModel.m */; };
+		340A9CA0150E9CC400E8DB80 /* TextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 340A9C9F150E9CC400E8DB80 /* TextViewCell.m */; };
 		341EF2AE1505F6C2003C0C17 /* RestaurantListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2AD1505F6C2003C0C17 /* RestaurantListDataSource.m */; };
 		341EF2B21505F87A003C0C17 /* RestaurantListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2B11505F87A003C0C17 /* RestaurantListModel.m */; };
 		341EF2B61506187B003C0C17 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 341EF2B51506187B003C0C17 /* RestaurantDetailViewController.m */; };
@@ -26,8 +28,8 @@
 		348C8D6E150E3300005A8010 /* UserOrdersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C8D6D150E3300005A8010 /* UserOrdersModel.m */; };
 		348C8D72150E3EDA005A8010 /* NewOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C8D71150E3EDA005A8010 /* NewOrderViewController.m */; };
 		348C8D78150E4B5F005A8010 /* NewOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C8D77150E4B5F005A8010 /* NewOrderView.m */; };
-		348E25B4150BD8A200C89AE2 /* UserAddressTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E25B3150BD8A200C89AE2 /* UserAddressTextCell.m */; };
-		348E25B8150BDEE600C89AE2 /* UserAddressEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E25B7150BDEE600C89AE2 /* UserAddressEditCell.m */; };
+		348E25B8150BDEE600C89AE2 /* ActionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E25B7150BDEE600C89AE2 /* ActionViewCell.m */; };
+		348E6A63150F1EAA00D39536 /* EditCreditCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E6A62150F1EAA00D39536 /* EditCreditCardViewController.m */; };
 		34B8E499150CCDC400B58F12 /* UserAddressesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8E498150CCDC400B58F12 /* UserAddressesModel.m */; };
 		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
 		34E3389C1508ED8D00815430 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3389B1508ED8D00815430 /* ChangePasswordViewController.m */; };
@@ -62,6 +64,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		340A9C9C150E975800E8DB80 /* UserCreditCardsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCreditCardsModel.h; sourceTree = "<group>"; };
+		340A9C9D150E975800E8DB80 /* UserCreditCardsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCreditCardsModel.m; sourceTree = "<group>"; };
+		340A9C9F150E9CC400E8DB80 /* TextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewCell.m; sourceTree = "<group>"; };
 		341EF2AC1505F6C2003C0C17 /* RestaurantListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListDataSource.h; sourceTree = "<group>"; };
 		341EF2AD1505F6C2003C0C17 /* RestaurantListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListDataSource.m; sourceTree = "<group>"; };
 		341EF2B01505F87A003C0C17 /* RestaurantListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListModel.h; sourceTree = "<group>"; };
@@ -100,10 +105,11 @@
 		348C8D71150E3EDA005A8010 /* NewOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOrderViewController.m; sourceTree = "<group>"; };
 		348C8D76150E4B5F005A8010 /* NewOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewOrderView.h; sourceTree = "<group>"; };
 		348C8D77150E4B5F005A8010 /* NewOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOrderView.m; sourceTree = "<group>"; };
-		348E25B2150BD8A200C89AE2 /* UserAddressTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressTextCell.h; sourceTree = "<group>"; };
-		348E25B3150BD8A200C89AE2 /* UserAddressTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressTextCell.m; sourceTree = "<group>"; };
-		348E25B6150BDEE600C89AE2 /* UserAddressEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressEditCell.h; sourceTree = "<group>"; };
-		348E25B7150BDEE600C89AE2 /* UserAddressEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressEditCell.m; sourceTree = "<group>"; };
+		348E25B2150BD8A200C89AE2 /* TextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewCell.h; sourceTree = "<group>"; };
+		348E25B6150BDEE600C89AE2 /* ActionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionViewCell.h; sourceTree = "<group>"; };
+		348E25B7150BDEE600C89AE2 /* ActionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionViewCell.m; sourceTree = "<group>"; };
+		348E6A61150F1EAA00D39536 /* EditCreditCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCreditCardViewController.h; sourceTree = "<group>"; };
+		348E6A62150F1EAA00D39536 /* EditCreditCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCreditCardViewController.m; sourceTree = "<group>"; };
 		34B8E497150CCDC400B58F12 /* UserAddressesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressesModel.h; sourceTree = "<group>"; };
 		34B8E498150CCDC400B58F12 /* UserAddressesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressesModel.m; sourceTree = "<group>"; };
 		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
@@ -181,6 +187,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		340A9C9A150E974800E8DB80 /* UserCreditCardsModel */ = {
+			isa = PBXGroup;
+			children = (
+				340A9C9C150E975800E8DB80 /* UserCreditCardsModel.h */,
+				340A9C9D150E975800E8DB80 /* UserCreditCardsModel.m */,
+			);
+			name = UserCreditCardsModel;
+			sourceTree = "<group>";
+		};
 		341EF2AA1505F6AE003C0C17 /* RestaurantListDataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +246,7 @@
 		341EF2BF150632BA003C0C17 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				348E25AF150BD84400C89AE2 /* cells */,
 				348C8D5E150E2E27005A8010 /* UserOrdersViewController */,
 				34E338981508ED6D00815430 /* ChangePasswordViewController */,
 				34E3E26A1507746400DE69F3 /* UserCreditCardsViewController */,
@@ -389,28 +405,37 @@
 		348E25AF150BD84400C89AE2 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				348E25B5150BDE7C00C89AE2 /* UserAddressEditCell */,
-				348E25B1150BD85000C89AE2 /* UserAddressTextCell */,
+				348E25B5150BDE7C00C89AE2 /* ActionViewCell */,
+				348E25B1150BD85000C89AE2 /* TextViewCell */,
 			);
 			name = cells;
 			sourceTree = "<group>";
 		};
-		348E25B1150BD85000C89AE2 /* UserAddressTextCell */ = {
+		348E25B1150BD85000C89AE2 /* TextViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				348E25B2150BD8A200C89AE2 /* UserAddressTextCell.h */,
-				348E25B3150BD8A200C89AE2 /* UserAddressTextCell.m */,
+				340A9C9F150E9CC400E8DB80 /* TextViewCell.m */,
+				348E25B2150BD8A200C89AE2 /* TextViewCell.h */,
 			);
-			name = UserAddressTextCell;
+			name = TextViewCell;
 			sourceTree = "<group>";
 		};
-		348E25B5150BDE7C00C89AE2 /* UserAddressEditCell */ = {
+		348E25B5150BDE7C00C89AE2 /* ActionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				348E25B6150BDEE600C89AE2 /* UserAddressEditCell.h */,
-				348E25B7150BDEE600C89AE2 /* UserAddressEditCell.m */,
+				348E25B6150BDEE600C89AE2 /* ActionViewCell.h */,
+				348E25B7150BDEE600C89AE2 /* ActionViewCell.m */,
 			);
-			name = UserAddressEditCell;
+			name = ActionViewCell;
+			sourceTree = "<group>";
+		};
+		348E6A5F150F1E8D00D39536 /* EditCreditCardViewController */ = {
+			isa = PBXGroup;
+			children = (
+				348E6A61150F1EAA00D39536 /* EditCreditCardViewController.h */,
+				348E6A62150F1EAA00D39536 /* EditCreditCardViewController.m */,
+			);
+			name = EditCreditCardViewController;
 			sourceTree = "<group>";
 		};
 		34B8E495150CCDA700B58F12 /* UserAddressesModel */ = {
@@ -506,7 +531,6 @@
 		34E3E26215076C5300DE69F3 /* UserAddressesView */ = {
 			isa = PBXGroup;
 			children = (
-				348E25AF150BD84400C89AE2 /* cells */,
 				34E3E26315076C6200DE69F3 /* UserAddressesView.h */,
 				34E3E26415076C6200DE69F3 /* UserAddressesView.m */,
 			);
@@ -525,6 +549,8 @@
 		34E3E26A1507746400DE69F3 /* UserCreditCardsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				348E6A5F150F1E8D00D39536 /* EditCreditCardViewController */,
+				340A9C9A150E974800E8DB80 /* UserCreditCardsModel */,
 				34E3E276150790B800DE69F3 /* AddCreditCardViewController */,
 				34E3E27215077D4300DE69F3 /* UserCreditCardsDataSource */,
 				34E3E26E150777FF00DE69F3 /* UserCreditCardsView */,
@@ -778,8 +804,7 @@
 				34E338A01508EE7200815430 /* ChangePasswordView.m in Sources */,
 				345491BB150A2A1000721E05 /* AddAddressViewController.m in Sources */,
 				345491BF150A2BF900721E05 /* AddAddressView.m in Sources */,
-				348E25B4150BD8A200C89AE2 /* UserAddressTextCell.m in Sources */,
-				348E25B8150BDEE600C89AE2 /* UserAddressEditCell.m in Sources */,
+				348E25B8150BDEE600C89AE2 /* ActionViewCell.m in Sources */,
 				34B8E499150CCDC400B58F12 /* UserAddressesModel.m in Sources */,
 				348C11EA150DC24800BF32C4 /* EditAddressViewController.m in Sources */,
 				348C11EE150DC30E00BF32C4 /* EditAddressView.m in Sources */,
@@ -789,6 +814,9 @@
 				348C8D6E150E3300005A8010 /* UserOrdersModel.m in Sources */,
 				348C8D72150E3EDA005A8010 /* NewOrderViewController.m in Sources */,
 				348C8D78150E4B5F005A8010 /* NewOrderView.m in Sources */,
+				340A9C9E150E975800E8DB80 /* UserCreditCardsModel.m in Sources */,
+				340A9CA0150E9CC400E8DB80 /* TextViewCell.m in Sources */,
+				348E6A63150F1EAA00D39536 /* EditCreditCardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

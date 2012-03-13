@@ -15,14 +15,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class UserCreditCardsView;
-@class UserCreditCardsDataSource;
+@class OICardInfo;
+@class AddCreditCardView;
 
-@interface UserCreditCardsViewController : UIViewController {
+@interface EditCreditCardViewController : UIViewController {
 
 @private
-  UserCreditCardsView *__userCreditCardsView;
-  UserCreditCardsDataSource *__userCreditCardsDataSource;
+  OICardInfo *__creditCard;
+  AddCreditCardView *__creditCardView;
 }
 
+- (id)initWithCardInfo:(OICardInfo *)creditCard;
 @end

@@ -33,7 +33,7 @@
 @private
   NSString *__nickname;
   NSString *__name;
-  NSNumber *__number;
+  NSString *__number;
   NSNumber *__cvc;
   NSNumber *__lastFiveDigits;
   NSString *__expirationMonth;
@@ -172,16 +172,16 @@
         OICardInfo *cardInfo = [[OICardInfo alloc] init];
         
         cardInfo.nickname = item;
-        cardInfo.name = [json objectForKey:@"name"];
-        cardInfo.lastFiveDigits = [json objectForKey:@"cc_last5"];
-        cardInfo.type = [json objectForKey:@"type"];
-        cardInfo.expirationMonth = [json objectForKey:@"expiry_month"];
-        cardInfo.expirationYear = [json objectForKey:@"expiry_year"];
-        cardInfo.address.address1 =   [json objectForKey:@"addr"];
-        cardInfo.address.address2 =   [json objectForKey:@"addr2"];
-        cardInfo.address.city =   [json objectForKey:@"city"];
-        cardInfo.address.state =   [json objectForKey:@"state"];
-        cardInfo.address.postalCode =   [json objectForKey:@"zip"];
+        cardInfo.name = [cardInfoDict objectForKey:@"name"];
+        cardInfo.lastFiveDigits = [cardInfoDict objectForKey:@"cc_last5"];
+        cardInfo.type = [cardInfoDict objectForKey:@"type"];
+        cardInfo.expirationMonth = [cardInfoDict objectForKey:@"expiry_month"];
+        cardInfo.expirationYear = [cardInfoDict objectForKey:@"expiry_year"];
+        cardInfo.address.address1 =   [cardInfoDict objectForKey:@"bill_addr"];
+        cardInfo.address.address2 =   [cardInfoDict objectForKey:@"bill_addr2"];
+        cardInfo.address.city =   [cardInfoDict objectForKey:@"bill_city"];
+        cardInfo.address.state =   [cardInfoDict objectForKey:@"bill_state"];
+        cardInfo.address.postalCode =   [cardInfoDict objectForKey:@"bill_zip"];
         
         [newCardsInfo addObject:cardInfo];
         OI_RELEASE_SAFELY( cardInfo );
@@ -223,7 +223,7 @@
       cardInfo.address.city = [json objectForKey:@"city"];
       cardInfo.address.state = [json objectForKey:@"state"];
       cardInfo.address.postalCode = [json objectForKey:@"zip"];
-      
+      cardInfo.address.phoneNumber = [json objectForKey:@"phone"];      
       if ( block ) {
         block( cardInfo );
       }
@@ -251,7 +251,7 @@
   [request setCompletionBlock:^{
     NSDictionary *json = [[request responseString] objectFromJSONString];    
     if ( json ) {
-      NSNumber *error = [json objectForKey:@"_error"];
+      NSNumber *error = [json objectForKey:@"_err"];
       if ( error.intValue == 0 ) {
         block( nil );        
       } else {
@@ -289,7 +289,7 @@
 
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.nickname) forKey:@"nick"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.name) forKey:@"name"];
-  [request setPostValue:OI_ZERO_IF_NIL(creditCard.number) forKey:@"number"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.number) forKey:@"number"];
   [request setPostValue:OI_ZERO_IF_NIL(creditCard.lastFiveDigits) forKey:@"cvc"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.expirationMonth) forKey:@"expiry_month"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.expirationYear) forKey:@"expiry_year"];

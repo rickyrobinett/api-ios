@@ -16,7 +16,7 @@
 #import "UserOrdersDataSource.h"
 #import "UserOrdersModel.h"
 #import "OICore.h"
-#import "UserAddressTextCell.h"
+#import "TextViewCell.h"
 #import "OIOrder.h"
 #import "OIRestaurantBase.h"
 
@@ -48,9 +48,9 @@ static NSString *cellOrderIdentifier = @"cellOrderIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   OIOrder *order = [__model.items objectAtIndex:indexPath.section];  
   
-  UserAddressTextCell *cell = [tableView dequeueReusableCellWithIdentifier:cellOrderIdentifier];        
+  TextViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellOrderIdentifier];        
   if ( !cell ) {  
-    cell = [[[UserAddressTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellOrderIdentifier] autorelease];
+    cell = [[[TextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellOrderIdentifier] autorelease];
   }
 
   switch ( indexPath.section ) {

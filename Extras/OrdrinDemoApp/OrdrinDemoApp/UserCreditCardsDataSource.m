@@ -16,18 +16,25 @@
 #import "UserCreditCardsDataSource.h"
 #import "OICardInfo.h"
 #import "OICore.h"
+#import "OIAddress.h"
+#import "UserCreditCardsModel.h"
+#import "TextViewCell.h"
+#import "ActionViewCell.h"
 
-static NSString *cellIdentifier = @"userCreaditCardCell";
+static NSString *cellTextIdentifier = @"cellCreditCardsTextIdentifier";
+static NSString *cellActionIdentifier = @"cellCreditCardsActionIdentifier";
 
 @implementation UserCreditCardsDataSource
+
+@synthesize model = __model;
 
 #pragma mark -
 #pragma mark Initializations
 
-- (id)initWithCreditCards:(NSMutableArray *)creditCards {
+- (id)init {
   self = [super init];
   if ( self ) {
-    __creditCards = [creditCards retain];
+    __model = [[UserCreditCardsModel alloc] init];
   }
   
   return self;
@@ -37,51 +44,50 @@ static NSString *cellIdentifier = @"userCreaditCardCell";
 #pragma mark UITableViewDelegate
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+  OICardInfo *cardInfo = [__model.items objectAtIndex:indexPath.section];
   
-  if ( !cell ) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
-  }
-  cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  cell.textLabel.font = [UIFont systemFontOfSize:13.0f];
-  
-  OICardInfo *cardInfo = [__creditCards objectAtIndex:indexPath.section];
-  
-  if( cardInfo ) {
+  if ( indexPath.row < 5 ) {
+    TextViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellTextIdentifier];
     
-    switch ( indexPath.row ) {
-      case 0: 
-        cell.textLabel.text = [NSString stringWithFormat:@"Nickname: %@", cardInfo.nickname];
-        break;
-      case 1:
-        cell.textLabel.text = [NSString stringWithFormat:@"Name: %@", cardInfo.name];
-        break;
-      case 2:
-        cell.textLabel.text = [NSString stringWithFormat:@"Number: %@", cardInfo.number];
-        break;   
-      case 3:
-        cell.textLabel.text = [NSString stringWithFormat:@"Cvc: %@", cardInfo.cvc];
-        break;  
-      case 4:
-        cell.textLabel.text = [NSString stringWithFormat:@"Last Five Digits: %@", cardInfo.lastFiveDigits];
-        break;       
-      case 5:
-        cell.textLabel.text = [NSString stringWithFormat:@"Type: %@", cardInfo.type];
-        break;   
-      case 6:
-        cell.textLabel.text = [NSString stringWithFormat:@"Expiration: %@ / %@", cardInfo.expirationMonth, cardInfo.expirationYear];
-        break; 
+    if ( !cell ) {
+      cell = [[[TextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellTextIdentifier] autorelease];
+    }            
+    if( cardInfo ) {      
+      switch ( indexPath.row ) {
+        case 0: 
+          [cell setTitle:[NSString stringWithFormat:@"Nickname: %@", cardInfo.nickname]];
+          break;
+        case 1:
+          [cell setTitle:[NSString stringWithFormat:@"Name: %@", cardInfo.name]];
+          break;  
+        case 2:
+          [cell setTitle:[NSString stringWithFormat:@"Last Five Digits: %@", cardInfo.lastFiveDigits]];
+          break;       
+        case 3:
+          [cell setTitle:[NSString stringWithFormat:@"Type: %@", cardInfo.type]];
+          break;   
+        case 4:
+          [cell setTitle:[NSString stringWithFormat:@"Expiration: %@ / %@", cardInfo.expirationMonth, cardInfo.expirationYear]];
+          break; 
+      }
     }
+    return cell;  
+  } else {
+    ActionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellActionIdentifier];      
+    if ( !cell ) {
+      cell = [[[ActionViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellActionIdentifier] autorelease];
+    }    
+    cell.section = indexPath.section;
+    return cell;    
   }
-  return cell;  
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return __creditCards.count;
+  return __model.items.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {  
-  return 7;
+  return 6;
 }
 
 
@@ -89,8 +95,7 @@ static NSString *cellIdentifier = @"userCreaditCardCell";
 #pragma mark Memory management
 
 - (void)dealloc {
-  OI_RELEASE_SAFELY( __creditCards );
-  
+  OI_RELEASE_SAFELY( __model );
   [super dealloc];
 }
 

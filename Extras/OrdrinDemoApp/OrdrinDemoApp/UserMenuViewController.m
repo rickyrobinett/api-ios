@@ -107,11 +107,9 @@
 }
 
 - (void)creditCardsButtonDidPress {
-  [OICardInfo loadCreditCardsUsingBlock:^void( NSMutableArray *creditCards ) {
-    UserCreditCardsViewController *userCreditCardsViewController = [[UserCreditCardsViewController alloc] initWithCreditCards:creditCards];
-    [self.navigationController pushViewController:userCreditCardsViewController animated:YES];
-    OI_RELEASE_SAFELY( userCreditCardsViewController );
-  }];
+  UserCreditCardsViewController *userCreditCardsViewController = [[UserCreditCardsViewController alloc] init];
+  [self.navigationController pushViewController:userCreditCardsViewController animated:YES];
+  OI_RELEASE_SAFELY( userCreditCardsViewController );
 }
 
 - (void)ordersHistoryButtonDidPress {

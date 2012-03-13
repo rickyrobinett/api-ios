@@ -18,7 +18,7 @@
 #import "UserAddressesDataSource.h"
 #import "OICore.h"
 #import "AddAddressViewController.h"
-#import "UserAddressEditCell.h"
+#import "ActionViewCell.h"
 #import "OIAddress.h"
 #import "UserAddressesModel.h"
 #import "EditAddressViewController.h"

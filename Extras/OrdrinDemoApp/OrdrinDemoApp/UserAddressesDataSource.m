@@ -16,12 +16,12 @@
 #import "UserAddressesDataSource.h"
 #import "OICore.h"
 #import "OIAddress.h"
-#import "UserAddressTextCell.h"
-#import "UserAddressEditCell.h"
+#import "TextViewCell.h"
+#import "ActionViewCell.h"
 #import "UserAddressesModel.h"
 
-static NSString *cellTextIdentifier = @"cellTextIdentifier";
-static NSString *cellEditIdentifier = @"cellEditIdentifier";
+static NSString *cellTextIdentifier = @"cellAddressTextIdentifier";
+static NSString *cellActionIdentifier = @"cellAddressActionIdentifier";
 
 @implementation UserAddressesDataSource
 
@@ -55,9 +55,9 @@ static NSString *cellEditIdentifier = @"cellEditIdentifier";
   OIAddress *address = [__model.items objectAtIndex:indexPath.section];
 
   if ( indexPath.row < 7 ) {
-    UserAddressTextCell *cell = [tableView dequeueReusableCellWithIdentifier:cellTextIdentifier];      
+    TextViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellTextIdentifier];      
     if ( !cell ) {
-      cell = [[[UserAddressTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellTextIdentifier] autorelease];
+      cell = [[[TextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellTextIdentifier] autorelease];
     }
     
     if( address ) {    
@@ -87,9 +87,9 @@ static NSString *cellEditIdentifier = @"cellEditIdentifier";
     }
     return cell;
   } else {
-    UserAddressEditCell *cell = [tableView dequeueReusableCellWithIdentifier:cellEditIdentifier];      
+    ActionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellActionIdentifier];      
     if ( !cell ) {
-      cell = [[[UserAddressEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellEditIdentifier] autorelease];
+      cell = [[[ActionViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellActionIdentifier] autorelease];
     }
     
     cell.section = indexPath.section;

@@ -13,11 +13,16 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface UserAddressTextCell : UITableViewCell {
+static NSString *kCreditCardsDidLoadNotification = @"kCreditCardsDidLoadNotification";
 
+@interface UserCreditCardsModel : NSObject {
+@private
+  NSMutableArray *__items;
 }
 
-- (void)setTitle:(NSString *)title;
+- (void)reload;
+@property (nonatomic, readonly) NSMutableArray *items;  
+
 @end

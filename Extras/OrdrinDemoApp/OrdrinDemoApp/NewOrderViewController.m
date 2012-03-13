@@ -15,6 +15,12 @@
 
 #import "NewOrderViewController.h"
 #import "NewOrderView.h"
+#import "OICore.h"
+#import "OIOrder.h"
+
+@interface NewOrderViewController (Private)
+- (void)saveButtonDidPress;
+@end
 
 @implementation NewOrderViewController
 
@@ -25,8 +31,11 @@
   self = [super init];
   if ( self ) {
     self.title = @"New order";
-  }
-  
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveButtonDidPress)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+    
+    OI_RELEASE_SAFELY( saveButton );
+  }  
   return self;
 }
 
@@ -35,6 +44,17 @@
 
 - (void)loadView {
   [super loadView];  
+}
+
+@end
+
+#pragma mark -
+#pragma mark Private
+
+@implementation NewOrderViewController (Private)
+
+- (void)saveButtonDidPress {
+//  OIOrder 
 }
 
 @end

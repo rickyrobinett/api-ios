@@ -15,14 +15,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class UserCreditCardsView;
-@class UserCreditCardsDataSource;
+static NSString *kDeleteButtonDidPressNotification = @"kDeleteButtonDidPressNotification";
+static NSString *kEditButtonDidPressNotification   = @"kEditButtonDidPressNotification";
 
-@interface UserCreditCardsViewController : UIViewController {
+@interface ActionViewCell : UITableViewCell {
 
 @private
-  UserCreditCardsView *__userCreditCardsView;
-  UserCreditCardsDataSource *__userCreditCardsDataSource;
+  NSUInteger __section;
+  UIButton *__deleteButton;
+  UIButton *__editButton;  
 }
+
+@property (nonatomic, assign ) NSUInteger section;
 
 @end

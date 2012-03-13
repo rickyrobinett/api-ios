@@ -13,7 +13,7 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import "UserAddressEditCell.h"
+#import "ActionViewCell.h"
 
 #define BUTTON_PADDING          20
 #define BUTTON_WIDTH            70
@@ -22,12 +22,12 @@
 #define EDIT_BUTTON_FRAME       CGRectMake (BUTTON_PADDING, 5, BUTTON_WIDTH, BUTTON_HEIGHT)
 #define DELETE_BUTTON_FRAME     CGRectMake (230, 5, BUTTON_WIDTH, BUTTON_HEIGHT)
 
-@interface UserAddressEditCell (Private)
+@interface ActionViewCell (Private)
 - (void)editButtonDidPress;
 - (void)deleteButtonDidPress;
 @end
 
-@implementation UserAddressEditCell
+@implementation ActionViewCell
 
 @synthesize section = __section;
 
@@ -84,7 +84,7 @@
 #pragma mark -
 #pragma mark Private
 
-@implementation UserAddressEditCell (Private)
+@implementation ActionViewCell (Private)
 
 - (void)editButtonDidPress {
   NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:__section] forKey:@"section"];

@@ -13,9 +13,9 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import "UserAddressTextCell.h"
+#import "TextViewCell.h"
 
-@implementation UserAddressTextCell
+@implementation TextViewCell
 
 #pragma mark -
 #pragma mark Initializations

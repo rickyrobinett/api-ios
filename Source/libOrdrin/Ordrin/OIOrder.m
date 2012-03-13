@@ -64,13 +64,37 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 #pragma mark Instance methods
 
 - (void)orderForUser:(OIUser *)user atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block {
-  
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
   NSString *URL = [NSString stringWithFormat:@"%@/o/%@", OIOrderBaseURL, __restaurantBase.ID];
   
   __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
   
-#warning Complete POST request
+  [request setPostValue:@"3270/2+3263/1,3279" forKey:@"tray"];
+  [request setPostValue:@"20" forKey:@"tip"];
+  [request setPostValue:@"01-21" forKey:@"delivery_date"];
+  [request setPostValue:@"21:30" forKey:@"delivery_time"];
+  [request setPostValue:@"daniel" forKey:@"first_name"];
+  [request setPostValue:@"krezelok" forKey:@"last_name"];
+  [request setPostValue:@"konska 497" forKey:@"addr"];
+  [request setPostValue:@"Trinec" forKey:@"city"];
+  [request setPostValue:@"FL" forKey:@"state"];
+  [request setPostValue:@"73961" forKey:@"zip"];
+  [request setPostValue:@"111-222-3333" forKey:@"phone"];
+  [request setPostValue:userInfo.email forKey:@"em"];
+  [request setPostValue:userInfo.password.sha256 forKey:@"password"];
+  [request setPostValue:@"Master" forKey:@"card_name"];
+  [request setPostValue:@"5210669468946428" forKey:@"card_number"];
+  [request setPostValue:@"651" forKey:@"card_cvc"];
+  [request setPostValue:@"12/2013" forKey:@"card_expiry"];
+  [request setPostValue:@"adresa1" forKey:@"card_bill_addr"];
+  [request setPostValue:@"adresa2" forKey:@"card_bill_addr2"];
+  [request setPostValue:@"Trinec" forKey:@"card_bill_city"];
+  [request setPostValue:@"FL" forKey:@"card_bill_state"];
+  [request setPostValue:@"73961" forKey:@"card_bill_zip"];  
+  
   [request setCompletionBlock:^{
+    NSDictionary *json = [[request responseString] objectFromJSONString];
+    NSLog( @"%@", json );
     if ( block ) {
       block( nil );
     }

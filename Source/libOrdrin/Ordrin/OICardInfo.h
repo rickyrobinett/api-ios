@@ -21,7 +21,7 @@
 
 @property (nonatomic, readwrite, copy) NSString *nickname;
 @property (nonatomic, readwrite, copy) NSString *name;
-@property (nonatomic, readwrite, retain) NSNumber *number;
+@property (nonatomic, readwrite, copy) NSString *number;
 @property (nonatomic, readwrite, retain) NSNumber *cvc;
 @property (nonatomic, readwrite, retain) NSNumber *lastFiveDigits;
 @property (nonatomic, readwrite, copy) NSString *type;

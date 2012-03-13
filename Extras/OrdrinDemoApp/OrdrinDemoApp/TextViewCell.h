@@ -15,17 +15,9 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *kDeleteButtonDidPressNotification = @"kDeleteButtonDidPressNotification";
-static NSString *kEditButtonDidPressNotification   = @"kEditButtonDidPressNotification";
+@interface TextViewCell : UITableViewCell {
 
-@interface UserAddressEditCell : UITableViewCell {
-
-@private
-  NSUInteger __section;
-  UIButton *__deleteButton;
-  UIButton *__editButton;  
 }
 
-@property (nonatomic, assign ) NSUInteger section;
-
+- (void)setTitle:(NSString *)title;
 @end

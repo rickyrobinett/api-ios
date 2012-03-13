@@ -51,7 +51,7 @@
   __addCreditCardView = [[AddCreditCardView alloc] init];
   
   __addCreditCardView.expiryYearField.delegate = self;
-  __addCreditCardView.typeField.delegate = self;
+  __addCreditCardView.numberField.delegate = self;
   __addCreditCardView.billAddr1Field.delegate = self;
   __addCreditCardView.billAddr2Field.delegate = self;
   __addCreditCardView.billCityField.delegate = self;
@@ -129,12 +129,12 @@
   }
   
   OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];
-  cardInfo.nickname = @"sraster";  
-  cardInfo.name = @"KGB";
+  cardInfo.nickname = @"master";  
+  cardInfo.name = @"Mastercard";
   cardInfo.lastFiveDigits = [NSNumber numberWithInt:333];
   cardInfo.expirationYear = @"2012";
-  cardInfo.expirationMonth = @"112";
-  cardInfo.number = [NSNumber numberWithInt:12345678912345];
+  cardInfo.expirationMonth = @"12";
+  cardInfo.number = @"5547089855217529";
   NSNumber *postalCode = [NSNumber numberWithInt:73961];
   OIAddress *address = [OIAddress addressWithStreet:@"address1" city:@"Mexico city" postalCode:postalCode];
   address.address2 = @"address2";
@@ -172,10 +172,10 @@
 - (void)hideKeyboard {
   [__addCreditCardView.nickNameField resignFirstResponder];
   [__addCreditCardView.nameField resignFirstResponder];
-  [__addCreditCardView.ccLastFiveField resignFirstResponder];
+  [__addCreditCardView.cvcField resignFirstResponder];
   [__addCreditCardView.expiryMonthField resignFirstResponder];
   [__addCreditCardView.expiryYearField resignFirstResponder];
-  [__addCreditCardView.typeField resignFirstResponder];
+  [__addCreditCardView.numberField resignFirstResponder];
   [__addCreditCardView.billZipField resignFirstResponder];
   [__addCreditCardView.billStateField resignFirstResponder];
   [__addCreditCardView.billStateField resignFirstResponder];
