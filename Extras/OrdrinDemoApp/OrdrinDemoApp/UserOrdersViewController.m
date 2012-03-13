@@ -90,7 +90,15 @@
   [__addressForm removeFromSuperview];
   OI_RELEASE_SAFELY( __addressForm );
   
-  NewOrderViewController *newOrderViewController = [[NewOrderViewController alloc] init];
+//  NSString *street = __addressForm.streetField.text;
+//  NSString *city = __addressForm.cityField.text;
+//  NSNumber *postalCode = [NSNumber numberWithInteger:__addressForm.postalCodeField.text.integerValue];
+//  OIAddress *address = [OIAddress addressWithStreet:street city:city postalCode:postalCode];
+  OIAddress *address = [OIAddress addressWithStreet:@"1 Main St"
+                                               city:@"College Station"
+                                         postalCode:[NSNumber numberWithInt:77840]];
+  
+  NewOrderViewController *newOrderViewController = [[NewOrderViewController alloc] initWithAddress:address];
   [self.navigationController pushViewController:newOrderViewController animated:YES];
   
   OI_RELEASE_SAFELY( newOrderViewController );

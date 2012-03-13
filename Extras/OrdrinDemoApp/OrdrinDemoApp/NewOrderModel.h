@@ -13,19 +13,18 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@class NewOrderView;
-@class NewOrderModel;
 @class OIAddress;
 
-@interface NewOrderViewController : UIViewController {
-
+@interface NewOrderModel : NSObject {
+  
 @private
-  NewOrderView *__newOrderView;
-  NewOrderModel *__newOrderModel;
+  NSArray *__restaurants;
   OIAddress *__address;
 }
 
 - (id)initWithAddress:(OIAddress *)address;
+
+@property (nonatomic, readonly) NSArray *restaurants;
 @end

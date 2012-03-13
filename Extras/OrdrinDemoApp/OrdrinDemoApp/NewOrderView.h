@@ -16,7 +16,11 @@
 #import <UIKit/UIKit.h>
 
 @interface NewOrderView : UIView {
-  
+
+@private
+  UIScrollView *__scrollView;
+  UIButton *__restaurantsButton;
 }
 
+@property (nonatomic, readonly) UIButton *restaurantsButton;
 @end
