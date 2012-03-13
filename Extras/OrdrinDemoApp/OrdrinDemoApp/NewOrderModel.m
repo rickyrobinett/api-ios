@@ -20,12 +20,14 @@
 #import "OICore.h"
 
 @interface NewOrderModel (Private)
+- (void)initAddresses;
 - (void)initRestaurants;
 @end
 
 @implementation NewOrderModel
 
 @synthesize restaurants = __restaurants;
+@synthesize addresses   = __addresses;
 
 #pragma mark -
 #pragma mark Initializations
@@ -35,6 +37,7 @@
   if ( self ) {
     __address = [address retain];
     [self initRestaurants];
+    [self initAddresses];
   }
   
   return self;
@@ -46,6 +49,7 @@
 - (void)dealloc {
   OI_RELEASE_SAFELY( __address );  
   OI_RELEASE_SAFELY( __restaurants );
+  OI_RELEASE_SAFELY( __addresses );  
   [super dealloc];
 }
 
@@ -55,6 +59,12 @@
 #pragma mark Private
 
 @implementation NewOrderModel (Private)
+
+- (void)initAddresses {
+  [OIAddress loadAddressesUsingBlock:^void( NSMutableArray *addresses ) {
+    __addresses = [[NSArray alloc] initWithArray:addresses];
+  }];
+}
 
 - (void)initRestaurants {
   [OIRestaurantBase restaurantsNearAddress:__address availableAt:[OIDateTime dateTimeASAP] usingBlock:^void( NSArray *restaurants ) {

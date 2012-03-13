@@ -27,10 +27,12 @@
   NSString  *__name;
   NSString  *__description;
   NSNumber  *__price;
+  NSMutableArray *__childrens;
   BOOL __orderable;  
   BOOL __children;
 }
 
+@synthesize childrens           = __childrens;
 @synthesize ID                  = __id;
 @synthesize orderID             = __orderId;
 @synthesize availableForMealId  = __availableForMealId;
@@ -57,6 +59,7 @@
   OI_RELEASE_SAFELY( __name );
   OI_RELEASE_SAFELY( __description );
   OI_RELEASE_SAFELY( __price );
+  OI_RELEASE_SAFELY( __childrens );
   
   [super dealloc];
 }

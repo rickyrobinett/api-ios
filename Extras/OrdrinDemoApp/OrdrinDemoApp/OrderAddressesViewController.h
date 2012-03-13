@@ -15,21 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class NewOrderView;
-@class NewOrderModel;
-@class OIAddress;
-@class OIRestaurant;
-@class MenuItemsDataSource;
+@interface OrderAddressesViewController : UIViewController {
 
-@interface NewOrderViewController : UIViewController {
-
-@private
-  NewOrderView *__newOrderView;
-  NewOrderModel *__newOrderModel;
-  OIAddress *__address;
-  OIRestaurant *__selectedRestaurant;
-  MenuItemsDataSource *__menuItemsDataSource;  
 }
 
-- (id)initWithAddress:(OIAddress *)address;
 @end

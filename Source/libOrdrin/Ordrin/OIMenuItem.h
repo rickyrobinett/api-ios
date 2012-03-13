@@ -33,5 +33,5 @@
 @property (nonatomic, readwrite, copy) NSNumber *price;
 ///
 @property (nonatomic, readonly, getter=isChildren) BOOL children;
-
+@property (nonatomic, copy) NSMutableArray *childrens;
 @end

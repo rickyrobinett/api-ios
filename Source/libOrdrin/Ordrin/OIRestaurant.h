@@ -33,7 +33,7 @@ extern NSString *const OIRestaurantBaseURL;
 /// Meals that are being delivered at the requested time.
 @property (nonatomic, readwrite, retain) NSDictionary *meals;
 /// Set of menu items.
-@property (nonatomic, readwrite, retain) NSDictionary *menu;
+@property (nonatomic, readwrite, retain) NSMutableArray *menu;
 /// RDS is our Restaurant Delivery Service partner (OIRDSInfo).
 @property (nonatomic, readwrite, retain) OIRDSInfo *rdsInfo;
 /// The customer service number for the restaurant (typically this is the RDS's phone number).

@@ -32,6 +32,9 @@
 		348E6A63150F1EAA00D39536 /* EditCreditCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E6A62150F1EAA00D39536 /* EditCreditCardViewController.m */; };
 		34A2EDB8150F4E49004FA32A /* NewOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDB7150F4E49004FA32A /* NewOrderModel.m */; };
 		34A2EDBC150F5FDC004FA32A /* RestaurantsPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDBB150F5FDC004FA32A /* RestaurantsPopoverViewController.m */; };
+		34A2EDC0150F6324004FA32A /* RestaurantsPopoverDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDBF150F6324004FA32A /* RestaurantsPopoverDataSource.m */; };
+		34A2EDC4150F81AA004FA32A /* MenuItemsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDC3150F81AA004FA32A /* MenuItemsDataSource.m */; };
+		34A2EDC8150F8EDC004FA32A /* OrderAddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A2EDC7150F8EDC004FA32A /* OrderAddressesViewController.m */; };
 		34B8E499150CCDC400B58F12 /* UserAddressesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B8E498150CCDC400B58F12 /* UserAddressesModel.m */; };
 		34D17F0A1505027C00BE4037 /* libOrdrin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D17F091505027C00BE4037 /* libOrdrin.a */; };
 		34E3389C1508ED8D00815430 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3389B1508ED8D00815430 /* ChangePasswordViewController.m */; };
@@ -116,6 +119,12 @@
 		34A2EDB7150F4E49004FA32A /* NewOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOrderModel.m; sourceTree = "<group>"; };
 		34A2EDBA150F5FDC004FA32A /* RestaurantsPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantsPopoverViewController.h; sourceTree = "<group>"; };
 		34A2EDBB150F5FDC004FA32A /* RestaurantsPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantsPopoverViewController.m; sourceTree = "<group>"; };
+		34A2EDBE150F6324004FA32A /* RestaurantsPopoverDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantsPopoverDataSource.h; sourceTree = "<group>"; };
+		34A2EDBF150F6324004FA32A /* RestaurantsPopoverDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantsPopoverDataSource.m; sourceTree = "<group>"; };
+		34A2EDC2150F81AA004FA32A /* MenuItemsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemsDataSource.h; sourceTree = "<group>"; };
+		34A2EDC3150F81AA004FA32A /* MenuItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemsDataSource.m; sourceTree = "<group>"; };
+		34A2EDC6150F8EDC004FA32A /* OrderAddressesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderAddressesViewController.h; sourceTree = "<group>"; };
+		34A2EDC7150F8EDC004FA32A /* OrderAddressesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderAddressesViewController.m; sourceTree = "<group>"; };
 		34B8E497150CCDC400B58F12 /* UserAddressesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressesModel.h; sourceTree = "<group>"; };
 		34B8E498150CCDC400B58F12 /* UserAddressesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressesModel.m; sourceTree = "<group>"; };
 		34D17F091505027C00BE4037 /* libOrdrin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOrdrin.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Ordrin-afvsdjbxgmttnsdwgfmvuptbnatc/Build/Products/Debug-iphoneos/libOrdrin.a"; sourceTree = "<group>"; };
@@ -392,6 +401,8 @@
 		348C8D6F150E3CA3005A8010 /* NewOrderViewController */ = {
 			isa = PBXGroup;
 			children = (
+				34A2EDC5150F8EAE004FA32A /* OrderAddressesViewController */,
+				34A2EDC1150F8184004FA32A /* MenuItemsDataSource */,
 				34A2EDB9150F5FA2004FA32A /* RestaurantsPopoverViewController */,
 				34A2EDB5150F4E3B004FA32A /* NewOrderModel */,
 				348C8D75150E4B50005A8010 /* NewOrderView */,
@@ -458,10 +469,38 @@
 		34A2EDB9150F5FA2004FA32A /* RestaurantsPopoverViewController */ = {
 			isa = PBXGroup;
 			children = (
+				34A2EDBD150F6310004FA32A /* RestaurantsPopoverDataSource */,
 				34A2EDBA150F5FDC004FA32A /* RestaurantsPopoverViewController.h */,
 				34A2EDBB150F5FDC004FA32A /* RestaurantsPopoverViewController.m */,
 			);
 			name = RestaurantsPopoverViewController;
+			sourceTree = "<group>";
+		};
+		34A2EDBD150F6310004FA32A /* RestaurantsPopoverDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				34A2EDBE150F6324004FA32A /* RestaurantsPopoverDataSource.h */,
+				34A2EDBF150F6324004FA32A /* RestaurantsPopoverDataSource.m */,
+			);
+			name = RestaurantsPopoverDataSource;
+			sourceTree = "<group>";
+		};
+		34A2EDC1150F8184004FA32A /* MenuItemsDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				34A2EDC2150F81AA004FA32A /* MenuItemsDataSource.h */,
+				34A2EDC3150F81AA004FA32A /* MenuItemsDataSource.m */,
+			);
+			name = MenuItemsDataSource;
+			sourceTree = "<group>";
+		};
+		34A2EDC5150F8EAE004FA32A /* OrderAddressesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34A2EDC6150F8EDC004FA32A /* OrderAddressesViewController.h */,
+				34A2EDC7150F8EDC004FA32A /* OrderAddressesViewController.m */,
+			);
+			name = OrderAddressesViewController;
 			sourceTree = "<group>";
 		};
 		34B8E495150CCDA700B58F12 /* UserAddressesModel */ = {
@@ -845,6 +884,9 @@
 				348E6A63150F1EAA00D39536 /* EditCreditCardViewController.m in Sources */,
 				34A2EDB8150F4E49004FA32A /* NewOrderModel.m in Sources */,
 				34A2EDBC150F5FDC004FA32A /* RestaurantsPopoverViewController.m in Sources */,
+				34A2EDC0150F6324004FA32A /* RestaurantsPopoverDataSource.m in Sources */,
+				34A2EDC4150F81AA004FA32A /* MenuItemsDataSource.m in Sources */,
+				34A2EDC8150F8EDC004FA32A /* OrderAddressesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

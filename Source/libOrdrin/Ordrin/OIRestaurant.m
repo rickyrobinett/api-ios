@@ -21,6 +21,7 @@
 #import "JSONKit.h"
 #import "OIDelivery.h"
 #import "OIRDSInfo.h"
+#import "OIMenuItem.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -40,7 +41,7 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
   NSString     *__phone;
   NSString     *__state;
   NSDictionary *__meals;
-  NSDictionary *__menu;
+  NSMutableArray *__menu;
   OIRDSInfo    *__rdsInfo;
 }
 
@@ -171,8 +172,36 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
         
     restaurant.state = [json objectForKey:@"state"];
     restaurant.meals = [json objectForKey:@"meal_name"];
-    restaurant.menu = [json objectForKey:@"menu"]; 
-        
+    
+    NSArray *menuArray = [json objectForKey:@"menu"];    
+    NSMutableArray *menuItems = [NSMutableArray array];
+    
+    for (NSDictionary *menuItemDict in menuArray ) {
+      OIMenuItem *menuItem = [[OIMenuItem alloc] init];
+      menuItem.name = [menuItemDict objectForKey:@"name"];
+      menuItem.description = [menuItemDict objectForKey:@"descrip"];
+      menuItem.price = [menuItemDict objectForKey:@"price"];
+      menuItem.ID = [menuItemDict objectForKey:@"id"];
+
+      NSMutableArray *subMenuItems = [NSMutableArray array];      
+      NSArray *childrens = [menuItemDict objectForKey:@"children"];
+      
+      for ( NSDictionary *menuItem in childrens ) {      
+        OIMenuItem *menuItem = [[OIMenuItem alloc] init];
+        menuItem.name = [menuItemDict objectForKey:@"name"];
+        menuItem.description = [menuItemDict objectForKey:@"descrip"];
+        menuItem.price = [menuItemDict objectForKey:@"price"];
+        menuItem.ID = [menuItemDict objectForKey:@"id"];
+        [subMenuItems addObject:menuItem];
+      }
+      
+      menuItem.childrens = subMenuItems;      
+      [menuItems addObject:menuItem];      
+      OI_RELEASE_SAFELY( menuItem );
+    }
+    
+    restaurant.menu = menuItems;
+    
     if ( block ) {
       block(restaurant);
     }

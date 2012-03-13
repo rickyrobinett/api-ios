@@ -13,23 +13,15 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@class NewOrderView;
-@class NewOrderModel;
-@class OIAddress;
-@class OIRestaurant;
-@class MenuItemsDataSource;
-
-@interface NewOrderViewController : UIViewController {
-
+@interface MenuItemsDataSource : NSObject<UITableViewDataSource> {
+  
 @private
-  NewOrderView *__newOrderView;
-  NewOrderModel *__newOrderModel;
-  OIAddress *__address;
-  OIRestaurant *__selectedRestaurant;
-  MenuItemsDataSource *__menuItemsDataSource;  
+  NSMutableArray *__menuItems;
 }
 
-- (id)initWithAddress:(OIAddress *)address;
+- (id)initWithMenuItems:(NSMutableArray *)menuItems;
+
+@property (nonatomic, retain) NSMutableArray *menuItems;
 @end

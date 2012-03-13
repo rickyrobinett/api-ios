@@ -13,23 +13,20 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import "OrderAddressesViewController.h"
 
-@class NewOrderView;
-@class NewOrderModel;
-@class OIAddress;
-@class OIRestaurant;
-@class MenuItemsDataSource;
+@implementation OrderAddressesViewController
 
-@interface NewOrderViewController : UIViewController {
+#pragma mark -
+#pragma mark Initializations
 
-@private
-  NewOrderView *__newOrderView;
-  NewOrderModel *__newOrderModel;
-  OIAddress *__address;
-  OIRestaurant *__selectedRestaurant;
-  MenuItemsDataSource *__menuItemsDataSource;  
+- (id)initWithAddresses:(NSArray *)addresses {
+  self = [super init];
+  if ( self ) {
+    
+  }
+  
+  return self;
 }
 
-- (id)initWithAddress:(OIAddress *)address;
 @end

@@ -19,8 +19,12 @@
 
 @private
   UIScrollView *__scrollView;
+  UITableView *__tableView;
   UIButton *__restaurantsButton;
+  UIButton *__addressesButton;
 }
 
+@property (nonatomic, readonly) UITableView *tableView;
 @property (nonatomic, readonly) UIButton *restaurantsButton;
+@property (nonatomic, readonly) UIButton *addressesButton;
 @end

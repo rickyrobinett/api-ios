@@ -13,23 +13,13 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@class NewOrderView;
-@class NewOrderModel;
-@class OIAddress;
-@class OIRestaurant;
-@class MenuItemsDataSource;
-
-@interface NewOrderViewController : UIViewController {
+@interface RestaurantsPopoverDataSource : NSObject<UITableViewDataSource> {
 
 @private
-  NewOrderView *__newOrderView;
-  NewOrderModel *__newOrderModel;
-  OIAddress *__address;
-  OIRestaurant *__selectedRestaurant;
-  MenuItemsDataSource *__menuItemsDataSource;  
+  NSArray *__restaurants;
 }
 
-- (id)initWithAddress:(OIAddress *)address;
+- (id)initWithRestaurants:(NSArray *)restaurants;
 @end
