@@ -81,9 +81,9 @@ NSString const* OIUserURL = @"https://u.ordr.in/";
       OIUserInfo *userInfo = [OIUserInfo sharedInstance];
       userInfo.password = psswd;
       userInfo.email = [json objectForKey:@"em"];
-      
-      user.firstName = [json objectForKey:@"first_name"];
-      user.lastName = [json objectForKey:@"last_name"];
+
+      userInfo.firstName = user.firstName = [json objectForKey:@"first_name"];
+      userInfo.lastName = user.lastName = [json objectForKey:@"last_name"];
       
       if ( blockUser ) {
         blockUser(user);

@@ -43,15 +43,16 @@ extern NSString *const OIOrderBaseURL;
 /**
  *
  */
-- (void)orderForUser:(OIUser *)user atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block;
-
-/**
- *
- */
 - (NSNumber *) calculateSubtotal;
 
 #pragma mark -
 #pragma mark Class methods
+
+/**
+ *
+ *
+ */
++ (void)createOrderWithRestaurantId:(NSString *)restaurantID atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block;
 
 /**
  * Load all user orders.

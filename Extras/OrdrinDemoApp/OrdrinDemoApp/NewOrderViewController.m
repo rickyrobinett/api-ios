@@ -165,9 +165,10 @@
   OI_RELEASE_SAFELY( restaurantsViewController );
 }
 - (void)saveButtonDidPress {
-  OIOrder *order = [[OIOrder alloc] init];
-  [order orderForUser:nil atAddress:nil withCard:nil usingBlock:^void( NSError *error ) {
-    
+  [OIOrder createOrderWithRestaurantId:__selectedRestaurant.ID atAddress:__selectedAddress withCard:__selectedCard usingBlock:^void( NSError *error ) {
+    if ( error ) {
+      
+    }
   }];
 }
 

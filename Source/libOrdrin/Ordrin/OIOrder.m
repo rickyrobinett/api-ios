@@ -23,6 +23,7 @@
 #import "JSONKit.h"
 #import "OIUserInfo.h"
 #import "OIOrderItem.h"
+#import "OIUserInfo.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -63,50 +64,6 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 #pragma mark -
 #pragma mark Instance methods
 
-- (void)orderForUser:(OIUser *)user atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block {
-  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
-//  NSString *URL = [NSString stringWithFormat:@"%@/o/%@", OIOrderBaseURL, __restaurantBase.ID];
-  NSString *URLParams = [NSString stringWithFormat:@"/o/%d", 141];
-  NSString *URL = [NSString stringWithFormat:@"%@/o/%d", OIOrderBaseURL, 141];
-  __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
-  
-  [request setPostValue:@"3270/2+3263/1" forKey:@"tray"];
-  [request setPostValue:@"20" forKey:@"tip"];
-  [request setPostValue:@"01-21" forKey:@"delivery_date"];
-  [request setPostValue:@"21:30" forKey:@"delivery_time"];
-  [request setPostValue:@"daniel" forKey:@"first_name"];
-  [request setPostValue:@"krezelok" forKey:@"last_name"];
-  [request setPostValue:@"1 Main St" forKey:@"addr"];
-  [request setPostValue:@"College Station" forKey:@"city"];
-  [request setPostValue:@"FL" forKey:@"state"];
-  [request setPostValue:[NSNumber numberWithInt:77840] forKey:@"zip"];
-  [request setPostValue:@"111-222-3333" forKey:@"phone"];
-  [request setPostValue:userInfo.email forKey:@"em"];
-  [request setPostValue:userInfo.password.sha256 forKey:@"password"];
-  [request setPostValue:@"Master" forKey:@"card_name"];
-  [request setPostValue:@"4111111111111111" forKey:@"card_number"];
-  [request setPostValue:@"651" forKey:@"card_cvc"];
-  [request setPostValue:@"12/2013" forKey:@"card_expiry"];
-  [request setPostValue:@"1 Main St" forKey:@"card_bill_addr"];
-  [request setPostValue:@"adresa2" forKey:@"card_bill_addr2"];
-  [request setPostValue:@"College Station" forKey:@"card_bill_city"];
-  [request setPostValue:@"FL" forKey:@"card_bill_state"];
-  [request setPostValue:[NSNumber numberWithInt:77840] forKey:@"card_bill_zip"];  
-  
-  [request setCompletionBlock:^{
-    NSDictionary *json = [[request responseString] objectFromJSONString];
-    NSLog( @"%@", json );
-    if ( block ) {
-      block( nil );
-    }
-  }];
-
-  OIAPIClient *client = [OIAPIClient sharedInstance];
-  [client appendRequest:request authorized:YES userAuthenticator:[userInfo createAuthenticatorWithUri:URLParams]]; 
-  
-//  OIAPIClient *client = [OIAPIClient sharedInstance];
-//  [client appendRequest:request authorized:YES];
-}
 
 - (NSNumber *)calculateSubtotal {
 #warning Define body
@@ -129,6 +86,49 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 
 #pragma mark -
 #pragma mark Class methods
+
++ (void)createOrderWithRestaurantId:(NSString *)restaurantID atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block {
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+//  NSString *URL = [NSString stringWithFormat:@"%@/o/%@", OIOrderBaseURL, __restaurantBase.ID];
+//  NSString *URLParams = [NSString stringWithFormat:@"/o/%d", 141];
+  NSString *URL = [NSString stringWithFormat:@"%@/o/%d", OIOrderBaseURL, restaurantID];
+  __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
+  
+  NSString *cardExpiry = [NSString stringWithFormat:@"%@/%@",card.expirationMonth, card.expirationYear];
+  [request setPostValue:@"3270/2+3263/1" forKey:@"tray"];
+  [request setPostValue:@"20" forKey:@"tip"];
+  [request setPostValue:@"03-21" forKey:@"delivery_date"];
+  [request setPostValue:@"21:30" forKey:@"delivery_time"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(userInfo.firstName) forKey:@"first_name"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(userInfo.lastName) forKey:@"last_name"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.address1) forKey:@"addr"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.city) forKey:@"city"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.state) forKey:@"state"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(address.phoneNumber) forKey:@"phone"];  
+  [request setPostValue:OI_ZERO_IF_NIL(address.postalCode) forKey:@"zip"];
+  [request setPostValue:userInfo.email forKey:@"em"];
+  [request setPostValue:userInfo.password.sha256 forKey:@"password"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(card.name) forKey:@"card_name"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(card.number) forKey:@"card_number"];
+  [request setPostValue:OI_ZERO_IF_NIL(card.cvc) forKey:@"card_cvc"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(cardExpiry) forKey:@"card_expiry"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(card.address.address1) forKey:@"card_bill_addr"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(card.address.address2) forKey:@"card_bill_addr2"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(card.address.city) forKey:@"card_bill_city"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(card.address.state) forKey:@"card_bill_state"];
+  [request setPostValue:OI_ZERO_IF_NIL(card.address.postalCode) forKey:@"card_bill_zip"];  
+  
+  [request setCompletionBlock:^{
+    NSDictionary *json = [[request responseString] objectFromJSONString];
+    NSLog( @"%@", json );
+    if ( block ) {
+      block( nil );
+    }
+  }];
+  
+  OIAPIClient *client = [OIAPIClient sharedInstance];
+  [client appendRequest:request authorized:YES];  
+}
 
 + (void)loadOrderHistoryUsingBlock:(void (^)(NSMutableArray *orders))block {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
