@@ -23,7 +23,7 @@ extern NSString *const OIOrderBaseURL;
 @class OIRestaurantBase;
 
 @interface OIOrder : NSObject
-#warning Dopsat komenty
+
 /// Ordr.in's reference number for that order.
 @property (nonatomic, readwrite, copy) NSString *orderID;
 /// Ordr.in's restaurant identifier.
@@ -34,7 +34,7 @@ extern NSString *const OIOrderBaseURL;
 @property (nonatomic, readwrite, retain) NSNumber *tip;
 /// Either ASAP or in the date format 2 digit month - 2 digit date (i.e. January 21 would be 01-21)
 @property (nonatomic, readwrite, retain) NSDate *date;
-///
+/// Order items.
 @property (nonatomic, readwrite, retain) NSArray *items;
 
 #pragma mark -

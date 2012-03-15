@@ -16,14 +16,13 @@
 #import <Foundation/Foundation.h>
 
 @interface OIMenuItem : NSObject
-#warning Dopsat komenty
 /// The menu item's id - this is what is used to create the tray.
 @property (nonatomic, readwrite, copy) NSString *ID;
-///
+/// Order id.
 @property (nonatomic, readwrite, copy) NSString *orderID;
-///
+/// Menu item's availability for meal id.
 @property (nonatomic, readwrite, copy) NSNumber *availableForMealId;
-///
+/// Says if menu item is orderable or not.
 @property (nonatomic, readonly, getter=isOrderable) BOOL orderable;
 /// The name of the item.
 @property (nonatomic, readwrite, copy) NSString *name;
@@ -31,7 +30,8 @@
 @property (nonatomic, readwrite, copy) NSString *description;
 /// The optional price in dollars and cents.
 @property (nonatomic, readwrite, copy) NSNumber *price;
-///
+/// Says if menu item is child or not.
 @property (nonatomic, readonly, getter=isChildren) BOOL children;
+/// If menu item is not child, he can contain children.
 @property (nonatomic, copy) NSMutableArray *childrens;
 @end

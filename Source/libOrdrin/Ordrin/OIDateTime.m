@@ -46,7 +46,7 @@
     return @"ASAP";
   }
 
-#warning It can take a longer time. It should be on another place.
+//#warning It can take a longer time. It should be on another place.
 
   NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
   NSDateComponents *components = [calendar components:NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:__date];
