@@ -41,8 +41,28 @@ extern NSString *const OIOrderBaseURL;
 #pragma mark Class methods
 
 /**
+ * Create new order.
  *
+ * @param restaurantID
+ * Restaurant id.
  *
+ * @param (OIAddress)
+ * Delivery address.
+ *
+ * @param (OICardInfo)
+ * Payment card.
+ *
+ * @param date
+ * Delivery time.
+ *
+ * @param orderItems
+ * Ordered items represented by (NSString).
+ *
+ * @param tip
+ * Amount of tip in dollars and cents.
+ *
+ * @return block.
+ * Return nil if request finished correctly.
  */
 + (void)createOrderWithRestaurantId:(NSString *)restaurantID atAddress:(OIAddress*)address withCard:(OICardInfo *)card date:(NSDate *)date orderItems:(NSString *)orderItems tip:(NSNumber *)tip usingBlock:(void (^)(NSError *error))block;
 /**

@@ -34,18 +34,47 @@ extern NSString const* OIUserBaseURL;
 
 /**
  * Load account information by user email and password.
- * 
+ *
+ * @param email
+ * User email.
+ *
+ * @param password
+ * User password.
+ *
+ * @return block
+ * Return (OIUser) instance if request finished correctly.
+ *
+ * @return blockError
+ * Return (NSError) instance.
  */
 + (void)accountInfo:(NSString *)email password:(NSString *)password usingBlockUser:(void (^)(OIUser *user))blockUser usingBlockError:(void (^)(NSError *error))blockError;
 
 /**
  * Create new account for OIUser instance. Call block with nil parameter if succeeded or with a 
  * request error if failed
+ *
+ * @param (OIUser)
+ * Information about new account.
+ *
+ * @param email
+ * User email.
+ *
+ * @param password
+ * User password.
+ *
+ * @return block
+ * Return nil if request finished correctly.
  */
 + (void)createNewAccount:(OIUser *)account email:(NSString *)email password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
 
 /**
- * Create new OIUser instance by email, first name and last name.  
+ * Create new OIUser instance by email, first name and last name.
+ *
+ * @param firstName
+ * First name of user.
+ *
+ * @param lastName
+ * Last name of user.
  */
 + (OIUser *)userWithFirstName:(NSString *)firstName lastName:(NSString *)lastName;
 
