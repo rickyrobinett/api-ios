@@ -86,17 +86,29 @@
 
 @implementation UserOrdersViewController (Private)
 
-- (void)findButtonDidPress {
-  [__addressForm removeFromSuperview];
-  OI_RELEASE_SAFELY( __addressForm );
+- (void)findButtonDidPress {  
+  NSString *street = @"1 Main St";
+  NSString *city = @"College Station";
+  NSString *postalCodeStr = @"77840";
   
 //  NSString *street = __addressForm.streetField.text;
 //  NSString *city = __addressForm.cityField.text;
-//  NSNumber *postalCode = [NSNumber numberWithInteger:__addressForm.postalCodeField.text.integerValue];
-//  OIAddress *address = [OIAddress addressWithStreet:street city:city postalCode:postalCode];
-  OIAddress *address = [OIAddress addressWithStreet:@"1 Main St"
-                                               city:@"College Station"
-                                         postalCode:[NSNumber numberWithInt:77840]];
+//  NSString *postalCodeStr = __addressForm.postalCodeField.text;
+  
+  if ( !street || !city || !postalCodeStr ) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    OI_RELEASE_SAFELY( alert );
+    
+    return;        
+  }
+  
+  [__addressForm removeFromSuperview];
+  OI_RELEASE_SAFELY( __addressForm );
+  
+  OIAddress *address = [OIAddress addressWithStreet:street
+                                               city:city
+                                         postalCode:[NSNumber numberWithInt:postalCodeStr.intValue]];
   
   NewOrderViewController *newOrderViewController = [[NewOrderViewController alloc] initWithAddress:address];
   [self.navigationController pushViewController:newOrderViewController animated:YES];

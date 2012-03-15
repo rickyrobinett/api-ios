@@ -22,7 +22,7 @@
 #define LABEL_FONT                [UIFont fontWithName:@"Helvetica" size:12.0]
 
 #define LABEL_WIDTH               40
-#define LABEL_HEIGHT              20
+#define LABEL_HEIGHT              30
 
 #define FIELD_WIDTH               150
 #define FIELD_HEIGHT              30
@@ -31,11 +31,9 @@
 #define CITY_FIELD_FRAME          CGRectMake ( PADDING, 100, FIELD_WIDTH, FIELD_HEIGHT)
 #define POSTAL_CODE_FIELD_FRAME   CGRectMake ( PADDING, 150, FIELD_WIDTH, FIELD_HEIGHT)
 
-#define STREET_LABEL_FRAME        CGRectMake ( 5, 55, LABEL_WIDTH, LABEL_HEIGHT)
-#define CITY_LABEL_FRAME          CGRectMake ( 5, 110, LABEL_WIDTH, LABEL_HEIGHT)
-#define POSTAL_CODE_LABEL_FRAME   CGRectMake ( 5, 165, LABEL_WIDTH, LABEL_HEIGHT)
-
-#define FIND_BUTTON_FRAME         CGRectMake ( 200, 250, 60, 40)
+#define STREET_LABEL_FRAME        CGRectMake ( 5, 50, LABEL_WIDTH, LABEL_HEIGHT)
+#define CITY_LABEL_FRAME          CGRectMake ( 5, 100, LABEL_WIDTH, LABEL_HEIGHT)
+#define POSTAL_CODE_LABEL_FRAME   CGRectMake ( 5, 150, LABEL_WIDTH, LABEL_HEIGHT)
 
 @interface AddressFormView (Private)
 - (void)initSubviews;
@@ -46,10 +44,6 @@
 @synthesize streetField     = __streetField;
 @synthesize cityField       = __cityField;
 @synthesize postalCodeField = __postalCodeField;
-
-@synthesize streetLabel     = __streetLabel;
-@synthesize cityLabel       = __cityLabel;
-@synthesize postalCodeLabel = __postalCodeLabel;
 
 @synthesize findButton      = __findButton;
 
@@ -92,24 +86,12 @@
     __postalCodeField.frame = POSTAL_CODE_FIELD_FRAME;
   }
     
-  if ( !CGRectEqualToRect( __streetLabel.frame, STREET_LABEL_FRAME)) {
-    __streetLabel.frame = STREET_LABEL_FRAME;
-  }
-  
-  if ( !CGRectEqualToRect( __cityLabel.frame, CITY_LABEL_FRAME)) {
-    __cityLabel.frame = CITY_LABEL_FRAME;
-  }
-  
-  if ( !CGRectEqualToRect( __postalCodeLabel.frame, POSTAL_CODE_LABEL_FRAME)) {
-    __postalCodeLabel.frame = POSTAL_CODE_LABEL_FRAME;
-  }
-
   if ( CGRectEqualToRect( __findButton.frame, CGRectZero)) {
     CGRect frame;
     frame.size.width = self.frame.size.width - 20;
     frame.size.height = 40;
     frame.origin.x = 10;
-    frame.origin.y = __postalCodeField.frame.origin.y + CGRectGetHeight(__postalCodeField.frame) + 10;
+    frame.origin.y = __postalCodeField.frame.origin.y + CGRectGetHeight( __postalCodeField.frame ) + 10;
     __findButton.frame = frame;
   }  
 }
@@ -122,9 +104,6 @@
   OI_RELEASE_SAFELY( __streetField );
   OI_RELEASE_SAFELY( __cityField );
   OI_RELEASE_SAFELY( __postalCodeField );
-  OI_RELEASE_SAFELY( __postalCodeLabel );
-  OI_RELEASE_SAFELY( __cityLabel );
-  OI_RELEASE_SAFELY( __streetLabel );  
   
   [super dealloc];
 }
@@ -147,23 +126,14 @@
   __postalCodeField = [[UITextField alloc] initWithFrame:CGRectZero];
   
   __streetField.borderStyle = __cityField.borderStyle = __postalCodeField.borderStyle = UITextBorderStyleRoundedRect;
+  __streetField.contentVerticalAlignment = __cityField.contentVerticalAlignment = __postalCodeField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+  __streetField.textAlignment = __cityField.textAlignment = __postalCodeField.textAlignment = UITextAlignmentCenter;
   
-  __streetLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-  __cityLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-  __postalCodeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-  
-  __streetLabel.font = __cityLabel.font = __postalCodeLabel.font = LABEL_FONT;
-  __streetLabel.backgroundColor = __cityLabel.backgroundColor = __postalCodeLabel.backgroundColor = [UIColor clearColor];
-  
-  __streetLabel.text = @"Street";
-  __cityLabel.text = @"City";
-  __postalCodeLabel.text = @"Zip";
-  
+  __streetField.placeholder = @"Street";
+  __cityField.placeholder = @"City";
+  __postalCodeField.placeholder = @"Zip";
+    
   [self addSubview:__findButton];
-  [self addSubview:__streetLabel];
-  [self addSubview:__cityLabel];
-  [self addSubview:__postalCodeLabel];
-  
   [self addSubview:__streetField];
   [self addSubview:__cityField];
   [self addSubview:__postalCodeField];  

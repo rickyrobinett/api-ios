@@ -23,20 +23,12 @@
   UITextField *__cityField;
   UITextField *__postalCodeField;
   
-  UILabel *__streetLabel;
-  UILabel *__cityLabel;
-  UILabel *__postalCodeLabel;
-  
   UIButton *__findButton;
 }
 
 @property (nonatomic, readonly) UITextField *streetField;
 @property (nonatomic, readonly) UITextField *cityField;
 @property (nonatomic, readonly) UITextField *postalCodeField;
-
-@property (nonatomic, readonly) UILabel *streetLabel;
-@property (nonatomic, readonly) UILabel *cityLabel;
-@property (nonatomic, readonly) UILabel *postalCodeLabel;
 
 @property (nonatomic, readonly) UIButton *findButton;
 

@@ -17,6 +17,7 @@
 #import "ChangePasswordView.h"
 #import "OICore.h"
 #import "OIUser.h"
+#import "OIUserInfo.h"
 
 @interface ChangePasswordViewController (Private)
 - (void)confirmationButtonDidPress;
@@ -89,6 +90,28 @@
 }
 
 - (void)confirmationButtonDidPress {
+  NSString *prevPassword = __changePasswordView.oldPasswordField.text;
+  NSString *newPassword = __changePasswordView.passwordField.text;
+  NSString *email = __changePasswordView.emailField.text;
+  
+  if ( !newPassword || !prevPassword || !email ) {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    OI_RELEASE_SAFELY( alertView );
+
+    return;
+  }
+  
+  OIUserInfo *userInfo = [OIUserInfo sharedInstance];
+  
+  if ( ![prevPassword isEqualToString:userInfo.password] || ![email isEqualToString:userInfo.email]) {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Email or Password is wrong." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    OI_RELEASE_SAFELY( alertView );
+    
+    return;
+  }
+  
   [OIUser updatePassword:__changePasswordView.passwordField.text usingBlock:^void( NSError *error ) {
     if ( error ) {
       UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Password did not change." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
