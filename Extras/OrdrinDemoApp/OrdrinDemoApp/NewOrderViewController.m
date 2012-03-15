@@ -179,6 +179,9 @@
 @implementation NewOrderViewController (UserAction)
 
 - (void)creditCardsButtonDidPress {
+  if ( __newOrderModel.creditCards.count < 1 ) {
+    return;
+  }
   OrderCardsViewController *cardsViewController = [[OrderCardsViewController alloc] initWithCreditCards:__newOrderModel.creditCards];
   cardsViewController.delegate = self;
   [self.navigationController pushViewController:cardsViewController animated:YES];
@@ -186,6 +189,9 @@
 }
 
 - (void)addressesButtonDidPress {
+  if ( __newOrderModel.addresses.count < 1 ) {
+    return;
+  }  
   OrderAddressesViewController *addressesViewController = [[OrderAddressesViewController alloc] initWithAddresses:__newOrderModel.addresses];  
   addressesViewController.delegate = self;
   [self.navigationController pushViewController:addressesViewController animated:YES];
@@ -193,6 +199,9 @@
 }
 
 - (void)restaurantsButtonDidPress {
+  if ( __newOrderModel.restaurants.count < 1 ) {
+    return;
+  }  
   OrderRestaurantsViewController *restaurantsViewController = [[OrderRestaurantsViewController alloc] initWithRestaurants:__newOrderModel.restaurants];
   restaurantsViewController.delegate = self;
   [self.navigationController pushViewController:restaurantsViewController animated:YES];

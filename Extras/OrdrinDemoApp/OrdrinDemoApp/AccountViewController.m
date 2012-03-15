@@ -168,10 +168,10 @@
 }
 
 - (void)loginButtonDidPress {
-//  NSString *email = __accountView.loginView.emailField.text;
-//  NSString *password = __accountView.loginView.passwordField.text;
-  NSString *email = @"daniel@seznam.cz";
-  NSString *password = @"mlok";
+  NSString *email = __accountView.loginView.emailField.text;
+  NSString *password = __accountView.loginView.passwordField.text;
+//  NSString *email = @"daniel@seznam.cz";
+//  NSString *password = @"mlok";
   
   if ( !email || !password ) {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill both fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

@@ -84,13 +84,13 @@
 @implementation AddressFormViewController (Private)
 
 - (void)findButtonDidPress {
-  NSString *street = @"1 Main St";
-  NSString *city = @"College Station";
-  NSString *postalCodeStr = @"77840";
+//  NSString *street = @"1 Main St";
+//  NSString *city = @"College Station";
+//  NSString *postalCodeStr = @"77840";
 
-//  NSString *street = __addressFormView.streetField.text;
-//  NSString *city = __addressFormView.cityField.text;
-//  NSString *postalCodeStr = __addressFormView.postalCodeField.text;
+  NSString *street = __addressFormView.streetField.text;
+  NSString *city = __addressFormView.cityField.text;
+  NSString *postalCodeStr = __addressFormView.postalCodeField.text;
   
   if ( !street || !city || !postalCodeStr ) {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
