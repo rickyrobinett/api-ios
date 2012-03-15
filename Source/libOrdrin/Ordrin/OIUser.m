@@ -148,10 +148,18 @@ NSString const* OIUserURL = @"https://u.ordr.in/";
   [request setPostValue:userInfo.password.sha256 forKey:@"previous_password"];
   
   [request setCompletionBlock:^{
-    NSLog( @"%@", request.responseStatusMessage );
-    userInfo.password = password;
-
-    block( nil );
+    NSDictionary *json = [[request responseString] objectFromJSONString];
+    if ( json ) {
+      NSNumber *errorCode = [json objectForKey:@"_error"];
+      if ( errorCode.integerValue == 0 ) {
+        userInfo.password = password;
+        block( nil );
+      } else {
+        NSString *msg = [json objectForKey:@"msg"];
+        NSError *error = [NSError errorWithDomain:msg code:0 userInfo:nil];
+        block( error );
+      }
+    }    
   }];
   
   [request setFailedBlock:^{

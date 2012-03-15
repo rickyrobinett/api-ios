@@ -104,7 +104,7 @@
   
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
   
-  if ( ![prevPassword isEqualToString:userInfo.password] || ![email isEqualToString:userInfo.email]) {
+  if ( ![prevPassword isEqualToString:userInfo.password] || ![email isEqualToString:userInfo.email] ) {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Email or Password is wrong." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
     OI_RELEASE_SAFELY( alertView );
@@ -114,7 +114,7 @@
   
   [OIUser updatePassword:__changePasswordView.passwordField.text usingBlock:^void( NSError *error ) {
     if ( error ) {
-      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Password did not change." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.domain delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
       [alertView show];
       OI_RELEASE_SAFELY( alertView );
     }

@@ -65,10 +65,10 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 #pragma mark Instance methods
 
 
-- (NSNumber *)calculateSubtotal {
-#warning Define body
-  return nil;
-}
+//- (NSNumber *)calculateSubtotal {
+//#warning Define body
+//  return nil;
+//}
 
 #pragma mark -
 #pragma mark Memory Management
@@ -219,6 +219,7 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
   restaurantBase.name = [orderDict objectForKey:@"rname"];
   
   order.restaurantBase = restaurantBase;
+  OI_RELEASE_SAFELY( restaurantBase );  
   
   NSDictionary *itemsDict = [orderDict objectForKey:@"item"];        
   NSArray *allKeys = itemsDict.allKeys;
@@ -232,17 +233,23 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
     orderItem.price = [itemDict objectForKey:@"price"];
     orderItem.quantity = [itemDict objectForKey:@"qty"];
     
-//          NSDictionary *opts = [itemDict objectForKey:@"opts"];
-//          NSArray *optsKeys = opts.allKeys;
+    NSArray *optsHashes = [itemDict objectForKey:@"opts"];
+    NSMutableArray *opts = [NSMutableArray array];
     
-#warning Docist opts polozky v OIOrder          
-//          for ( NSString *key in optsKeys ) {
-//            NSDictionary *optsDict = [opts objectForKey:key];
-//            
-//          }
+    for ( NSDictionary *optDict in optsHashes ) {
+      OIOrderItem *optItem = [[OIOrderItem alloc] init];
+      optItem.ID = [optDict objectForKey:@"id"];
+      optItem.name = [optDict objectForKey:@"name"];
+      optItem.price = [optDict objectForKey:@"price"];
+      optItem.quantity = [optDict objectForKey:@"qty"];
+    
+      [opts addObject:optItem];
+      OI_RELEASE_SAFELY( optItem );
+    }
+    
+    orderItem.opts = opts;
     OI_RELEASE_SAFELY( orderItem );
   }    
-  OI_RELEASE_SAFELY( restaurantBase );
 
   return order;
 }

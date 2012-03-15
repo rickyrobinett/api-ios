@@ -160,6 +160,7 @@
     NSArray *allKeys = [json allKeys];    
     NSString *item;
     
+    
     NSMutableArray *newCardsInfo = [NSMutableArray array];
     
     for (item in allKeys) {      
@@ -208,25 +209,28 @@
   [request setCompletionBlock:^{    
     NSDictionary *json = [[request responseString] objectFromJSONString];    
     if( json ) {
-      OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];
-      cardInfo.nickname = nickname;
-      cardInfo.name = [json objectForKey:@"name"];
-      cardInfo.lastFiveDigits = [json objectForKey:@"cc_last5"];
-      cardInfo.type = [json objectForKey:@"type"];
-      cardInfo.expirationMonth = [json objectForKey:@"expiry_month"];
-      cardInfo.expirationYear = [json objectForKey:@"expiry_year"];
-      cardInfo.address.address1 = [json objectForKey:@"addr"];
-      cardInfo.address.address2 = [json objectForKey:@"addr2"];
-      cardInfo.address.city = [json objectForKey:@"city"];
-      cardInfo.address.state = [json objectForKey:@"state"];
-      cardInfo.address.postalCode = [json objectForKey:@"zip"];
-      cardInfo.address.phoneNumber = [json objectForKey:@"phone"];      
-      if ( block ) {
-        block( cardInfo );
-      }
+      NSNumber *error = [json objectForKey:@"_err"];
+      if ( error.intValue == 0 ) {
+        OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];
+        cardInfo.nickname = nickname;
+        cardInfo.name = [json objectForKey:@"name"];
+        cardInfo.lastFiveDigits = [json objectForKey:@"cc_last5"];
+        cardInfo.type = [json objectForKey:@"type"];
+        cardInfo.expirationMonth = [json objectForKey:@"expiry_month"];
+        cardInfo.expirationYear = [json objectForKey:@"expiry_year"];
+        cardInfo.address.address1 = [json objectForKey:@"addr"];
+        cardInfo.address.address2 = [json objectForKey:@"addr2"];
+        cardInfo.address.city = [json objectForKey:@"city"];
+        cardInfo.address.state = [json objectForKey:@"state"];
+        cardInfo.address.postalCode = [json objectForKey:@"zip"];
+        cardInfo.address.phoneNumber = [json objectForKey:@"phone"];      
+        if ( block ) {
+          block( cardInfo );
+        }
+      } else {
+        block( nil );                
+      }      
     }
-    else
-      block(nil);
   }];
   
   [request setFailedBlock:^{

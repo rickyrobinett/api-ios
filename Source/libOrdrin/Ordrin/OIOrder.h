@@ -43,7 +43,7 @@ extern NSString *const OIOrderBaseURL;
 /**
  *
  */
-- (NSNumber *) calculateSubtotal;
+//- (NSNumber *) calculateSubtotal;
 
 #pragma mark -
 #pragma mark Class methods
