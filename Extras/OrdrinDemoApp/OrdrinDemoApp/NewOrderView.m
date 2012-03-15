@@ -100,7 +100,7 @@
     __tipField = [[UITextField alloc] initWithFrame:CGRectZero];
     
     __cardNumberField.placeholder = @"Number";
-    __securityCodeField.placeholder = @"Security code";
+    __securityCodeField.placeholder = @"Cvc";
     __tipField.placeholder = @"Tip";
     
     __cardNumberField.textAlignment = __securityCodeField.textAlignment = __tipField.textAlignment = UITextAlignmentCenter;

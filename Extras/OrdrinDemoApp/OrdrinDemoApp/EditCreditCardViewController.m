@@ -143,21 +143,43 @@
 }
 
 - (void)reloadButtonDidPress {
-  OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];
-  cardInfo.nickname = __creditCardView.nickNameField.text;
-  cardInfo.name = __creditCardView.nameField.text;
-  cardInfo.cvc = [NSNumber numberWithInt:__creditCardView.cvcField.text.intValue];
-  cardInfo.expirationYear = __creditCardView.expiryYearField.text;
-  cardInfo.expirationMonth = __creditCardView.expiryMonthField.text;
-  cardInfo.number = __creditCardView.numberField.text;
+  NSString *nickName = __creditCardView.nickNameField.text;
+  NSString *name = __creditCardView.nameField.text;
+  NSString *number = __creditCardView.numberField.text;
+  NSString *cvc = __creditCardView.cvcField.text;
+  NSString *expiryYear = __creditCardView.expiryYearField.text;
+  NSString *expiryMonth = __creditCardView.expiryMonthField.text;
   
-  NSNumber *postalCode = [NSNumber numberWithInt:__creditCardView.billCityField.text.intValue];
-  OIAddress *address = [OIAddress addressWithStreet:__creditCardView.billAddr1Field.text city:__creditCardView.billCityField.text postalCode:postalCode];
-  address.address2 = __creditCardView.billAddr2Field.text;
-  address.state = __creditCardView.billStateField.text;
+  NSString *postalCodeStr = __creditCardView.billZipField.text;  
+  NSString *street = __creditCardView.billAddr1Field.text;
+  NSString *city = __creditCardView.billCityField.text;
+  NSString *address2 = __creditCardView.billAddr2Field.text;
+  NSString *state = __creditCardView.billStateField.text;
+  NSString *phoneNumber = __creditCardView.phoneField.text;
   
+  if ( !nickName || !name || !number || !cvc || !expiryMonth || !expiryYear || !postalCodeStr || !street || !city || !address2 || !state || !phoneNumber ) {    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    OI_RELEASE_SAFELY( alertView );
+    
+    return;
+  }
+  
+  OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];    
+  cardInfo.nickname = nickName;
+  cardInfo.name = name;
+  cardInfo.number = number;
+  cardInfo.cvc = [NSNumber numberWithInteger:cvc.integerValue];
+  cardInfo.expirationYear = expiryYear;
+  cardInfo.expirationMonth = expiryMonth;
+  
+  NSNumber *postalCode = [NSNumber numberWithInt:postalCodeStr.intValue];
+  OIAddress *address = [OIAddress addressWithStreet:street city:city postalCode:postalCode];
+  address.address2 = address2;
+  address.state = state;
+  address.phoneNumber = phoneNumber;
   cardInfo.address = address;
-
+  
   [__creditCard updateCreditCardWithCard:cardInfo usingBlock:^void( NSError *error ) {
     if ( error ) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error with adding credit card." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -166,8 +188,7 @@
         return;      
     } else {
       [self.navigationController popViewControllerAnimated:YES];
-    }      
-  
+    }        
   }];
 }
 

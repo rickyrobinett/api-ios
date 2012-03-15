@@ -152,15 +152,14 @@
   
   [OIAddress addAddress:address usingBlock:^void( NSError *error ) {
     if ( error ) {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.domain delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
       [alert show];
       OI_RELEASE_SAFELY( alert );
     } else {
       UserAddressesViewController *viewController = (UserAddressesViewController *)__delegate;
       [viewController.userAddressesDataSource.model reload];
       [self.navigationController popViewControllerAnimated:YES];
-    }
-    
+    }    
   }];
 }
 

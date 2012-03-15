@@ -131,17 +131,31 @@
 - (void)updateAddressButtonDidPress {
   NSString *street = __editAddressView.addr1Field.text;
   NSString *city = __editAddressView.cityField.text;
-  NSNumber *postalCode = [NSNumber numberWithInt: __editAddressView.zipField.text.intValue];    
+  NSString *postalCodeStr = __editAddressView.zipField.text;
+  NSString *nickName = __editAddressView.nickNameField.text;
+  NSString *state = __editAddressView.stateField.text;
+  NSString *address2 = __editAddressView.addr2Field.text;
+  NSString *phoneNumber = __editAddressView.phoneField.text;
+  
+  if ( !street || !city || !postalCodeStr || !nickName || !state || !address2 || !phoneNumber ) {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    OI_RELEASE_SAFELY( alertView );
+    
+    return;    
+  }
+  
+  NSNumber *postalCode = [NSNumber numberWithInt: postalCodeStr.intValue];    
   OIAddress *address = [OIAddress addressWithStreet:street city:city postalCode:postalCode];
   
-  address.nickname = __editAddressView.nickNameField.text;
-  address.state = __editAddressView.stateField.text;
-  address.address2 = __editAddressView.addr2Field.text;
-  address.phoneNumber = __editAddressView.phoneField.text;
-  
+  address.nickname = nickName;
+  address.state = state;
+  address.address2 = address2;
+  address.phoneNumber = phoneNumber;
+    
   [__editAddress updateAddressWithAddress:address usingBlock:^void( NSError *error ) {
     if ( error ) {
-      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.domain delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
       [alertView show];
       OI_RELEASE_SAFELY( alertView );
     }
