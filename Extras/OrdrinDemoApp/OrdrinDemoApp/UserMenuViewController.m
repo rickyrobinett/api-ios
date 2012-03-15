@@ -114,7 +114,6 @@
 
 - (void)ordersHistoryButtonDidPress {
   UserOrdersViewController *userOrdersViewController = [[UserOrdersViewController alloc] init];
-  userOrdersViewController.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:userOrdersViewController animated:YES];
   OI_RELEASE_SAFELY( userOrdersViewController );
 }

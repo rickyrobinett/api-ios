@@ -51,6 +51,7 @@
   self = [super init];
   if ( self ) {
     __orderItems = [[NSMutableDictionary alloc] init];
+    __selectedDate = [[NSDate alloc] init];
     OIUserInfo *userInfo = [OIUserInfo sharedInstance];
     self.title = [NSString stringWithFormat:@"%@ %@",userInfo.firstName, userInfo.lastName];
     __address = [address retain];
@@ -215,7 +216,7 @@
   
   [OIOrder createOrderWithRestaurantId:__selectedRestaurant.ID atAddress:__selectedAddress withCard:__selectedCard date:__selectedDate orderItems:orderItemsStr tip:tip usingBlock:^void( NSError *error ) {
     if ( error ) {
-      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.domain delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
       [alertView show];
       
       OI_RELEASE_SAFELY( alertView );

@@ -62,15 +62,6 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 }
 
 #pragma mark -
-#pragma mark Instance methods
-
-
-//- (NSNumber *)calculateSubtotal {
-//#warning Define body
-//  return nil;
-//}
-
-#pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
@@ -123,13 +114,22 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
   [request setPostValue:OI_EMPTY_STR_IF_NIL(card.address.city) forKey:@"card_bill_city"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(card.address.state) forKey:@"card_bill_state"];
   [request setPostValue:OI_ZERO_IF_NIL(card.address.postalCode) forKey:@"card_bill_zip"];  
-  
-  
+    
   [request setCompletionBlock:^{
     NSDictionary *json = [[request responseString] objectFromJSONString];
-    NSLog( @"%@", json );
-    if ( block ) {
-      block( nil );
+    if ( json ) {
+      NSNumber *errorCode = [json objectForKey:@"_error"];
+      if ( errorCode.integerValue == 0 ) {
+        if ( block ) {
+          block( nil );
+        }
+      } else {
+        NSString *msg = [json objectForKey:@"text"];
+        NSError *error = [NSError errorWithDomain:msg code:0 userInfo:nil];
+        if ( block ) {
+          block( error );
+        }
+      }
     }
   }];
   

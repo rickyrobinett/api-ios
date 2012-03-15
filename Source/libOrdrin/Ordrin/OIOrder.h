@@ -38,14 +38,6 @@ extern NSString *const OIOrderBaseURL;
 @property (nonatomic, readwrite, retain) NSArray *items;
 
 #pragma mark -
-#pragma mark Instance methods
-
-/**
- *
- */
-//- (NSNumber *) calculateSubtotal;
-
-#pragma mark -
 #pragma mark Class methods
 
 /**

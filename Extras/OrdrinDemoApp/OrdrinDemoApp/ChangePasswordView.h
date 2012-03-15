@@ -22,10 +22,6 @@
   UITextField *__oldPasswordField;
   UITextField *__emailField;
   
-  UILabel *__passwordLabel;
-  UILabel *__oldPasswordLabel;
-  UILabel *__emailLabel;
-  
   UIButton *__confirmButton;
 }
 

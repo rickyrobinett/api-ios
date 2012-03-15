@@ -43,8 +43,10 @@
   self = [super init];
   if ( self ) {
     self.title = @"Addresses";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewAddressButtonDidPress)];
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewAddressButtonDidPress)];
+    self.navigationItem.rightBarButtonItem = buttonItem;
     
+    OI_RELEASE_SAFELY( buttonItem );
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAddressNotification:) name:kDeleteButtonDidPressNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editAddressNotification:) name:kEditButtonDidPressNotification object:nil];    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addressesDidLoadNotification:) name:kAddressesDidLoadNotification object:nil];    

@@ -101,7 +101,6 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
 
 - (void)calculateFeesForSubtotal:(OIOrder *)order usingBlock:(void (^)(OIDelivery *delivery))block {
   
-#warning Initialize all data to retrieve valid request string
   OIAddress *address = (OIAddress*)[order address];
   NSNumber *subtotal = nil;
   NSNumber *tip = nil;
@@ -114,7 +113,7 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
     OIDelivery *delivery = [[[OIDelivery alloc] init] autorelease];        
     delivery.available = [[json objectForKey:@"delivery"] boolValue];
   
-    if ( ! [delivery isAvailable] ) { 
+    if ( !delivery.isAvailable ) { 
       delivery.message = [json objectForKey:@"msg"];
     }
         
@@ -124,7 +123,7 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
     delivery.ID = [json objectForKey:@"rid"];
     delivery.fee = [json objectForKey:@"fee"];
     delivery.tax = [json objectForKey:@"tax"];
-      
+    
     if ( block ) {
       block(delivery);
     }
@@ -186,13 +185,15 @@ static inline NSDate* OIDateTimeSinceNowWithMinutes(NSInteger minutes) {
       NSMutableArray *subMenuItems = [NSMutableArray array];      
       NSArray *childrens = [menuItemDict objectForKey:@"children"];
       
-      for ( NSDictionary *menuItem in childrens ) {      
+      for ( NSDictionary *menuSubItem in childrens ) {      
         OIMenuItem *menuItem = [[OIMenuItem alloc] init];
-        menuItem.name = [menuItemDict objectForKey:@"name"];
-        menuItem.description = [menuItemDict objectForKey:@"descrip"];
-        menuItem.price = [menuItemDict objectForKey:@"price"];
-        menuItem.ID = [menuItemDict objectForKey:@"id"];
+        menuItem.name = [menuSubItem objectForKey:@"name"];
+        menuItem.description = [menuSubItem objectForKey:@"descrip"];
+        menuItem.price = [menuSubItem objectForKey:@"price"];
+        menuItem.ID = [menuSubItem objectForKey:@"id"];
         [subMenuItems addObject:menuItem];
+        
+        OI_RELEASE_SAFELY( menuItem );
       }
       
       menuItem.childrens = subMenuItems;      

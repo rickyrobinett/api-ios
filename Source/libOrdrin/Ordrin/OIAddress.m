@@ -211,12 +211,12 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
     if( json ) {
       OIAddress *address = [[[OIAddress alloc] init] autorelease];
       address.nickname = nickname;
-      address.address1 =   [json objectForKey:@"addr"];
-      address.address2 =   [json objectForKey:@"addr2"];
-      address.city =   [json objectForKey:@"city"];
-      address.state =   [json objectForKey:@"state"];
-      address.postalCode =   [json objectForKey:@"zip"];
-      address.phoneNumber =   [json objectForKey:@"phone"];   
+      address.address1 = [json objectForKey:@"addr"];
+      address.address2 = [json objectForKey:@"addr2"];
+      address.city = [json objectForKey:@"city"];
+      address.state = [json objectForKey:@"state"];
+      address.postalCode = [json objectForKey:@"zip"];
+      address.phoneNumber = [json objectForKey:@"phone"];   
       
       if ( block ) {
         block( address );
@@ -244,7 +244,6 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
   [request setCompletionBlock:^{
     
     NSDictionary *json = [[request responseString] objectFromJSONString];
-    NSLog( @"%@", request.responseStatusMessage );
     if ( json ) {
       NSNumber *error = [json objectForKey:@"_error"];
       if ( error.intValue == 0 ) {

@@ -76,7 +76,7 @@
   self = [super init];
   if ( self ) {
     __scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-    __scrollView.contentSize = CGSizeMake(320, 800);
+    __scrollView.contentSize = CGSizeMake(320, 720);
     __scrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     __restaurantsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];

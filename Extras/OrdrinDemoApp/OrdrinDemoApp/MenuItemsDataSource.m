@@ -57,7 +57,7 @@ static NSString *cellWithButtonIdentifier = @"cellWithButtonIdentifier";
   }
     
   if ( !cell ) {
-    cell = [[TextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    cell = [[[TextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     cell.accessoryType = accessoryType;
   }
   

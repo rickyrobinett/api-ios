@@ -37,7 +37,9 @@
   self = [super init];
   if ( self ) {
     self.title = @"Add address";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(createAddressButtonDidPress)];
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(createAddressButtonDidPress)];
+    self.navigationItem.rightBarButtonItem = buttonItem;
+    OI_RELEASE_SAFELY( buttonItem );
   }
   
   return self;

@@ -38,7 +38,10 @@
   if ( self ) {
     __editAddress = [address retain];
     self.title = @"Update address";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateAddressButtonDidPress)];    
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateAddressButtonDidPress)];    
+    self.navigationItem.rightBarButtonItem = buttonItem;
+    
+    OI_RELEASE_SAFELY( buttonItem );
   }
   
   return self;

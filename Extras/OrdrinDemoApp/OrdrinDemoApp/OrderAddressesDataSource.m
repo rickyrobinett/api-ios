@@ -41,7 +41,7 @@ static NSString *cellIdentifier = @"orderAddressCellIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  OIAddress *address = [__addresses objectAtIndex:indexPath.section];
+  OIAddress *address = [__addresses objectAtIndex:indexPath.row];
   TextViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
   
   if ( !cell ) {
