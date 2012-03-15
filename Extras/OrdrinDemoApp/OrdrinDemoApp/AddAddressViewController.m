@@ -128,13 +128,27 @@
 - (void)createAddressButtonDidPress {
   NSString *street = __addAddressView.addr1Field.text;
   NSString *city = __addAddressView.cityField.text;
-  NSNumber *postalCode = [NSNumber numberWithInt: __addAddressView.zipField.text.intValue];    
+  NSString *postalCodeStr = __addAddressView.zipField.text;
+  NSString *nickName = __addAddressView.nickNameField.text;
+  NSString *state = __addAddressView.stateField.text;
+  NSString *address2 = __addAddressView.addr2Field.text;
+  NSString *phoneNumber = __addAddressView.phoneField.text;
+  
+  if ( !street || !city || !postalCodeStr || !nickName || !state || !address2 || !phoneNumber ) {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    OI_RELEASE_SAFELY( alertView );
+    
+    return;    
+  }
+  
+  NSNumber *postalCode = [NSNumber numberWithInt: postalCodeStr.intValue];    
   OIAddress *address = [OIAddress addressWithStreet:street city:city postalCode:postalCode];
   
-  address.nickname = __addAddressView.nickNameField.text;
-  address.state = __addAddressView.stateField.text;
-  address.address2 = __addAddressView.addr2Field.text;
-  address.phoneNumber = __addAddressView.phoneField.text;
+  address.nickname = nickName;
+  address.state = state;
+  address.address2 = address2;
+  address.phoneNumber = phoneNumber;
   
   [OIAddress addAddress:address usingBlock:^void( NSError *error ) {
     if ( error ) {

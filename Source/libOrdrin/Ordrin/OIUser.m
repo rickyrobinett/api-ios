@@ -88,6 +88,9 @@ NSString const* OIUserURL = @"https://u.ordr.in/";
       if ( blockUser ) {
         blockUser(user);
       }      
+    } else {
+      NSError *error = [NSError errorWithDomain:@"Wrong email or password" code:401 userInfo:nil];
+      blockError (error);
     }
     
   }]; 

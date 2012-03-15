@@ -84,11 +84,25 @@
 @implementation AddressFormViewController (Private)
 
 - (void)findButtonDidPress {
-//  NSNumber *postalCode = [NSNumber numberWithInt:__addressFormView.postalCodeField.text.intValue];
-//  OIAddress *address = [OIAddress addressWithStreet:__addressFormView.streetField.text city:__addressFormView.cityField.text postalCode:postalCode];
-  OIAddress *address = [OIAddress addressWithStreet:@"1 Main St"
-                                               city:@"College Station"
-                                         postalCode:[NSNumber numberWithInt:77840]];
+  NSString *street = @"1 Main St";
+  NSString *city = @"College Station";
+  NSString *postalCodeStr = @"77840";
+
+//  NSString *street = __addressFormView.streetField.text;
+//  NSString *city = __addressFormView.cityField.text;
+//  NSString *postalCodeStr = __addressFormView.postalCodeField.text;
+  
+  if ( !street || !city || !postalCodeStr ) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    OI_RELEASE_SAFELY( alert );
+    
+    return;        
+  }
+  
+  OIAddress *address = [OIAddress addressWithStreet:street
+                                               city:city
+                                         postalCode:[NSNumber numberWithInt:postalCodeStr.intValue]];
   
   RestaurantListViewController *restaurantListViewController = [[RestaurantListViewController alloc] initWithAddress:address];
   restaurantListViewController.hidesBottomBarWhenPushed = YES;

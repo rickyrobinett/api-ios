@@ -28,8 +28,10 @@
   
   UITextField *__cardNumberField;
   UITextField *__securityCodeField;
+  UITextField *__tipField;  
 }
 
+@property (nonatomic, readonly) UITextField *tipField;
 @property (nonatomic, readonly) UITextField *cardNumberField;
 @property (nonatomic, readonly) UITextField *securityCodeField;
 

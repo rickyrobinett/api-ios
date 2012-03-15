@@ -200,11 +200,20 @@
 
 - (void)saveButtonDidPress {
   NSString *orderItemsStr = [self createStringFromOrderItems];
-  
+  NSNumber *tip = [NSNumber numberWithInteger:__newOrderView.tipField.text.integerValue];
   __selectedCard.number = __newOrderView.cardNumberField.text;
   __selectedCard.cvc = [NSNumber numberWithInteger:__newOrderView.securityCodeField.text.integerValue];
   
-  [OIOrder createOrderWithRestaurantId:__selectedRestaurant.ID atAddress:__selectedAddress withCard:__selectedCard date:__selectedDate orderItems:orderItemsStr tip:[NSNumber numberWithInteger:10] usingBlock:^void( NSError *error ) {
+  if ( !orderItemsStr || !tip || !__selectedRestaurant || !__selectedAddress || !__selectedCard || !__selectedDate ) {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    
+    OI_RELEASE_SAFELY( alertView );
+    
+    return;
+  }
+  
+  [OIOrder createOrderWithRestaurantId:__selectedRestaurant.ID atAddress:__selectedAddress withCard:__selectedCard date:__selectedDate orderItems:orderItemsStr tip:tip usingBlock:^void( NSError *error ) {
     if ( error ) {
       UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
       [alertView show];

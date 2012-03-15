@@ -124,7 +124,6 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
   [request setPostValue:OI_EMPTY_STR_IF_NIL(card.address.state) forKey:@"card_bill_state"];
   [request setPostValue:OI_ZERO_IF_NIL(card.address.postalCode) forKey:@"card_bill_zip"];  
   
-  NSLog( @"%@",[request getPostData] );
   
   [request setCompletionBlock:^{
     NSDictionary *json = [[request responseString] objectFromJSONString];

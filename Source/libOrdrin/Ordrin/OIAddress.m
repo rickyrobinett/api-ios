@@ -128,10 +128,17 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
   __block ASIFormDataRequest *request = [OIAddress createRequestForCreateOrUpdateActionWithAddress:address];
   
   [request setCompletionBlock:^{
-    NSString *statusMessage = request.responseStatusMessage;
     NSDictionary *json = [[request responseString] objectFromJSONString];
-    NSLog( @"%@\n%@", json, statusMessage );
-    block(nil);
+    if ( json ) {
+      NSNumber *error = [json objectForKey:@"_error"];
+      if ( error.integerValue == 0 ) {
+        block( nil );        
+      } else {
+        NSString *msg = [json objectForKey:@"msg"];
+        NSError *error = [NSError errorWithDomain:msg code:0 userInfo:nil];
+        block( error );
+      }
+    }
   }];
   
   [request setFailedBlock:^{
@@ -216,11 +223,11 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
       }
     }
     else
-      block(nil);
+      block( nil );
   }];
   
   [request setFailedBlock:^{
-    block(nil);
+    block( nil );
   }];
   
   OIAPIClient *client = [OIAPIClient sharedInstance];

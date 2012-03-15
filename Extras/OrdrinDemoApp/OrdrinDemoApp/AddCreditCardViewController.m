@@ -120,40 +120,43 @@
 
 @implementation AddCreditCardViewController (Private)
 
-- (void)saveButtonDidPress {
-  if ( !__addCreditCardView.nickNameField.text || [__addCreditCardView.nickNameField.text isEqualToString:@""] ) {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You must fill nick name at least." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+- (void)saveButtonDidPress {  
+  NSString *nickName = __addCreditCardView.nickNameField.text;
+  NSString *name = __addCreditCardView.nameField.text;
+  NSString *number = __addCreditCardView.numberField.text;
+  NSString *cvc = __addCreditCardView.cvcField.text;
+  NSString *expiryYear = __addCreditCardView.expiryYearField.text;
+  NSString *expiryMonth = __addCreditCardView.expiryMonthField.text;
+  
+  NSString *postalCodeStr = __addCreditCardView.billZipField.text;  
+  NSString *street = __addCreditCardView.billAddr1Field.text;
+  NSString *city = __addCreditCardView.billCityField.text;
+  NSString *address2 = __addCreditCardView.billAddr2Field.text;
+  NSString *state = __addCreditCardView.billStateField.text;
+  NSString *phoneNumber = __addCreditCardView.phoneField.text;
+
+  if ( !nickName || !name || !number || !cvc || !expiryMonth || !expiryYear || !postalCodeStr || !street || !city || !address2 || !state || !phoneNumber ) {
+  
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
     OI_RELEASE_SAFELY( alertView );
+    
     return;
   }
   
-  OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];
-//  cardInfo.nickname = @"master";  
-//  cardInfo.name = @"Mastercard";
-//  cardInfo.lastFiveDigits = [NSNumber numberWithInt:333];
-//  cardInfo.expirationYear = @"2012";
-//  cardInfo.expirationMonth = @"12";
-//  cardInfo.number = @"5547089855217529";
-//  NSNumber *postalCode = [NSNumber numberWithInt:73961];
-//  OIAddress *address = [OIAddress addressWithStreet:@"address1" city:@"Mexico city" postalCode:postalCode];
-//  address.address2 = @"address2";
-//  address.state = @"FL";
-//  address.phoneNumber = @"737716364";
-//  cardInfo.address = address;
-  
-  cardInfo.nickname = __addCreditCardView.nickNameField.text;
-  cardInfo.name = __addCreditCardView.nameField.text;
-  cardInfo.number = __addCreditCardView.numberField.text;
-  cardInfo.cvc = [NSNumber numberWithInteger:__addCreditCardView.cvcField.text.integerValue];
-  cardInfo.expirationYear = __addCreditCardView.expiryYearField.text;
-  cardInfo.expirationMonth = __addCreditCardView.expiryMonthField.text;
+  OICardInfo *cardInfo = [[[OICardInfo alloc] init] autorelease];    
+  cardInfo.nickname = nickName;
+  cardInfo.name = name;
+  cardInfo.number = number;
+  cardInfo.cvc = [NSNumber numberWithInteger:cvc.integerValue];
+  cardInfo.expirationYear = expiryYear;
+  cardInfo.expirationMonth = expiryMonth;
 
-  NSNumber *postalCode = [NSNumber numberWithInt:__addCreditCardView.billZipField.text.intValue];
-  OIAddress *address = [OIAddress addressWithStreet:__addCreditCardView.billAddr1Field.text city:__addCreditCardView.billCityField.text postalCode:postalCode];
-  address.address2 = __addCreditCardView.billAddr2Field.text;
-  address.state = __addCreditCardView.billStateField.text;
-  address.phoneNumber = __addCreditCardView.phoneField.text;
+  NSNumber *postalCode = [NSNumber numberWithInt:postalCodeStr.intValue];
+  OIAddress *address = [OIAddress addressWithStreet:street city:city postalCode:postalCode];
+  address.address2 = address2;
+  address.state = state;
+  address.phoneNumber = phoneNumber;
   cardInfo.address = address;
 
   [OICardInfo addCreditCard:cardInfo usingBlock:^void( NSError *error ) {
