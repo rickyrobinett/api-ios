@@ -19,6 +19,7 @@
 #import "OIMenuItem.h"
 
 static NSString *cellIdentifier = @"menuItemCellIdentifier";
+static NSString *cellWithButtonIdentifier = @"cellWithButtonIdentifier";
 
 @implementation MenuItemsDataSource
 
@@ -42,14 +43,26 @@ static NSString *cellIdentifier = @"menuItemCellIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   OIMenuItem *menuItem = [__menuItems objectAtIndex:indexPath.section];
-  TextViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-  
+  TextViewCell *cell;
+  NSString *identifier;
+  UITableViewCellAccessoryType accessoryType;
+  if ( indexPath.row == 0 ) {
+    accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    identifier = cellWithButtonIdentifier;
+    cell = [tableView dequeueReusableCellWithIdentifier:identifier];    
+  } else {
+    accessoryType = UITableViewCellAccessoryNone;    
+    identifier = cellIdentifier;    
+    cell = [tableView dequeueReusableCellWithIdentifier:identifier];        
+  }
+    
   if ( !cell ) {
-    cell = [[TextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    cell = [[TextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    cell.accessoryType = accessoryType;
   }
   
   switch ( indexPath.row ) {
-    case 0:[cell setTitle:[NSString stringWithFormat:@"Name: %@",menuItem.name]];      
+    case 0:[cell setTitle:[NSString stringWithFormat:@"Name: %@",menuItem.name]]; 
       break;
     case 1:[cell setTitle:[NSString stringWithFormat:@"Description: %@",menuItem.description]];
       break;

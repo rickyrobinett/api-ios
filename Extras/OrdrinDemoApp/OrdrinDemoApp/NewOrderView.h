@@ -20,12 +20,20 @@
 @private
   UIScrollView *__scrollView;
   UITableView *__tableView;
+  UIDatePicker *__datePicker;
   
   UIButton *__restaurantsButton;
   UIButton *__addressesButton;
   UIButton *__creditCardButton;
+  
+  UITextField *__cardNumberField;
+  UITextField *__securityCodeField;
 }
 
+@property (nonatomic, readonly) UITextField *cardNumberField;
+@property (nonatomic, readonly) UITextField *securityCodeField;
+
+@property (nonatomic, readonly) UIDatePicker *datePicker;
 @property (nonatomic, readonly) UITableView *tableView;
 
 @property (nonatomic, readonly) UIButton *creditCardButton;

@@ -26,7 +26,7 @@
 @class MenuItemsDataSource;
 
 
-@interface NewOrderViewController : UIViewController<OrderAddressesDelegate, OrderCardsDelegate, OrderRestaurantsDelegate> {
+@interface NewOrderViewController : UIViewController<OrderAddressesDelegate, OrderCardsDelegate, OrderRestaurantsDelegate, UITableViewDelegate> {
 
 @private
   NewOrderView *__newOrderView;
@@ -37,6 +37,9 @@
   OIRestaurant *__selectedRestaurant;
   OIAddress *__selectedAddress;
   OICardInfo *__selectedCard;
+  NSDate *__selectedDate;
+  
+  NSMutableDictionary *__orderItems;
 }
 
 - (id)initWithAddress:(OIAddress *)address;

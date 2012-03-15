@@ -21,6 +21,7 @@
 #import "OIRestaurantBase.h"
 #import "OIRestaurant.h"
 #import "OIAddress.h"
+#import "OIMenuItem.h"
 
 #import "NewOrderView.h"
 #import "NewOrderModel.h"
@@ -31,11 +32,14 @@
 - (void)restaurantsButtonDidPress;
 - (void)addressesButtonDidPress;
 - (void)saveButtonDidPress;
+- (void)datePickerDidChanged:(id)source;
 @end
 
 @interface NewOrderViewController (Private)
+- (void)hideKeyboard;
 - (void)createModel;
 - (void)initRestaurantMenu;
+- (NSString *)createStringFromOrderItems;
 @end
 
 @implementation NewOrderViewController
@@ -46,6 +50,7 @@
 - (id)initWithAddress:(OIAddress *)address {
   self = [super init];
   if ( self ) {
+    __orderItems = [[NSMutableDictionary alloc] init];
     OIUserInfo *userInfo = [OIUserInfo sharedInstance];
     self.title = [NSString stringWithFormat:@"%@ %@",userInfo.firstName, userInfo.lastName];
     __address = [address retain];
@@ -67,7 +72,8 @@
   [__newOrderView.restaurantsButton addTarget:self action:@selector(restaurantsButtonDidPress) forControlEvents:UIControlEventTouchDown];  
   [__newOrderView.addressesButton addTarget:self action:@selector(addressesButtonDidPress) forControlEvents:UIControlEventTouchDown];
   [__newOrderView.creditCardButton addTarget:self action:@selector(creditCardsButtonDidPress) forControlEvents:UIControlEventTouchDown];
-  
+  [__newOrderView.datePicker addTarget:self action:@selector(datePickerDidChanged:) forControlEvents:UIControlEventValueChanged];
+    
   self.view = __newOrderView;
   [self createModel];
 }
@@ -92,7 +98,7 @@
 }
 
 #pragma mark -
-#pragma mark OrderAddressesDelegate
+#pragma mark OrderRestaurantsDelegate
 
 - (void)restaurantDidSelect:(NSUInteger)index {
   if ( __selectedRestaurant ) {
@@ -107,14 +113,39 @@
   }];  
 }
 
+#pragma mark -
+#pragma mark OrderAddressesDelegate
+
 - (void)addressDidSelect:(NSUInteger)index {
   if ( __selectedAddress ) {
     OI_RELEASE_SAFELY( __selectedAddress );
   }
   
   OIAddress *address = [__newOrderModel.addresses objectAtIndex:index];
-  [__newOrderView.addressesButton setTitle:address.addressAsString forState:UIControlStateNormal];
+  [__newOrderView.addressesButton setTitle:[NSString stringWithFormat:@"%@, %@, %@",address.address1, address.city, address.state] forState:UIControlStateNormal];
   __selectedAddress = [address retain];
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+  OIMenuItem *menuItem = [__selectedRestaurant.menu objectAtIndex:indexPath.section];
+  NSNumber *count = [__orderItems objectForKey:menuItem.ID];
+  if ( count ) {
+    NSUInteger countInt = count.integerValue;
+    countInt++;
+    [__orderItems setValue:[NSNumber numberWithInteger:countInt] forKey:menuItem.ID];    
+  } else {
+    [__orderItems setValue:[NSNumber numberWithInteger:1] forKey:menuItem.ID];
+  }
+}
+
+#pragma mark -
+#pragma mark Events
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  [self hideKeyboard];  
 }
 
 #pragma mark -
@@ -129,6 +160,8 @@
     OI_RELEASE_SAFELY( __selectedAddress );  
     OI_RELEASE_SAFELY( __selectedCard );    
     OI_RELEASE_SAFELY( __menuItemsDataSource );
+    OI_RELEASE_SAFELY( __selectedDate );
+    OI_RELEASE_SAFELY( __orderItems );
   }  
 }
 
@@ -164,17 +197,57 @@
   [self.navigationController pushViewController:restaurantsViewController animated:YES];
   OI_RELEASE_SAFELY( restaurantsViewController );
 }
+
 - (void)saveButtonDidPress {
-  [OIOrder createOrderWithRestaurantId:__selectedRestaurant.ID atAddress:__selectedAddress withCard:__selectedCard usingBlock:^void( NSError *error ) {
+  NSString *orderItemsStr = [self createStringFromOrderItems];
+  
+  __selectedCard.number = __newOrderView.cardNumberField.text;
+  __selectedCard.cvc = [NSNumber numberWithInteger:__newOrderView.securityCodeField.text.integerValue];
+  
+  [OIOrder createOrderWithRestaurantId:__selectedRestaurant.ID atAddress:__selectedAddress withCard:__selectedCard date:__selectedDate orderItems:orderItemsStr tip:[NSNumber numberWithInteger:10] usingBlock:^void( NSError *error ) {
     if ( error ) {
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alertView show];
       
+      OI_RELEASE_SAFELY( alertView );
     }
   }];
+}
+
+- (void)datePickerDidChanged:(id)source {
+  if ( __selectedDate ) {
+    OI_RELEASE_SAFELY( __selectedDate );
+  }
+  
+  UIDatePicker *datePicker = source;
+  __selectedDate = [datePicker.date retain];
 }
 
 @end
 
 @implementation NewOrderViewController (Private)
+
+- (NSString *)createStringFromOrderItems {
+  NSMutableString *ordersStr = [NSMutableString string];
+  
+  NSArray *keys = __orderItems.allKeys;
+  NSNumber *count;
+  for ( int i = 0; i < keys.count; i++ ) {
+    NSString *key = [keys objectAtIndex:i];
+    count = [__orderItems objectForKey:key];
+    [ordersStr appendFormat:@"%@/%@", key, count];
+    if ( (i + 1) < keys.count ) {
+      [ordersStr appendString:@"+"];
+    }
+  }
+  
+  return ordersStr;
+}
+
+- (void)hideKeyboard {
+  [__newOrderView.cardNumberField resignFirstResponder];
+  [__newOrderView.securityCodeField resignFirstResponder];
+}
 
 - (void)createModel {
   __newOrderModel = [[NewOrderModel alloc] initWithAddress:__address];
@@ -187,6 +260,7 @@
   
   __menuItemsDataSource = [[MenuItemsDataSource alloc] initWithMenuItems:__selectedRestaurant.menu];
   __newOrderView.tableView.dataSource = __menuItemsDataSource;
+  __newOrderView.tableView.delegate = self;
   [__newOrderView.tableView reloadData];
 }
 

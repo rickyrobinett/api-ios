@@ -156,10 +156,7 @@
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
   
   [request setCompletionBlock:^{    
-    NSDictionary *json = [[request responseString] objectFromJSONString];
-    NSLog( @"%@", json );
-    NSLog( @"%@", request.responseStatusMessage );    
-    
+    NSDictionary *json = [[request responseString] objectFromJSONString];    
     NSArray *allKeys = [json allKeys];    
     NSString *item;
     
@@ -290,7 +287,7 @@
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.nickname) forKey:@"nick"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.name) forKey:@"name"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.number) forKey:@"number"];
-  [request setPostValue:OI_ZERO_IF_NIL(creditCard.lastFiveDigits) forKey:@"cvc"];
+  [request setPostValue:OI_ZERO_IF_NIL(creditCard.cvc) forKey:@"cvc"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.expirationMonth) forKey:@"expiry_month"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.expirationYear) forKey:@"expiry_year"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(creditCard.address.address1) forKey:@"bill_addr"];

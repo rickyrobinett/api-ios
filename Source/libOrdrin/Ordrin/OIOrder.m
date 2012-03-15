@@ -87,18 +87,24 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
 #pragma mark -
 #pragma mark Class methods
 
-+ (void)createOrderWithRestaurantId:(NSString *)restaurantID atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block {
++ (void)createOrderWithRestaurantId:(NSString *)restaurantID atAddress:(OIAddress*)address withCard:(OICardInfo *)card date:(NSDate *)date orderItems:(NSString *)orderItems tip:(NSNumber *)tip usingBlock:(void (^)(NSError *error))block {
+  
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
-//  NSString *URL = [NSString stringWithFormat:@"%@/o/%@", OIOrderBaseURL, __restaurantBase.ID];
-//  NSString *URLParams = [NSString stringWithFormat:@"/o/%d", 141];
   NSString *URL = [NSString stringWithFormat:@"%@/o/%d", OIOrderBaseURL, restaurantID];
   __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL]];
+  [request setRequestMethod:@"POST"];
   
-  NSString *cardExpiry = [NSString stringWithFormat:@"%@/%@",card.expirationMonth, card.expirationYear];
-  [request setPostValue:@"3270/2+3263/1" forKey:@"tray"];
-  [request setPostValue:@"20" forKey:@"tip"];
-  [request setPostValue:@"03-21" forKey:@"delivery_date"];
-  [request setPostValue:@"21:30" forKey:@"delivery_time"];
+  NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+  NSDateComponents *components = [calendar components:NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:date];
+  OI_RELEASE_SAFELY( calendar );
+
+  NSString *deliveryDate = [NSString stringWithFormat:@"%d-%d",components.month, components.day];
+  NSString *deliveryTime = [NSString stringWithFormat:@"%d:%d",components.hour, components.minute];  
+  NSString *cardExpiry = [NSString stringWithFormat:@"%@/%@",card.expirationMonth, card.expirationYear];  
+  [request setPostValue:orderItems forKey:@"tray"];
+  [request setPostValue:tip forKey:@"tip"];
+  [request setPostValue:deliveryDate forKey:@"delivery_date"];
+  [request setPostValue:deliveryTime forKey:@"delivery_time"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(userInfo.firstName) forKey:@"first_name"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(userInfo.lastName) forKey:@"last_name"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(address.address1) forKey:@"addr"];
@@ -108,7 +114,7 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
   [request setPostValue:OI_ZERO_IF_NIL(address.postalCode) forKey:@"zip"];
   [request setPostValue:userInfo.email forKey:@"em"];
   [request setPostValue:userInfo.password.sha256 forKey:@"password"];
-  [request setPostValue:OI_EMPTY_STR_IF_NIL(card.name) forKey:@"card_name"];
+  [request setPostValue:OI_EMPTY_STR_IF_NIL(@"mastercard") forKey:@"card_name"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(card.number) forKey:@"card_number"];
   [request setPostValue:OI_ZERO_IF_NIL(card.cvc) forKey:@"card_cvc"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(cardExpiry) forKey:@"card_expiry"];
@@ -117,6 +123,8 @@ NSString *const OIOrderBaseURL = @"https://o-test.ordr.in";
   [request setPostValue:OI_EMPTY_STR_IF_NIL(card.address.city) forKey:@"card_bill_city"];
   [request setPostValue:OI_EMPTY_STR_IF_NIL(card.address.state) forKey:@"card_bill_state"];
   [request setPostValue:OI_ZERO_IF_NIL(card.address.postalCode) forKey:@"card_bill_zip"];  
+  
+  NSLog( @"%@",[request getPostData] );
   
   [request setCompletionBlock:^{
     NSDictionary *json = [[request responseString] objectFromJSONString];

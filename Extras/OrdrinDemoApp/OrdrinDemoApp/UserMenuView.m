@@ -37,7 +37,7 @@
     [__accountInfoButton setTitle:@"Account Info" forState:UIControlStateNormal];
     [__addressButton setTitle:@"Addresses" forState:UIControlStateNormal];
     [__creditCardsButton setTitle:@"Credit Cards" forState:UIControlStateNormal];
-    [__ordersHistoryButton setTitle:@"Order History Summary" forState:UIControlStateNormal];
+    [__ordersHistoryButton setTitle:@"Orders" forState:UIControlStateNormal];
     [__passwordButton setTitle:@"Password" forState:UIControlStateNormal];
     [__logoutButton setTitle:@"Log Out" forState:UIControlStateNormal];
     

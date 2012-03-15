@@ -52,8 +52,7 @@ extern NSString *const OIOrderBaseURL;
  *
  *
  */
-+ (void)createOrderWithRestaurantId:(NSString *)restaurantID atAddress:(OIAddress*)address withCard:(OICardInfo *)card usingBlock:(void (^)(NSError *error))block;
-
++ (void)createOrderWithRestaurantId:(NSString *)restaurantID atAddress:(OIAddress*)address withCard:(OICardInfo *)card date:(NSDate *)date orderItems:(NSString *)orderItems tip:(NSNumber *)tip usingBlock:(void (^)(NSError *error))block;
 /**
  * Load all user orders.
  *

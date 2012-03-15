@@ -48,7 +48,7 @@ static NSString *cellIdentifier = @"orderAddressCellIdentifier";
     cell = [[[TextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
   }
   
-  NSString *title = [NSString stringWithFormat:@"%@",address.addressAsString];
+  NSString *title = [NSString stringWithFormat:@"%@, %@, %@",address.address1, address.city, address.state];
   [cell setTitle:title];
   
   return cell;
