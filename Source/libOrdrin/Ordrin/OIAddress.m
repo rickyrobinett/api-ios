@@ -123,7 +123,7 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 
 + (void)addAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance]; 
-  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@",userInfo.email.urlEncode, address.nickname.urlEncode];
+  NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@", userInfo.email.urlEncode, address.nickname.urlEncode];
   
   __block ASIFormDataRequest *request = [OIAddress createRequestForCreateOrUpdateActionWithAddress:address];
   
@@ -204,10 +204,8 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
   
   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL]];
   
-  [request setCompletionBlock:^{
-    
-    NSDictionary *json = [[request responseString] objectFromJSONString];
-    
+  [request setCompletionBlock:^{    
+    NSDictionary *json = [[request responseString] objectFromJSONString];    
     if( json ) {
       OIAddress *address = [[[OIAddress alloc] init] autorelease];
       address.nickname = nickname;
@@ -282,7 +280,7 @@ NSString *const OIAddressesBaseURL = @"https://r-test.ordr.in";
 
 + (ASIFormDataRequest *)createRequestForCreateOrUpdateActionWithAddress:(OIAddress *)address {
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
-  NSString *email = userInfo.email;  
+  NSString *email = userInfo.email;
   NSString *URLParams = [NSString stringWithFormat:@"/u/%@/addrs/%@", email.urlEncode, address.nickname.urlEncode];
   NSString *URL = [NSString stringWithFormat:@"%@%@", OIUserBaseURL, URLParams];
   
