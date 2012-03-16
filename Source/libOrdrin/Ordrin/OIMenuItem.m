@@ -55,7 +55,7 @@
 - (void)dealloc {
   OI_RELEASE_SAFELY( __id );
   OI_RELEASE_SAFELY( __orderId );  
-  OI_RELEASE_SAFELY( __availableForMealId);
+  OI_RELEASE_SAFELY( __availableForMealId );
   OI_RELEASE_SAFELY( __name );
   OI_RELEASE_SAFELY( __description );
   OI_RELEASE_SAFELY( __price );

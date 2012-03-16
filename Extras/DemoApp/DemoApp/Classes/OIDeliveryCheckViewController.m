@@ -51,18 +51,9 @@
   [self.view addSubview:__tableView];
 
   // Check delivery
-
-  OIAddress *address = [OIAddress addressWithStreet:@"1 Main St"
-                                               city:@"College Station"
-                                         postalCode:[NSNumber numberWithInt:77840]];
-
+  NSNumber *postalCode = [NSNumber numberWithInteger:__restaurant.address.postalCode.integerValue];
+  OIAddress *address = [OIAddress addressWithStreet:__restaurant.address.address1 city:__restaurant.address.city postalCode:postalCode];
   OIDateTime *dateTime = [OIDateTime dateTimeASAP];
-
-//  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//  [formatter setDateFormat:@"MM-dd-yyyy HH:mm"];
-//
-//  OIDateTime *dateTime = [OIDateTime dateTime:[formatter dateFromString:@"02-03-2012 11:00"]];
-//  [formatter release];
     
   [__restaurant deliveryCheckToAddress:address atTime:dateTime usingBlock:^void(OIDelivery *delivery) {
     self.delivery = delivery;
