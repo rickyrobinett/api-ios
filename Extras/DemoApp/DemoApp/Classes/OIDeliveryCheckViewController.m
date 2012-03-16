@@ -79,17 +79,7 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  NSUInteger sections = 0;
-  if ( __delivery ) {
-    sections++;
-    
-//    if ( [__restaurant isComplete] ) {
-//      sections++;
-//    }
-    sections++;
-  }
-
-  return sections;
+  return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
