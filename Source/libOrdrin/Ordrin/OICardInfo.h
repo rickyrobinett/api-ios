@@ -19,14 +19,23 @@
 
 @interface OICardInfo : NSObject
 
+/// The nickname of the card.
 @property (nonatomic, readwrite, copy) NSString *nickname;
+/// The name on the card.
 @property (nonatomic, readwrite, copy) NSString *name;
+/// The 15 or 16 digit credit card number, no spaces or punctuation.
 @property (nonatomic, readwrite, copy) NSString *number;
+/// The 3 or 4 digit security code.
 @property (nonatomic, readwrite, retain) NSNumber *cvc;
+/// The last 5 digits of the card.
 @property (nonatomic, readwrite, retain) NSNumber *lastFiveDigits;
+/// The type of card (i.e. American Express).
 @property (nonatomic, readwrite, copy) NSString *type;
+/// The 2 digit expiry month (i.e. 01 = January, 12 = December).
 @property (nonatomic, readwrite, copy) NSString *expirationMonth;
+/// The 4 digit expiry year.
 @property (nonatomic, readwrite, copy) NSString *expirationYear;
+/// The billing address (OIAddress).
 @property (nonatomic, readwrite, retain) OIAddress *address;
 
 #pragma mark -

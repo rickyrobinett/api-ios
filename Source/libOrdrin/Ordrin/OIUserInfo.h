@@ -21,16 +21,35 @@
   
 }
 
+/// User email.
 @property (nonatomic, retain) NSString *email;
+/// User password.
 @property (nonatomic, retain) NSString *password;
+/// First name.
 @property (nonatomic, retain) NSString *firstName;
+/// Last name.
 @property (nonatomic, retain) NSString *lastName;
+/// True if user is logged.
 @property (nonatomic, assign) BOOL userLogged;
 
 #pragma mark -
 #pragma mark Instance methods
 
+/**
+ * Create (OIAPIUserAuthenticator) instance by request uri.
+ *
+ * @param uri
+ * Request uri.
+ *
+ * @return (OIAPIUserAuthenticator)
+ * Return (OIAPIUserAuthenticator) instance, which will be
+ * used to user authentication.
+ */
 - (OIAPIUserAuthenticator *)createAuthenticatorWithUri:(NSString *)uri;
+
+/**
+ * Logout user.
+ */
 - (void)logout;
 
 #pragma mark -

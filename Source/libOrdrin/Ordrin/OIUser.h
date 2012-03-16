@@ -23,10 +23,15 @@ extern NSString const* OIUserBaseURL;
 
 @interface OIUser : NSObject
 
+/// First name.
 @property (nonatomic, readwrite, copy) NSString *firstName;
+/// Last name.
 @property (nonatomic, readwrite, copy) NSString *lastName;
+// Array of user addresses.
 @property (nonatomic, readwrite, retain) NSMutableArray *addresses;
+// Array of user credit cards.
 @property (nonatomic, readwrite, retain) NSMutableArray *creditCards;
+// Array of user orders.
 @property (nonatomic, readwrite, retain) NSMutableArray *orders;
 
 #pragma mark -

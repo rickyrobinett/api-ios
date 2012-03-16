@@ -132,6 +132,7 @@
 		20411CDB14EB5D09002165A2 /* OIRDSInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIRDSInfo.m; sourceTree = "<group>"; };
 		20EC88C514E9A91E00E7B991 /* OIMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIMenuItem.h; sourceTree = "<group>"; };
 		20EC88C614E9A91E00E7B991 /* OIMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIMenuItem.m; sourceTree = "<group>"; };
+		3460159815123DF300C75957 /* Ordrin-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ordrin-info.plist"; sourceTree = SOURCE_ROOT; };
 		34BBA1DA14FE256C0002E215 /* OIRestaurantBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIRestaurantBase.h; sourceTree = "<group>"; };
 		34BBA1DB14FE256C0002E215 /* OIRestaurantBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIRestaurantBase.m; sourceTree = "<group>"; };
 		34F30C0414FF724200E4AE15 /* OIUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIUserInfo.h; sourceTree = "<group>"; };
@@ -247,6 +248,7 @@
 		0BECC2C414C4910400763395 /* Ordrin */ = {
 			isa = PBXGroup;
 			children = (
+				3460159815123DF300C75957 /* Ordrin-info.plist */,
 				0BECC2C614C4910400763395 /* Ordrin-Prefix.pch */,
 				0BECC2C714C4910400763395 /* Ordrin.h */,
 				BECC2CE14C4910400763396 /* OICore */,
