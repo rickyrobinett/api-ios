@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012, Tapmates s.r.o. (www.tapmates.com).
  *
  * All rights reserved. This source code can be used only for purposes specified 
@@ -13,6 +13,9 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
+/**
+ * This class contains informations about logon user. Instance of this class is used for operation, which needed authentication.
+ */
 #import <Foundation/Foundation.h>
 
 @class OIAPIUserAuthenticator;
@@ -38,12 +41,9 @@
 /**
  * Create (OIAPIUserAuthenticator) instance by request uri.
  *
- * @param uri
- * Request uri.
+ * @param uri Request uri.
  *
- * @return (OIAPIUserAuthenticator)
- * Return (OIAPIUserAuthenticator) instance, which will be
- * used to user authentication.
+ * @return Return (OIAPIUserAuthenticator) instance, which will be used to user authentication.
  */
 - (OIAPIUserAuthenticator *)createAuthenticatorWithUri:(NSString *)uri;
 

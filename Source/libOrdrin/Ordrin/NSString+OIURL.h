@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012, Tapmates s.r.o. (www.tapmates.com).
  *
  * All rights reserved. This source code can be used only for purposes specified
@@ -11,11 +11,26 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
+
+/**
+ * This addition brings methods like encode and encryption.
+ */
 #import <Foundation/Foundation.h>
 
 @interface NSString (OIURL)
 
+/**
+ * This method encode string.
+ *
+ * @return Encoded string.
+ */
 - (NSString *)urlEncode;
+
+/**
+ * This method encrypted string. Encryption alghoritm is sha256.
+ *
+ * @return Encrypted string.
+ */
 - (NSString *)sha256;
 
 @end

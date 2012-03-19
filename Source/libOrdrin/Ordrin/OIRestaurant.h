@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012, Tapmates s.r.o. (www.tapmates.com).
  *
  * All rights reserved. This source code can be used only for purposes specified 
@@ -13,6 +13,9 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
+/**
+ * Class contain detail iformations about restaurant.
+ */
 #import <Foundation/Foundation.h>
 #import "OIRestaurantBase.h"
 
@@ -48,8 +51,7 @@ extern NSString *const OIRestaurantBaseURL;
  * @param restaurantBase (OIRestaurantBase)
  * Base information about restaurant.
  *
- * @return
- * Return instance of OIRestaurant.
+ * @return Return instance of OIRestaurant.
  */
 - (id)initWithRestaurantBase:(OIRestaurantBase *)restaurantBase;
 
@@ -60,37 +62,30 @@ extern NSString *const OIRestaurantBaseURL;
  * Check to see if a particular restaurant delivers to an address at the specified 
  * time.
  *
- * @param address (OIAddress)
- * Is a delivery address.
+ * @param address Is a delivery address (OIAddress).
  * 
- * @param dateTime (OIDateTime)
- * Is delivery time.
+ * @param dateTime Is delivery time (OIDateTime)
  *
- * @param block
- * Block return delivery (OIDelivery) to an OIAddress at the specified 
- * OIDateTime.
+ * @param block Block return delivery (OIDelivery) to an OIAddress at the specified OIDateTime.
+ * 
  */
 - (void)deliveryCheckToAddress:(OIAddress *)address atTime:(OIDateTime *)dateTime usingBlock:(void (^)(OIDelivery *delivery))block;
 
 /**
  * Calculates all fees for a given subtotal and delivery address.
  * 
- * @param order (OIOrder)
- * Order, which is used for calculates all fees.
+ * @param order Order (OIOrder), which is used for calculates all fees.
  * 
- * @param block
- * Block return delivery (OIDelivery).
+ * @param block Block return delivery (OIDelivery).
  */
 - (void)calculateFeesForSubtotal:(OIOrder *)order usingBlock:(void (^)(OIDelivery *delivery))block;
 
 /**
  * Return array of menu items for given children IDs
  *
- * @param childrenIDs
- * All id's, which you need.
+ * @param childrenIDs All id's, which you need.
  *
- * @return
- * Return all menu items for each child id.
+ * @return Return all menu items for each child id.
  */
 - (NSArray *)menuItemsForChildrens:(NSArray *) childrenIDs;
 
@@ -100,12 +95,9 @@ extern NSString *const OIRestaurantBaseURL;
 /**
  * Create restaurant (OIRestaurant) instance from base restaurant (OIRestaurantBase).
  *
- * @param restaurantBase (OIRestaurantBase)
- * Base informations, which are used for creat complete restaurant (OIRestaurant) 
- * instance.
+ * @param restaurantBase Base (OIRestaurantBase) informations, which are used for creat complete restaurant (OIRestaurant) instance.
  *
- * @param block
- * Block return complete restaurant (OIRestaurant) instance.
+ * @param block Block return complete restaurant (OIRestaurant) instance.
  */
 + (void)createRestaurantByRestaurantBase:(OIRestaurantBase *)restaurantBase usingBlock:(void (^)(OIRestaurant *restaurant))block;
 @end

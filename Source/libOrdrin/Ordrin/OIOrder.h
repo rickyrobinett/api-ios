@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012, Tapmates s.r.o. (www.tapmates.com).
  *
  * All rights reserved. This source code can be used only for purposes specified 
@@ -13,6 +13,9 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
+/**
+ * This class represent user order.
+ */
 #import <Foundation/Foundation.h>
 
 extern NSString *const OIOrderBaseURL;
@@ -43,44 +46,34 @@ extern NSString *const OIOrderBaseURL;
 /**
  * Create new order.
  *
- * @param restaurantID
- * Restaurant id.
+ * @param restaurantID Restaurant id.
  *
- * @param (OIAddress)
- * Delivery address.
+ * @param Delivery address (OIAddress).
  *
- * @param (OICardInfo)
- * Payment card.
+ * @param Payment card (OICardInfo).
  *
- * @param date
- * Delivery time.
+ * @param date Delivery time.
  *
- * @param orderItems
- * Ordered items represented by (NSString).
+ * @param orderItems Ordered items represented by (NSString).
  *
- * @param tip
- * Amount of tip in dollars and cents.
+ * @param tip Amount of tip in dollars and cents.
  *
- * @return block.
- * Return nil if request finished correctly.
+ * @return block Return nil if request finished correctly.
  */
 + (void)createOrderWithRestaurantId:(NSString *)restaurantID atAddress:(OIAddress*)address withCard:(OICardInfo *)card date:(NSDate *)date orderItems:(NSString *)orderItems tip:(NSNumber *)tip usingBlock:(void (^)(NSError *error))block;
 /**
  * Load all user orders.
  *
- * @param block
- * Block return orders.
+ * @param block Block return orders.
  */
 + (void)loadOrderHistoryUsingBlock:(void (^)(NSMutableArray *orders))block;
 
 /**
  * Load user order by its ID.
  *
- * @param ID
- * Ordr.in's reference number for that order.
+ * @param ID Ordr.in's reference number for that order.
  *
- * @param block (OIOrder)
- * Block return user order.
+ * @param block Block return user order (OIOrder).
  */
 + (void)loadOrderByID:(NSString *)ID usingBlock:(void (^)(OIOrder *order))block;
 @end

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012, Tapmates s.r.o. (www.tapmates.com).
  *
  * All rights reserved. This source code can be used only for purposes specified 
@@ -13,6 +13,9 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
+/**
+ * Class contain basic informations about user.
+ */
 #import <Foundation/Foundation.h>
 
 extern NSString const* OIUserBaseURL;
@@ -27,11 +30,11 @@ extern NSString const* OIUserBaseURL;
 @property (nonatomic, readwrite, copy) NSString *firstName;
 /// Last name.
 @property (nonatomic, readwrite, copy) NSString *lastName;
-// Array of user addresses.
+/// Array of user addresses.
 @property (nonatomic, readwrite, retain) NSMutableArray *addresses;
-// Array of user credit cards.
+/// Array of user credit cards.
 @property (nonatomic, readwrite, retain) NSMutableArray *creditCards;
-// Array of user orders.
+/// Array of user orders.
 @property (nonatomic, readwrite, retain) NSMutableArray *orders;
 
 #pragma mark -
@@ -40,17 +43,13 @@ extern NSString const* OIUserBaseURL;
 /**
  * Load account information by user email and password.
  *
- * @param email
- * User email.
+ * @param email User email.
  *
- * @param password
- * User password.
+ * @param password User password.
  *
- * @return block
- * Return (OIUser) instance if request finished correctly.
+ * @return block Return (OIUser) instance if request finished correctly.
  *
- * @return blockError
- * Return (NSError) instance.
+ * @return blockError Return (NSError) instance.
  */
 + (void)accountInfo:(NSString *)email password:(NSString *)password usingBlockUser:(void (^)(OIUser *user))blockUser usingBlockError:(void (^)(NSError *error))blockError;
 
@@ -58,39 +57,31 @@ extern NSString const* OIUserBaseURL;
  * Create new account for OIUser instance. Call block with nil parameter if succeeded or with a 
  * request error if failed
  *
- * @param (OIUser)
- * Information about new account.
+ * @param Information about new account (OIUser).
  *
- * @param email
- * User email.
+ * @param email User email.
  *
- * @param password
- * User password.
+ * @param password User password.
  *
- * @return block
- * Return nil if request finished correctly.
+ * @return block Return nil if request finished correctly.
  */
 + (void)createNewAccount:(OIUser *)account email:(NSString *)email password:(NSString *)password usingBlock:(void (^)(NSError *error))block;
 
 /**
  * Create new OIUser instance by email, first name and last name.
  *
- * @param firstName
- * First name of user.
+ * @param firstName First name of user.
  *
- * @param lastName
- * Last name of user.
+ * @param lastName Last name of user.
  */
 + (OIUser *)userWithFirstName:(NSString *)firstName lastName:(NSString *)lastName;
 
 /**
  * Update user password.
  * 
- * @param password
- * New password.
+ * @param password New password.
  *
- * @param block (NSError)
- * Block return nil if request finished successfully.
+ * @param block Block return nil if request finished successfully else error (NSError).
  */
 + (void)updatePassword:(NSString *)password usingBlock:(void (^)(NSError *error))block;
 
@@ -110,27 +101,24 @@ extern NSString const* OIUserBaseURL;
 /**
  * Add address (OIAddress) to the server and to the addresses of the user (OIUser).
  * 
- * @param address (OIAddress)
- * New address which will be added to the user addresses (server, application).
+ * @param address New address (OIAddress) which will be added to the user addresses (server, application).
+ * 
  */
 - (void)addAddress:(OIAddress *)address;
 
 /**
  * Change user address (overwrite). 
  * 
- * @param index
- * Index of the address (OIAddress) in user addresses, which will be updated.
+ * @param index Index of the address (OIAddress) in user addresses, which will be updated.
  *
- * @param newAddress (OIAddress)
- * Changed address, which will replace previous address.
+ * @param newAddress Changed address (OIAddress), which will replace previous address.
  */
 - (void)updateAddressAtIndex:(NSUInteger)index withAddress:(OIAddress *)newAddress;
 
 /**
  * Delete user address by its nickname.
  *
- * @param nickname
- * Addresses nickname, which will be deleted.
+ * @param nickname Addresses nickname, which will be deleted.
  */
 - (void)deleteAddressByNickname:(NSString *)nickname;
 @end
@@ -149,18 +137,14 @@ extern NSString const* OIUserBaseURL;
  * Add credit card (OICardInfo) to the server and to the credit cards of the
  * user (OIUser).
  * 
- * @param address (OICardInfo)
- * New credit card which will be added to the user credit cards (server, 
- * application).
+ * @param address New credit card (OICardInfo), which will be added to the user credit cards (server, application).
  */
 - (void)addCreditCard:(OICardInfo *)creditCard;
 
 /**
  * Change user credit card (overwrite). 
  * 
- * @param index
- * Index of the credit card (OICardInfo) in user credit cards, which will be
- * updated.
+ * @param index Index of the credit card (OICardInfo) in user credit cards, which will be updated.
  *
  * @param newCreditCard (OICardInfo)
  * Changed credit card, which will replace previous credit card.
@@ -170,8 +154,7 @@ extern NSString const* OIUserBaseURL;
 /**
  * Delete user credit card by its nickname.
  *
- * @param nickname
- * Credit cards nickname, which will be deleted.
+ * @param nickname Credit cards nickname, which will be deleted.
  */
 - (void)deleteCreditCardByNickname:(NSString *)nickname;
 @end

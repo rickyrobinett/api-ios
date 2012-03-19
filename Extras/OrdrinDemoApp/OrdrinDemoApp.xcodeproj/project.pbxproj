@@ -417,7 +417,7 @@
 				34A2EDD1150FB787004FA32A /* OrderCardsViewController */,
 				34A2EDC5150F8EAE004FA32A /* OrderAddressesViewController */,
 				34A2EDC1150F8184004FA32A /* MenuItemsDataSource */,
-				34A2EDB9150F5FA2004FA32A /* RestaurantsPopoverViewController */,
+				34A2EDB9150F5FA2004FA32A /* OrderRestaurantsViewController */,
 				34A2EDB5150F4E3B004FA32A /* NewOrderModel */,
 				348C8D75150E4B50005A8010 /* NewOrderView */,
 				348C8D70150E3EDA005A8010 /* NewOrderViewController.h */,
@@ -480,14 +480,14 @@
 			name = NewOrderModel;
 			sourceTree = "<group>";
 		};
-		34A2EDB9150F5FA2004FA32A /* RestaurantsPopoverViewController */ = {
+		34A2EDB9150F5FA2004FA32A /* OrderRestaurantsViewController */ = {
 			isa = PBXGroup;
 			children = (
 				34A2EDBD150F6310004FA32A /* OrderRestaurantsDataSource */,
 				34A2EDBA150F5FDC004FA32A /* OrderRestaurantsViewController.h */,
 				34A2EDBB150F5FDC004FA32A /* OrderRestaurantsViewController.m */,
 			);
-			name = RestaurantsPopoverViewController;
+			name = OrderRestaurantsViewController;
 			sourceTree = "<group>";
 		};
 		34A2EDBD150F6310004FA32A /* OrderRestaurantsDataSource */ = {

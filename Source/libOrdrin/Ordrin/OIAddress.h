@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012, Tapmates s.r.o. (www.tapmates.com).
  *
  * All rights reserved. This source code can be used only for purposes specified 
@@ -13,6 +13,9 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
+/**
+ * Class contain informations about address (user/restaurant).
+ */
 #import <Foundation/Foundation.h>
 
 @interface OIAddress : NSObject
@@ -40,8 +43,7 @@
 /**
  * This method return address as a string.
  *
- * @return
- * Return string, which contain postal code, street and city name.
+ * @return Return string, which contain postal code, street and city name.
  */
 - (NSString *)addressAsString;
 
@@ -49,11 +51,9 @@
  * Update adrress, you must have set a delegate (if not your address will be changed 
  * only on the server side).
  *
- * @param address (OIAddress)
- * Changed address, which will replace previous address.
+ * @param address Changed address, which will replace previous address (OIAddress).
  *
- * @param block
- * Block return nil if request finished successfully.
+ * @param block Block return nil if request finished successfully.
  */
 - (void)updateAddressWithAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block;
 
@@ -63,19 +63,16 @@
 /**
  * Add user address.
  *
- * @param address (OIAddress)
- * New address, which will be saved.
+ * @param address New address (OIAddress), which will be saved.
  *
- * @param block (NSError)
- * Block return nil if request finished successfully.
+ * @param block Block return nil if request finished successfully.
  */
 + (void)addAddress:(OIAddress *)address usingBlock:(void (^)(NSError *error))block;
 
 /**
  * Load all user addresses into the OIUser instance.
  *
- * @param block
- * Block return array of addresses.
+ * @param block Block return array of addresses.
  */
 + (void)loadAddressesUsingBlock:(void (^)(NSMutableArray *addresses))block;
 
@@ -83,11 +80,9 @@
  * Load user address by its nickname. Call block with created OIAddress instance if 
  * succeeded.
  *
- * @param nickname
- * The nickname of the searching address(i.e. Home, Work).
+ * @param nickname The nickname of the searching address(i.e. Home, Work).
  * 
- * @param block
- * Return address (OIAddress) specified by nickname.
+ * @param block Return address (OIAddress) specified by nickname.
  * 
  */
 + (void)loadAddressByNickname:(NSString *)nickname usingBlock:(void (^)(OIAddress *address))block;
@@ -95,28 +90,22 @@
 /**
  * Delete user address by its nickname.
  *
- * @param nickname
- * The nick name of the address, which will be deleted.
+ * @param nickname The nick name of the address, which will be deleted.
  *
- * @param block
- * If request finished successfully return nil else some error (NSError).
+ * @param block If request finished successfully return nil else some error (NSError).
  */
 + (void)deleteAddressByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
 
 /**
  * Created simple address (OIAddress).
  *
- * @param street
- * The street name.
+ * @param street The street name.
  *
- * @param city
- * The city.
+ * @param city The city.
  *
- * @param postalCode
- * The zip code.
+ * @param postalCode The zip code.
  *
- * @return 
- * Return instance of OIAddress.
+ * @return Return instance of OIAddress.
  */
 + (OIAddress *)addressWithStreet:(NSString *)street city:(NSString *)city postalCode:(NSNumber *)postalCode;
 

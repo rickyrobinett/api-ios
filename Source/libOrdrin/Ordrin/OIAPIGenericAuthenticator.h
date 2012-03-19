@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012, Tapmates s.r.o. (www.tapmates.com).
  *
  * All rights reserved. This source code can be used only for purposes specified
@@ -11,12 +11,27 @@
  *  @author(s):
  *      Petr Reichl (petr@tapmates.com)
  */
+
+/**
+ * Class represent generic authenticator.
+ * Authenticator is used for requests, which requires authorization.
+ */
 #import <Foundation/Foundation.h>
 
 @interface OIAPIGenericAuthenticator : NSObject
 
+/**
+ * Method create authenticator instance (OIAPIGenericAuthenticator).
+ *
+ * @param key Authenticator key.
+ */
 - (id)initWithKey:(NSString *)key;
 
+/**
+ * Method create authentication value(containing key and api client version) as NSString.
+ *
+ * @return key Authenticator key.
+ */
 - (NSString *)authenticationValue;
 
 @end

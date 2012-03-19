@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012, Tapmates s.r.o. (www.tapmates.com).
  *
  * All rights reserved. This source code can be used only for purposes specified 
@@ -13,6 +13,9 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
+/**
+ * Class contain basic informations about restaurant.
+ */
 #import <Foundation/Foundation.h>
 
 @class OIDateTime;
@@ -36,12 +39,17 @@
 /**
  * Get list of restaurants that deliver to a particular address.
  *
- * @param address (OIAddress)
- * Address is used for search the nearest restaurants.
+ * @param address Address (OIAddress) is used for search the nearest restaurants.
  *
- * @param block
- * Block return array of the nearest restaurants (OIRestaurantBase) for address 
- * (OIAddress).
+ * @param block Block return array of the nearest restaurants (OIRestaurantBase) for address (OIAddress).
  */
 + (void)restaurantsNearAddress:(OIAddress *)address availableAt:(OIDateTime *)dateTime usingBlock:(void (^)(NSArray *restaurants))block;
+
+/**
+ * Create restaurant instance by another instance.
+ *
+ * @param restaurantBase Restaurant instance (OIRestaurantBase).
+ */
+
+- (id)initWithRestaurantBase:(OIRestaurantBase *)restaurantBase;
 @end

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012, Tapmates s.r.o. (www.tapmates.com).
  *
  * All rights reserved. This source code can be used only for purposes specified 
@@ -13,6 +13,9 @@
  *      Daniel Krezelok (daniel.krezelok@tapmates.com)
  */
 
+/**
+ * Class contain informations about user credit card.
+ */
 #import <Foundation/Foundation.h>
 
 @class OIAddress;
@@ -45,53 +48,43 @@
  * Add credit card (OICardInfo) to the server and to the credit cards of the 
  * user (OIUser).
  * 
- * @param address (OICardInfo)
- * New credit card which will be added to the user credit cards (server, 
- * application).
+ * @param address New credit card (OICardInfo) which will be added to the user credit cards (server, application).
  *
- * @param block (NSError)
- * Block return nil if request finished successfully.
+ * @param block Block return nil if request finished successfully.
  */
 + (void)addCreditCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block;
 
 /**
  * Update credit card info.
  *
- * @param creditCard (OICardInfo)
- * Changed credit card, which will replace previous credit card.
+ * @param creditCard Changed credit card (OICardInfo), which will replace previous credit card.
  *
- * @param block
- * Block return nil if request finished successfully.
+ * @param block Block return nil if request finished successfully.
  */
 - (void)updateCreditCardWithCard:(OICardInfo *)creditCard usingBlock:(void (^)(NSError *error))block;
 
 /**
  * Load all user credit cards.
  * 
- * @param block
- * Block return all user credit cards.
+ * @param block Block return all user credit cards.
  */
 + (void)loadCreditCardsUsingBlock:(void (^)(NSMutableArray *creditCards))block;
 
 /**
  * Load user credit card (OICardInfo) by its nickname.
  *
- * @param nickname
- * The nickname of the searching credit card.
+ * @param nickname The nickname of the searching credit card.
  *
- * @param block
- * Block return credit card (OICardInfo) with required nickname.
+ * @param block Block return credit card (OICardInfo) with required nickname.
  */
 + (void)loadCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(OICardInfo *cardInfo))block;
 
 /**
  * Delete user credit card by its nickname.
  *
- * @param nickname
- * The nick name of the credit card, which will be deleted.
+ * @param nickname The nick name of the credit card, which will be deleted.
  *
- * @param block
- * Block return nil if request finished successfully.
+ * @param block Block return nil if request finished successfully.
  */
 + (void)deleteCreditCardByNickname:(NSString *)nickname usingBlock:(void (^)(NSError *error))block;
 @end
