@@ -116,8 +116,7 @@
   OICardInfo *creditCard = [__userCreditCardsDataSource.model.items objectAtIndex:section.integerValue];
   EditCreditCardViewController *editCreditCardViewController = [[EditCreditCardViewController alloc] initWithCardInfo:creditCard];
   editCreditCardViewController.hidesBottomBarWhenPushed = YES;
-  [self.navigationController pushViewController:editCreditCardViewController animated:YES];
-  
+  [self.navigationController pushViewController:editCreditCardViewController animated:YES];  
   OI_RELEASE_SAFELY( editCreditCardViewController );
 }
 

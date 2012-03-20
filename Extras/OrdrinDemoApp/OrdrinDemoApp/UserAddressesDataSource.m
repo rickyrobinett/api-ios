@@ -51,10 +51,8 @@ static NSString *cellActionIdentifier = @"cellAddressActionIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-  OIAddress *address = [__model.items objectAtIndex:indexPath.section];
-
   if ( indexPath.row < 7 ) {
+    OIAddress *address = [__model.items objectAtIndex:indexPath.section];    
     TextViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellTextIdentifier];      
     if ( !cell ) {
       cell = [[[TextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellTextIdentifier] autorelease];

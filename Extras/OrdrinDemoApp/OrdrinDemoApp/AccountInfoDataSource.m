@@ -15,6 +15,7 @@
 
 #import "AccountInfoDataSource.h"
 #import "OIUserInfo.h"
+#import "TextViewCell.h"
 
 static NSString *cellIdentifier = @"AccountInfoCell";
 
@@ -33,30 +34,27 @@ static NSString *cellIdentifier = @"AccountInfoCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+  TextViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
   if ( !cell ) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+    cell = [[[TextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
   }
-
-  cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  cell.textLabel.font = [UIFont systemFontOfSize:13.0f];
   
   OIUserInfo *userInfo = [OIUserInfo sharedInstance];
   
-  switch (indexPath.row) {
+  NSString *title;
+  switch ( indexPath.row ) {
     case 0:
-      cell.textLabel.text = [NSString stringWithFormat:@"First Name: %@", userInfo.firstName];
-      break;
-      
+      title = [NSString stringWithFormat:@"First Name: %@", userInfo.firstName];
+      break;      
     case 1:
-      cell.textLabel.text = [NSString stringWithFormat:@"Last Name: %@", userInfo.lastName];
-      break;
-      
+      title = [NSString stringWithFormat:@"Last Name: %@", userInfo.lastName];
+      break;      
     case 2:
-      cell.textLabel.text = [NSString stringWithFormat:@"Email: %@", userInfo.email];
+      title = [NSString stringWithFormat:@"Email: %@", userInfo.email];
       break;
   }
   
+  [cell setTitle:title];
   return cell;
 }
 

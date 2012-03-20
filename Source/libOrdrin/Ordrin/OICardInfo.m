@@ -126,8 +126,6 @@
   __block ASIFormDataRequest *request = [self createRequestForCreateOrUpdateActionWithCreditCard:creditCard];
   [request setCompletionBlock:^{
     NSDictionary *json = [[request responseString] objectFromJSONString];
-    NSLog( @"%@", json );
-    NSLog( @"%@", request.responseStatusMessage );    
     if ( json ) {
       NSNumber *error = [json objectForKey:@"_error"];
       if ( error.intValue == 0 ) {

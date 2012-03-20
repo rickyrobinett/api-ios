@@ -49,8 +49,7 @@
     OI_RELEASE_SAFELY( buttonItem );
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAddressNotification:) name:kDeleteButtonDidPressNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editAddressNotification:) name:kEditButtonDidPressNotification object:nil];    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addressesDidLoadNotification:) name:kAddressesDidLoadNotification object:nil];    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addressesDidLoadNotification:) name:kAddressesDidLoadNotification object:nil];        
   }
   
   return self;
@@ -112,8 +111,6 @@
       [__userAddressesDataSource.model reload];
     }
   }];
-  
-  NSLog( @"deleteAddressNotification %d", section.integerValue );
 }
 
 - (void)editAddressNotification:(NSNotification *)notification {
@@ -122,6 +119,7 @@
   EditAddressViewController *editAddressViewController = [[EditAddressViewController alloc] initWithAddress:address];
   editAddressViewController.delegate = self;
   [self.navigationController pushViewController:editAddressViewController animated:YES];
+  OI_RELEASE_SAFELY( editAddressViewController );
 }
 
 - (void)createNewAddressButtonDidPress {

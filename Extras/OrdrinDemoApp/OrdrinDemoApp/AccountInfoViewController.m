@@ -43,8 +43,14 @@
   [super loadView];
   
   __accountInfoView = [[AccountInfoView alloc] init];
-  self.view = __accountInfoView;  
+  self.view = __accountInfoView;
   [self createModel];
+}
+
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  
+  [self releaseWithDealloc:NO];
 }
 
 #pragma mark -
@@ -58,6 +64,7 @@
 }
 
 - (void)dealloc {
+  [self releaseWithDealloc:YES];
   [super dealloc];
 }
 

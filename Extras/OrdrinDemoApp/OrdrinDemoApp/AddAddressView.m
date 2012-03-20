@@ -184,7 +184,7 @@
 - (void)dealloc {
   OI_RELEASE_SAFELY( __nickNameField );
   OI_RELEASE_SAFELY( __addr1Field );
-  OI_RELEASE_SAFELY( __addr1Field );
+  OI_RELEASE_SAFELY( __addr2Field );
   OI_RELEASE_SAFELY( __cityField );
   OI_RELEASE_SAFELY( __stateField );
   OI_RELEASE_SAFELY( __zipField );
@@ -192,7 +192,7 @@
 
   OI_RELEASE_SAFELY( __nickNameLabel );  
   OI_RELEASE_SAFELY( __addr1Label );
-  OI_RELEASE_SAFELY( __addr1Label );
+  OI_RELEASE_SAFELY( __addr2Label );
   OI_RELEASE_SAFELY( __cityLabel );
   OI_RELEASE_SAFELY( __stateLabel );
   OI_RELEASE_SAFELY( __zipLabel );
